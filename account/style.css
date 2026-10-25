@@ -9,3 +9,5 @@ body{background:#faf6e9;color:#14242b;font-family:'Trebuchet MS',Arial,sans-seri
 
 .shard-packs{display:grid;gap:14px;margin:20px 0}.shard-pack{padding:18px;border:2px solid #14242b;border-radius:12px;background:#faf6e9;display:grid;grid-template-columns:1fr auto;gap:8px 14px;align-items:center}.shard-pack h3{margin:0;font-size:20px}.shard-pack p{margin:0;font-weight:800;font-size:20px}.shard-pack button{grid-column:1/-1}.shard-pack:nth-child(2){background:#dff5fc}.shard-pack:nth-child(3){background:#e8ffc7}
 .multiplayer-games{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}#multiplayer-content .item .avatar-picture{width:42px;height:42px;display:inline-block;vertical-align:middle;margin-right:12px}#multiplayer-content form{margin-block:24px}
+
+.purchase-confirmation:not(:empty){padding:16px;border:1px solid var(--accent,#dfff68);border-radius:12px;line-height:1.6}.purchase-confirmation:empty{display:none}

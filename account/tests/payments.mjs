@@ -32,5 +32,11 @@ assert.equal((await webhook(signed('charge.dispute.created'),admin)).status,200)
 for(const value of ['javascript:alert(1)','https://checkout.stripe.com.evil.invalid/x','https://evil@checkout.stripe.com/x','http://checkout.stripe.com/x'])assert.equal(stripeCheckoutURL(value),null);
 const {document}=parseHTML('<div id="shop"></div>');globalThis.document=document;const root=document.getElementById('shop');
 renderPayments(root,{mode:'preview',available:false,packs:[{id:'a',title:'100 Yeti Shards',amount_cents:99,currency:'usd'}]},()=>{});assert.match(root.textContent,/\$0.99/);assert.equal(root.querySelector('button').disabled,true);
-renderPayments(root,{mode:'test',available:true,packs:[{id:'a',title:'<script>bad</script>',amount_cents:99,currency:'usd',available:true}],orders:[{title:'Test',status:'test_complete',created_at:new Date().toISOString()}]},()=>{});assert.equal(root.querySelector('script'),null);assert.match(root.textContent,/no spendable Shards/);
+renderPayments(root,{mode:'test',available:true,packs:[{id:'a',title:'<script>bad</script>',amount_cents:99,currency:'usd',available:true}],orders:[{title:'Test',livemode:false,status:'test_complete',created_at:new Date().toISOString()}]},()=>{});assert.equal(root.querySelector('script'),null);assert.match(root.textContent,/no spendable Shards/);
 console.log('PASS checkout authentication/origin, server prices, request idempotency, real Stripe signature verification, unpaid/mode rejection, retryable DB errors, refund/dispute routing and preview UI');
+
+assert.match(root.querySelector('[role="status"]').textContent,/Test payment confirmed/);
+assert.match(root.textContent,/Yeti World balance stays unchanged/);
+renderPayments(root,{mode:'test',packs:[],orders:[{title:'Pending',status:'open',livemode:false,created_at:new Date().toISOString()}]},()=>{});
+assert.match(root.querySelector('[role="status"]').textContent,/has not been confirmed/);
+assert.doesNotMatch(root.querySelector('[role="status"]').textContent,/Test payment confirmed/);
