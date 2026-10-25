@@ -40,3 +40,19 @@ assert.equal(el('multiplayer-content').textContent,'');assert.equal(el('world-se
 document.getElementById('logout').click();await settle();assert.equal(document.getElementById('dashboard').hidden,true);assert.equal(document.getElementById('auth').hidden,false);
 document.getElementById('resend-confirmation').click();await settle();assert.equal(authCalls,4);assert.equal(emailCalls.at(-1).args.options.emailRedirectTo,callback);assert.equal(emailCalls.at(-1).args.type,'signup');assert.match(document.getElementById('status').textContent,/check your inbox/);
 console.log('PASS logged-out state, signup, password mismatch, callback URLs, recovery/resend and delivery errors, profile/save rendering, preset avatar save and reload, unknown-avatar fallback, avatar account-switch clearing, API failure recovery and logout');
+
+// Recovery must bypass account-data failures and survive overlapping auth events.
+let passwordWrites=0,passwordError=null;
+sb.auth.updateUser=async()=>{passwordWrites++;return {error:passwordError}};
+current={id:'a',email:'test@example.invalid'};fail=true;
+onAuth('SIGNED_IN');onAuth('PASSWORD_RECOVERY');await settle();await settle();
+assert.equal(el('recovery').hidden,false);assert.equal(el('dashboard').hidden,true);
+assert.equal(el('reset-submit').disabled,false);
+el('reset-password').value='new-test-password-123';el('reset-confirm').value='different-password';
+await el('reset-form').onsubmit({preventDefault(){}});assert.equal(passwordWrites,0);assert.match(el('reset-status').textContent,/do not match/);
+el('reset-confirm').value='new-test-password-123';passwordError={message:'This reset session has expired'};
+await el('reset-form').onsubmit({preventDefault(){}});assert.equal(passwordWrites,1);assert.match(el('reset-status').textContent,/expired/);assert.equal(el('reset-form').hidden,false);
+passwordError=null;await el('reset-form').onsubmit({preventDefault(){}});assert.equal(passwordWrites,2);assert.equal(el('reset-password').value,'');assert.equal(el('reset-confirm').value,'');assert.match(el('reset-status').textContent,/Password saved/);assert.equal(el('reset-continue').hidden,false);
+fail=false;el('reset-continue').click();await settle();assert.equal(el('recovery').hidden,true);assert.equal(el('dashboard').hidden,false);
+onAuth('PASSWORD_RECOVERY');await settle();onAuth('SIGNED_OUT');assert.equal(el('recovery').hidden,true);assert.equal(el('reset-password').value,'');
+console.log('PASS dedicated password recovery with failing account data, overlapping auth callbacks, confirmation mismatch, update failures, success and logout cleanup');
