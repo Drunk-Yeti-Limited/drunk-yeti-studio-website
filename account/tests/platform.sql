@@ -1,0 +1,58 @@
+-- Run as database administrator. Every fixture and flag change is rolled back.
+begin;
+do $$
+declare u uuid:=gen_random_uuid();v uuid:=gen_random_uuid();g text:='test-'||substr(replace(gen_random_uuid()::text,'-',''),1,12);o text;r jsonb;r2 jsonb;request uuid:=gen_random_uuid();before_revision bigint;
+begin
+ insert into auth.users(id,aud,role,email) values(u,'authenticated','authenticated',u::text||'@example.invalid'),(v,'authenticated','authenticated',v::text||'@example.invalid');
+ insert into public.dy_games(id) values(g);
+ perform set_config('request.jwt.claims',jsonb_build_object('sub',u,'role','authenticated')::text,true);
+ r:=public.dy_account_snapshot();if r->>'data_revision'!=public.dy_account_revision()->>'data_revision' then raise exception 'revision_mismatch';end if;
+ if r->>'player_id'!=u::text or r->'profile'->>'avatar_id'!='yeti' then raise exception 'snapshot_default_failed';end if;
+ if (r->'wallets'->0->>'balance')!='0' then raise exception 'zero_balance_failed';end if;
+ if has_function_privilege('authenticated','public.dy_currency_event(uuid,text,text,bigint,text)','execute') or has_function_privilege('anon','public.dy_account_snapshot(integer)','execute') or has_schema_privilege('authenticated','dy_private','usage') then raise exception 'privilege_leak';end if;
+ r2:=public.dy_account_revision();
+ r:=public.dy_currency_event(u,'yeti-shards','test-credit:'||u,100,'earned');
+ if public.dy_account_revision()->>'data_revision'=r2->>'data_revision' then raise exception 'wallet_change_not_detected';end if;
+ r2:=public.dy_currency_event(u,'yeti-shards','test-credit:'||u,100,'earned');
+ if r2->>'replayed'!='true' or r2->>'balance'!='100' then raise exception 'duplicate_credit';end if;
+ begin perform public.dy_currency_event(v,'yeti-shards','test-credit:'||u,100,'earned');raise exception 'receipt_reused';exception when others then if sqlerrm!='event_reused' then raise;end if;end;
+ begin perform public.dy_currency_event(u,'yeti-shards','test-debit:'||u,-101,'adjustment');raise exception 'negative_allowed';exception when others then if sqlerrm!='insufficient_or_invalid_balance' then raise;end if;end;
+ o:=g||'_offer';insert into dy_private.offers(id,title,currency_id,cost,kind,target_game,item_id,enabled) values(o,'Test unlock','yeti-shards',30,'unlock',g,'skin',true);
+ begin perform public.dy_redeem_offer(o,1,request);raise exception 'disabled_spend';exception when others then if sqlerrm!='redemptions_not_ready' then raise;end if;end;
+ select revision into before_revision from dy_private.account_config where id;
+ update dy_private.account_config set document=jsonb_set(document,'{features,redemptions}','true') where id;
+ if (public.dy_account_manifest()->>'revision')::bigint<=before_revision then raise exception 'revision_not_updated';end if;
+ begin perform public.dy_redeem_offer(o,2,request);raise exception 'wrong_version';exception when others then if sqlerrm!='offer_changed' then raise;end if;end;
+ r:=public.dy_redeem_offer(o,1,request);r2:=public.dy_redeem_offer(o,1,request);
+ if r->>'balance'!='70' or r2->>'replayed'!='true' or not dy_private.owns_item(u,g,'skin') then raise exception 'redemption_failed';end if;
+ begin perform public.dy_redeem_offer(o,1,gen_random_uuid());raise exception 'double_purchase';exception when others then if sqlerrm!='already_owned' then raise;end if;end;
+ insert into dy_private.offers(id,title,currency_id,cost,kind,target_game,coin_amount,enabled) values(o||'_coins','Test coins','yeti-shards',20,'casino_coins',g,200,true);
+ begin perform public.dy_redeem_offer(o||'_coins',1,gen_random_uuid());raise exception 'disabled_exchange';exception when others then if sqlerrm!='exchange_not_ready' then raise;end if;end;
+ update dy_private.account_config set document=jsonb_set(document,'{features,casino_exchange}','true') where id;
+ perform public.dy_redeem_offer(o||'_coins',1,gen_random_uuid());
+ if (select balance from public.dy_wallets where player_id=u and game_id=g)!=200 or (select balance from dy_private.balances where player_id=u and currency_id='yeti-shards')!=50 then raise exception 'exchange_not_atomic';end if;
+ insert into public.dy_achievement_defs(game_id,id,title,enabled) values(g,'winner','Test winner',true);
+ insert into dy_private.shard_rewards values(g,'winner',25,true);
+ insert into public.dy_reward_rules(source_game,achievement_id,target_game,item_id,enabled) values(g,'winner','yeti-account','avatar:fox',true);
+ perform public.dy_award_verified(u,g,'winner','test-win:'||u);
+ perform public.dy_award_verified(u,g,'winner','test-win-again:'||u);
+ if (select balance from dy_private.balances where player_id=u and currency_id='yeti-shards')!=75 then raise exception 'achievement_reward_duplicate';end if;
+ if not dy_private.owns_item(u,'yeti-account','avatar:fox') then raise exception 'cross_game_unlock_failed';end if;
+ update dy_private.avatar_catalog set free=false where id='fox';
+ perform public.dy_profile_set_with_avatar('test_'||substr(replace(u::text,'-',''),1,10),'Test','fox');
+ perform set_config('request.jwt.claims',jsonb_build_object('sub',v,'role','authenticated')::text,true);
+ begin perform public.dy_profile_set_with_avatar('test_'||substr(replace(v::text,'-',''),1,10),'Test','fox');raise exception 'locked_avatar_allowed';exception when others then if sqlerrm!='avatar_not_available' then raise;end if;end;
+ r:=public.dy_account_snapshot();if jsonb_array_length(r->'achievements')!=0 or jsonb_array_length(r->'activity')!=0 or r->'wallets'->0->>'balance'!='0' then raise exception 'cross_user_leak';end if;
+ perform set_config('request.jwt.claims',jsonb_build_object('sub',v,'client_id','unregistered')::text,true);
+ begin perform public.dy_account_snapshot();raise exception 'app_scope_leak';exception when others then if sqlerrm!='app_scope_denied' then raise;end if;end;
+ perform set_config('request.jwt.claims','{}',true);
+ begin perform public.dy_account_snapshot();raise exception 'anonymous_leak';exception when others then if sqlerrm!='authentication_required' then raise;end if;end;
+ -- Play Store purchased currency cannot cross titles or fund casino exchanges.
+ insert into dy_private.currencies(id,title,kind,game_id,source_platform,enabled) values(g,'Paid test','purchased',g,'google',true);
+ perform public.dy_currency_event(u,g,'purchase:'||u,100,'purchase');
+ insert into dy_private.offers(id,title,currency_id,cost,kind,target_game,item_id,enabled) values(o||'_cross','Forbidden cross title',g,1,'unlock','yeti-account','avatar:owl',true);
+ perform set_config('request.jwt.claims',jsonb_build_object('sub',u,'role','authenticated')::text,true);
+ begin perform public.dy_redeem_offer(o||'_cross',1,gen_random_uuid());raise exception 'paid_cross_title';exception when others then if sqlerrm!='currency_title_restriction' then raise;end if;end;
+ r:=public.dy_export_account();if not(r?'currency_ledger' and r?'orders' and r?'saves') then raise exception 'export_incomplete';end if;
+end $$;
+rollback;

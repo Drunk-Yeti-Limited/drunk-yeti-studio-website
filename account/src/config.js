@@ -3,6 +3,5 @@
 export const launch = Object.freeze({
   registration: true,
   emailCallbacks: true,
-  providerCallbacks: false,
   oauthServer: false
 });

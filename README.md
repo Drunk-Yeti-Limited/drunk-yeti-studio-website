@@ -86,3 +86,13 @@ value rejection, account isolation, authentication and app-scope enforcement.
 `npm test` in `account/` covers save/reload, fallback and account-switch clearing.
 Local Chromium could not launch in this environment, so responsive styling was
 reviewed in code but visual browser verification remains outstanding.
+
+## Shared account platform
+
+`account/PLATFORM.md` documents the deployed v1 backend contract and rollout gates.
+The Yeti world account tab displays Yeti Shards, separate game wallets, earned
+achievements, unlocks, offers and planned Xbox/PlayStation connections. Public
+configuration and per-account revision checks let compatible clients discover
+updates; Google/Apple/Facebook buttons require backend and per-surface readiness.
+JavaScript and Python integration clients live in `account/sdk/`. Native app
+binaries, payment processing and console linking are not included in this release.
