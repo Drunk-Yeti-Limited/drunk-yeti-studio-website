@@ -1,5 +1,14 @@
 [
   {
+    "title": "Sixfold",
+    "url": "https://drunkyeti.itch.io/sixfold",
+    "image": "./assets/covers/sixfold.webp",
+    "description": "",
+    "category": "Games",
+    "browser": true,
+    "coverSource": "https://img.itch.zone/aW1nLzMxMzQzNTUyLnBuZw==/315x250%23c/Vv6PZZ.png"
+  },
+  {
     "title": "AR3NA Foosball Soundtrack",
     "url": "https://drunkyeti.itch.io/ar3na-foosball-soundtrack",
     "image": "./assets/covers/ar3na-foosball-soundtrack.webp",
