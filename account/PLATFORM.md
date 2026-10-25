@@ -203,3 +203,11 @@ and activation steps. Cash purchases remain off and no hosted checkout has yet
 been completed end to end. This supersedes the earlier statement that no payment
 processor integration exists; the processor is connected but runtime credentials
 and sandbox acceptance testing remain pending.
+
+## Multiplayer foundation
+
+The public account manifest now advertises a versioned `multiplayer` contract.
+See [MULTIPLAYER.md](MULTIPLAYER.md) for matchmaking, friend lobbies, numbered
+guests, presence/coin privacy, JS/Python clients and game activation requirements.
+The website provides Play together and saved preferences. Actual game engines
+and guest signup remain gated until each game integrates the backend.
