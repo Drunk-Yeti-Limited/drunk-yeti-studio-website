@@ -1,8 +1,8 @@
-// Enable only after completing account/SETUP.md and real end-to-end checks.
+// Email rollout: verified Resend domain, saved SMTP, exact website callback configured.
 // UI release gates are not backend security controls.
 export const launch = Object.freeze({
-  registration: false,
-  emailCallbacks: false,
+  registration: true,
+  emailCallbacks: true,
   providerCallbacks: false,
   oauthServer: false
 });
