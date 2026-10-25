@@ -10,7 +10,7 @@ export function renderWorld(root,manifest,data,onRedeem){
  for(const w of data.wallets||[])panel.append(row(w.title,number(w.balance)+' · '+(w.kind==='earned'?'Earned through connected games':'Purchased · '+w.source_platform)+' · '+(w.game_id?title(w.game_id):'Shared across Drunk Yeti')));
  for(const w of data.game_wallets||[])panel.append(row(w.title+' coins',number(w.balance)+' · For this game only'));
  if(!data.game_wallets?.length)panel.append(row('Game coins','Separate game wallets will appear here when connected.'));
- panel.append(row('Buying Shards','Purchases are not available yet.'));
+ panel.append(row('Shard purchases','Open Buy Shards for checkout availability and confirmed purchase history.'));
  for(const a of (data.activity||[]).slice(0,5))panel.append(row(a.reason,(String(a.delta).startsWith('-')?'':'+')+a.delta+' '+title(a.currency_id)+' · '+new Date(a.created_at).toLocaleDateString()));break;
  case 'achievements':
  for(const a of data.achievements||[])panel.append(row(a.title,title(a.game_id)+' · Earned '+new Date(a.earned_at).toLocaleDateString()));
