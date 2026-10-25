@@ -194,3 +194,12 @@ https://supabase.com/docs/guides/auth/password-security#password-strength-and-le
 Live visual/browser testing remains blocked by this environment's connection
 failure to the custom domain. Automated tests do not prove native callback flows,
 store approvals, actual receipt validation, or live email delivery.
+
+## Payment integration checkpoint
+
+The checkout preview, signed webhook handler, ledger fulfillment and review holds
+are now implemented. See `PAYMENTS.md` for the connected sandbox, required secrets
+and activation steps. Cash purchases remain off and no hosted checkout has yet
+been completed end to end. This supersedes the earlier statement that no payment
+processor integration exists; the processor is connected but runtime credentials
+and sandbox acceptance testing remain pending.

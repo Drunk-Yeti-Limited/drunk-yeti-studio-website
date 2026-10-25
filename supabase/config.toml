@@ -1,0 +1,6 @@
+# Both handlers authenticate in code: checkout validates the user with Supabase
+# Auth and scoped RPCs; webhook verifies Stripe's signed raw request body.
+[functions.shard-checkout]
+verify_jwt = false
+[functions.shard-webhook]
+verify_jwt = false

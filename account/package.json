@@ -5,13 +5,14 @@
   "type": "module",
   "scripts": {
     "build": "esbuild src/app.js --bundle --format=esm --minify --outfile=app.js",
-    "test": "node tests/security.mjs && node tests/platform.mjs && node --experimental-test-module-mocks tests/ui.mjs"
+    "test": "node tests/security.mjs && node tests/platform.mjs && node tests/payments.mjs && node --experimental-test-module-mocks tests/ui.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.118.0"
   },
   "devDependencies": {
     "esbuild": "0.28.2",
-    "linkedom": "0.18.12"
+    "linkedom": "0.18.12",
+    "stripe": "22.6.0"
   }
 }

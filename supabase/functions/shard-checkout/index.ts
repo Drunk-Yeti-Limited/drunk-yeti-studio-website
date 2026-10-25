@@ -1,0 +1,11 @@
+import Stripe from 'npm:stripe@22.6.0';
+import {createClient} from 'npm:@supabase/supabase-js@2.118.0';
+import {createCheckoutHandler} from '../_shared/payment-core.mjs';
+const mode=Deno.env.get('YETI_PAYMENTS_MODE')||'off';
+const key=Deno.env.get('STRIPE_SECRET_KEY')||'';
+const valid=(mode==='test'&&/^(sk|rk)_test_/.test(key))||(mode==='live'&&/^(sk|rk)_live_/.test(key));
+const stripe=valid?new Stripe(key,{apiVersion:'2026-08-26.dahlia'}):null;
+const url=Deno.env.get('SUPABASE_URL')!;
+const anon=Deno.env.get('SUPABASE_ANON_KEY')!;
+const admin=createClient(url,Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!,{auth:{persistSession:false,autoRefreshToken:false}});
+Deno.serve(createCheckoutHandler({mode,stripe,admin,automaticTax:Deno.env.get('STRIPE_AUTOMATIC_TAX')==='true',userClient:(authorization:string)=>createClient(url,anon,{global:{headers:{Authorization:authorization}},auth:{persistSession:false,autoRefreshToken:false}})}));
