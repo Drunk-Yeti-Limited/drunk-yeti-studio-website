@@ -10,9 +10,10 @@ const sb={auth:{getUser:async()=>({data:{user:current},error:null}),onAuthStateC
 mock.module('@supabase/supabase-js',{namedExports:{createClient:()=>sb}});
 await import('../src/app.js');const settle=()=>new Promise(resolve=>setTimeout(resolve,10));await settle();
 assert.equal(document.getElementById('auth').hidden,false);assert.equal(document.getElementById('dashboard').hidden,true);
-document.getElementById('mode').click();assert.match(document.getElementById('status').textContent,/not open/);
+document.getElementById('mode').click();assert.equal(document.getElementById('confirm-row').hidden,false);assert.equal(document.getElementById('confirm-password').required,true);
 document.getElementById('forgot').click();await settle();assert.equal(authCalls,0);assert.match(document.getElementById('status').textContent,/not ready/);
 current={id:'a',email:'test@example.invalid'};document.getElementById('refresh').click();await settle();assert.equal(document.getElementById('dashboard').hidden,false);assert.equal(document.getElementById('handle').value,'alice');assert.match(document.getElementById('save-list').textContent,/Revision 2/);
 fail=true;current={id:'b',email:'b@example.invalid'};document.getElementById('refresh').click();await settle();assert.equal(document.getElementById('handle').value,'');assert.equal(document.getElementById('save-list').textContent,'');assert.equal(document.getElementById('dashboard').hidden,false);assert.match(document.getElementById('status').textContent,/Temporary/);
 document.getElementById('logout').click();await settle();assert.equal(document.getElementById('dashboard').hidden,true);assert.equal(document.getElementById('auth').hidden,false);
+document.getElementById('resend-confirmation').click();await settle();assert.equal(authCalls,0);assert.match(document.getElementById('status').textContent,/being prepared/);
 console.log('PASS logged-out state, release gates, profile/save rendering, account-switch clearing, API failure recovery and logout');

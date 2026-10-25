@@ -39,3 +39,9 @@ Commit source, lockfile and generated `app.js` together. Keep dependencies pinne
 Tests cover callback validation, consent scope composition, UI element references, logged-out state, disabled activation paths, signed-in rendering with mocked backend data, switching accounts, API-failure recovery and logout. Browser inspection checks real rendering separately. No tests create a real customer account, send email or change a real password. Live cross-device/provider authentication must still be tested after configuration.
 
 If account behavior must be rolled back, remove the two homepage account links or revert this commit. Do not delete players, tables or saves.
+
+## Email-first rollout (25 October 2026)
+
+Google and Apple developer accounts are not prerequisites for this release. The create-account form now includes password confirmation and explains email verification; existing password logins remain available. Confirmation resend is implemented using Supabase Auth. Sending/signup remain gated until a verified SMTP sender and exact callback URL are configured, rather than presenting a false success. No account or email was created during tests.
+
+Immediate owner action: choose/verify a free SMTP sending service (for example Resend) using the existing studio domain, add its supplied DNS records at the domain provider, and configure its credentials in Supabase Authentication SMTP. Allow `https://www.drunkyetistudio.com/account/` in Auth redirect URLs. Do not send credentials in chat. A successful real signup, confirmation and recovery test must precede enabling the email release flags. Social-provider flags can stay false indefinitely.
