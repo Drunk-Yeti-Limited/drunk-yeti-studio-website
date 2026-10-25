@@ -71,3 +71,18 @@ The original release checked model loading, rig clips and logo topology. The v1.
 ## Credits and licenses
 
 Drunk Yeti branding, mascot, catalog imagery and projects belong to their respective rights holders. The mascot comes from the user's supplied Collision Karts project; the studio logo and project covers were sourced from the supplied itch.io profile. Video identifiers and titles come from the supplied YouTube channel. Three.js and its loaders are MIT licensed; see `assets/THREE-LICENSE.txt`. The dependency license does not relicense the studio's creative assets.
+
+## Account avatars
+
+The homepage has a persistent Your account button, including on phones. Profile
+settings offer the existing Drunk Yeti logo by default, plus Raccoon, Fox, Beaver,
+Seagull, Otter, and Owl portraits from the studio animation archives. There are no
+player uploads: six shared images total 813,467 bytes, and each profile stores only
+an allowlisted avatar ID. See `account/avatars/README.md` for source provenance.
+
+The avatar migration was applied before the client rollout. Transactional database
+checks verified all seven choices, default values, old-client preservation, invalid
+value rejection, account isolation, authentication and app-scope enforcement.
+`npm test` in `account/` covers save/reload, fallback and account-switch clearing.
+Local Chromium could not launch in this environment, so responsive styling was
+reviewed in code but visual browser verification remains outstanding.
