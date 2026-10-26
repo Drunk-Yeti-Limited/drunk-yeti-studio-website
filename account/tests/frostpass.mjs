@@ -47,6 +47,6 @@ let complete,states=[];const watcher=watchFrostpass({access:()=>new Promise(r=>c
 for(const url of ['https://evil.invalid/x','https://billing.stripe.com.evil.invalid/x','javascript:alert(1)','http://billing.stripe.com/x']){assert.equal(portalURL(url),null);assert.equal(billingURL(url,'portal'),null);}
 const {document}=parseHTML('<div id="root"></div>');globalThis.document=document;const root=document.getElementById('root');
 renderFrostpass(root,{catalog:{title:'Yeti Frostpass',amount_cents:999,currency:'usd',monthly_shards:1000,available:false,products:[{title:'Maker',ready:false}]},membership:{}},()=>{},()=>{});
-assert.match(root.textContent,/\$9.99\/month/);assert.match(root.textContent,/1,000 Shards/);assert.match(root.textContent,/Integration planned/);assert.equal(root.querySelector('button').disabled,true);
+assert.match(root.textContent,/\$9.99\/month/);assert.match(root.textContent,/1,000 Shards/);assert.match(root.textContent,/Integration planned/);assert.match(root.textContent,/no apps or games are included yet/);assert.equal(root.querySelector('button').disabled,true);
 renderFrostpass(root,{catalog:{},membership:{active:true,can_manage:true,cancel_at_period_end:true,period_end:new Date().toISOString()}},()=>{},()=>{});assert.match(root.textContent,/Access ends/);assert.equal(root.querySelector('button').textContent,'Manage subscription');
 console.log('PASS Frostpass signed events, verified invoices, mode/scope/price gates, cancellation sync, billing links, expiring access and account-switch watcher');

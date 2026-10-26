@@ -8,10 +8,13 @@ is temporary and distinct from Shards, casino coins and permanent licenses.
 ## Current deployment
 
 The database, account UI, Edge Function and SDK integration contract are implemented.
-Checkout stays disabled until the Stripe product/price, portal configuration,
-webhook event subscriptions, restricted-key permissions, sandbox lifecycle tests,
-and at least one participating app's actual full/demo gate are verified. No app
-binary is patched by this website release. Seeded apps are explicitly **planned**.
+The owner authorized a Shards-first launch on 2026-10-26. Checkout may be enabled
+without a ready app; the purchase page and confirmation explicitly disclose that
+no apps are included yet. Actual app access still requires ready=true.
+Live Price: price_1UUfrUAX69kaKLYcfq1i2SyX; portal: bpc_1UUfriAX69kaKLYcMIwAZDij.
+The existing signed webhook includes subscription and invoice events.
+Sandbox lifecycle and actual paid subscription end-to-end tests remain outstanding.
+No app binary is patched by this website release. Seeded apps remain planned.
 A public itch.io Frostpass phrase is a discovery label, not an authorization rule.
 
 ## Billing setup

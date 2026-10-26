@@ -3,7 +3,7 @@ export function renderFrostpass(root,data,onSubscribe,onManage){
  root.replaceChildren();const c=data.catalog||{},m=data.membership||{};
  const h=document.createElement('h3');h.textContent=c.title||'Yeti Frostpass';
  const price=document.createElement('p');price.className='frostpass-price';price.textContent=Number.isInteger(c.amount_cents)?new Intl.NumberFormat('en-US',{style:'currency',currency:c.currency||'usd'}).format(c.amount_cents/100)+'/month':'Pricing coming soon';
- const perks=document.createElement('p');perks.textContent=(c.monthly_shards||1000).toLocaleString()+' Shards after each successful monthly payment, plus full access to participating apps and games.';
+ const perks=document.createElement('p');perks.textContent=(c.monthly_shards||1000).toLocaleString()+' Shards after each successful monthly payment. '+((c.products||[]).some(p=>p.ready)?'Full access to the apps and games marked Included below.':'App and game access is coming later; no apps or games are included yet.');
  const state=document.createElement('p');state.className='purchase-confirmation';state.setAttribute('role','status');
  state.textContent=m.test?'Test subscription · No real full-access entitlement or spendable Shards.':m.active?'Frostpass active':m.status&&m.status!=='none'?'Membership: '+m.status.replaceAll('_',' '):'Not subscribed';
  if(m.period_end&&m.active)state.textContent+=' · '+(m.cancel_at_period_end?'Access ends ':'Renews ')+new Date(m.period_end).toLocaleDateString();
@@ -15,7 +15,7 @@ export function renderFrostpass(root,data,onSubscribe,onManage){
  else{b.textContent=c.available?(c.mode==='test'?'Try test subscription':'Subscribe to Yeti Frostpass'):'Coming soon';b.disabled=!c.available;b.onclick=()=>onSubscribe(c);}
  root.append(b);
  if(m.can_manage&&['canceled','incomplete_expired'].includes(m.status)&&c.available){const again=document.createElement('button');again.type='button';again.textContent='Subscribe again';again.onclick=()=>onSubscribe(c);root.append(again);}
- if(!c.available&&!m.can_manage){const p=document.createElement('p');p.className='fine';p.textContent='Subscriptions open once billing verification and participating app integrations are ready.';root.append(p);}
+ if(!c.available&&!m.can_manage){const p=document.createElement('p');p.className='fine';p.textContent='Subscriptions are temporarily unavailable.';root.append(p);}
  const list=document.createElement('ul');list.className='frostpass-products';
  for(const product of c.products||[]){const li=document.createElement('li');li.textContent=product.title+' · '+(product.ready?'Included':'Integration planned');list.append(li);}root.append(list);
 }

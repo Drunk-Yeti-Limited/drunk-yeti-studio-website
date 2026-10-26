@@ -105,7 +105,7 @@ let membershipReturnOpened=false;
 async function syncFrostpass(mine=generation){
  try{const data=await frostpass.status();if(mine!==generation||!user)return;
  renderFrostpass($('frostpass-content'),data,c=>{
-  if(!confirm('Subscribe to Yeti Frostpass for '+new Intl.NumberFormat('en-US',{style:'currency',currency:c.currency}).format(c.amount_cents/100)+'/month, renewing until canceled? You will confirm payment in Stripe.'))return;
+  if(!confirm('Subscribe to Yeti Frostpass for '+new Intl.NumberFormat('en-US',{style:'currency',currency:c.currency}).format(c.amount_cents/100)+'/month, renewing until canceled? Includes '+c.monthly_shards+' Shards per paid month. '+((c.products||[]).some(p=>p.ready)?'Only apps marked Included have full access. ':'No apps or games are included yet. ')+'You will confirm payment in Stripe.'))return;
   openMembershipBilling('checkout');
  },()=>openMembershipBilling('portal'));
  if(new URLSearchParams(location.search).has('membership')&&!membershipReturnOpened&&!recoveryMode){tab('frostpass');membershipReturnOpened=true;}
