@@ -1,0 +1,50 @@
+-- Run inside BEGIN/ROLLBACK. No real player balances are touched.
+do $$
+declare u uuid:=gen_random_uuid();v uuid:=gen_random_uuid();req uuid:=gen_random_uuid();testreq uuid:=gen_random_uuid();sub text:='sub_'||replace(u::text,'-','');cust text:='cus_'||replace(u::text,'-','');inv text:='in_'||replace(u::text,'-','');r jsonb;start_at timestamptz:=now()-interval '1 day';end_at timestamptz:=now()+interval '29 days';before_fetched timestamptz:=now()-interval '1 minute';
+begin
+ insert into auth.users(id,aud,role,email) values(u,'authenticated','authenticated',u::text||'@example.invalid'),(v,'authenticated','authenticated',v::text||'@example.invalid');
+ perform set_config('request.jwt.claims',jsonb_build_object('sub',u,'role','authenticated')::text,true);
+ if (public.dy_subscription_catalog()->>'available')::boolean then raise exception 'sale_should_be_disabled';end if;
+ begin perform public.dy_subscription_prepare();raise exception 'disabled_checkout_allowed';exception when others then if sqlerrm!='subscriptions_not_ready' then raise;end if;end;
+ if (public.dy_app_access('platform-maker')->>'full_access')::boolean then raise exception 'unpaid_access';end if;
+ insert into dy_private.subscription_requests(id,player_id,stripe_price,livemode) values(req,u,'price_fixture',true),(testreq,v,'price_fixture_test',false);
+ perform public.dy_subscription_sync(req,sub,cust,'price_fixture',true,'active',true,end_at,false,now());
+ -- A paid membership must not claim an unintegrated app works.
+ if public.dy_app_access('platform-maker')->>'reason'!='integration_pending' then raise exception 'planned_access';end if;
+ update dy_private.access_products set ready=true where id='platform-maker';
+ if not (public.dy_app_access('platform-maker')->>'full_access')::boolean then raise exception 'active_access_failed';end if;
+ if (public.dy_app_access('unknown-app')->>'full_access')::boolean then raise exception 'unknown_app_access';end if;
+ r:=public.dy_subscription_benefit(sub,inv,cust,'price_fixture',true,true,999,'usd','subscription_create',start_at,end_at);
+ if (select balance from dy_private.balances where player_id=u and currency_id='yeti-shards-web')!=1000 then raise exception 'initial_grant_failed';end if;
+ if public.dy_subscription_benefit(sub,inv,cust,'price_fixture',true,true,999,'usd','subscription_create',start_at,end_at)->>'replayed'!='true' then raise exception 'invoice_replay_failed';end if;
+ perform public.dy_subscription_benefit(sub,inv||'retry',cust,'price_fixture',true,true,999,'usd','subscription_cycle',start_at,end_at);
+ if (select balance from dy_private.balances where player_id=u and currency_id='yeti-shards-web')!=1000 then raise exception 'duplicate_period_grant';end if;
+ begin perform public.dy_subscription_benefit(sub,inv||'bad',cust,'price_fixture',true,false,999,'usd','subscription_cycle',end_at,end_at+interval '30 days');raise exception 'unpaid_granted';exception when others then if sqlerrm!='invalid_subscription_invoice' then raise;end if;end;
+ begin perform public.dy_subscription_benefit(sub,inv||'small',cust,'price_fixture',true,true,1,'usd','subscription_cycle',end_at,end_at+interval '30 days');raise exception 'wrong_amount_granted';exception when others then if sqlerrm!='invalid_subscription_invoice' then raise;end if;end;
+ perform public.dy_subscription_benefit(sub,inv||'renew',cust,'price_fixture',true,true,999,'usd','subscription_cycle',end_at,end_at+interval '30 days');
+ if (select balance from dy_private.balances where player_id=u and currency_id='yeti-shards-web')!=2000 then raise exception 'renewal_grant_failed';end if;
+ perform public.dy_subscription_sync(req,sub,cust,'price_fixture',true,'active',true,end_at,true,now());
+ if not (public.dy_subscription_status()->>'active')::boolean then raise exception 'cancel_at_end_early_revoke';end if;
+ perform public.dy_subscription_sync(req,sub,cust,'price_fixture',true,'canceled',true,end_at,false,now());
+ if (public.dy_subscription_status()->>'active')::boolean then raise exception 'canceled_access';end if;
+ perform public.dy_subscription_sync(req,sub,cust,'price_fixture',true,'active',true,end_at,false,before_fetched);
+ if (public.dy_subscription_status()->>'active')::boolean then raise exception 'stale_event_reactivated';end if;
+ perform public.dy_subscription_sync(req,sub,cust,'price_fixture',true,'past_due',false,end_at,false,now());
+ if (public.dy_app_access('platform-maker')->>'full_access')::boolean then raise exception 'past_due_access';end if;
+ perform public.dy_subscription_sync(req,sub,cust,'price_fixture',true,'active',true,end_at,false,now());
+ update dy_private.subscriptions set verified_at=now()-interval '16 minutes' where stripe_id=sub;
+ if (public.dy_subscription_status()->>'active')::boolean then raise exception 'stale_access';end if;
+ perform public.dy_subscription_sync(req,sub,cust,'price_fixture',true,'active',true,now()-interval '1 second',false,now());
+ if (public.dy_subscription_status()->>'active')::boolean then raise exception 'expired_access';end if;
+ insert into public.dy_entitlements(player_id,game_id,item_id) values(u,'yeti-account','full-access:platform-maker');
+ if public.dy_app_access('platform-maker')->>'reason'!='permanent_purchase' then raise exception 'permanent_purchase_lost';end if;
+ perform public.dy_subscription_sync(testreq,sub||'test',cust||'test','price_fixture_test',false,'active',true,end_at,false,now());
+ perform public.dy_subscription_benefit(sub||'test',inv||'test',cust||'test','price_fixture_test',false,true,999,'usd','subscription_create',start_at,end_at);
+ perform set_config('request.jwt.claims',jsonb_build_object('sub',v,'role','authenticated')::text,true);
+ if (public.dy_subscription_status()->>'active')::boolean then raise exception 'test_live_access';end if;
+ if exists(select 1 from dy_private.balances where player_id=v and balance>0) then raise exception 'test_live_credit';end if;
+ if (public.dy_app_access('platform-maker')->>'full_access')::boolean then raise exception 'cross_user_access';end if;
+ if has_function_privilege('authenticated','public.dy_subscription_sync(uuid,text,text,text,boolean,text,boolean,timestamptz,boolean,timestamptz)','execute') or has_function_privilege('authenticated','public.dy_subscription_benefit(text,text,text,text,boolean,boolean,integer,text,text,timestamptz,timestamptz)','execute') or has_function_privilege('anon','public.dy_app_access(text)','execute') then raise exception 'privilege_leak';end if;
+ perform set_config('request.jwt.claims','{}',true);
+ begin perform public.dy_subscription_status();raise exception 'anonymous_allowed';exception when others then if sqlerrm!='authentication_required' then raise;end if;end;
+end $$;

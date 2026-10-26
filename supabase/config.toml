@@ -4,3 +4,7 @@
 verify_jwt = false
 [functions.shard-webhook]
 verify_jwt = false
+
+# Validates Supabase user JWT and RPC scopes inside the handler.
+[functions.subscription-account]
+verify_jwt = false

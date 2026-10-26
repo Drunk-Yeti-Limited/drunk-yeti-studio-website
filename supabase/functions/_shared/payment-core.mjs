@@ -38,7 +38,7 @@ export function createCheckoutHandler({mode,stripe,userClient,admin,automaticTax
  }catch{return response({error:'checkout_unavailable_try_again'},409,true)}
  };
 }
-export function createWebhookHandler({stripe,webhookSecret,livemode,cryptoProvider}){
+export function createWebhookHandler({stripe,webhookSecret,livemode,cryptoProvider,onSubscriptionEvent=null}){
  return async(req,admin)=>{
  if(req.method!=='POST')return response({error:'method_not_allowed'},405);
  if(!stripe||!webhookSecret)return response({error:'webhook_not_configured'},503);
@@ -46,6 +46,7 @@ export function createWebhookHandler({stripe,webhookSecret,livemode,cryptoProvid
  try{const raw=await req.text();if(raw.length>1_000_000)return response({error:'payload_too_large'},413);event=await stripe.webhooks.constructEventAsync(raw,req.headers.get('Stripe-Signature')||'',webhookSecret,300,cryptoProvider)}catch{return response({error:'invalid_signature'},400)}
  if(event.livemode!==livemode)return response({error:'mode_mismatch'},400);
  try{
+ if(onSubscriptionEvent)await onSubscriptionEvent(event,admin);
  if(['checkout.session.completed','checkout.session.async_payment_succeeded'].includes(event.type)){
  const session=await stripe.checkout.sessions.retrieve(event.data.object.id);
  const order=session.metadata?.yeti_order_id;

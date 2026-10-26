@@ -86,3 +86,23 @@ def character_themes(manifest, account, surface='account'):
                            available=bool(owned and integration and
                                           integration.get('status') == 'ready')))
     return result
+
+
+def has_full_access(result, product_id, now=None):
+    from datetime import datetime, timezone
+    if not isinstance(result, dict) or result.get('schema_version') != 1 or result.get('product_id') != product_id or result.get('full_access') is not True:
+        return False
+    try:
+        deadline = datetime.fromisoformat(result['valid_until'].replace('Z', '+00:00'))
+        return deadline > (now or datetime.now(timezone.utc))
+    except (ValueError, TypeError, KeyError):
+        return False
+
+
+class FrostpassClient(AccountClient):
+    def status(self):
+        return self._request('/functions/v1/subscription-account', {'action': 'status'}, True)
+
+    def access(self, product_id):
+        return self._request('/functions/v1/subscription-account',
+                             {'action': 'access', 'product_id': product_id}, True)
