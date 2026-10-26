@@ -34,7 +34,7 @@ Then visit `http://localhost:8080`. This GitHub Pages repository serves the webs
 
 ## Edit the collection
 
-Update `assets/catalog.json`. Fields are `title`, `url`, `image`, `description`, `category` (`Games`, `Tools`, `Assets`, `Mods`, `Soundtracks`, `Comics`), and `browser` (boolean). An optional `storefront` labels external store destinations. Prices and operating-system promises are left to the storefront pages, where current download availability is authoritative.
+Update `assets/catalog.json`. Fields are `title`, `url`, `image`, `description`, `category` (`Games`, `Tools`, `Assets`, `Mods`, `Soundtracks`, `Comics`), and `browser` (boolean). `frostpass` (boolean) adds the Yeti Frostpass card label across every category; it is detected from the full itch.io product description, not its short profile summary. An optional `storefront` labels external store destinations. Prices and operating-system promises are left to the storefront pages, where current download availability is authoritative.
 
 Update `assets/videos.json` with each video's `id` and `title`. Put a matching thumbnail at `assets/VIDEO-ID.jpg`.
 
@@ -96,3 +96,22 @@ configuration and per-account revision checks let compatible clients discover
 updates; Google/Apple/Facebook buttons require backend and per-surface readiness.
 JavaScript and Python integration clients live in `account/sdk/`. Native app
 binaries, payment processing and console linking are not included in this release.
+
+
+### Yeti Frostpass description labels
+
+The refresh checks every linked public itch.io product page, including games,
+tools, mods and assets. Put **Yeti Frostpass** anywhere in the page description;
+matching is case-insensitive, tolerates whitespace/line breaks and inline markup,
+and ignores navigation, comments and scripts. A successful later check removes
+the badge if the phrase is removed. Failed requests or missing descriptions retain
+the previous verified flag and report a warning (`frostpassCheck: unavailable`).
+New, unverified pages receive no badge. External storefront extras are not scraped.
+The original short card description stays unchanged. Searching “Yeti Frostpass”
+also finds labeled cards. The label is catalog metadata, never proof of paid access;
+subscription authorization remains a separate server-side check.
+
+For offline fixtures, `--pages-dir DIR` reads each product's `<slug>.html`.
+Run `python3 -m unittest discover -s scripts/tests` for description checks and
+`node scripts/tests/catalog-badge.mjs` for card rendering. New labels appear after
+refreshing and publishing the generated catalog alongside the website files.

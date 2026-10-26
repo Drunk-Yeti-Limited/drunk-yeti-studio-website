@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Refresh the root GitHub Pages catalog from public itch.io profile cards.
+"""Refresh the root GitHub Pages catalog from public itch.io profile cards and product descriptions.
 
 Run: python3 scripts/prepare-assets.py
 Requires Pillow; no API key, backend or GitHub Actions workflow is needed.
@@ -24,7 +24,7 @@ PROFILE = 'https://drunkyeti.itch.io/'
 
 
 def fetch(url):
-    request = Request(url, headers={'User-Agent': 'DrunkYeti-Portfolio-Catalog/1.1'})
+    request = Request(url, headers={'User-Agent': 'DrunkYeti-Portfolio-Catalog/1.2'})
     with urlopen(request, timeout=30) as response:
         return response.read()
 
@@ -76,6 +76,80 @@ class ProfileParser(HTMLParser):
                 self.cards.append(self.card)
                 self.card = None
                 self.capture = None
+
+
+class DescriptionParser(HTMLParser):
+    """Read only itch.io's authored description, never comments/nav/script text."""
+    BLOCKS = {'div', 'p', 'br', 'li', 'ul', 'ol', 'h1', 'h2', 'h3', 'h4',
+              'h5', 'h6', 'section', 'blockquote', 'table', 'tr', 'td', 'hr'}
+
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.depth = 0
+        self.found = False
+        self.parts = []
+        self.ignored = None
+
+    def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs)
+        if tag == 'div' and not self.depth and 'formatted_description' in attrs.get('class', '').split():
+            self.depth = 1
+            self.found = True
+            self.parts.append(' ')
+            return
+        if not self.depth:
+            return
+        if tag == 'div':
+            self.depth += 1
+        if tag in {'script', 'style', 'template'}:
+            self.ignored = tag
+        if not self.ignored and tag in self.BLOCKS:
+            self.parts.append(' ')
+
+    def handle_endtag(self, tag):
+        if not self.depth:
+            return
+        if tag == self.ignored:
+            self.ignored = None
+        if tag in self.BLOCKS:
+            self.parts.append(' ')
+        if tag == 'div':
+            self.depth -= 1
+
+    def handle_data(self, data):
+        if self.depth and not self.ignored:
+            self.parts.append(data)
+
+    @property
+    def frostpass(self):
+        text = ' '.join(''.join(self.parts).split()).casefold()
+        return bool(re.search(r'\byeti\s+frostpass\b', text))
+
+
+def refresh_frostpass(card, previous=None, pages_dir=None):
+    """A failed fetch must not silently remove a previously verified badge."""
+    if urlparse(card['url']).hostname != 'drunkyeti.itch.io':
+        return None
+    try:
+        if pages_dir is not None:
+            slug = urlparse(card['url']).path.strip('/')
+            if not re.fullmatch(r'[a-z0-9-]+', slug):
+                raise ValueError('Invalid product slug')
+            html = (pages_dir / (slug + '.html')).read_text(encoding='utf-8')
+        else:
+            html = fetch(card['url']).decode('utf-8')
+        parser = DescriptionParser()
+        parser.feed(html)
+        parser.close()
+        if not parser.found:
+            raise ValueError('Product description missing; page may be unavailable')
+        card['frostpass'] = parser.frostpass
+        card['frostpassCheck'] = 'verified'
+        return None
+    except Exception as error:
+        card['frostpass'] = bool(previous and previous.get('frostpass') is True)
+        card['frostpassCheck'] = 'unavailable'
+        return f"{card['title']} Frostpass check: {error}"
 
 
 def classify(card):
@@ -161,6 +235,7 @@ def refresh_cover(card, previous=None):
 def main():
     cli = argparse.ArgumentParser(description=__doc__)
     cli.add_argument('--html', type=Path, help='Use a saved profile page for offline checks')
+    cli.add_argument('--pages-dir', type=Path, help='Read saved product descriptions from <slug>.html files')
     args = cli.parse_args()
     parser = ProfileParser()
     parser.feed(args.html.read_text() if args.html else fetch(PROFILE).decode('utf-8'))
@@ -185,20 +260,25 @@ def main():
         raise RuntimeError('Profile response appears incomplete; existing catalog was preserved.')
     (ROOT / 'assets/covers').mkdir(parents=True, exist_ok=True)
     previous = {card['url']: card for card in old}
+    with ThreadPoolExecutor(max_workers=4) as pool:
+        description_warnings = [warning for warning in pool.map(
+            lambda card: refresh_frostpass(card, previous.get(card['url']), args.pages_dir), cards) if warning]
     with ThreadPoolExecutor(max_workers=6) as pool:
         warnings = [warning for warning in pool.map(
             lambda card: refresh_cover(card, previous.get(card['url'])), cards) if warning]
+    warnings = description_warnings + warnings
+    frostpass_count = sum(card.get('frostpass') is True for card in cards)
     changed = write_if_changed(old_path, (json.dumps(cards, ensure_ascii=False, indent=2) + '\n').encode())
     categories = dict(sorted(Counter(card['category'] for card in cards).items()))
     metadata_path = ROOT / 'assets/catalog-meta.json'
     if changed or not metadata_path.exists():
         metadata = dict(source=PROFILE, updated=datetime.now(timezone.utc).isoformat(),
-                        count=len(cards), categories=categories, warnings=warnings)
+                        count=len(cards), categories=categories, frostpass=frostpass_count, warnings=warnings)
         write_if_changed(metadata_path, (json.dumps(metadata, indent=2) + '\n').encode())
     print(json.dumps(dict(count=len(cards), added=len(seen - {p['url'] for p in old}),
-                          categories=categories, changed=changed, warnings=warnings), indent=2))
+                          categories=categories, frostpass=frostpass_count, changed=changed, warnings=warnings), indent=2))
     if warnings:
-        print('Cover failures retained existing artwork or the studio-logo fallback.', file=sys.stderr)
+        print('Failed description checks retained prior Frostpass labels; cover failures retained existing artwork or the studio-logo fallback.', file=sys.stderr)
 
 
 if __name__ == '__main__':

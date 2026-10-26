@@ -6,7 +6,9 @@
     "description": "",
     "category": "Games",
     "browser": true,
-    "coverSource": "https://img.itch.zone/aW1nLzMxMzQzNTUyLnBuZw==/315x250%23c/Vv6PZZ.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMxMzQzNTUyLnBuZw==/315x250%23c/Vv6PZZ.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "AR3NA Foosball Soundtrack",
@@ -15,7 +17,9 @@
     "description": "",
     "category": "Soundtracks",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMxMjM5NDM1LmpwZWc=/315x250%23c/PnMMZj.jpeg"
+    "coverSource": "https://img.itch.zone/aW1nLzMxMjM5NDM1LmpwZWc=/315x250%23c/PnMMZj.jpeg",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Minecraft Frostbound Lodge Mod",
@@ -23,7 +27,9 @@
     "image": "./assets/logo.png",
     "description": "",
     "category": "Mods",
-    "browser": false
+    "browser": false,
+    "frostpass": false,
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Comet Kettle",
@@ -32,7 +38,9 @@
     "description": "Sling tiny comets around miniature planets and brew a perfect cup of cosmic tea.",
     "category": "Games",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMxMjA4MTY4LnBuZw==/315x250%23c/WZ2tAI.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMxMjA4MTY4LnBuZw==/315x250%23c/WZ2tAI.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Moonlight Commons",
@@ -41,7 +49,9 @@
     "description": "Build a tiny rooftop sanctuary.",
     "category": "Games",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMxMjA1ODM2LnBuZw==/315x250%23c/ST8LQf.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMxMjA1ODM2LnBuZw==/315x250%23c/ST8LQf.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "MOLY, BART & SKID — THE LOST SPRING",
@@ -50,7 +60,9 @@
     "description": "Three friends. One living river.",
     "category": "Games",
     "browser": true,
-    "coverSource": "https://img.itch.zone/aW1nLzMxMTY4MTE1LnBuZw==/315x250%23c/bo81iA.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMxMTY4MTE1LnBuZw==/315x250%23c/bo81iA.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Moly, Bart & Skid: The Heart Under The Mountain",
@@ -59,7 +71,9 @@
     "description": "Comic based on Moly, Bart & Skid",
     "category": "Comics",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMxMTI0MzU5LnBuZw==/315x250%23cb/OT3lwF.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMxMTI0MzU5LnBuZw==/315x250%23cb/OT3lwF.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Fighter Maker",
@@ -68,7 +82,9 @@
     "description": "Build and test 2D duels, platform fights and 3D arena battles with a native editor.",
     "category": "Tools",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMxMDg4Mzg1LnBuZw==/315x250%23c/CjPDVz.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMxMDg4Mzg1LnBuZw==/315x250%23c/CjPDVz.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "ORBITBREAK: SECTOR ZERO",
@@ -77,7 +93,9 @@
     "description": "An illustrated top-down alien frontier: UFOs, operatives, hostiles, outposts, etc",
     "category": "Assets",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMxMDY2NzU0LnBuZw==/315x250%23c/Vv64n6.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMxMDY2NzU0LnBuZw==/315x250%23c/Vv64n6.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Bottle Tuesdays",
@@ -86,7 +104,9 @@
     "description": "Mix sunshine, rain and wind into jars. Sell a forecast.",
     "category": "Games",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMxMDY1OTM4LnBuZw==/315x250%23c/pBazCh.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMxMDY1OTM4LnBuZw==/315x250%23c/pBazCh.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Racing Maker",
@@ -95,7 +115,9 @@
     "description": "Your Track. Your Car. Your Rules",
     "category": "Tools",
     "browser": true,
-    "coverSource": "https://img.itch.zone/aW1nLzMxMDU3Nzk2LnBuZw==/315x250%23c/2tw9QM.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMxMDU3Nzk2LnBuZw==/315x250%23c/2tw9QM.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Shoot'em Up Maker",
@@ -104,7 +126,9 @@
     "description": "Build Your Own Shoot'em Up!!",
     "category": "Tools",
     "browser": true,
-    "coverSource": "https://img.itch.zone/aW1nLzMxMDU3NTU3LnBuZw==/315x250%23c/KVVw9s.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMxMDU3NTU3LnBuZw==/315x250%23c/KVVw9s.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "ORBITBREAK: ALIEN FRONTIER",
@@ -113,7 +137,9 @@
     "description": "An extensive illustrated sci-fi side-scroller kit with alien explorers, UFOs, hostile machines, etc",
     "category": "Assets",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMxMDU2Mjk1LnBuZw==/315x250%23c/3R76st.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMxMDU2Mjk1LnBuZw==/315x250%23c/3R76st.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Orbitbreak: Alien Frontier is built.",
@@ -122,7 +148,9 @@
     "description": "Train your past selves to hold the office together. Clock out. Leave a ghost.",
     "category": "Games",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMxMDU1ODM1LnBuZw==/315x250%23c/BqsIyR.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMxMDU1ODM1LnBuZw==/315x250%23c/BqsIyR.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Desktop Impact",
@@ -131,7 +159,9 @@
     "description": "Turn a simulated desktop into a stick-fighter battlefield.",
     "category": "Games",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMxMDU0NjAzLnBuZw==/315x250%23c/l2fvGO.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMxMDU0NjAzLnBuZw==/315x250%23c/l2fvGO.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Soloist Forge",
@@ -140,7 +170,9 @@
     "description": "Shape original instrumental solo parts with key, chords, expressive detail and section energy",
     "category": "Tools",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMxMDMyNzQ3LnBuZw==/315x250%23c/GLpPRb.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMxMDMyNzQ3LnBuZw==/315x250%23c/GLpPRb.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Drunk Yeti Desktop Buddy",
@@ -149,7 +181,9 @@
     "description": "A mischievous desktop Yeti to care for, play with, and keep you company while you work.",
     "category": "Tools",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMxMDMxNDY5LnBuZw==/315x250%23c/P1RcDK.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMxMDMxNDY5LnBuZw==/315x250%23c/P1RcDK.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Lastlight Battery",
@@ -158,7 +192,9 @@
     "description": "Keep the light on. Defend a lighthouse, manage cannon heat, and refit between tides.",
     "category": "Games",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMxMDI5MDE2LnBuZw==/315x250%23c/kR1mSo.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMxMDI5MDE2LnBuZw==/315x250%23c/kR1mSo.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "HEARTPOST: VALENTINE VILLAGE",
@@ -167,7 +203,9 @@
     "description": "An illustrated top-down Valentine adventure kit with four-direction Cupid sprites",
     "category": "Assets",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMxMDI4NTM4LnBuZw==/315x250%23c/LN%2BRak.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMxMDI4NTM4LnBuZw==/315x250%23c/LN%2BRak.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Quadrift: Gravity Riot",
@@ -176,7 +214,9 @@
     "description": "Four walls. One core. Redirect falling cubes, blast the board, and unleash gravity",
     "category": "Games",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMxMDI3MTU4LnBuZw==/315x250%23c/hqWiet.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMxMDI3MTU4LnBuZw==/315x250%23c/hqWiet.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Platform Maker",
@@ -185,7 +225,9 @@
     "description": "Build your own platform games.",
     "category": "Tools",
     "browser": true,
-    "coverSource": "https://img.itch.zone/aW1nLzMwOTg3NjAxLnBuZw==/315x250%23c/zsiSAG.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwOTg3NjAxLnBuZw==/315x250%23c/zsiSAG.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Top Down Maker",
@@ -194,7 +236,9 @@
     "description": "",
     "category": "Tools",
     "browser": true,
-    "coverSource": "https://img.itch.zone/aW1nLzMwOTg3MzQxLnBuZw==/315x250%23c/wUEXnh.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwOTg3MzQxLnBuZw==/315x250%23c/wUEXnh.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Parcel Junction",
@@ -203,7 +247,9 @@
     "description": "Rotate the rails, time the departures, and get every little parcel cart home without a collision.",
     "category": "Games",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwOTg3MDc1LnBuZw==/315x250%23c/9T%2FG1b.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwOTg3MDc1LnBuZw==/315x250%23c/9T%2FG1b.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Flipper Riot",
@@ -212,7 +258,9 @@
     "description": "Defend your drain, steal the next power-up, and knock everybody else out.",
     "category": "Games",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwOTUwMTQyLnBuZw==/315x250%23c/TQysXz.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwOTUwMTQyLnBuZw==/315x250%23c/TQysXz.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Pocket Pandemonium",
@@ -221,7 +269,9 @@
     "description": "Arcade billiards goes off the rails: gummy balls, strange tables, daily challenges, etc",
     "category": "Games",
     "browser": true,
-    "coverSource": "https://img.itch.zone/aW1nLzMwOTQ5ODc5LnBuZw==/315x250%23c/eRMGqs.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwOTQ5ODc5LnBuZw==/315x250%23c/eRMGqs.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Blackout Salvage",
@@ -230,7 +280,9 @@
     "description": "Recover lost cargo from a flooded power station.",
     "category": "Games",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwOTQ5MzExLnBuZw==/315x250%23c/W43cbM.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwOTQ5MzExLnBuZw==/315x250%23c/W43cbM.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Heartpost: Cupid's Crossing - Sidescroller Asset Pack",
@@ -239,7 +291,9 @@
     "description": "A cel-shaded Valentine side-scroller collection: winged courier, whimsical rivals, townspeople, rose gardens, etc.",
     "category": "Assets",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwOTQ4ODI3LnBuZw==/315x250%23c/dBcUrW.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwOTQ4ODI3LnBuZw==/315x250%23c/dBcUrW.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Bubble Buddies",
@@ -248,7 +302,9 @@
     "description": "Merge bubbles and inner charms, make tiny gifts, and take a keepsake-filled trip to the Moon Market.",
     "category": "Games",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwOTQ4NTgxLnBuZw==/315x250%23c/Vd4xLm.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwOTQ4NTgxLnBuZw==/315x250%23c/Vd4xLm.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Oddly Stacked",
@@ -257,7 +313,9 @@
     "description": "Nest strange shapes, ship wobbly sculptures, and take your show to the Traveling Fair.",
     "category": "Games",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwOTQ4NDE3LnBuZw==/315x250%23c/V1kckG.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwOTQ4NDE3LnBuZw==/315x250%23c/V1kckG.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Puzzle Maker",
@@ -266,7 +324,9 @@
     "description": "Build your own puzzle games.",
     "category": "Tools",
     "browser": true,
-    "coverSource": "https://img.itch.zone/aW1nLzMwOTA2NzgzLnBuZw==/315x250%23c/8Fat0l.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwOTA2NzgzLnBuZw==/315x250%23c/8Fat0l.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Pinball Maker",
@@ -275,7 +335,9 @@
     "description": "Build your own pinball table. Drag in parts, import your art and music,",
     "category": "Tools",
     "browser": true,
-    "coverSource": "https://img.itch.zone/aW1nLzMwOTA2MzYwLnBuZw==/315x250%23c/3cCaCb.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwOTA2MzYwLnBuZw==/315x250%23c/3cCaCb.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Midnight Loot",
@@ -284,7 +346,9 @@
     "description": "A haunted flea market, a satchel full of strange treasures",
     "category": "Games",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwOTA1ODMzLnBuZw==/315x250%23c/TUm0Yt.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwOTA1ODMzLnBuZw==/315x250%23c/TUm0Yt.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Quadrift",
@@ -293,7 +357,9 @@
     "description": "Four walls. One core. Redirect falling cubes, blast the board, and unleash gravity surges",
     "category": "Games",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwOTA1NTgxLnBuZw==/315x250%23c/1USYqD.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwOTA1NTgxLnBuZw==/315x250%23c/1USYqD.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Cornerfall: Chaos Circuit",
@@ -302,7 +368,9 @@
     "description": "Claim corners. Blast rivals. Steal territory. A colorful four-player strategy showdown",
     "category": "Games",
     "browser": true,
-    "coverSource": "https://img.itch.zone/aW1nLzMwOTAxODY1LnBuZw==/315x250%23c/vE0GQ9.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwOTAxODY1LnBuZw==/315x250%23c/vE0GQ9.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Chainfall Deluxe",
@@ -311,7 +379,9 @@
     "description": "Jump, capture and shape the battlefield across nine colorful 3D boards.",
     "category": "Games",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwOTAxNzIyLnBuZw==/315x250%23c/h%2BuAf5.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwOTAxNzIyLnBuZw==/315x250%23c/h%2BuAf5.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Schmuck Deluxe",
@@ -320,7 +390,9 @@
     "description": "Climb from Schmuck to President in a stylish 3D card showdown.",
     "category": "Games",
     "browser": true,
-    "coverSource": "https://img.itch.zone/aW1nLzMwOTAxNTY3LnBuZw==/315x250%23c/p20SBn.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwOTAxNTY3LnBuZw==/315x250%23c/p20SBn.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Nexus Wars Deluxe",
@@ -329,7 +401,9 @@
     "description": "Shape the battlefield in a colorful 3D hex strategy game.",
     "category": "Games",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwOTAxNDA1LnBuZw==/315x250%23c/gDPQDi.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwOTAxNDA1LnBuZw==/315x250%23c/gDPQDi.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Snowball Showdown",
@@ -338,7 +412,9 @@
     "description": "Dodge, dash, and unleash snowball chaos across three winter arenas.",
     "category": "Games",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwOTAxMjY3LnBuZw==/315x250%23c/6ybllV.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwOTAxMjY3LnBuZw==/315x250%23c/6ybllV.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "AR3NA: Foosball Circuit",
@@ -347,7 +423,9 @@
     "description": "Cartoony foosball with spring-loaded characters, wild arenas, and couch versus. Bank it. Bend it. Run it back.",
     "category": "Games",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwOTAwOTE5LnBuZw==/315x250%23c/xD4Tkt.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwOTAwOTE5LnBuZw==/315x250%23c/xD4Tkt.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "KANA RONIN — SHRINE PATHS",
@@ -356,7 +434,9 @@
     "description": "A polished overhead samurai collection with four-direction heroes and rivals",
     "category": "Assets",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwOTAwNTcyLnBuZw==/315x250%23c/LZRWq%2F.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwOTAwNTcyLnBuZw==/315x250%23c/LZRWq%2F.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "KANA RONIN — SAKURA TRAIL",
@@ -365,7 +445,9 @@
     "description": "A crisp, cel-shaded samurai asset collection with a side-scrolling village",
     "category": "Assets",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwOTAwNDU4LnBuZw==/315x250%23c/z0XudZ.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwOTAwNDU4LnBuZw==/315x250%23c/z0XudZ.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "LANTERN SKY — TOP-DOWN CHINESE NEW YEAR",
@@ -374,7 +456,9 @@
     "description": "A richly illustrated top-down Chinese New Year collection",
     "category": "Assets",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwOTAwMzM0LnBuZw==/315x250%23c/0AahgK.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwOTAwMzM0LnBuZw==/315x250%23c/0AahgK.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "LANTERN SKY — CHINESE NEW YEAR",
@@ -383,7 +467,9 @@
     "description": "",
     "category": "Assets",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwOTAwMjQ3LnBuZw==/315x250%23c/EhImqC.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwOTAwMjQ3LnBuZw==/315x250%23c/EhImqC.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "COMBINED ARMS — LAND, AIR & SEA",
@@ -392,7 +478,9 @@
     "description": "Detailed isometric land, air and naval artwork with 12 unit classes, 16-view source sets, terrain, etc",
     "category": "Assets",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwODU4OTg0LnBuZw==/315x250%23c/p7SSIc.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwODU4OTg0LnBuZw==/315x250%23c/p7SSIc.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Yeti Below",
@@ -401,7 +489,9 @@
     "description": "A cozy cartoon digging game about a yeti, a tiny cabin, and some very questionable things buried underneath it.",
     "category": "Games",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwODU4NTIxLnBuZw==/315x250%23c/Y0Nse%2B.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwODU4NTIxLnBuZw==/315x250%23c/Y0Nse%2B.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Odd Fixes",
@@ -410,7 +500,9 @@
     "description": "",
     "category": "Games",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwODA5OTgwLnBuZw==/315x250%23c/%2BJaNv3.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwODA5OTgwLnBuZw==/315x250%23c/%2BJaNv3.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "New Year's Midnight — Top-Down Asset Pack",
@@ -419,7 +511,9 @@
     "description": "",
     "category": "Assets",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwODA5ODIxLnBuZw==/315x250%23c/407M8J.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwODA5ODIxLnBuZw==/315x250%23c/407M8J.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Pocket Patch",
@@ -428,7 +522,9 @@
     "description": "",
     "category": "Games",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwNzY0ODQ3LnBuZw==/315x250%23c/0Ix1h7.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwNzY0ODQ3LnBuZw==/315x250%23c/0Ix1h7.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "New Year’s Midnight — 2D Side-Scroller Asset Pack",
@@ -437,7 +533,9 @@
     "description": "",
     "category": "Assets",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwNzY0Mzk0LnBuZw==/315x250%23c/S6%2B53Y.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwNzY0Mzk0LnBuZw==/315x250%23c/S6%2B53Y.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Winter & Christmas — 2D Side-Scroller Asset Pack",
@@ -446,7 +544,9 @@
     "description": "",
     "category": "Assets",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwNzQ4MTg0LnBuZw==/315x250%23c/%2FmvQyy.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwNzQ4MTg0LnBuZw==/315x250%23c/%2FmvQyy.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Autumn & Thanksgiving — Top-Down Collection",
@@ -455,7 +555,9 @@
     "description": "",
     "category": "Assets",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwNzQ4MTU0LnBuZw==/315x250%23c/7dbkcG.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwNzQ4MTU0LnBuZw==/315x250%23c/7dbkcG.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Winter & Christmas — Top-Down Adventure Pack",
@@ -464,7 +566,9 @@
     "description": "",
     "category": "Assets",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwNzQ4MTgwLnBuZw==/315x250%23c/TWJXEU.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwNzQ4MTgwLnBuZw==/315x250%23c/TWJXEU.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Autumn & Thanksgiving — 2D Side-Scroller Asset Pack",
@@ -473,7 +577,9 @@
     "description": "",
     "category": "Assets",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwNzQ4MTU5LnBuZw==/315x250%23c/PiZSeb.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwNzQ4MTU5LnBuZw==/315x250%23c/PiZSeb.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Halloween Realms — Complete Top-Down Asset Pack",
@@ -482,7 +588,9 @@
     "description": "",
     "category": "Assets",
     "browser": true,
-    "coverSource": "https://img.itch.zone/aW1nLzMwNzQ4MTY2LnBuZw==/315x250%23c/FqHVCC.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwNzQ4MTY2LnBuZw==/315x250%23c/FqHVCC.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Halloween Realms — Complete Game Asset Pack",
@@ -491,7 +599,9 @@
     "description": "",
     "category": "Assets",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwNzQ4MTczLnBuZw==/315x250%23c/qxgMZQ.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwNzQ4MTczLnBuZw==/315x250%23c/qxgMZQ.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Violin/Cello Solo MIDI Generator",
@@ -500,7 +610,9 @@
     "description": "Generate expressive violin-solo MIDI in seconds!",
     "category": "Tools",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDIwLnBuZw==/315x250%23c/H3WzdO.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDIwLnBuZw==/315x250%23c/H3WzdO.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Piano Solo MIDI Generator",
@@ -509,7 +621,9 @@
     "description": "Generate expressive two-handed piano solos as MIDI.",
     "category": "Tools",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDM1LnBuZw==/315x250%23c/lHE0Ns.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDM1LnBuZw==/315x250%23c/lHE0Ns.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Drum Solo MIDI Generator",
@@ -518,7 +632,9 @@
     "description": "Generate original, through‑composed drum solos as MIDI",
     "category": "Tools",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDUzLnBuZw==/315x250%23c/%2FlRAlX.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDUzLnBuZw==/315x250%23c/%2FlRAlX.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Bass Solo MIDI Generator",
@@ -527,7 +643,9 @@
     "description": "",
     "category": "Tools",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDY4LnBuZw==/315x250%23c/AkDrB0.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDY4LnBuZw==/315x250%23c/AkDrB0.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "eBook Maker",
@@ -536,7 +654,9 @@
     "description": "Create professional ebooks with ease! Import text, organize chapters, preview your book, and export to EPUB.",
     "category": "Tools",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDQ4LnBuZw==/315x250%23c/vhXPgs.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDQ4LnBuZw==/315x250%23c/vhXPgs.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Chainfall — Jump, Convert, Dominate",
@@ -545,7 +665,9 @@
     "description": "Chainfall is a top-down strategic puzzle game of jumps and capture opponents and control territory.",
     "category": "Games",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDg2LnBuZw==/315x250%23c/9szJEw.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDg2LnBuZw==/315x250%23c/9szJEw.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Rubberban Frenzy",
@@ -554,7 +676,9 @@
     "description": "Rubberband Frenzy — fast local 1–4 player triangular board game.",
     "category": "Games",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzI0NTkyMDAyLnBuZw==/315x250%23c/agi7fQ.png"
+    "coverSource": "https://img.itch.zone/aW1nLzI0NTkyMDAyLnBuZw==/315x250%23c/agi7fQ.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Word Pizzler",
@@ -563,7 +687,9 @@
     "description": "Hybrid word game that fuses Scrabble scoring, Boggle adjacency, Yahtzee multipliers and Rubik-style row/column rotation",
     "category": "Games",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzI0NTQ0OTczLnBuZw==/315x250%23c/%2Fmhdqe.png"
+    "coverSource": "https://img.itch.zone/aW1nLzI0NTQ0OTczLnBuZw==/315x250%23c/%2Fmhdqe.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Hover Rancher",
@@ -572,7 +698,9 @@
     "description": "",
     "category": "Games",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzI0MjU0ODc4LmpwZw==/315x250%23c/j%2FEhY6.jpg"
+    "coverSource": "https://img.itch.zone/aW1nLzI0MjU0ODc4LmpwZw==/315x250%23c/j%2FEhY6.jpg",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Squirrel Idle Tycoon",
@@ -581,7 +709,9 @@
     "description": "Addictive idle game where you grow a squirrel-powered ice and water business into a thriving empire.",
     "category": "Games",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzI0NDExMDYxLnBuZw==/315x250%23c/MJiJgA.png"
+    "coverSource": "https://img.itch.zone/aW1nLzI0NDExMDYxLnBuZw==/315x250%23c/MJiJgA.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Emu Empire",
@@ -590,7 +720,9 @@
     "description": "Will You Be The Best Emu King?",
     "category": "Games",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzI0NTMwMDE0LnBuZw==/315x250%23c/XdZXCP.png"
+    "coverSource": "https://img.itch.zone/aW1nLzI0NTMwMDE0LnBuZw==/315x250%23c/XdZXCP.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Nexus Wars",
@@ -599,7 +731,9 @@
     "description": "Strategic hex-based puzzle game where 4 players battle for territory control through piece placement and captures.",
     "category": "Games",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzI0NDExODUyLnBuZw==/315x250%23c/XxI5PK.png"
+    "coverSource": "https://img.itch.zone/aW1nLzI0NDExODUyLnBuZw==/315x250%23c/XxI5PK.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Schmuck!",
@@ -608,7 +742,9 @@
     "description": "Schmuck is a fast-paced climbing card game where players fight their way up the social ladder.",
     "category": "Games",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzI0NDExNzYzLnBuZw==/315x250%23c/oIkGOn.png"
+    "coverSource": "https://img.itch.zone/aW1nLzI0NDExNzYzLnBuZw==/315x250%23c/oIkGOn.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Block Battler",
@@ -617,7 +753,9 @@
     "description": "Block Battler is a multiplayer turn-based Tetris puzzle game where 2-4 players compete",
     "category": "Games",
     "browser": true,
-    "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDkyLnBuZw==/315x250%23c/l%2FLl7b.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDkyLnBuZw==/315x250%23c/l%2FLl7b.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Website Analyzer",
@@ -626,7 +764,9 @@
     "description": "Analyze Any Website in Depth",
     "category": "Tools",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDE3LnBuZw==/315x250%23c/Kf7Pvu.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDE3LnBuZw==/315x250%23c/Kf7Pvu.png",
+    "frostpass": false,
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Pattern Maker",
@@ -635,7 +775,9 @@
     "description": "A fast, creative pattern-maker that turns any image or sticker into seamless, tileable textures",
     "category": "Tools",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDM4LnBuZw==/315x250%23c/Cl0BuJ.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDM4LnBuZw==/315x250%23c/Cl0BuJ.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Prompt Pioneer",
@@ -644,7 +786,9 @@
     "description": "Create, optimize, and manage prompts for ChatGPT, Claude, Midjourney, and 10+ AI platforms all in one desktop app.",
     "category": "Tools",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDI2LnBuZw==/315x250%23c/XKw%2Bkl.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDI2LnBuZw==/315x250%23c/XKw%2Bkl.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Writing Wizard",
@@ -653,7 +797,9 @@
     "description": "",
     "category": "Tools",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDE1LnBuZw==/315x250%23c/RyE5%2Bn.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDE1LnBuZw==/315x250%23c/RyE5%2Bn.png",
+    "frostpass": false,
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Art Idea Generator",
@@ -662,7 +808,9 @@
     "description": "Create 144+ million possible combinations to spark your next masterpiece.",
     "category": "Tools",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDc5LnBuZw==/315x250%23c/roNj7%2B.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDc5LnBuZw==/315x250%23c/roNj7%2B.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Music Idea Generator",
@@ -671,7 +819,9 @@
     "description": "",
     "category": "Tools",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDQzLnBuZw==/315x250%23c/8O2Bk7.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDQzLnBuZw==/315x250%23c/8O2Bk7.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "BrushMakerPro",
@@ -680,7 +830,9 @@
     "description": "Design dynamic, colorful brushes from scratch or convert any image into a brush using the intuitive lasso tool.",
     "category": "Tools",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDg4LnBuZw==/315x250%23c/H0mlDK.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDg4LnBuZw==/315x250%23c/H0mlDK.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Guitar Solo Midi Generator",
@@ -689,7 +841,9 @@
     "description": "Choose from 20+ scales, add realistic articulations (bends, slides, vibrato), and export as MIDI for your DAW.",
     "category": "Tools",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDQxLnBuZw==/315x250%23c/uxiBtP.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDQxLnBuZw==/315x250%23c/uxiBtP.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Deep Web Explorer",
@@ -698,7 +852,9 @@
     "description": "Discover the weird, wonderful, and unexplored corners of the internet with automatic link validation and smart caching.",
     "category": "Tools",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDgzLnBuZw==/315x250%23c/HUiWNB.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDgzLnBuZw==/315x250%23c/HUiWNB.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Desktop Snowing App",
@@ -707,7 +863,9 @@
     "description": "A lightweight, customizable desktop overlay that makes it snow without interrupting your work.",
     "category": "Tools",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDc0LnBuZw==/315x250%23c/QCsjW4.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDc0LnBuZw==/315x250%23c/QCsjW4.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Document to Video Converter",
@@ -716,7 +874,9 @@
     "description": "Transform documents into professional videos in minutes!",
     "category": "Tools",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDcyLnBuZw==/315x250%23c/0qt%2Bt0.png"
+    "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDcyLnBuZw==/315x250%23c/0qt%2Bt0.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Hover Rancher Soundtrack",
