@@ -27,3 +27,12 @@ export function watchAccount(refresh,{interval=60_000,onError=()=>{}}={}){
 }
 // Native clients implement the same RPCs over HTTPS with their own PKCE/session manager.
 // Never persist a private snapshot across users. Re-fetch before every mutation.
+
+// Shared ownership does not make an unfinished integration usable.
+export function characterThemes(manifest,account,surface='account'){
+ return (Array.isArray(manifest?.character_themes)?manifest.character_themes:[])
+ .filter(t=>t&&typeof t.id==='string'&&typeof t.title==='string'&&assetURL(t.image)&&typeof t.entitlement?.game_id==='string'&&typeof t.entitlement?.item_id==='string')
+ .map(t=>{const integration=(t.integrations||[]).find(i=>i.surface===surface);
+ const owned=(account?.unlocks||[]).some(u=>u.game_id===t.entitlement.game_id&&u.item_id===t.entitlement.item_id);
+ return {...t,image:assetURL(t.image),owned,integration:integration||null,available:owned&&integration?.status==='ready'};});
+}

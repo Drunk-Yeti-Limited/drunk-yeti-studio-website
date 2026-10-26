@@ -68,3 +68,21 @@ class AccountClient:
         # A new intentional order needs a new UUID. Only enable after fresh data.
         return self._request('/rest/v1/rpc/dy_redeem_offer', {
             'p_offer': offer_id, 'p_version': offer_version, 'p_request': request_id}, True)
+
+
+def character_themes(manifest, account, surface='account'):
+    """Ownership is shared; only ready integrations can be used by a client."""
+    result = []
+    for theme in manifest.get('character_themes', []):
+        entitlement = theme.get('entitlement', {})
+        if not entitlement.get('game_id') or not entitlement.get('item_id'):
+            continue
+        owned = any(u.get('game_id') == entitlement['game_id'] and
+                    u.get('item_id') == entitlement['item_id']
+                    for u in account.get('unlocks', []))
+        integration = next((i for i in theme.get('integrations', [])
+                            if i.get('surface') == surface), None)
+        result.append(dict(theme, owned=owned, integration=integration,
+                           available=bool(owned and integration and
+                                          integration.get('status') == 'ready')))
+    return result

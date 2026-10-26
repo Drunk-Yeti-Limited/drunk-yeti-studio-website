@@ -36,7 +36,7 @@ for(const avatar of avatars){
  const label=document.createElement('label'),radio=document.createElement('input'),picture=document.createElement('span'),name=document.createElement('span');
  label.className='avatar-option';radio.type='radio';radio.name='avatar';radio.value=avatar.id;radio.setAttribute('aria-label',avatar.name);picture.className='avatar-picture';picture.setAttribute('aria-hidden','true');showAvatar(picture,avatar.id);name.textContent=avatar.name;
  radio.onchange=()=>{if(radio.checked){avatarDirty=true;selectAvatar(avatar.id)}};
- const owned=avatar.free!==false||(platformAccount?.unlocks||[]).some(u=>u.game_id==='yeti-account'&&u.item_id==='avatar:'+avatar.id);radio.disabled=!owned;if(!owned)name.textContent+=' · Locked';label.append(radio,picture,name);$('avatar-options').append(label);
+ const owned=avatar.free!==false||(platformAccount?.unlocks||[]).some(u=>u.game_id==='yeti-account'&&u.item_id==='avatar:'+avatar.id);radio.disabled=!owned;if(!owned){const offer=(platformAccount?.offers||[]).find(o=>o.target_game==='yeti-account'&&o.item_id==='avatar:'+avatar.id);name.textContent+=' · Locked'+(offer?' · '+offer.cost+' Shards in Yeti World':'');}label.append(radio,picture,name);$('avatar-options').append(label);
 }
 selectAvatar(selected);
 }
@@ -128,11 +128,12 @@ async function buyShards(pack){
 }
 const pendingRedemptions=new Map();
 async function redeem(offer){
- if(!confirm('Spend '+offer.cost+' '+offer.currency_id+' on '+offer.title+'?'))return;
+ const walletName=offer.currency_id==='yeti-shards-web'?'purchased Shards':offer.currency_id==='yeti-shards'?'earned Shards':offer.currency_id;
+ if(!confirm('Spend '+offer.cost+' '+walletName+' on '+offer.title+'? This unlock is saved to your account.'))return;
  const key='yeti.redemption.'+user.id+':'+offer.id+':'+offer.version;
  if(!pendingRedemptions.has(key)){const saved=sessionStorage.getItem(key);pendingRedemptions.set(key,/^[0-9a-f-]{36}$/i.test(saved||'')?saved:crypto.randomUUID());}
  sessionStorage.setItem(key,pendingRedemptions.get(key));
- await action(async()=>{const mine=generation;check(await sb.rpc('dy_redeem_offer',{p_offer:offer.id,p_version:offer.version,p_request:pendingRedemptions.get(key)}));pendingRedemptions.delete(key);sessionStorage.removeItem(key);if(mine!==generation)return;message('Unlocked. Your account has been updated.');await syncPlatform()});
+ await action(async()=>{const mine=generation;check(await sb.rpc('dy_redeem_offer',{p_offer:offer.id,p_version:offer.version,p_request:pendingRedemptions.get(key)}));pendingRedemptions.delete(key);sessionStorage.removeItem(key);if(mine!==generation)return;message('Unlocked! Choose your new avatar in Profile, then Save profile. Your character ownership is saved for future supported skins and themes.');await syncPlatform()});
 }
 
 if(!authorizationId){authorizationId=sessionStorage.getItem('yeti.authorization');sessionStorage.removeItem('yeti.authorization')}

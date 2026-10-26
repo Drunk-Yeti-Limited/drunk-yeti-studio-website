@@ -18,3 +18,5 @@ values are rejected by the database. Creative rights remain with their holders.
 
 Apply `../migrations/20261025_preset_avatars.sql` before deploying the new client.
 The old four-argument profile RPC remains compatible and preserves avatar choice.
+
+Dark Yeti and Blush Yeti are paid character avatars; see `../CHARACTER-THEMES.md`. Their catalog is delivered by the backend manifest, not the free fallback list.
