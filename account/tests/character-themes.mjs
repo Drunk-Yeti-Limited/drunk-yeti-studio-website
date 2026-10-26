@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {parseHTML} from 'linkedom';
 import {characterThemes} from '../sdk/account-client.js';
+import {renderMarketplace} from '../src/marketplace.js';
 import {renderWorld} from '../src/world.js';
 const theme={id:'dark-yeti',title:'Dark Yeti',description:'Character unlock',image:'https://www.drunkyetistudio.com/account/avatars/dark-yeti.webp',entitlement:{game_id:'yeti-account',item_id:'avatar:dark-yeti'},integrations:[{surface:'account',status:'ready'},{surface:'desktop-buddy',status:'planned'}]};
 const manifest={character_themes:[theme],sections:[{id:'s',type:'store',title:'Store'}],features:{redemptions:true}};
@@ -20,3 +21,10 @@ const buttons=root.querySelectorAll('button');assert.equal(buttons.length,2);ass
 renderWorld(root,manifest,owned,()=>assert.fail('Owned cannot buy'));assert.equal(root.querySelectorAll('button').length,0);assert.match(root.textContent,/Owned/);
 renderWorld(root,{...manifest,features:{redemptions:false}},data,()=>{});assert.equal(root.querySelector('button').disabled,true);
 console.log('PASS theme ownership, planned surface gating, safe images, wallet selection and owned store state');
+
+renderMarketplace(root,manifest,data,o=>selected=o);
+const search=root.querySelector('input');search.value='no match';search.oninput();assert.match(root.textContent,/No matching items/);
+search.value='dark';search.oninput();assert.equal(root.querySelectorAll('.character-card').length,1);
+root.querySelector('[aria-pressed]').click();assert.match(root.textContent,/Your purchased items will appear/);
+renderMarketplace(root,manifest,owned,()=>assert.fail('Owned cannot buy'));root.querySelector('[aria-pressed]').click();assert.equal(root.querySelectorAll('.character-card').length,1);assert.match(root.textContent,/Owned/);
+console.log('PASS marketplace search, ownership filter and existing entitlement reuse');
