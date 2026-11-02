@@ -1,0 +1,78 @@
+name: Daily website content refresh
+
+on:
+  schedule:
+    # 13:23 UTC daily: 6:23 AM MST / 7:23 AM MDT.
+    - cron: '23 13 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/refresh-content.yml']
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: daily-content-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install image dependency
+        run: python -m pip install --disable-pip-version-check 'Pillow>=11,<13'
+      - name: Refresh public catalogs
+        id: refresh
+        continue-on-error: true
+        run: python scripts/prepare-assets.py
+      - name: Validate catalogs and artwork references
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+          for name in ('catalog', 'merch'):
+              cards = json.loads(Path(f'assets/{name}.json').read_text())
+              assert cards, f'Empty {name} catalog'
+              assert len({card['url'] for card in cards}) == len(cards), 'Duplicate URLs'
+              for card in cards:
+                  if card['image'].startswith('./'):
+                      with Image.open(card['image']) as image:
+                          image.verify()
+              print(f'{name}: {len(cards)} entries verified')
+          PY
+      - name: Commit changed catalog files
+        id: commit
+        run: |
+          git add -- assets/catalog.json assets/catalog-meta.json assets/merch.json assets/merch-meta.json assets/covers
+          if [ -d assets/merch ]; then git add -- assets/merch; fi
+          if git diff --cached --quiet; then
+            echo 'No content changes.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Refresh website content from itch.io and Redbubble'
+          git pull --rebase origin main
+          git push origin HEAD:main
+          echo 'changed=true' >> "$GITHUB_OUTPUT"
+      - name: Publish changed content through branch-based Pages
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/$GITHUB_REPOSITORY/pages/builds"
+      - name: Report a source refresh failure
+        if: steps.refresh.outcome == 'failure'
+        run: |
+          echo '::error::A storefront could not refresh. Valid changes from other sources were saved; the failed source retained its previous catalog. See the refresh log.'
+          exit 1
