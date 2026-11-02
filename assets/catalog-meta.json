@@ -1,19 +1,20 @@
 {
   "source": "https://drunkyeti.itch.io/",
-  "updated": "2026-11-02T01:01:10.202590+00:00",
-  "count": 145,
+  "updated": "2026-11-02T22:23:17.851292+00:00",
+  "count": 150,
   "categories": {
     "Assets": 18,
     "Comics": 1,
-    "Games": 44,
+    "Games": 48,
     "Mods": 5,
     "OS": 1,
     "Soundtracks": 34,
-    "Tools": 42
+    "Tools": 43
   },
   "frostpass": 21,
   "warnings": [
     "Trading Card Maker Frostpass check: Product description missing; page may be unavailable",
+    "Avalanca: Downhill Riot Frostpass check: HTTP Error 429: Too Many Requests",
     "Allsport Anarchy Frostpass check: Product description missing; page may be unavailable",
     "Curious Collection Soundtrack Frostpass check: Product description missing; page may be unavailable",
     "Odonis Event Horizon Soundtrack Frostpass check: Product description missing; page may be unavailable",
@@ -36,7 +37,7 @@
     "Latern Sky Festival Paths Soundtrack Frostpass check: Product description missing; page may be unavailable",
     "Kindgom Kitty Soundtrack Frostpass check: Product description missing; page may be unavailable",
     "Kana Ronin Shrine Paths Soundtrack Frostpass check: Product description missing; page may be unavailable",
-    "Kana Ronin Sakura Trail Soundtrack Frostpass check: Product description missing; page may be unavailable",
+    "Kana Ronin Sakura Trail Soundtrack Frostpass check: HTTP Error 429: Too Many Requests",
     "Heartpost Valentine Village Soundtrack Frostpass check: Product description missing; page may be unavailable",
     "Heartpost Cupids Crossing Frostpass check: Product description missing; page may be unavailable",
     "Flipper Riot Soundtrack Frostpass check: Product description missing; page may be unavailable",

@@ -1,5 +1,60 @@
 [
   {
+    "title": "Yeti Browser",
+    "url": "https://drunkyeti.itch.io/yeti-browser",
+    "image": "./assets/covers/yeti-browser.webp",
+    "description": "",
+    "category": "Games",
+    "browser": true,
+    "coverSource": "https://img.itch.zone/aW1nLzMxNzI3NzM4LnBuZw==/315x250%23c/RN%2F6Nb.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
+  },
+  {
+    "title": "YAULT",
+    "url": "https://drunkyeti.itch.io/yault",
+    "image": "./assets/covers/yault.webp",
+    "description": "Your creative reserve. Organize assets, preserve versions",
+    "category": "Games",
+    "browser": false,
+    "coverSource": "https://img.itch.zone/aW1nLzMxNzI1ODkxLnBuZw==/315x250%23c/4u%2B2J3.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
+  },
+  {
+    "title": "Yeti Forge",
+    "url": "https://drunkyeti.itch.io/yeti-forge",
+    "image": "./assets/covers/yeti-forge.webp",
+    "description": "A free asset workbench for sprites, animation, images and sound. Build, preview and ship",
+    "category": "Games",
+    "browser": false,
+    "coverSource": "https://img.itch.zone/aW1nLzMxNzI1MjQxLnBuZw==/315x250%23c/W7zBfD.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
+  },
+  {
+    "title": "YFLUX Studio",
+    "url": "https://drunkyeti.itch.io/yflux",
+    "image": "./assets/covers/yflux.webp",
+    "description": "Edit video, animate characters and build motion graphics",
+    "category": "Tools",
+    "browser": true,
+    "coverSource": "https://img.itch.zone/aW1nLzMxNzI0Njc5LnBuZw==/315x250%23c/%2BV2otg.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
+  },
+  {
+    "title": "Y-HUB",
+    "url": "https://drunkyeti.itch.io/y-hub",
+    "image": "./assets/covers/y-hub.webp",
+    "description": "A free creative home for your apps, projects, assets and focus time",
+    "category": "Games",
+    "browser": false,
+    "coverSource": "https://img.itch.zone/aW1nLzMxNzIzOTE5LnBuZw==/315x250%23c/%2FX1uFP.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
+  },
+  {
     "title": "Idle Maker",
     "url": "https://drunkyeti.itch.io/idle-maker",
     "image": "./assets/covers/idle-maker.webp",
@@ -116,7 +171,7 @@
     "description": "",
     "category": "Tools",
     "browser": true,
-    "coverSource": "https://img.itch.zone/aW1nLzMxNTYyOTg3LnBuZw==/315x250%23c/ML7NPV.png",
+    "coverSource": "https://img.itch.zone/aW1nLzMxNzI4MjMyLnBuZw==/315x250%23c/exTYgt.png",
     "frostpass": true,
     "frostpassCheck": "verified"
   },
@@ -206,7 +261,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxNTEyMDg4LnBuZw==/315x250%23c/Y93a4X.png",
     "frostpass": true,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Survival Maker",
@@ -214,8 +269,8 @@
     "image": "./assets/covers/survival-maker.webp",
     "description": "Build a wilderness. Set its rules. Try to survive it.",
     "category": "Tools",
-    "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMxNTEwNTU4LnBuZw==/315x250%23c/zhm8l8.png",
+    "browser": true,
+    "coverSource": "https://img.itch.zone/aW1nLzMxNzI2OTg2LnBuZw==/315x250%23c/FFi8jU.png",
     "frostpass": true,
     "frostpassCheck": "verified"
   },
@@ -237,7 +292,7 @@
     "description": "Build games. Make music.",
     "category": "Tools",
     "browser": true,
-    "coverSource": "https://img.itch.zone/aW1nLzMxNTA5MTI4LnBuZw==/315x250%23c/1xi6fW.png",
+    "coverSource": "https://img.itch.zone/aW1nLzMxNzI2NDIyLnBuZw==/315x250%23c/1VlvQp.png",
     "frostpass": true,
     "frostpassCheck": "verified"
   },
@@ -831,7 +886,7 @@
     "description": "Build Your Own Shoot'em Up!!",
     "category": "Tools",
     "browser": true,
-    "coverSource": "https://img.itch.zone/aW1nLzMxMDU3NTU3LnBuZw==/315x250%23c/KVVw9s.png",
+    "coverSource": "https://img.itch.zone/aW1nLzMxNzI4NDI5LnBuZw==/315x250%23c/Sg7fGK.png",
     "frostpass": false,
     "frostpassCheck": "verified"
   },
