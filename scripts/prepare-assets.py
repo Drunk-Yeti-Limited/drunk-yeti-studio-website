@@ -153,6 +153,11 @@ def refresh_frostpass(card, previous=None, pages_dir=None):
 
 
 def classify(card):
+    # Curated OS identities survive missing tags and title/description edits.
+    os_slugs = json.loads((ROOT / 'os-projects.json').read_text())
+    slug = urlparse(card.get('url', '')).path.strip('/')
+    if slug in os_slugs:
+        return 'OS'
     title = card['title'].lower()
     text = f"{title} {card.get('description', '')}".lower()
     kind = card.get('productType', '')

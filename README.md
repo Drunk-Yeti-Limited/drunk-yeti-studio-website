@@ -142,3 +142,14 @@ fallback behavior remains in effect.
 GitHub can disable schedules on public repositories after 60 days with no
 repository activity. If that happens, re-enable the workflow in Actions.
 To run weekly instead, change the cron expression to `23 13 * * 1` (Mondays).
+
+## Operating systems
+
+The OS catalog filter, OS badges, and dedicated Operating Systems showcase all
+read the same `assets/catalog.json` data. Tools & apps retain their own filter.
+`os-projects.json` is the curated list of public itch.io slugs classified as OS
+before any title/tag heuristics. PlaySpace is registered here, so daily refreshes
+keep its OS category even without tags or after title/description changes.
+To add another OS, add its published itch.io slug to that list and run the updater
+(or let the daily job run). OS projects must still be publicly listed on the
+itch.io profile; this list does not invent or fetch unpublished listings.
