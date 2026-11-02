@@ -1,4 +1,8 @@
-# Shard checkout — preview and sandbox rollout
+# Shard checkout — pricing and operations
+
+Current packs, custom amounts and annual sales are documented at the end.
+
+## Historical sandbox rollout (October 2026)
 
 The Buy Shards account tab previews the owner-selected USD packs:
 
@@ -8,7 +12,8 @@ The Buy Shards account tab previews the owner-selected USD packs:
 | 550 | $4.99 |
 | 1,200 | $9.99 |
 
-**Real payments are off.** Pack records are disabled and payment mode is `off`.
+At the initial rollout, real payments were off and draft packs were disabled.
+Current payment mode must be read from the backend.
 Stripe is connected to `Drunk Yeti Limited sandbox` (`acct_1UU6CrAQdqm1Hdmq`),
 not a live account. The sandbox webhook `we_1UUWRwAQdqm1HdmqqAKLCMvB` is registered
 at `https://rgafawpucqdhjrzodayl.supabase.co/functions/v1/shard-webhook`.
@@ -110,3 +115,47 @@ Docs:
 - https://docs.stripe.com/webhooks
 - https://docs.stripe.com/keys/restricted-api-keys
 - https://stripe.com/legal/restricted-businesses
+
+## Volume pricing and recurring holiday sales (November 2026)
+
+Current live payment gates and existing orders are preserved. The earlier sandbox
+rollout notes above are historical; the backend is authoritative for current mode.
+
+| Shards | Regular USD price, before applicable tax |
+| --- | --- |
+| 100 | $0.99 |
+| 550 | $4.99 |
+| 1,200 | $9.99 |
+| 2,500 | $19.99 |
+| 5,500 | $39.99 |
+| 12,000 | $79.99 |
+| 25,000 | $149.99 |
+| 50,000 | $274.99 |
+
+Custom purchases allow any whole quantity from 100 to 50,000. Price is linearly
+interpolated between adjacent pack totals, rounded UP to cents, then seasonal
+discounts apply and round UP again. Adding Shards never reduces the total. Exact
+pack quantities match preset prices. Volume savings compare with the 100-Shard
+base rate. Discounts apply to Shard purchases, not Frostpass or avatar prices.
+
+Recurring annual windows, America/Denver, inclusive start/exclusive end:
+- Spring: March 20–April 3, extra 10% off.
+- Summer: June 20–July 6, extra 10% off.
+- Halloween: October 24–November 2, extra 10% off.
+- Black Friday/Cyber Monday: Friday one week before Black Friday through the
+  Tuesday after Cyber Monday, extra 20% off. Calculated for each calendar year.
+- Winter/New Year: December 20–January 4, extra 10% off.
+
+The database's `dy_shard_quote` returns current prices. `dy_checkout_prepare_v2`
+verifies quantity and quoted cents before snapshotting an order with pricing/sale
+details. Client-supplied totals cannot set prices. Idempotent retries retain the
+original order and reject mismatched quantities/prices. Existing webhook amount
+matching and exactly-once fulfillment remain unchanged; legacy clients retain
+the original RPC with server-calculated discounts.
+
+The homepage's `sales.js` calls the public read-only `dy_shard_sale` RPC. It shows
+a banner only during a sale with live checkout enabled. It starts hidden, hides
+on lookup failure or expiry, and rechecks every minute while visible. No Python
+job or extra cron service is needed for sale boundaries. Daily storefront
+refreshes continue unchanged. Custom quotes use the backend calculation instead
+of duplicating pricing logic in the browser.

@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import vm from 'node:vm';
+import {parseHTML} from 'linkedom';
+const {document}=parseHTML('<aside id="shard-sale" hidden><span></span><a href="./account/#payments">Shop</a></aside>');
+let sale=null,fail=false,refresh,expire;
+vm.runInNewContext(readFileSync(new URL('../../sales.js',import.meta.url),'utf8'),{document,Date,Number,AbortSignal,fetch:async()=>{if(fail)throw Error('offline');return {ok:true,json:async()=>sale};},setInterval:fn=>{refresh=fn;},setTimeout:fn=>{expire=fn;},clearTimeout:()=>{}});
+await new Promise(r=>setTimeout(r,0));assert.equal(document.querySelector('aside').hidden,true);
+sale={title:'Holiday',percent:20,starts_at:new Date(Date.now()-1000).toISOString(),ends_at:new Date(Date.now()+60000).toISOString()};await refresh();assert.equal(document.querySelector('aside').hidden,false);assert.match(document.querySelector('span').textContent,/20%/);
+expire();assert.equal(document.querySelector('aside').hidden,true);
+sale.ends_at=new Date(Date.now()-1000).toISOString();await refresh();assert.equal(document.querySelector('aside').hidden,true);
+fail=true;await refresh();assert.equal(document.querySelector('aside').hidden,true);
+console.log('PASS homepage sale visibility, expiry and network failure');

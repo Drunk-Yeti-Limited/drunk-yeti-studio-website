@@ -14,9 +14,11 @@ export function createCheckoutHandler({mode,stripe,userClient,admin,automaticTax
  const text=await req.text();if(text.length>2048)return response({error:'request_too_large'},413,true);
  let input;try{input=JSON.parse(text)}catch{return response({error:'invalid_request'},400,true)}
  if(!input||typeof input.pack_id!=='string'||input.pack_id.length>80||!Number.isInteger(input.version)||!uuid.test(input.request_id||''))return response({error:'invalid_request'},400,true);
+ if(input.quantity!==undefined&&(!Number.isInteger(input.quantity)||input.quantity<100||input.quantity>50000))return response({error:'invalid_quantity'},400,true);
+ if(input.expected_cents!==undefined&&(!Number.isInteger(input.expected_cents)||input.expected_cents<50||input.expected_cents>100000))return response({error:'invalid_price_quote'},400,true);
  const client=userClient(authorization),auth=await client.auth.getUser(authorization.slice(7));
  if(auth.error||!auth.data?.user)return response({error:'sign_in_required'},401,true);
- const order=checked(await client.rpc('dy_checkout_prepare',{p_pack:input.pack_id,p_version:input.version,p_request:input.request_id}));
+ const order=checked(await client.rpc('dy_checkout_prepare_v2',{p_pack:input.pack_id,p_version:input.version,p_request:input.request_id,p_quantity:input.quantity??null,p_expected_cents:input.expected_cents??null}));
  if(order.player_id!==auth.data.user.id||order.livemode!==(mode==='live'))return response({error:'checkout_mode_mismatch'},409,true);
  if(order.status!=='created'&&order.status!=='open')return response({error:'order_already_completed'},409,true);
  if(order.stripe_session){

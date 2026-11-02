@@ -129,7 +129,7 @@ async function syncMultiplayer(mine=generation){
 }
 async function syncPayments(mine=generation){
  try{const catalog=check(await sb.rpc('dy_payment_catalog'));if(mine!==generation||!user)return;
- renderPayments($('payment-shop'),catalog,buyShards);
+ renderPayments($('payment-shop'),catalog,buyShards,async quantity=>check(await sb.rpc('dy_shard_quote',{p_quantity:quantity})));
  $('world-payment-note').textContent=catalog.orders?.[0]?.status==='test_complete'?'Latest purchase: '+purchaseConfirmation(catalog.orders[0]):'';
  const state=new URLSearchParams(location.search).get('payment');
  if(state==='returned'||state==='cancelled'){
@@ -141,9 +141,9 @@ async function syncPayments(mine=generation){
 }
 async function buyShards(pack){
  await action(async()=>{
- const mine=generation,key='yeti.checkout.'+user.id+':'+pack.id+':'+pack.version;
+ const mine=generation,key='yeti.checkout.'+user.id+':'+pack.id+':'+pack.version+':'+pack.shards+':'+pack.amount_cents;
  let request=sessionStorage.getItem(key);if(!/^[0-9a-f-]{36}$/i.test(request||'')){request=crypto.randomUUID();sessionStorage.setItem(key,request)}
- const result=check(await sb.functions.invoke('shard-checkout',{body:{pack_id:pack.id,version:pack.version,request_id:request}}));
+ const result=check(await sb.functions.invoke('shard-checkout',{body:{pack_id:pack.id,version:pack.version,request_id:request,quantity:Number(pack.shards),expected_cents:pack.amount_cents}}));
  if(mine!==generation)return;const url=stripeCheckoutURL(result.url);if(!url)throw Error('Checkout could not be opened safely.');
  sessionStorage.setItem('yeti.checkout.active',JSON.stringify({user_id:user.id,key}));location.assign(url);
  });

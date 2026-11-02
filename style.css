@@ -14,3 +14,5 @@ nav{gap:22px}.catalog-toolbar{align-items:flex-start}.filters{flex:1}.search{fle
 .account-link{display:inline-flex;align-items:center;gap:14px;flex-shrink:0;padding:12px 16px;border:2px solid #14242b;border-radius:8px;background:#caff61;color:#14242b;text-decoration:none;font-size:12px;font-weight:800}.account-link:hover{background:#82dcf5}.account-link:focus-visible{outline:3px solid #1258a7;outline-offset:4px}@media(max-width:720px){header .brand{order:0}header .account-link{order:1;margin-left:auto;font-size:11px;padding:10px 12px}header nav{order:2}}
 
 .project-kind{flex-wrap:wrap}.project-kind .frostpass{background:#dff5ff;color:#12446a;border:1px solid #78c4e6;letter-spacing:.03em;text-transform:none}
+
+.sale-banner{padding:18px 5%;background:#caff61;border-bottom:2px solid #14242b;display:flex;gap:18px;justify-content:space-between;align-items:center;flex-wrap:wrap;font-size:14px}.sale-banner[hidden]{display:none}.sale-banner a{font-weight:bold;text-decoration:underline}

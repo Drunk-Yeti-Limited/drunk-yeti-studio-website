@@ -40,3 +40,17 @@ assert.match(root.textContent,/Yeti World balance stays unchanged/);
 renderPayments(root,{mode:'test',packs:[],orders:[{title:'Pending',status:'open',livemode:false,created_at:new Date().toISOString()}]},()=>{});
 assert.match(root.querySelector('[role="status"]').textContent,/has not been confirmed/);
 assert.doesNotMatch(root.querySelector('[role="status"]').textContent,/Test payment confirmed/);
+
+assert.equal((await checkout(request({quantity:99}))).status,400);
+assert.equal((await checkout(request({quantity:50001}))).status,400);
+assert.equal((await checkout(request({quantity:100.5}))).status,400);
+assert.equal((await checkout(request({expected_cents:0}))).status,400);
+let prepared;
+const customCheckout=createCheckoutHandler({mode:'test',stripe,admin,userClient:()=>({auth:{getUser:async()=>({data:{user:{id:player}}})},rpc:async(name,args)=>{prepared={name,args};return {data:{...order,shards:3721,amount_cents:2814}};}})});
+assert.equal((await customCheckout(request({pack_id:'shards-custom',quantity:3721,expected_cents:2814}))).status,200);
+assert.equal(prepared.name,'dy_checkout_prepare_v2');assert.equal(prepared.args.p_quantity,3721);assert.equal(prepared.args.p_expected_cents,2814);assert.equal(params.p.line_items[0].price_data.unit_amount,2814);
+renderPayments(root,{mode:'live',available:true,packs:[],custom:{id:'shards-custom',version:1,min:100,max:50000,available:true}},p=>{prepared=p;},async quantity=>({amount_cents:1999,currency:'usd',volume_savings_percent:19,quantity}));
+await new Promise(resolve=>setTimeout(resolve,0));
+assert.match(root.textContent,/Custom Shards/);assert.match(root.textContent,/\$19.99/);
+root.querySelector('form').onsubmit({preventDefault(){}});assert.equal(prepared.shards,2500);assert.equal(prepared.amount_cents,1999);
+console.log('PASS custom quantity validation, server quote routing and custom purchase UI');
