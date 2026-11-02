@@ -153,3 +153,13 @@ keep its OS category even without tags or after title/description changes.
 To add another OS, add its published itch.io slug to that list and run the updater
 (or let the daily job run). OS projects must still be publicly listed on the
 itch.io profile; this list does not invent or fetch unpublished listings.
+
+## Public Yeti Frostpass tab
+
+The portfolio's Yeti Frostpass tab filters across all catalog categories using
+strict `frostpass: true` flags. Search, Browser demos, and More work as usual.
+The existing daily updater derives these flags from public itch.io descriptions
+and retains previous flags if a description cannot be fetched. The public tab
+links to `/account/#frostpass` for authoritative subscription pricing and
+Included / Integration planned status; a storefront label does not override
+backend access readiness. No second hand-maintained inclusion list is used.

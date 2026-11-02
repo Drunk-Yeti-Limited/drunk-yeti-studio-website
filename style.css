@@ -16,3 +16,5 @@ nav{gap:22px}.catalog-toolbar{align-items:flex-start}.filters{flex:1}.search{fle
 .project-kind{flex-wrap:wrap}.project-kind .frostpass{background:#dff5ff;color:#12446a;border:1px solid #78c4e6;letter-spacing:.03em;text-transform:none}
 
 .sale-banner{padding:18px 5%;background:#caff61;border-bottom:2px solid #14242b;display:flex;gap:18px;justify-content:space-between;align-items:center;flex-wrap:wrap;font-size:14px}.sale-banner[hidden]{display:none}.sale-banner a{font-weight:bold;text-decoration:underline}
+
+.frostpass-guide{background:#e2f3ff;border:2px solid #14242b;padding:22px;margin:20px 0}.frostpass-guide[hidden]{display:none}.frostpass-guide h3{font-size:23px;margin-bottom:12px}.frostpass-guide p{font-size:13px;line-height:1.7;max-width:850px;margin:10px 0}.frostpass-guide .fine{font-size:11px;color:#455b66}

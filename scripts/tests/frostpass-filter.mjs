@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import vm from 'node:vm';
+import {parseHTML} from '../../account/node_modules/linkedom/esm/index.js';
+const {document}=parseHTML('<input id="search"><input id="browser-only" type="checkbox"><aside id="frostpass-guide" hidden></aside><div id="projects"></div><span id="result-count"></span><div id="empty"></div><span id="empty-message"></span><button id="load-more"></button><button data-category="All"></button><button data-category="Frostpass"></button>');
+const src=await readFile(new URL('../../catalog.js',import.meta.url),'utf8');
+const ctx=vm.createContext({document});vm.runInContext(src.slice(0,src.indexOf("document.querySelectorAll('[data-category]').forEach(b=>")),ctx);
+ctx.data=[{title:'Game',category:'Games',frostpass:true},{title:'Tool',category:'Tools',frostpass:true,browser:true},{title:'Other',category:'Games',frostpass:false},{title:'Not verified',category:'Tools',frostpass:'true'}].map(p=>({...p,description:'Sample',url:'https://drunkyeti.itch.io/example',image:'./assets/logo.png'}));
+vm.runInContext("catalog=data;selectCategory('Frostpass')",ctx);
+assert.equal(document.querySelectorAll('.project-card').length,2);assert.equal(document.querySelector('#frostpass-guide').hidden,false);assert.equal(document.querySelector('[data-category="Frostpass"]').getAttribute('aria-pressed'),'true');
+document.querySelector('#search').value='Tool';vm.runInContext('render()',ctx);assert.equal(document.querySelectorAll('.project-card').length,1);
+document.querySelector('#search').value='';document.querySelector('#browser-only').checked=true;vm.runInContext('render()',ctx);assert.equal(document.querySelectorAll('.project-card').length,1);
+vm.runInContext("selectCategory('All')",ctx);assert.equal(document.querySelector('#frostpass-guide').hidden,true);
+console.log('PASS Frostpass filtering across categories, strict flags, search, browser filter and selected state');
