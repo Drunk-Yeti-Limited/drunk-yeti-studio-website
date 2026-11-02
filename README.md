@@ -45,7 +45,7 @@ The games and merch galleries are snapshots. Refresh both when releases change:
 
 The same command also refreshes the public Redbubble shop into `assets/merch.json`, `assets/merch-meta.json`, and compressed product images under `assets/merch/`. It reads public shop-page data, follows exposed next-page links, verifies artist ownership, and preserves the last saved catalog if the shop response is blocked, empty or incomplete. If the image CDN rejects downloading, existing local thumbnails are retained; new products use the exact public image URL from the shop. Such fallbacks are reported in merch metadata. Browsers contact Redbubble's CDN for those images, which can still fail independently; the studio logo is the last-resort display fallback. A failed source refresh exits with an error while still allowing the other source to update. No login or private API is used. Run `python3 scripts/refresh_merch.py` to refresh merch alone.
 
-The merch gallery shows eight products initially, with a More merch button. Prices and options are left to Redbubble so cached prices are never presented as current. New products appear on the website after rerunning the script and committing the generated files. This is an on-demand refresh, not an automatically scheduled job.
+The merch gallery shows eight products initially, with a More merch button. Prices and options are left to Redbubble so cached prices are never presented as current. New products appear on the website after rerunning the script and committing the generated files. A daily GitHub Actions job now runs this same updater automatically; manual runs are also supported.
 
 The script reads the public itch.io profile, classifies the listings, downloads new or changed artwork, verifies cached images, and writes `assets/catalog.json` and `assets/catalog-meta.json`. It preserves the existing catalog if the profile response appears incomplete. Listings without cover artwork use the studio logo. It requires Python 3.9+, Pillow and network access. No API key or Actions workflow is required.
 
@@ -115,3 +115,30 @@ For offline fixtures, `--pages-dir DIR` reads each product's `<slug>.html`.
 Run `python3 -m unittest discover -s scripts/tests` for description checks and
 `node scripts/tests/catalog-badge.mjs` for card rendering. New labels appear after
 refreshing and publishing the generated catalog alongside the website files.
+
+## Automatic daily content refresh
+
+`.github/workflows/refresh-content.yml` runs every day at 13:23 UTC
+(6:23 AM Denver standard time / 7:23 AM daylight time). GitHub may delay
+scheduled jobs. Use **Actions → Daily website content refresh → Run workflow**
+to refresh immediately. Editing the workflow also triggers a verification run.
+
+The job uses a standard Ubuntu runner and Python 3.12, installs Pillow, and
+runs `python scripts/prepare-assets.py` to refresh publicly listed itch.io
+products, Frostpass labels, artwork, and Redbubble merch. It validates saved
+catalogs and local image references, commits only changed catalog files and
+artwork, and explicitly requests a branch-based GitHub Pages build. This last
+step is necessary because commits made with `GITHUB_TOKEN` do not automatically
+trigger Pages builds. Keep Pages configured to **Deploy from a branch → main → /(root)**.
+
+No personal token, paid service, or additional secrets are required. The workflow
+uses the repository's automatic token with contents/write and pages/write.
+Standard runners in public repositories are free. No caches or artifacts are
+uploaded, and the entire job is limited to 20 minutes. A blocked storefront
+retains its previous catalog; valid changes from other sources can still be
+published, and the run reports the failed source. Existing thumbnail/CDN
+fallback behavior remains in effect.
+
+GitHub can disable schedules on public repositories after 60 days with no
+repository activity. If that happens, re-enable the workflow in Actions.
+To run weekly instead, change the cron expression to `23 13 * * 1` (Mondays).
