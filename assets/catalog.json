@@ -261,7 +261,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxNTEyMDg4LnBuZw==/315x250%23c/Y93a4X.png",
     "frostpass": true,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Survival Maker",
@@ -1441,17 +1441,6 @@
     "frostpassCheck": "verified"
   },
   {
-    "title": "Word Pizzler",
-    "url": "https://drunkyeti.itch.io/word-pizzler",
-    "image": "./assets/covers/word-pizzler.webp",
-    "description": "Hybrid word game that fuses Scrabble scoring, Boggle adjacency, Yahtzee multipliers and Rubik-style row/column rotation",
-    "category": "Games",
-    "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzI0NTQ0OTczLnBuZw==/315x250%23c/%2Fmhdqe.png",
-    "frostpass": false,
-    "frostpassCheck": "verified"
-  },
-  {
     "title": "Hover Rancher",
     "url": "https://drunkyeti.itch.io/hover-rancher",
     "image": "./assets/covers/hover-rancher.webp",
@@ -1496,9 +1485,9 @@
     "frostpassCheck": "verified"
   },
   {
-    "title": "Schmuck!",
-    "url": "https://drunkyeti.itch.io/schmuck",
-    "image": "./assets/covers/schmuck.webp",
+    "title": "YHETI Studio",
+    "url": "https://drunkyeti.itch.io/yheti-studio",
+    "image": "./assets/covers/yheti-studio.webp",
     "description": "Schmuck is a fast-paced climbing card game where players fight their way up the social ladder.",
     "category": "Games",
     "browser": false,
