@@ -1,0 +1,31 @@
+import assert from 'node:assert/strict';
+import {accountAuthOptions,recoveryRequestOptions} from '../src/recovery.js';
+import {GoTrueClient} from '@supabase/auth-js';
+const calls=[];
+const sender=new GoTrueClient({url:'https://auth.example.test',...recoveryRequestOptions(),fetch:async(url,options)=>{calls.push({url,body:JSON.parse(options.body)});return new Response('{}',{status:200});}});
+const result=await sender.resetPasswordForEmail('qa@example.invalid',{redirectTo:'https://www.drunkyetistudio.com/account/'});
+assert.equal(result.error,null);
+assert.equal(calls.length,1);
+assert.equal(calls[0].body.code_challenge,null);
+assert.equal(calls[0].body.code_challenge_method,null);
+assert.equal(accountAuthOptions('https://example.test/account/?code=old-pkce-code').flowType,'pkce');
+assert.equal(accountAuthOptions('https://example.test/account/#type=recovery').flowType,'pkce');
+assert.equal(accountAuthOptions('https://example.test/account/#type=signup&access_token=a&refresh_token=b').flowType,'pkce');
+// Real SDK consumes a recovery callback with empty storage, as in another browser.
+const now=Math.floor(Date.now()/1000);
+const href=`https://example.test/account/#type=recovery&access_token=test-access&refresh_token=test-refresh&expires_in=3600&expires_at=${now+3600}&token_type=bearer`;
+globalThis.window={location:new URL(href),history:{replaceState(){}}};
+globalThis.document={visibilityState:'visible',addEventListener(){}};
+const events=[];
+const receiver=new GoTrueClient({url:'https://auth.example.test',...accountAuthOptions(href),persistSession:false,autoRefreshToken:false,fetch:async(url,options)=>{
+ assert.ok(String(url).endsWith('/user'));
+ return new Response(JSON.stringify({id:'test-user',email:'qa@example.invalid'}),{status:200});
+}});
+receiver.onAuthStateChange(event=>events.push(event));
+assert.equal((await receiver.initialize()).error,null);
+await new Promise(resolve=>setTimeout(resolve,20));
+assert.ok(events.includes('PASSWORD_RECOVERY'));
+assert.equal((await receiver.getUser()).data.user.id,'test-user');
+assert.equal(window.location.hash,'');
+await receiver.stopAutoRefresh();
+console.log('PASS real SDK: recovery request has no browser-bound challenge; fresh-browser callback authenticates, emits PASSWORD_RECOVERY and removes tokens from URL; normal PKCE preserved');

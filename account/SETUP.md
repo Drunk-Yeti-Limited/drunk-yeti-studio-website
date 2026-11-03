@@ -16,7 +16,7 @@ The canonical portal is part of the existing studio website at `/account/`. Its 
 Project: `drunk-yeti-accounts` / `rgafawpucqdhjrzodayl`.
 
 1. Under Authentication → URL Configuration, set Site URL to `https://www.drunkyetistudio.com/account/` and add the exact allowed redirect `https://www.drunkyetistudio.com/account/`. Confirm the canonical www domain serves HTTPS. Do not add broad wildcard redirects. If staging is used, add only its reviewed exact callback.
-2. Configure production SMTP with an owned, verified sending address/domain. Verify confirmation and recovery delivery, expiration, failure behavior and a recovery link opened in the initiating browser (PKCE). Test that emails return to `/account/`, not localhost or the private prototype.
+2. Configure production SMTP with an owned, verified sending address/domain. Verify confirmation and recovery delivery, expiration, failure behavior and a new recovery link opened in a different browser (one-time email recovery). Test that emails return to `/account/`, not localhost or the private prototype.
 3. Email rollout is enabled to allow owner signup testing. Complete inbox confirmation and recovery tests, deletion/support flow, privacy information and abuse-protection review before promoting the service broadly.
 4. For Apple/Google/Facebook, register the real applications in their provider developer consoles, configure the Supabase provider callback shown in the dashboard, and keep provider secrets in Supabase. Website redirect and provider-to-Supabase redirect are different. After testing, add the applicable surface to the provider readiness list in the account manifest; the page also checks the live backend provider enabled flags. See `PLATFORM.md`.
 5. For studio SSO, enable Supabase OAuth server; use authorization path `/account/` with the Site URL above. Keep dynamic registration disabled initially. Register each game/Buddy/PlaySpace client and its exact redirect URI; assign the returned client ID and reviewed capabilities to the existing `dy_apps` registry. Enable the appropriate record. Then enable `oauthServer` after consent/deny/expiry and two-app tests.
@@ -37,7 +37,7 @@ npm run build
 
 Commit source, lockfile and generated `app.js` together. Keep dependencies pinned. `app.js` bundles the SDK locally, avoiding a runtime CDN dependency. The account page has a restrictive CSP and uses textContent for profile names and other remote strings. The portfolio's heavier 3D/merch/video scripts are not loaded on this route.
 
-Tests cover callback validation, consent scope composition, UI element references, logged-out state, enabled email signup, recovery and resend paths, signed-in rendering with mocked backend data, switching accounts, API-failure recovery and logout. Browser inspection checks real rendering separately. No tests create a real customer account, send email or change a real password. Live cross-device/provider authentication must still be tested after configuration.
+Tests cover callback validation, consent scope composition, UI element references, logged-out state, enabled email signup, recovery and resend paths, real-SDK recovery in a fresh browser with mocked HTTP responses, signed-in rendering with mocked backend data, switching accounts, API-failure recovery and logout. Browser inspection checks real rendering separately. No tests create a real customer account, send email or change a real password. Live cross-device/provider authentication must still be tested after configuration.
 
 If account behavior must be rolled back, remove the two homepage account links or revert this commit. Do not delete players, tables or saves.
 
@@ -51,3 +51,17 @@ See `PLATFORM.md` for the v1 manifest/revision/snapshot contract, provider disco
 Yeti Shards ledger, cross-game unlocks and future console connection boundaries.
 Social provider buttons now use backend discovery rather than a compiled release
 flag. Native apps still require their initial SDK/auth integration.
+
+## Password recovery across browsers
+
+Password-reset email requests use an isolated, nonpersistent implicit-flow client,
+so the mail link is not tied to a PKCE verifier in the requesting browser. The
+account client accepts implicit credentials only for a recovery fragment with
+both tokens; ordinary visits and existing PKCE callbacks retain PKCE handling.
+Supabase validates the session and removes the token fragment before displaying
+the password form. The account page retains its no-referrer policy and restrictive
+CSP. No password, token or reset link is written to diagnostics. Older PKCE emails
+remain browser-bound; request a fresh email after this release.
+
+Tests exercise the installed SDK with mocked network responses, not production
+email delivery. Inbox-to-new-password completion still requires owner testing.
