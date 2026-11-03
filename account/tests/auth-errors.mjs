@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import {authMessage,callbackError} from '../src/auth-errors.js';
+assert.match(authMessage(callbackError('https://example.com/account/#error=access_denied&error_code=otp_expired')),/expired or has already been used/);
+assert.match(authMessage(callbackError('https://example.com/account/?error_code=flow_state_expired')),/same browser/);
+assert.equal(callbackError('https://example.com/account/?code=example-code'),null);
+assert.match(authMessage({code:'invalid_credentials'}),/Forgot password/);
+assert.match(authMessage({code:'email_not_confirmed'}),/Resend confirmation/);
+assert.match(authMessage({status:429}),/wait/);
+assert.ok(!authMessage(callbackError('https://example.com/#error=secret-value')).includes('secret-value'));
+console.log('PASS expired/used links, PKCE mismatch, invalid credentials, confirmation, throttling and callback privacy');
