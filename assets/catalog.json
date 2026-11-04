@@ -1,5 +1,38 @@
 [
   {
+    "title": "Carnival Collision",
+    "url": "https://drunkyeti.itch.io/chainfall-cubed",
+    "image": "./assets/covers/chainfall-cubed.webp",
+    "description": "Collision Clash adds charged pads, shockwaves and timed parries.",
+    "category": "Games",
+    "browser": true,
+    "coverSource": "https://img.itch.zone/aW1nLzMxODE2MjI1LnBuZw==/315x250%23c/WueSUr.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
+  },
+  {
+    "title": "Drunk Yeti's House of Wilds",
+    "url": "https://drunkyeti.itch.io/chainfall-pi",
+    "image": "./assets/covers/chainfall-pi.webp",
+    "description": "Spin rune drums, call the Silverware’s serving order, and chase the Orbit Wheel beneath the Northern Lights.",
+    "category": "Games",
+    "browser": true,
+    "coverSource": "https://img.itch.zone/aW1nLzMxODEzMzUwLmpwZw==/315x250%23c/Hs5Wjw.jpg",
+    "frostpass": false,
+    "frostpassCheck": "unavailable"
+  },
+  {
+    "title": "YHUE Studio",
+    "url": "https://drunkyeti.itch.io/the-adventures-of-moly-bart-skid-crystal-run",
+    "image": "./assets/covers/the-adventures-of-moly-bart-skid-crystal-run.webp",
+    "description": "",
+    "category": "Games",
+    "browser": false,
+    "coverSource": "https://img.itch.zone/aW1nLzMxNzg0MzYxLnBuZw==/315x250%23c/tMWll9.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
+  },
+  {
     "title": "Yeti Browser",
     "url": "https://drunkyeti.itch.io/yeti-browser",
     "image": "./assets/covers/yeti-browser.webp",
@@ -19,7 +52,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxNzI1ODkxLnBuZw==/315x250%23c/4u%2B2J3.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Yeti Forge",
@@ -30,7 +63,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxNzI1MjQxLnBuZw==/315x250%23c/W7zBfD.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "YFLUX Studio",
@@ -39,7 +72,7 @@
     "description": "Edit video, animate characters and build motion graphics",
     "category": "Tools",
     "browser": true,
-    "coverSource": "https://img.itch.zone/aW1nLzMxNzI0Njc5LnBuZw==/315x250%23c/%2BV2otg.png",
+    "coverSource": "https://img.itch.zone/aW1nLzMxNzg5MTI1LnBuZw==/315x250%23c/p8bFld.png",
     "frostpass": false,
     "frostpassCheck": "verified"
   },
@@ -52,7 +85,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxNzIzOTE5LnBuZw==/315x250%23c/%2FX1uFP.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Idle Maker",
@@ -61,7 +94,7 @@
     "description": "A little idea. An entire growing world.",
     "category": "Tools",
     "browser": true,
-    "coverSource": "https://img.itch.zone/aW1nLzMxNjI3OTI5LnBuZw==/315x250%23c/qie03q.png",
+    "coverSource": "https://img.itch.zone/aW1nLzMxNzg5MTg5LnBuZw==/315x250%23c/ez6Nf%2F.png",
     "frostpass": true,
     "frostpassCheck": "verified"
   },
@@ -182,7 +215,7 @@
     "description": "Build your rules. Shape your world. Play your table.",
     "category": "Tools",
     "browser": true,
-    "coverSource": "https://img.itch.zone/aW1nLzMxNjU4ODYyLnBuZw==/315x250%23c/2Lhtkk.png",
+    "coverSource": "https://img.itch.zone/aW1nLzMxNzg5MTkwLnBuZw==/315x250%23c/HWJc5O.png",
     "frostpass": true,
     "frostpassCheck": "verified"
   },
@@ -204,9 +237,9 @@
     "description": "",
     "category": "Tools",
     "browser": true,
-    "coverSource": "https://img.itch.zone/aW1nLzMxNjU5MDU5LnBuZw==/315x250%23c/Sg9EHh.png",
+    "coverSource": "https://img.itch.zone/aW1nLzMxNzg5MTkzLnBuZw==/315x250%23c/P5JvA1.png",
     "frostpass": true,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Wilderfront Elemental RTS",
@@ -250,7 +283,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxNTExMzkxLnBuZw==/315x250%23c/bdsK2e.png",
     "frostpass": true,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Avalanca: Downhill Riot",
@@ -261,7 +294,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxNTEyMDg4LnBuZw==/315x250%23c/Y93a4X.png",
     "frostpass": true,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Survival Maker",
@@ -272,7 +305,7 @@
     "browser": true,
     "coverSource": "https://img.itch.zone/aW1nLzMxNzI2OTg2LnBuZw==/315x250%23c/FFi8jU.png",
     "frostpass": true,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "AR3NA: All-Stars",
@@ -283,7 +316,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxNTEwMTY2LnBuZw==/315x250%23c/seoXis.png",
     "frostpass": true,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Rhythm Maker",
@@ -294,7 +327,7 @@
     "browser": true,
     "coverSource": "https://img.itch.zone/aW1nLzMxNzI2NDIyLnBuZw==/315x250%23c/1VlvQp.png",
     "frostpass": true,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Novel Maker",
@@ -314,7 +347,7 @@
     "description": "Build RTS and turn-based strategy games on islands, planets and cubes.",
     "category": "Tools",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMxNTA4MDEwLnBuZw==/315x250%23c/J0NvY%2B.png",
+    "coverSource": "https://img.itch.zone/aW1nLzMxNzg5MjAxLnBuZw==/315x250%23c/rNnfWz.png",
     "frostpass": true,
     "frostpassCheck": "verified"
   },
@@ -326,8 +359,8 @@
     "category": "Games",
     "browser": true,
     "coverSource": "https://img.itch.zone/aW1nLzMxNDU5ODgyLnBuZw==/315x250%23c/k33g1r.png",
-    "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpass": true,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Desktop Daydream",
@@ -341,13 +374,13 @@
     "frostpassCheck": "verified"
   },
   {
-    "title": "Curious Collection Soundtrack",
+    "title": "Drunk Yeti World of Sounds Volume I",
     "url": "https://drunkyeti.itch.io/curious-collection-soundtrack",
     "image": "./assets/covers/curious-collection-soundtrack.webp",
     "description": "",
-    "category": "Soundtracks",
+    "category": "Games",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMxNDIxMzQ2LmpwZWc=/315x250%23c/MfIv8b.jpeg",
+    "coverSource": "https://img.itch.zone/aW1nLzMxODEyODUyLnBuZw==/315x250%23c/nP27M7.png",
     "frostpass": false,
     "frostpassCheck": "unavailable"
   },
@@ -539,13 +572,13 @@
     "frostpassCheck": "unavailable"
   },
   {
-    "title": "Latern Sky Festival Paths Soundtrack",
-    "url": "https://drunkyeti.itch.io/latern-sky-festival-paths-soundtrack",
-    "image": "./assets/covers/latern-sky-festival-paths-soundtrack.webp",
-    "description": "",
-    "category": "Soundtracks",
-    "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMxNDM1MTk3LmpwZWc=/315x250%23c/gHEvPg.jpeg",
+    "title": "Hexfold",
+    "url": "https://drunkyeti.itch.io/hexfold",
+    "image": "./assets/covers/hexfold.webp",
+    "description": "A 78-card deck introduces Cups and Shields, making Quints, Hex, Triple Pairs and Double Trio possible.",
+    "category": "Games",
+    "browser": true,
+    "coverSource": "https://img.itch.zone/aW1nLzMxODE2NjY1LnBuZw==/315x250%23c/EbhDz6.png",
     "frostpass": false,
     "frostpassCheck": "unavailable"
   },
@@ -745,7 +778,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxNDA0MTA4LnBuZw==/315x250%23c/rQokZS.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Cross World Overdive",
@@ -756,7 +789,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxNDAwMjQ2LnBuZw==/315x250%23c/cArTzQ.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Sixfold",
@@ -800,7 +833,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxMjA4MTY4LnBuZw==/315x250%23c/WZ2tAI.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Moonlight Commons",
@@ -899,7 +932,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxMDU2Mjk1LnBuZw==/315x250%23c/3R76st.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Orbitbreak: Alien Frontier is built.",
@@ -1075,7 +1108,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwOTQ4NDE3LnBuZw==/315x250%23c/V1kckG.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Puzzle Maker",
@@ -1086,7 +1119,7 @@
     "browser": true,
     "coverSource": "https://img.itch.zone/aW1nLzMxNjYwMzkwLnBuZw==/315x250%23c/CGrSha.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Pinball Maker",
@@ -1108,7 +1141,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwOTA1ODMzLnBuZw==/315x250%23c/TUm0Yt.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Quadrift",
@@ -1119,7 +1152,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwOTA1NTgxLnBuZw==/315x250%23c/1USYqD.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Cornerfall: Chaos Circuit",
@@ -1130,7 +1163,7 @@
     "browser": true,
     "coverSource": "https://img.itch.zone/aW1nLzMwOTAxODY1LnBuZw==/315x250%23c/vE0GQ9.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Chainfall Deluxe",
@@ -1174,7 +1207,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwOTAxMjY3LnBuZw==/315x250%23c/6ybllV.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "AR3NA: Foosball Circuit",
@@ -1240,7 +1273,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwODU4OTg0LnBuZw==/315x250%23c/p7SSIc.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Yeti Below",
@@ -1251,7 +1284,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwODU4NTIxLnBuZw==/315x250%23c/Y0Nse%2B.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Odd Fixes",
@@ -1328,7 +1361,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwNzQ4MTgwLnBuZw==/315x250%23c/TWJXEU.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Autumn & Thanksgiving — 2D Side-Scroller Asset Pack",
@@ -1339,7 +1372,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwNzQ4MTU5LnBuZw==/315x250%23c/PiZSeb.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Halloween Realms — Complete Top-Down Asset Pack",
@@ -1372,7 +1405,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDIwLnBuZw==/315x250%23c/H3WzdO.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Piano Solo MIDI Generator",
@@ -1383,7 +1416,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDM1LnBuZw==/315x250%23c/lHE0Ns.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Drum Solo MIDI Generator",
@@ -1416,7 +1449,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDQ4LnBuZw==/315x250%23c/vhXPgs.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Chainfall — Jump, Convert, Dominate",
@@ -1488,10 +1521,10 @@
     "title": "YHETI Studio",
     "url": "https://drunkyeti.itch.io/yheti-studio",
     "image": "./assets/covers/yheti-studio.webp",
-    "description": "Schmuck is a fast-paced climbing card game where players fight their way up the social ladder.",
+    "description": "Build musical ideas with scale-aware generators, a hybrid FM/wavetable synth, custom drum kits",
     "category": "Games",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzI0NDExNzYzLnBuZw==/315x250%23c/oIkGOn.png",
+    "coverSource": "https://img.itch.zone/aW1nLzMxNzg1MzU2LnBuZw==/315x250%23c/H5a%2Bjx.png",
     "frostpass": false,
     "frostpassCheck": "verified"
   },
@@ -1625,7 +1658,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDcyLnBuZw==/315x250%23c/0qt%2Bt0.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Hover Rancher Soundtrack",
