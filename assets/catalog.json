@@ -1,16 +1,5 @@
 [
   {
-    "title": "Prismatic Linux OS",
-    "url": "https://drunkyeti.itch.io/prismatic-linux-os",
-    "image": "./assets/covers/prismatic-linux-os.webp",
-    "description": "Your Creative Operating System",
-    "category": "OS",
-    "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMxODU4NDE3LnBuZw%3D%3D/original/fHN%2Bvt.png",
-    "frostpass": false,
-    "frostpassCheck": "verified"
-  },
-  {
     "title": "Carnival Collision",
     "url": "https://drunkyeti.itch.io/chainfall-cubed",
     "image": "./assets/covers/chainfall-cubed.webp",
@@ -19,7 +8,7 @@
     "browser": true,
     "coverSource": "https://img.itch.zone/aW1nLzMxODE2MjI1LnBuZw==/315x250%23c/WueSUr.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Drunk Yeti's House of Wilds",
@@ -41,7 +30,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxNzg0MzYxLnBuZw==/315x250%23c/tMWll9.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Yeti Browser",
@@ -52,7 +41,7 @@
     "browser": true,
     "coverSource": "https://img.itch.zone/aW1nLzMxNzI3NzM4LnBuZw==/315x250%23c/RN%2F6Nb.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "YAULT",
@@ -63,7 +52,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxNzI1ODkxLnBuZw==/315x250%23c/4u%2B2J3.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Yeti Forge",
@@ -85,7 +74,7 @@
     "browser": true,
     "coverSource": "https://img.itch.zone/aW1nLzMxNzg5MTI1LnBuZw==/315x250%23c/p8bFld.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Y-HUB",
@@ -107,7 +96,7 @@
     "browser": true,
     "coverSource": "https://img.itch.zone/aW1nLzMxNzg5MTg5LnBuZw==/315x250%23c/ez6Nf%2F.png",
     "frostpass": true,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Cozy Maker",
@@ -129,7 +118,7 @@
     "browser": true,
     "coverSource": "https://img.itch.zone/aW1nLzMxNjI2ODY0LnBuZw==/315x250%23c/Si9ctV.png",
     "frostpass": true,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Tycoon Maker",
@@ -217,7 +206,7 @@
     "browser": true,
     "coverSource": "https://img.itch.zone/aW1nLzMxNzI4MjMyLnBuZw==/315x250%23c/exTYgt.png",
     "frostpass": true,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Tabletop Maker",
@@ -228,7 +217,7 @@
     "browser": true,
     "coverSource": "https://img.itch.zone/aW1nLzMxNzg5MTkwLnBuZw==/315x250%23c/HWJc5O.png",
     "frostpass": true,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Drunk Yeti PlaySpace Linux Distro",
@@ -250,7 +239,7 @@
     "browser": true,
     "coverSource": "https://img.itch.zone/aW1nLzMxNzg5MTkzLnBuZw==/315x250%23c/P5JvA1.png",
     "frostpass": true,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Wilderfront Elemental RTS",
@@ -261,7 +250,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxNTMwMDU0LnBuZw==/315x250%23c/NbrLtb.png",
     "frostpass": true,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Party Maker",
@@ -305,7 +294,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxNTEyMDg4LnBuZw==/315x250%23c/Y93a4X.png",
     "frostpass": true,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Survival Maker",
@@ -316,7 +305,7 @@
     "browser": true,
     "coverSource": "https://img.itch.zone/aW1nLzMxNzI2OTg2LnBuZw==/315x250%23c/FFi8jU.png",
     "frostpass": true,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "AR3NA: All-Stars",
@@ -324,8 +313,8 @@
     "image": "./assets/covers/ar3na-world-tour.webp",
     "description": "Magic. Mayhem. Match point.",
     "category": "Games",
-    "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMxNTEwMTY2LnBuZw==/315x250%23c/seoXis.png",
+    "browser": true,
+    "coverSource": "https://img.itch.zone/aW1nLzMxODU3NDk2LnBuZw==/315x250%23c/LD5R2M.png",
     "frostpass": true,
     "frostpassCheck": "unavailable"
   },
@@ -338,7 +327,7 @@
     "browser": true,
     "coverSource": "https://img.itch.zone/aW1nLzMxNzI2NDIyLnBuZw==/315x250%23c/1VlvQp.png",
     "frostpass": true,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Novel Maker",
@@ -382,7 +371,7 @@
     "browser": true,
     "coverSource": "https://img.itch.zone/aW1nLzMxNDQyMjIwLnBuZw==/315x250%23c/5byNP9.png",
     "frostpass": true,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Drunk Yeti World of Sounds Volume I",
@@ -393,49 +382,49 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxODEyODUyLnBuZw==/315x250%23c/nP27M7.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
-    "title": "Odonis Event Horizon Soundtrack",
-    "url": "https://drunkyeti.itch.io/odonis-event-horizon-soundtrack",
-    "image": "./assets/covers/odonis-event-horizon-soundtrack.webp",
-    "description": "",
-    "category": "Soundtracks",
-    "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMxNDM2NjcwLmpwZWc=/315x250%23c/FmISj%2F.jpeg",
+    "title": "Pocket Bellworks",
+    "url": "https://drunkyeti.itch.io/pocket-bellworks",
+    "image": "./assets/covers/pocket-bellworks.webp",
+    "description": "A music box you play with a bank shot.",
+    "category": "Games",
+    "browser": true,
+    "coverSource": "https://img.itch.zone/aW1nLzMxODU2Njc3LnBuZw==/315x250%23c/uzRqq%2F.png",
     "frostpass": false,
     "frostpassCheck": "unavailable"
   },
   {
-    "title": "Quadrift Soundtrack",
-    "url": "https://drunkyeti.itch.io/quadrift-soundtrack",
-    "image": "./assets/covers/quadrift-soundtrack.webp",
-    "description": "",
-    "category": "Soundtracks",
-    "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMxNDM3MzM2LmpwZWc=/315x250%23c/liu6Ri.jpeg",
+    "title": "Tidebreak Desktop Platformer",
+    "url": "https://drunkyeti.itch.io/tidebreak-desktop-platformer",
+    "image": "./assets/covers/tidebreak-desktop-platformer.webp",
+    "description": "A desktop puzzle adventure by Drunk Yeti.",
+    "category": "Games",
+    "browser": true,
+    "coverSource": "https://img.itch.zone/aW1nLzMxODU2OTMyLnBuZw==/315x250%23c/zAw6Ce.png",
     "frostpass": false,
     "frostpassCheck": "unavailable"
   },
   {
-    "title": "Snowball Showdown Soundtrack",
-    "url": "https://drunkyeti.itch.io/snowball-showdown-soundtrack",
-    "image": "./assets/covers/snowball-showdown-soundtrack.webp",
-    "description": "",
-    "category": "Soundtracks",
+    "title": "Prismatic Linux OS",
+    "url": "https://drunkyeti.itch.io/prismatic-linux-os",
+    "image": "./assets/covers/prismatic-linux-os.webp",
+    "description": "Your Creative Operating System",
+    "category": "OS",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMxNDM3NDY1LmpwZWc=/315x250%23c/a9u4F6.jpeg",
+    "coverSource": "https://img.itch.zone/aW1nLzMxODU4MDc4LnBuZw==/315x250%23c/1YF3rg.png",
     "frostpass": false,
     "frostpassCheck": "unavailable"
   },
   {
-    "title": "Voxel Royale Soundtrack",
-    "url": "https://drunkyeti.itch.io/voxel-royale-soundtrack",
-    "image": "./assets/covers/voxel-royale-soundtrack.webp",
-    "description": "",
-    "category": "Soundtracks",
+    "title": "DeathWish: Everafter Garden",
+    "url": "https://drunkyeti.itch.io/deathwish-everafter-garden",
+    "image": "./assets/covers/deathwish-everafter-garden.webp",
+    "description": "Care for small spirits, light the Kingdom’s streets together",
+    "category": "Games",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMxNDM3NjEzLmpwZWc=/315x250%23c/a%2FKH9O.jpeg",
+    "coverSource": "https://img.itch.zone/aW1nLzMxODU4OTIxLnBuZw==/315x250%23c/12oQuI.png",
     "frostpass": false,
     "frostpassCheck": "unavailable"
   },
@@ -591,7 +580,7 @@
     "browser": true,
     "coverSource": "https://img.itch.zone/aW1nLzMxODE2NjY1LnBuZw==/315x250%23c/EbhDz6.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Kindgom Kitty Soundtrack",
@@ -756,7 +745,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxNDA0Nzc5LnBuZw==/315x250%23c/R4nr3E.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Dillingham: Cannery Cove Minecraft Mod",
@@ -811,7 +800,7 @@
     "browser": true,
     "coverSource": "https://img.itch.zone/aW1nLzMxMzQzNTUyLnBuZw==/315x250%23c/Vv6PZZ.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "AR3NA Foosball Soundtrack",
@@ -855,7 +844,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxMjA1ODM2LnBuZw==/315x250%23c/ST8LQf.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "MOLY, BART & SKID — THE LOST SPRING",
@@ -877,7 +866,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxMTI0MzU5LnBuZw==/315x250%23cb/OT3lwF.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Fighter Maker",
@@ -899,7 +888,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxMDY2NzU0LnBuZw==/315x250%23c/Vv64n6.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Bottle Tuesdays",
@@ -910,7 +899,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxMDY1OTM4LnBuZw==/315x250%23c/pBazCh.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Racing Maker",
@@ -932,7 +921,7 @@
     "browser": true,
     "coverSource": "https://img.itch.zone/aW1nLzMxNzI4NDI5LnBuZw==/315x250%23c/Sg7fGK.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "ORBITBREAK: ALIEN FRONTIER",
@@ -954,7 +943,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxMDU1ODM1LnBuZw==/315x250%23c/BqsIyR.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Desktop Impact",
@@ -987,7 +976,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxNDE3NDQ1LnBuZw==/315x250%23c/REjvNm.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Lastlight Battery",
@@ -1009,7 +998,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxMDI4NTM4LnBuZw==/315x250%23c/LN%2BRak.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Quadrift: Gravity Riot",
@@ -1020,7 +1009,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxMDI3MTU4LnBuZw==/315x250%23c/hqWiet.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Platform Maker",
@@ -1064,7 +1053,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwOTUwMTQyLnBuZw==/315x250%23c/TQysXz.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Pocket Pandemonium",
@@ -1086,7 +1075,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwOTQ5MzExLnBuZw==/315x250%23c/W43cbM.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Heartpost: Cupid's Crossing - Sidescroller Asset Pack",
@@ -1108,7 +1097,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwOTQ4NTgxLnBuZw==/315x250%23c/Vd4xLm.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Oddly Stacked",
@@ -1119,7 +1108,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwOTQ4NDE3LnBuZw==/315x250%23c/V1kckG.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Puzzle Maker",
@@ -1130,7 +1119,7 @@
     "browser": true,
     "coverSource": "https://img.itch.zone/aW1nLzMxNjYwMzkwLnBuZw==/315x250%23c/CGrSha.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Pinball Maker",
@@ -1152,7 +1141,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwOTA1ODMzLnBuZw==/315x250%23c/TUm0Yt.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Quadrift",
@@ -1174,7 +1163,7 @@
     "browser": true,
     "coverSource": "https://img.itch.zone/aW1nLzMwOTAxODY1LnBuZw==/315x250%23c/vE0GQ9.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Chainfall Deluxe",
@@ -1207,7 +1196,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwOTAxNDA1LnBuZw==/315x250%23c/gDPQDi.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Snowball Showdown",
@@ -1229,7 +1218,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwOTAwOTE5LnBuZw==/315x250%23c/xD4Tkt.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "KANA RONIN — SHRINE PATHS",
@@ -1284,7 +1273,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwODU4OTg0LnBuZw==/315x250%23c/p7SSIc.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Yeti Below",
@@ -1295,7 +1284,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwODU4NTIxLnBuZw==/315x250%23c/Y0Nse%2B.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Odd Fixes",
@@ -1350,7 +1339,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwNzQ4MTg0LnBuZw==/315x250%23c/%2FmvQyy.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Autumn & Thanksgiving — Top-Down Collection",
@@ -1372,7 +1361,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwNzQ4MTgwLnBuZw==/315x250%23c/TWJXEU.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Autumn & Thanksgiving — 2D Side-Scroller Asset Pack",
@@ -1383,7 +1372,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwNzQ4MTU5LnBuZw==/315x250%23c/PiZSeb.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Halloween Realms — Complete Top-Down Asset Pack",
@@ -1394,7 +1383,7 @@
     "browser": true,
     "coverSource": "https://img.itch.zone/aW1nLzMwNzQ4MTY2LnBuZw==/315x250%23c/FqHVCC.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Halloween Realms — Complete Game Asset Pack",
@@ -1405,7 +1394,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwNzQ4MTczLnBuZw==/315x250%23c/qxgMZQ.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Violin/Cello Solo MIDI Generator",
@@ -1416,7 +1405,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDIwLnBuZw==/315x250%23c/H3WzdO.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Piano Solo MIDI Generator",
@@ -1438,7 +1427,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDUzLnBuZw==/315x250%23c/%2FlRAlX.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Bass Solo MIDI Generator",
@@ -1460,7 +1449,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDQ4LnBuZw==/315x250%23c/vhXPgs.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Chainfall — Jump, Convert, Dominate",
@@ -1493,7 +1482,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzI0MjU0ODc4LmpwZw==/315x250%23c/j%2FEhY6.jpg",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Squirrel Idle Tycoon",
@@ -1570,7 +1559,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDM4LnBuZw==/315x250%23c/Cl0BuJ.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Prompt Pioneer",
@@ -1581,7 +1570,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDI2LnBuZw==/315x250%23c/XKw%2Bkl.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Writing Wizard",
@@ -1614,7 +1603,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDQzLnBuZw==/315x250%23c/8O2Bk7.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "BrushMakerPro",
@@ -1636,7 +1625,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDQxLnBuZw==/315x250%23c/uxiBtP.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Deep Web Explorer",
@@ -1669,7 +1658,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDcyLnBuZw==/315x250%23c/0qt%2Bt0.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Hover Rancher Soundtrack",
