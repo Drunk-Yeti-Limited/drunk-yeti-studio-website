@@ -1,13 +1,13 @@
 {
   "source": "https://drunkyeti.itch.io/",
   "updated": "2026-11-04T20:28:39.277676+00:00",
-  "count": 152,
+  "count": 153,
   "categories": {
     "Assets": 18,
     "Comics": 1,
     "Games": 52,
     "Mods": 5,
-    "OS": 1,
+    "OS": 2,
     "Soundtracks": 32,
     "Tools": 43
   },
@@ -68,15 +68,20 @@
     "Quadrift Frostpass check: HTTP Error 429: Too Many Requests",
     "Cornerfall: Chaos Circuit Frostpass check: HTTP Error 429: Too Many Requests",
     "Snowball Showdown Frostpass check: HTTP Error 429: Too Many Requests",
-    "COMBINED ARMS \u2014 LAND, AIR & SEA Frostpass check: HTTP Error 429: Too Many Requests",
+    "COMBINED ARMS — LAND, AIR & SEA Frostpass check: HTTP Error 429: Too Many Requests",
     "Yeti Below Frostpass check: HTTP Error 429: Too Many Requests",
-    "Winter & Christmas \u2014 Top-Down Adventure Pack Frostpass check: HTTP Error 429: Too Many Requests",
-    "Autumn & Thanksgiving \u2014 2D Side-Scroller Asset Pack Frostpass check: HTTP Error 429: Too Many Requests",
+    "Winter & Christmas — Top-Down Adventure Pack Frostpass check: HTTP Error 429: Too Many Requests",
+    "Autumn & Thanksgiving — 2D Side-Scroller Asset Pack Frostpass check: HTTP Error 429: Too Many Requests",
     "Violin/Cello Solo MIDI Generator Frostpass check: HTTP Error 429: Too Many Requests",
     "Piano Solo MIDI Generator Frostpass check: HTTP Error 429: Too Many Requests",
     "eBook Maker Frostpass check: HTTP Error 429: Too Many Requests",
     "Website Analyzer Frostpass check: Product description missing; page may be unavailable",
     "Writing Wizard Frostpass check: Product description missing; page may be unavailable",
     "Document to Video Converter Frostpass check: HTTP Error 429: Too Many Requests"
-  ]
+  ],
+  "manualUpdate": {
+    "at": "2026-11-05T14:47:24.724517+00:00",
+    "url": "https://drunkyeti.itch.io/prismatic-linux-os",
+    "reason": "Added verified public Prismatic listing; full refresh blocked by itch.io HTTP 429 and incomplete Redbubble response. Other listings retained."
+  }
 }

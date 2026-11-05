@@ -1,5 +1,16 @@
 [
   {
+    "title": "Prismatic Linux OS",
+    "url": "https://drunkyeti.itch.io/prismatic-linux-os",
+    "image": "./assets/covers/prismatic-linux-os.webp",
+    "description": "Your Creative Operating System",
+    "category": "OS",
+    "browser": false,
+    "coverSource": "https://img.itch.zone/aW1nLzMxODU4NDE3LnBuZw%3D%3D/original/fHN%2Bvt.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
+  },
+  {
     "title": "Carnival Collision",
     "url": "https://drunkyeti.itch.io/chainfall-cubed",
     "image": "./assets/covers/chainfall-cubed.webp",
