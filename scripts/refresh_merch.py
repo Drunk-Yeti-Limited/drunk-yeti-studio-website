@@ -55,7 +55,7 @@ def parse_shop(html):
     for result in props['results']:
         item = result['inventoryItem']
         work = item['work']
-        if work.get('artistUsername', '').lower() != 'drunkyeti' or work.get('matureContent'):
+        if work.get('artistUsername', '').lower() != 'drunkyeti':
             continue
         url = item['productPageUrl']
         if urlparse(url).hostname != 'www.redbubble.com' or not urlparse(url).path.startswith('/i/'):
