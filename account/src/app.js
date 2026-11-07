@@ -1,5 +1,6 @@
 import {accountAuthOptions,recoveryRequestOptions} from './recovery.js';
 import {authMessage,callbackError} from './auth-errors.js';
+import {providerSignInOptions,cleanAuthCallback} from './oauth.js';
 import {renderMarketplace} from './marketplace.js';
 import {frostpassClient} from '../sdk/frostpass-client.js';
 import {renderFrostpass,billingURL} from './frostpass.js';
@@ -103,10 +104,16 @@ async function syncPlatform(){
  platformManifest=manifest;platformAccount=data;
  setAvatarCatalog(manifest.avatars);renderAvatarOptions();if(data&&!avatarDirty)selectAvatar(data.profile?.avatar_id);
  $('providers').replaceChildren();
- for(const provider of loginMethods(manifest,settings,'web'))button($('providers'),'Continue with '+provider.name,async()=>{
-  if(authorizationId)sessionStorage.setItem('yeti.authorization',authorizationId);
-  check(await sb.auth.signInWithOAuth({provider:provider.id,options:{redirectTo:callback()}}));
+ const methods=loginMethods(manifest,settings,'web');
+ for(const provider of methods)button($('providers'),'Continue with '+provider.name,async()=>{
+  clearRecovery();
+  if(authorizationId){try{sessionStorage.setItem('yeti.authorization',authorizationId)}catch{throw Error('Allow browser storage to continue signing in to your app.')}}
+  message('Opening '+provider.name+' sign-in…');
+  check(await sb.auth.signInWithOAuth(providerSignInOptions(provider.id,callback())));
  });
+ if(methods.some(p=>p.id==='google')){
+  const help=document.createElement('p');help.className='fine';help.textContent='New here? Google can create your account. Already registered? Choose the Google account with the same verified email to keep your Drunk Yeti profile and purchases.';$('providers').append(help);
+ }
  if(data){renderInventory($('shard-inventory'),data);renderWorld($('world-sections'),{...manifest,sections:manifest.sections.filter(s=>s.type!=='store')},data,redeem);renderMarketplace($('marketplace-content'),manifest,data,redeem);showAvatar($('account-avatar'),data.profile?.avatar_id);$('world-status').textContent='Up to date · Your progress travels with you.';await syncPayments(mine);await syncMultiplayer(mine);}
  }catch(e){if(seq===platformSequence&&mine===generation){$('providers').replaceChildren();$('shard-inventory').textContent='Your Shard balance is temporarily unavailable. Refresh to try again.';$('marketplace-content').textContent='Marketplace is temporarily unavailable. Refresh to try again.';$('world-status').textContent='Account updates are temporarily unavailable. Refresh to try again.';}}
 }
@@ -163,8 +170,8 @@ async function redeem(offer){
  await action(async()=>{const mine=generation;check(await sb.rpc('dy_redeem_offer',{p_offer:offer.id,p_version:offer.version,p_request:pendingRedemptions.get(key)}));pendingRedemptions.delete(key);sessionStorage.removeItem(key);if(mine!==generation)return;message(offer.item_id?.startsWith('avatar:')?'Unlocked! Choose your new avatar in Profile, then Save profile. Your character ownership is saved for future supported skins and themes.':'Purchase complete. Your item is saved to your account.');await syncPlatform()});
 }
 
-if(!authorizationId){authorizationId=sessionStorage.getItem('yeti.authorization');sessionStorage.removeItem('yeti.authorization')}
-action(async()=>{const result=await sb.auth.initialize();const error=incomingAuthError||result.error;if(error)clearRecovery();await refresh();if(error)message(authMessage(error));});
+if(!authorizationId){try{authorizationId=sessionStorage.getItem('yeti.authorization');sessionStorage.removeItem('yeti.authorization')}catch{}}
+action(async()=>{const result=await sb.auth.initialize();const error=incomingAuthError||result.error;const clean=cleanAuthCallback(location.href);if(clean!==location.href)globalThis.history?.replaceState(null,'',clean);if(error)clearRecovery();await refresh();if(error)message(authMessage(error));});
 watchAccount(syncPlatform);
 
 $('resend-confirmation').onclick=()=>action(async()=>{

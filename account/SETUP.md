@@ -7,9 +7,38 @@ The canonical portal is part of the existing studio website at `/account/`. Its 
 - Existing confirmed email/password accounts can use the backend-connected login, profile, friends, progress and export UI.
 - Email registration, recovery and confirmation resend are enabled in `src/config.js`. Resend domain verification, custom SMTP storage, email confirmation requirements and the exact website callback have been verified in the dashboards. Live inbox delivery and link completion still need owner testing.
 - Social-provider redirects and OAuth consent remain disabled.
+
 - These UI gates are release controls, not backend access controls. Supabase currently allows email signup at the API level. Configure backend signup policy independently for a closed beta.
 - No service-role key is included. The publishable key is public by design; deployed row-level security and RPC grants protect records.
 - Account deletion, provider linking, full portability export and purchase processing are not complete in this website. The export includes game data, not every provider/Auth record.
+
+### Google website sign-in implementation
+
+The website starts Google sign-in using PKCE with only `openid email profile`
+scopes and an account chooser. It uses the existing Supabase account service;
+Google client secrets must never be added to this repository or the browser.
+Both new-account creation and existing-account sign-in use the same flow.
+Verified-email identity linking is handled by Supabase, not by client-side
+profile or purchase copying.
+
+- Google OAuth web application origin: `https://www.drunkyetistudio.com`
+- Google-to-Supabase redirect: `https://rgafawpucqdhjrzodayl.supabase.co/auth/v1/callback`
+- Supabase-to-website redirect: `https://www.drunkyetistudio.com/account/`
+- Required Google scopes: `openid`, `email`, `profile` only.
+
+The Google button requires both an enabled Google provider in Supabase Auth
+and `web` in the Google provider's manifest `ready_surfaces`. Do not enable
+native surfaces as part of this website rollout. The separate `oauthServer`
+flag is for studio app consent and is not required for Google login.
+
+`tests/oauth.mjs` checks the actual installed auth SDK's PKCE challenge and
+code exchange, persisted account session, sign-in event, account chooser,
+scopes, and URL cleanup with mocked HTTP. UI tests check provider readiness,
+the Google button's request, and recovery after a provider error. These tests
+do not prove a live Google account has signed in. Finish the Google console
+and Supabase provider configuration, then verify real signup, existing-account
+login, cancellation, sign-out, and the account's existing profile/purchases
+before advertising Google login as available.
 
 ## Dashboard settings needed
 

@@ -7,4 +7,8 @@ assert.match(authMessage({code:'invalid_credentials'}),/Forgot password/);
 assert.match(authMessage({code:'email_not_confirmed'}),/Resend confirmation/);
 assert.match(authMessage({status:429}),/wait/);
 assert.ok(!authMessage(callbackError('https://example.com/#error=secret-value')).includes('secret-value'));
+assert.match(authMessage(callbackError('https://example.com/account/#error=access_denied')),/cancelled or access was declined/);
+assert.doesNotMatch(authMessage(callbackError('https://example.com/account/#error=access_denied')),/reset|email link/);
+assert.match(authMessage({code:'provider_disabled'}),/temporarily unavailable/);
+assert.match(authMessage({code:'bad_code_verifier'}),/Continue with Google again/);
 console.log('PASS expired/used links, PKCE mismatch, invalid credentials, confirmation, throttling and callback privacy');
