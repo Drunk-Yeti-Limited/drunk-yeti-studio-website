@@ -17,3 +17,8 @@ body{background:#faf6e9;color:#14242b;font-family:'Trebuchet MS',Arial,sans-seri
 .frostpass-price{font-size:30px;font-weight:800;margin:12px 0;color:#205dce}.frostpass-products{padding-left:20px;line-height:1.9;font-size:13px;color:#52687a}
 
 .market-controls{display:flex;gap:12px;align-items:center;margin:20px 0}.market-controls input{margin:0;min-width:0}.market-controls button{margin:0;white-space:nowrap}.market-controls button[aria-pressed="true"]{background:#caff61}.market-grid .world-panel{border:0}.market-grid .character-card{background:linear-gradient(145deg,#e0f7ff,#faf6e9);border:2px solid #14242b;box-shadow:3px 3px 0 #14242b}.market-grid .character-card>img{width:190px;height:190px}.market-grid .world-panel>h3{font-size:13px;text-transform:uppercase;letter-spacing:.1em}#market-buy-shards{color:#1258a7;font-size:13px}
+
+/* Social profiles and verified sign-in connections. */
+#social select{width:100%;padding:12px;border:1px solid #bdcbd1;border-radius:10px;background:#fff;color:#14272d;font:inherit}
+#social h3{margin-top:28px}.social-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:16px 0;border-bottom:1px solid #d9e1e3}.social-row strong{min-width:100px}.social-row p{margin:0;overflow-wrap:anywhere}.social-row .fine{flex-basis:100%;margin:0}.social-row button{width:auto;margin:0}.social-row a{color:#176194}.friend-social{padding:8px 0}#social-form{margin:20px 0}#social-status{color:#176194}#profile-social{margin-top:20px}
+@media(max-width:600px){.social-row button,.social-row a{width:100%}.social-row strong{flex-basis:100%}}

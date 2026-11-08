@@ -5,6 +5,7 @@ export function providerSignInOptions(provider, redirectTo) {
     options.scopes = 'openid email profile';
     options.queryParams = {prompt: 'select_account'};
   }
+  if (provider === 'azure') options.scopes = 'email';
   return {provider, options};
 }
 

@@ -1,7 +1,7 @@
 // Account contract v1. No credentials, executable code or arbitrary action URLs in manifests.
 export const ACCOUNT_SCHEMA=1;
 export const ACCOUNT_ORIGIN='https://www.drunkyetistudio.com';
-const providers=new Set(['google','apple','facebook']);
+const providers=new Set(['google','apple','facebook','discord','github','azure','twitch','x','linkedin_oidc','gitlab']);
 const sectionTypes=new Set(['wallets','achievements','unlocks','store','connections','notice']);
 export function assetURL(value){
  try {const u=new URL(value,ACCOUNT_ORIGIN);return u.origin===ACCOUNT_ORIGIN&&/^\/(assets|account\/avatars)\/[a-zA-Z0-9_.-]+\.(png|webp|jpg)$/.test(u.pathname)&&!u.search&&!u.hash?u.href:null}catch{return null}
