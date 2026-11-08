@@ -38,3 +38,26 @@ Steam website identity verification uses a separate OpenID 2.0 server integratio
 - OAuth unit tests use real SDK PKCE construction; they do not claim real provider consent/token exchange has completed.
 
 Official references: https://supabase.com/docs/guides/auth/auth-identity-linking and https://supabase.com/docs/guides/auth/social-sign-in
+
+## Connected profile refresh — 2026-11-08
+
+The deployed `connected-profile-sync` function retrieves Google/Discord/GitHub profile details using the current OAuth provider token, verifies the remote subject against the caller's linked identity, then rechecks identity before writing private metadata. It never persists provider tokens. This is user-initiated refresh, not background syncing. Sign in with the matching provider again when authorization expires. Owner-only reads/deletes and server-only writes protect `dy_connected_profiles`; account deletion cascades. The UI hides disconnected identities and permits deleting snapshots.
+
+## Android integration status
+
+`sdk/google-native.js` exchanges a native Google ID token for a Supabase session. Use the configured web client ID `642159232950-q7mb6h4uvcd4593cpd3m7fqsgluagvs0.apps.googleusercontent.com` as Credential Manager's server client ID. Register Android clients for each package/signing certificate, including Play App Signing. Generate a fresh random nonce, give Google its SHA-256 hex digest, and give Supabase the original. Never ship client secrets. Verify the resulting account UUID matches the player's existing account before using its saves/inventory.
+
+`sdk/cloud-save-client.js` uses existing revision-checked `dy_put_save`. Read a slot, retain its revision, then queue progress JSON. Retry `flush()` after reconnection. Pending writes are bound to account/game/slot. Conflicts retain the pending save: let the player choose between cloud and local data, explicitly discard the pending copy, then queue with the chosen revision. Keep local offline gameplay saves separately; queueing requires a currently authenticated account. Currency, purchases and entitlement proofs must stay in verified server ledgers, never arbitrary save JSON.
+
+These shared helpers are source support, not a released Android binary. Inspected Hexfold still uses email sign-in and practice-stat sync. Native Credential Manager UI and full-save wiring remain required inside each game, followed by signed-device testing.
+
+Play Games requires per-game Play Console setup, SDK integration and achievement/leaderboard IDs. Its player ID must not replace the Drunk Yeti save owner. Play Billing verification remains authoritative for purchases.
+
+Discord profile syncing does not activate game activity. Rich Presence requires native Social SDK integration and user sharing controls. Steam needs a verified OpenID flow; Xbox needs Xbox-specific scopes/token exchange. PlayStation/Nintendo remain gated on approved developer APIs. No self-reported handle proves identity.
+
+References:
+- https://supabase.com/docs/guides/auth/social-login/auth-google?platform=android
+- https://developer.android.com/identity/sign-in/credential-manager-siwg-implementation
+- https://developer.android.com/games/pgs/migration_overview
+
+`tests/connected-sync.mjs` checks provider subject mismatch, authentication, conflict retention, account isolation and retry request identity using mocked services. Real provider token exchange and two-device Android tests remain outstanding.

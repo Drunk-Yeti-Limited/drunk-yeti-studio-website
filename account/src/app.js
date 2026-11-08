@@ -123,13 +123,14 @@ async function syncPlatform(){
  }catch(e){if(seq===platformSequence&&mine===generation){$('providers').replaceChildren();$('signin-connections').replaceChildren();$('shard-inventory').textContent='Your Shard balance is temporarily unavailable. Refresh to try again.';$('marketplace-content').textContent='Marketplace is temporarily unavailable. Refresh to try again.';$('world-status').textContent='Account updates are temporarily unavailable. Refresh to try again.';}}
 }
 
-function clearSocial(){for(const id of ['signin-connections','social-list'])$(id).replaceChildren();$('social-handle').value='';$('social-share').checked=false;$('social-status').textContent='';}
+function clearSocial(){for(const id of ['signin-connections','social-list','synced-profiles'])$(id).replaceChildren();$('social-handle').value='';$('social-share').checked=false;$('social-status').textContent='';}
 for(const p of socialPlatforms){const o=document.createElement('option');o.value=p.id;o.textContent=p.name;$('social-platform').append(o)}
 $('social-platform').firstElementChild.selected=true;
 $('social-platform').onchange=()=>{$('social-handle').placeholder=socialPlatforms.find(p=>p.id===$('social-platform').value)?.hint||'';};
 $('social-platform').onchange();
 async function loadSocial(){
  const mine=generation,owner=user?.id;if(!owner)return;
+ await loadSyncedProfiles(mine,owner);
  const r=await sb.from('dy_social_profiles').select('platform,handle,share_with_friends').eq('player_id',user.id).order('platform');
  if(mine!==generation)return;
  if(r.error){$('social-status').textContent='Social profiles could not be loaded. Refresh to try again.';return;}
@@ -208,3 +209,24 @@ $('resend-confirmation').onclick=()=>action(async()=>{
  check(await sb.auth.resend({type:'signup',email:$('email').value.trim(),options:{emailRedirectTo:callback()}}));
  message('If confirmation is needed for that address, check your inbox and spam folder. Open the link in this browser.');
 });
+
+async function loadSyncedProfiles(mine,owner){
+ const root=$('synced-profiles');root.replaceChildren();
+ const result=await sb.from('dy_connected_profiles').select('provider,provider_subject,display_name,username,synced_at').eq('player_id',owner);
+ if(mine!==generation)return;
+ if(result.error){root.textContent='Profile sync is temporarily unavailable.';return;}
+ for(const identity of (user.identities||[]).filter(i=>['google','discord','github'].includes(i.provider))){
+  const row=(result.data||[]).find(r=>r.provider===identity.provider&&r.provider_subject===String(identity.provider_id||identity.identity_data?.sub||''));
+  const el=item(identity.provider,row?`${row.display_name}${row.username?' · @'+row.username:''} · Synced ${new Date(row.synced_at).toLocaleString()}`:'No profile synced yet.');
+  button(el,'Sync profile',()=>action(async()=>{
+   if(mine!==generation||user?.id!==owner)return;
+   const session=check(await sb.auth.getSession()).session;
+   if(!session?.provider_token)throw Error('Sign out and sign in with '+identity.provider+' to authorize profile refresh.');
+   const r=await sb.functions.invoke('connected-profile-sync',{body:{provider:identity.provider,provider_token:session.provider_token}});
+   if(r.error||r.data?.error)throw Error('Profile refresh failed. Sign in with the matching provider and try again.');
+   if(mine!==generation)return;await loadSyncedProfiles(mine,owner);$('social-status').textContent='Private profile refreshed from '+identity.provider+'.';
+  }));
+  if(row)button(el,'Remove synced details',()=>action(async()=>{if(mine!==generation)return;check(await sb.from('dy_connected_profiles').delete().eq('player_id',owner).eq('provider',identity.provider));if(mine===generation)await loadSyncedProfiles(mine,owner);}));
+  root.append(el);
+ }
+}
