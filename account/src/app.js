@@ -9,6 +9,7 @@ import {multiplayerClient} from '../sdk/multiplayer-client.js';
 import {renderMultiplayer} from './multiplayer.js';
 import {renderPayments,stripeCheckoutURL,purchaseConfirmation} from './payments.js';
 import {readManifest,readAccount,readRevision,loginMethods,watchAccount} from '../sdk/account-client.js';
+import {decorateProviderButton} from './provider-logos.js';
 import {socialPlatforms,normalizeSocialHandle,renderSocialLinks,renderSignInConnections} from './social.js';
 import {renderWorld} from './world.js';
 import {avatars,avatarFor,showAvatar,setAvatarCatalog} from './avatars.js';
@@ -57,7 +58,7 @@ let actionDepth=0;const actionButtons=new Map();
 async function action(fn){for(const b of document.querySelectorAll('button')){if(!actionButtons.has(b))actionButtons.set(b,b.disabled);b.disabled=true;}actionDepth++;try{await fn()}catch(e){message(authMessage(e))}finally{if(--actionDepth===0){for(const [b,disabled] of actionButtons)b.disabled=disabled;actionButtons.clear();}}}
 
 function item(title,description){const el=document.createElement('div');el.className='item';const h=document.createElement('strong'),p=document.createElement('p');h.textContent=title;p.textContent=description;el.append(h,p);return el}
-function button(parent,label,fn){const b=document.createElement('button');b.textContent=label;b.onclick=()=>action(fn);parent.append(b)}
+function button(parent,label,fn){const b=document.createElement('button');b.textContent=label;b.onclick=()=>action(fn);parent.append(b);return b}
 function tab(name){document.querySelectorAll('.pane').forEach(p=>p.hidden=p.id!==name);document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('selected',b.dataset.tab===name))}
 document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>tab(b.dataset.tab));
 if(location.hash==='#marketplace')tab('marketplace');
@@ -109,12 +110,12 @@ async function syncPlatform(){
  setAvatarCatalog(manifest.avatars);renderAvatarOptions();if(data&&!avatarDirty)selectAvatar(data.profile?.avatar_id);
  $('providers').replaceChildren();
  const methods=loginMethods(manifest,settings,'web');
- for(const provider of methods)button($('providers'),'Continue with '+provider.name,async()=>{
+ for(const provider of methods){const providerButton=button($('providers'),'Continue with '+provider.name,async()=>{
   clearRecovery();
   if(authorizationId){try{sessionStorage.setItem('yeti.authorization',authorizationId)}catch{throw Error('Allow browser storage to continue signing in to your app.')}}
   message('Opening '+provider.name+' sign-in…');
   check(await sb.auth.signInWithOAuth(providerSignInOptions(provider.id,callback())));
- });
+ });decorateProviderButton(providerButton,provider.id);}
  if(user)renderSignInConnections($('signin-connections'),user.identities||[],methods,{link:linkSocial,unlink:unlinkSocial,canLink:manifest.auth?.identity_linking===true});
  if(methods.length){
   const help=document.createElement('p');help.className='fine';help.textContent='New here? A social account can create your profile. Already registered? Sign in first, then connect another account in Social & gaming to keep your profile and purchases together.';$('providers').append(help);

@@ -13,7 +13,7 @@ export function normalizeManifest(raw){
  avatars:(Array.isArray(raw.avatars)?raw.avatars:[]).filter(a=>a&&/^[a-z][a-z0-9_-]{0,63}$/.test(a.id)&&typeof a.name==='string'&&assetURL(a.image)).map(a=>({...a,image:assetURL(a.image)}))};
 }
 export function loginMethods(manifest,settings,surface='web'){
- return (manifest?.auth?.providers||[]).filter(p=>providers.has(p.id)&&Array.isArray(p.ready_surfaces)&&p.ready_surfaces.includes(surface)&&settings?.external?.[p.id]===true).map(p=>({id:p.id,name:p.name}));
+ return (manifest?.auth?.providers||[]).filter(p=>providers.has(p.id)&&Array.isArray(p.ready_surfaces)&&p.ready_surfaces.includes(surface)&&(settings?.external?.[p.id]===true||(p.id==='x'&&settings?.external&&!Object.hasOwn(settings.external,'x')&&p.authorization_ready===true))).map(p=>({id:p.id,name:p.name}));
 }
 export async function readManifest(client){const r=await client.rpc('dy_account_manifest',{p_schema:1});if(r.error)throw r.error;return normalizeManifest(r.data)}
 export async function readAccount(client){const r=await client.rpc('dy_account_snapshot',{p_schema:1});if(r.error)throw r.error;if(r.data?.schema_version!==1)throw Error('Unsupported account response.');return r.data}

@@ -61,3 +61,9 @@ References:
 - https://developer.android.com/games/pgs/migration_overview
 
 `tests/connected-sync.mjs` checks provider subject mismatch, authentication, conflict retention, account isolation and retry request identity using mocked services. Real provider token exchange and two-device Android tests remain outstanding.
+
+## Twitch / X authorization retest — 2026-11-09
+
+Twitch and X now have distinct client IDs. Both Supabase authorization endpoints return 302 to the correct providers and the configured Supabase callback. Browser checks reached Twitch's login screen and X's login-to-authorize screen without an invalid-app error. Provider credential entry, consent and successful token exchange were not completed by these tests.
+
+The hosted `/auth/v1/settings` response omits `external.x` even though `provider=x` authorization works. The client therefore permits only X's missing flag when the server-managed provider entry explicitly sets `authorization_ready:true` and includes `web` in `ready_surfaces`. An explicit `external.x:false`, missing settings response, or missing readiness continues to hide the button. This flag means the authorization entry point was checked, not that a full user login was completed. Facebook remains unlisted.

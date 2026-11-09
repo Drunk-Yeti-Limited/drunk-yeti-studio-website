@@ -22,3 +22,13 @@ body{background:#faf6e9;color:#14242b;font-family:'Trebuchet MS',Arial,sans-seri
 #social select{width:100%;padding:12px;border:1px solid #bdcbd1;border-radius:10px;background:#fff;color:#14272d;font:inherit}
 #social h3{margin-top:28px}.social-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:16px 0;border-bottom:1px solid #d9e1e3}.social-row strong{min-width:100px}.social-row p{margin:0;overflow-wrap:anywhere}.social-row .fine{flex-basis:100%;margin:0}.social-row button{width:auto;margin:0}.social-row a{color:#176194}.friend-social{padding:8px 0}#social-form{margin:20px 0}#social-status{color:#176194}#profile-social{margin-top:20px}
 @media(max-width:600px){.social-row button,.social-row a{width:100%}.social-row strong{flex-basis:100%}}
+
+#providers .provider-button{display:flex;align-items:center;justify-content:center;gap:12px;min-height:48px;padding:10px 16px;background:#fff;color:#1f1f1f;border:1px solid #747775;border-radius:8px;box-shadow:none;font:500 14px/20px Arial,sans-serif;letter-spacing:0;text-transform:none}
+#providers .provider-button img{width:24px;height:24px;object-fit:contain;flex:none}
+#providers .provider-button[data-provider="google"]{padding:12px;gap:10px}
+#providers .provider-button[data-provider="google"] img{width:20px;height:20px}
+#providers .provider-button[data-provider="x"]{background:#000;color:#fff;border-color:#000}
+#providers .provider-button:hover{box-shadow:0 0 0 2px #9fc8ef;transform:none}
+#providers .provider-button:focus-visible{outline:3px solid #2166b1;outline-offset:3px}
+
+#providers .provider-button[data-provider="discord"]{background:#5865f2;color:#fff;border-color:#5865f2}

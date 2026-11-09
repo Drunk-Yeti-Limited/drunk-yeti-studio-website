@@ -38,3 +38,12 @@ for(const provider of providers){
  await sdk.stopAutoRefresh();
 }
 console.log('PASS social handle validation, safe links/text, sign-in identity guard, provider launch gates and real SDK PKCE starts for Discord/GitHub/X/Twitch/Microsoft/LinkedIn/GitLab (no provider token exchange)');
+const xReady={auth:{providers:[{id:'x',name:'X',ready_surfaces:['web'],authorization_ready:true}]}};
+assert.equal(loginMethods(xReady,{external:{twitter:false}}).length,1);
+assert.equal(loginMethods(xReady,{external:{x:false}}).length,0);
+assert.equal(loginMethods(xReady,{}).length,0);
+xReady.auth.providers[0].authorization_ready=false;
+assert.equal(loginMethods(xReady,{external:{twitter:false}}).length,0);
+const {decorateProviderButton}=await import('../src/provider-logos.js');
+const logoButton=document.createElement('button');logoButton.textContent='Continue with Twitch';decorateProviderButton(logoButton,'twitch');
+assert.equal(logoButton.textContent,'Continue with Twitch');assert.equal(logoButton.querySelector('img').getAttribute('src'),'./provider-logos/twitch.svg');assert.equal(logoButton.querySelector('img').alt,'');
