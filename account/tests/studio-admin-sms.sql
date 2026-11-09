@@ -1,0 +1,30 @@
+begin;
+do $$
+declare a uuid:=gen_random_uuid();b uuid:=gen_random_uuid();r jsonb;g jsonb;ref text:=gen_random_uuid()::text;begin
+ insert into auth.users(id,email,email_confirmed_at,is_anonymous,created_at) values(a,a||'@example.invalid',now(),false,now()),(b,b||'@example.invalid',now(),false,now());
+ perform set_config('request.jwt.claims',jsonb_build_object('sub',a,'role','authenticated')::text,true);
+ begin perform public.dy_studio_admin();raise exception 'nonadmin_allowed';exception when others then if sqlerrm<>'studio_admin_required' then raise;end if;end;
+ if (public.dy_sms_preference()->>'subscribed')::boolean then raise exception 'sms_default_on';end if;
+ begin perform public.dy_sms_set(true,'555');raise exception 'bad_phone_allowed';exception when others then if sqlerrm<>'international_phone_required' then raise;end if;end;
+ r:=public.dy_sms_set(true,'+13035550123');if not (r->>'subscribed')::boolean or (r->>'sending_enabled')::boolean then raise exception 'sms_invalid_state';end if;
+ perform set_config('request.jwt.claims',jsonb_build_object('sub',b,'role','authenticated')::text,true);
+ if public.dy_sms_preference()->>'phone'<>'' then raise exception 'cross_user_phone_leak';end if;
+ perform set_config('request.jwt.claims',jsonb_build_object('sub',a,'role','authenticated')::text,true);
+ r:=public.dy_sms_set(false);if r->>'phone'<>'' or (r->>'subscribed')::boolean then raise exception 'unsubscribe_failed';end if;
+ insert into dy_private.newsletter_admins values(a);
+ perform public.dy_studio_admin('accounts');perform public.dy_studio_admin('requests');perform public.dy_studio_admin('audit');
+ g:=public.dy_studio_admin('grant_gift',jsonb_build_object('email',b||'@example.invalid','months',3,'reference',ref));
+ r:=public.dy_studio_admin('grant_gift',jsonb_build_object('email',b||'@example.invalid','months',3,'reference',ref));
+ if g->>'id'<>r->>'id' or not (r->>'replayed')::boolean then raise exception 'duplicate_gift';end if;
+ if (select created_by from dy_private.frostpass_gifts where id=(g->>'id')::uuid)<>a::text then raise exception 'actor_not_recorded';end if;
+ perform set_config('request.jwt.claims',jsonb_build_object('sub',b,'role','authenticated')::text,true);
+ if not (public.dy_subscription_status()->>'active')::boolean then raise exception 'gift_not_active';end if;
+ perform set_config('request.jwt.claims',jsonb_build_object('sub',a,'role','authenticated')::text,true);
+ perform public.dy_studio_admin('revoke_gift',jsonb_build_object('reference',ref,'reason','QA rollback'));
+ perform set_config('request.jwt.claims',jsonb_build_object('sub',b,'role','authenticated')::text,true);
+ if (public.dy_subscription_status()->>'active')::boolean then raise exception 'revoked_gift_active';end if;
+ perform set_config('request.jwt.claims',jsonb_build_object('sub',a,'role','authenticated','client_id','third-party')::text,true);
+ begin perform public.dy_studio_admin();raise exception 'delegated_admin_allowed';exception when others then if sqlerrm not in ('studio_admin_required','app_scope_denied') then raise;end if;end;
+ if has_table_privilege('authenticated','dy_private.sms_preferences','select') or has_table_privilege('authenticated','dy_private.studio_audit','insert') or has_function_privilege('anon','public.dy_studio_admin(text,jsonb)','execute') then raise exception 'public_access_leak';end if;
+end $$;
+rollback;
