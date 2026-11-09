@@ -32,7 +32,7 @@ declare u uuid:=gen_random_uuid();v uuid:=gen_random_uuid();e text;g jsonb;r jso
  if (public.dy_subscription_status()->>'active')::boolean then raise exception 'hold_bypassed';end if;
  delete from dy_private.payment_holds where player_id=u;
 
- if (public.dy_newsletter_preference()->>'subscribed')::boolean then raise exception 'default_marketing_optin';end if;
+ if not (public.dy_newsletter_preference()->>'subscribed')::boolean then raise exception 'default_enrollment_missing';end if;
  perform public.dy_newsletter_set(true);
  if not exists(select 1 from dy_private.newsletter_audience() where player_id=u and email=e) then raise exception 'optin_missing';end if;
  update auth.users set email='changed-'||e where id=u;

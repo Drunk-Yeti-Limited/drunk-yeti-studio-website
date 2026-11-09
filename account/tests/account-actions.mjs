@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {parseHTML} from 'linkedom';
+import {readFile} from 'node:fs/promises';
+import {mountAccountActions} from '../src/account-actions.js';
+const page=async kind=>parseHTML(await readFile(new URL('../../'+kind+'/index.html',import.meta.url),'utf8')).document;
+let user=null,requested=false,writes=[],failure=false;
+const sb={auth:{getUser:async()=>({data:{user}})},rpc:async(name,args)=>{if(name==='dy_deletion_request_status')return {data:{requested}};writes.push({name,args});return failure?{error:{message:'failed'}}:{data:{}};}};
+let doc=await page('unsubscribe');await mountAccountActions(sb,doc);assert.equal(doc.getElementById('login').hidden,false);assert.equal(writes.length,0);
+user={id:'a',email:'qa@example.invalid'};doc=await page('unsubscribe');await mountAccountActions(sb,doc);assert.equal(writes.length,0);
+await doc.getElementById('action').onsubmit({preventDefault(){}});assert.equal(writes.at(-1).args.p_subscribed,false);assert.match(doc.getElementById('status').textContent,/You are unsubscribed/);
+doc=await page('unsubscribe');await mountAccountActions(sb,doc);const before=writes.length;user={id:'b'};await doc.getElementById('action').onsubmit({preventDefault(){}});assert.equal(writes.length,before);
+doc=await page('delete-account');await mountAccountActions(sb,doc);doc.getElementById('confirmation').value='';await doc.getElementById('action').onsubmit({preventDefault(){}});assert.equal(writes.length,before);
+doc.getElementById('confirmation').value='DELETE';await doc.getElementById('action').onsubmit({preventDefault(){}});assert.equal(writes.at(-1).name,'dy_request_deletion');assert.match(doc.getElementById('status').textContent,/not yet complete/);
+requested=true;doc=await page('delete-account');await mountAccountActions(sb,doc);assert.equal(doc.getElementById('action').hidden,true);assert.match(doc.getElementById('status').textContent,/awaiting studio review/);
+console.log('PASS account action login gate, explicit unsubscribe, owner binding, deletion confirmation and pending review display');

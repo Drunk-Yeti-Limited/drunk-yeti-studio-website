@@ -14,3 +14,11 @@ user=null;await render(root);assert.equal(root.textContent,'');
 renderFrostpass(root,{catalog:{},membership:{active:true,source:'gift',gift_active:true,gift_ends_at:'2027-02-09T00:00:00Z',period_end:'2027-02-09T00:00:00Z',cancel_at_period_end:true}},()=>{},()=>{});
 assert(root.textContent.includes('Gift Frostpass active'));assert(root.textContent.includes('Access ends'));assert(!root.textContent.includes('Renews monthly'));assert(root.textContent.includes('do not renew or charge'));
 console.log('PASS newsletter explicit consent, unsubscribe, account-switch isolation and gift expiration display');
+
+const {signupNewsletterData,rememberNewsletterChoice,applyNewsletterChoice}=await import('../src/newsletter-signup.js');
+assert.deepEqual(signupNewsletterData(),{newsletter_subscribed:true});assert.deepEqual(signupNewsletterData(false),{newsletter_subscribed:false});
+const memory=new Map(),storage={getItem:k=>memory.get(k),setItem:(k,v)=>memory.set(k,v),removeItem:k=>memory.delete(k)};
+let choice=null;const client={rpc:async(n,a)=>{choice=a.p_subscribed;return {};}};const now=Date.now();
+rememberNewsletterChoice(storage,false,now);await applyNewsletterChoice(client,storage,{id:'new',created_at:new Date(now).toISOString()},now);assert.equal(choice,false);
+choice=null;rememberNewsletterChoice(storage,true,now);await applyNewsletterChoice(client,storage,{id:'old',created_at:new Date(now-3600000).toISOString()},now);assert.equal(choice,null);
+console.log('PASS default signup selection, unchecked OAuth selection and existing-account preference preservation');
