@@ -1,3 +1,4 @@
+import {microsoftRedirect,consumeMicrosoftXbox,clearMicrosoftXbox} from './microsoft-xbox.js';
 import {captureXboxReturn,xboxPanel} from './xbox.js';
 import {accountAuthOptions,recoveryRequestOptions} from './recovery.js';
 import {authMessage,callbackError} from './auth-errors.js';
@@ -20,6 +21,8 @@ import {allowedRedirect,consentScopes} from './security.js';
 import {createClient} from '@supabase/supabase-js';
 const URL='https://rgafawpucqdhjrzodayl.supabase.co', KEY='sb_publishable_1cU8zRpm6Rcn5iWBs2bvgQ_Nrej-tsy';
 const xboxReturn=captureXboxReturn();
+const microsoftReturnNonce=new globalThis.URL(location.href).searchParams.get('microsoft_xbox');
+let microsoftCallbackReady=false;
 const sb=createClient(URL,KEY,{auth:accountAuthOptions(location.href)});
 let recoverySender;
 const sendRecovery=(email)=>{recoverySender ||= createClient(URL,KEY,{auth:recoveryRequestOptions()});return recoverySender.auth.resetPasswordForEmail(email,{redirectTo:callback()});};
@@ -79,7 +82,7 @@ async function friend(id,act){check(await sb.rpc('dy_friend_action',{p_target:id
 $('profile-form').onsubmit=e=>{e.preventDefault();action(async()=>{check(await sb.rpc('dy_profile_set_with_avatar',{p_avatar:selectedAvatar,p_handle:$('handle').value,p_name:$('display-name').value,p_discoverable:$('discoverable').checked,p_share:$('share').checked}));message('Profile saved.');await refresh()})};
 $('find-form').onsubmit=e=>{e.preventDefault();action(async()=>{const mine=generation,p=check(await sb.rpc('dy_find_friend',{p_handle:$('friend-handle').value}));if(mine!==generation)return;const el=p?item(p.display_name,'@'+p.handle):item('No player found','They may have discovery turned off.');if(p&&p.player_id!==user.id)button(el,'Send friend request',()=>friend(p.player_id,'request'));$('found').replaceChildren(el)})};
 $('refresh').onclick=()=>action(refresh);
-async function logout(scope){check(await sb.auth.signOut({scope}));clearRecovery();user=null;generation++;platformSequence++;platformAccount=null;avatarDirty=false;clearSocial();$('world-sections').replaceChildren();$('marketplace-content').replaceChildren();$('shard-inventory').textContent='Loading your Shard balance…';$('payment-shop').replaceChildren();$('frostpass-content').replaceChildren();$('world-payment-note').textContent='';$('multiplayer-content').replaceChildren();$('multiplayer-status').textContent='';$('payment-status').textContent='';$('dashboard').hidden=true;$('consent').hidden=true;$('auth').hidden=false;message(scope==='global'?'Refresh sessions signed out. Existing access tokens expire separately.':'Signed out of this browser.')}
+async function logout(scope){clearMicrosoftXbox(sessionStorage);check(await sb.auth.signOut({scope}));clearRecovery();user=null;generation++;platformSequence++;platformAccount=null;avatarDirty=false;clearSocial();$('world-sections').replaceChildren();$('marketplace-content').replaceChildren();$('shard-inventory').textContent='Loading your Shard balance…';$('payment-shop').replaceChildren();$('frostpass-content').replaceChildren();$('world-payment-note').textContent='';$('multiplayer-content').replaceChildren();$('multiplayer-status').textContent='';$('payment-status').textContent='';$('dashboard').hidden=true;$('consent').hidden=true;$('auth').hidden=false;message(scope==='global'?'Refresh sessions signed out. Existing access tokens expire separately.':'Signed out of this browser.')}
 $('logout').onclick=()=>action(()=>logout('local'));$('logout-all').onclick=()=>action(()=>logout('global'));
 $('password-form').onsubmit=e=>{e.preventDefault();action(async()=>{check(await sb.auth.updateUser({password:$('new-password').value}));$('new-password').value='';message('Password updated.')})};
 $('reset-form').onsubmit=async e=>{
@@ -100,7 +103,7 @@ $('export').onclick=()=>action(async()=>{const mine=generation,data=check(await 
 async function consent(){if(!launch.oauthServer){message('Shared app sign-in is not activated yet.');return}const mine=generation;const details=check(await sb.auth.oauth.getAuthorizationDetails(authorizationId));if(mine!==generation)return;if(!details.authorization_id){safeRedirect(details.redirect_url);return}consentDetails=details;$('consent').hidden=false;$('client-name').textContent=details.client.name;$('callback').textContent='Return to: '+details.redirect_uri;const apps=check(await sb.from('dy_apps').select('scopes').eq('oauth_client_id',details.client.id).eq('enabled',true));if(mine!==generation)return;if(!apps.length){consentDetails=null;message('This app has not been enabled by Drunk Yeti.');$('approve').hidden=true;return}$('approve').hidden=false;const scopes=consentScopes(details,apps[0]);$('scope-list').replaceChildren(...scopes.map(s=>{const li=document.createElement('li');li.textContent=s;return li}))}
 $('approve').onclick=()=>action(async()=>{if(!consentDetails)throw Error('App is not available.');const data=check(await sb.auth.oauth.approveAuthorization(authorizationId,{skipBrowserRedirect:true}));safeRedirect(data.redirect_url)});
 $('deny').onclick=()=>action(async()=>{const data=check(await sb.auth.oauth.denyAuthorization(authorizationId,{skipBrowserRedirect:true}));safeRedirect(data.redirect_url)});
-sb.auth.onAuthStateChange((event)=>{if(event==='PASSWORD_RECOVERY'){rememberRecovery();$('dashboard').hidden=true;$('consent').hidden=true;setTimeout(()=>action(refresh),0)}else if(event==='SIGNED_OUT'){clearRecovery();generation++;platformSequence++;platformAccount=null;avatarDirty=false;clearSocial();$('world-sections').replaceChildren();$('marketplace-content').replaceChildren();$('shard-inventory').textContent='Loading your Shard balance…';$('payment-shop').replaceChildren();$('frostpass-content').replaceChildren();$('world-payment-note').textContent='';$('multiplayer-content').replaceChildren();$('multiplayer-status').textContent='';$('payment-status').textContent='';user=null;$('dashboard').hidden=true;$('consent').hidden=true;$('auth').hidden=false}else if(event==='SIGNED_IN'){setTimeout(()=>action(refresh),0)}});
+sb.auth.onAuthStateChange((event)=>{if(event==='PASSWORD_RECOVERY'){rememberRecovery();$('dashboard').hidden=true;$('consent').hidden=true;setTimeout(()=>action(refresh),0)}else if(event==='SIGNED_OUT'){clearMicrosoftXbox(sessionStorage);clearRecovery();generation++;platformSequence++;platformAccount=null;avatarDirty=false;clearSocial();$('world-sections').replaceChildren();$('marketplace-content').replaceChildren();$('shard-inventory').textContent='Loading your Shard balance…';$('payment-shop').replaceChildren();$('frostpass-content').replaceChildren();$('world-payment-note').textContent='';$('multiplayer-content').replaceChildren();$('multiplayer-status').textContent='';$('payment-status').textContent='';user=null;$('dashboard').hidden=true;$('consent').hidden=true;$('auth').hidden=false}else if(event==='SIGNED_IN'){setTimeout(()=>action(refresh),0)}});
 async function syncPlatform(){
  const seq=++platformSequence,mine=generation;
  try {
@@ -113,15 +116,17 @@ async function syncPlatform(){
  setAvatarCatalog(manifest.avatars);renderAvatarOptions();if(data&&!avatarDirty)selectAvatar(data.profile?.avatar_id);
  $('providers').replaceChildren();
  const methods=loginMethods(manifest,settings,'web');
- for(const provider of methods){const providerButton=button($('providers'),'Continue with '+provider.name,async()=>{
-  clearRecovery();
+ for(const provider of methods){const providerButton=button($('providers'),provider.id==='azure'?'Sign in with Microsoft':'Continue with '+provider.name,async()=>{
+  clearRecovery();clearMicrosoftXbox(sessionStorage);
   if(authorizationId){try{sessionStorage.setItem('yeti.authorization',authorizationId)}catch{throw Error('Allow browser storage to continue signing in to your app.')}}
   message('Opening '+provider.name+' sign-in…');
-  check(await sb.auth.signInWithOAuth(providerSignInOptions(provider.id,callback())));
+  const redirect=provider.id==='azure'?microsoftRedirect(sessionStorage,callback()):callback();
+  const result=await sb.auth.signInWithOAuth(providerSignInOptions(provider.id,redirect));
+  if(result.error)clearMicrosoftXbox(sessionStorage);check(result);
  });decorateProviderButton(providerButton,provider.id);}
  if(user)renderSignInConnections($('signin-connections'),user.identities||[],methods,{link:linkSocial,unlink:unlinkSocial,canLink:manifest.auth?.identity_linking!==false});
  if(methods.length){
-  const help=document.createElement('p');help.className='fine';help.textContent='New here? A social account can create your profile. Already registered? Sign in first, then connect another account in Social & gaming to keep your profile and purchases together.';$('providers').append(help);
+  const help=document.createElement('p');help.className='fine';help.textContent='New here? A social account can create your profile. Microsoft sign-in also starts Xbox connection setup; Microsoft may ask you to approve Xbox access. Already registered? Sign in first, then connect another account in Social & gaming to keep your profile and purchases together.';$('providers').append(help);
  }
  if(data){renderInventory($('shard-inventory'),data);renderWorld($('world-sections'),{...manifest,sections:manifest.sections.filter(s=>s.type!=='store')},data,redeem);renderMarketplace($('marketplace-content'),manifest,data,redeem);showAvatar($('account-avatar'),data.profile?.avatar_id);$('world-status').textContent='Up to date · Your progress travels with you.';await syncPayments(mine);await syncMultiplayer(mine);}
  }catch(e){if(seq===platformSequence&&mine===generation){$('providers').replaceChildren();$('signin-connections').replaceChildren();$('shard-inventory').textContent='Your Shard balance is temporarily unavailable. Refresh to try again.';$('marketplace-content').textContent='Marketplace is temporarily unavailable. Refresh to try again.';$('world-status').textContent='Account updates are temporarily unavailable. Refresh to try again.';}}
@@ -132,7 +137,7 @@ for(const p of socialPlatforms){const o=document.createElement('option');o.value
 $('social-platform').firstElementChild.selected=true;
 $('social-platform').onchange=()=>{$('social-handle').placeholder=socialPlatforms.find(p=>p.id===$('social-platform').value)?.hint||'';};
 $('social-platform').onchange();
-const renderXbox=xboxPanel({sb,getUser:()=>user,returned:xboxReturn});
+const renderXbox=xboxPanel({sb,getUser:()=>user,returned:xboxReturn,autoConnect:()=>microsoftCallbackReady&&consumeMicrosoftXbox(sessionStorage,{nonce:microsoftReturnNonce,user,error:incomingAuthError})});
 async function loadSocial(){
  const mine=generation,owner=user?.id;if(!owner)return;
  await renderXbox($('xbox-connections'));
@@ -155,8 +160,10 @@ async function linkSocial(provider){await action(async()=>{
  if(!(platformManifest?.auth?.providers||[]).some(p=>p.id===provider&&p.ready_surfaces?.includes('web')))throw Error('This provider is not available yet.');
  clearRecovery();rememberLink(sessionStorage,{owner,provider});
  $('connection-status').textContent='Opening '+provider+' to verify your account…';
- const r=await sb.auth.linkIdentity(providerSignInOptions(provider,callback()));
- if(r.error){clearLink(sessionStorage);const text=r.error.code==='manual_linking_disabled'?'Account linking is not enabled on the account service yet. Your existing account is unchanged.':r.error.code==='identity_already_exists'?'This social account belongs to another Drunk Yeti account. It cannot be merged here.':authMessage(r.error);$('connection-status').textContent=text;throw Error(text);}
+ clearMicrosoftXbox(sessionStorage);
+ const redirect=provider==='azure'?microsoftRedirect(sessionStorage,callback(),owner):callback();
+ const r=await sb.auth.linkIdentity(providerSignInOptions(provider,redirect));
+ if(r.error){clearMicrosoftXbox(sessionStorage);clearLink(sessionStorage);const text=r.error.code==='manual_linking_disabled'?'Account linking is not enabled on the account service yet. Your existing account is unchanged.':r.error.code==='identity_already_exists'?'This social account belongs to another Drunk Yeti account. It cannot be merged here.':authMessage(r.error);$('connection-status').textContent=text;throw Error(text);}
  });}
 async function unlinkSocial(identity){await action(async()=>{
  if(!user)throw Error('Sign in first.');const owner=user.id;
@@ -222,7 +229,7 @@ async function redeem(offer){
 }
 
 if(!authorizationId){try{authorizationId=sessionStorage.getItem('yeti.authorization');sessionStorage.removeItem('yeti.authorization')}catch{}}
-action(async()=>{const result=await sb.auth.initialize();const error=incomingAuthError||result.error;const clean=cleanAuthCallback(location.href);if(clean!==location.href)globalThis.history?.replaceState(null,'',clean);if(error)clearRecovery();await refresh();if(error)message(authMessage(error));});
+action(async()=>{const result=await sb.auth.initialize();const error=incomingAuthError||result.error;microsoftCallbackReady=!error;if(error)clearMicrosoftXbox(sessionStorage);const clean=cleanAuthCallback(location.href);if(clean!==location.href)globalThis.history?.replaceState(null,'',clean);if(error)clearRecovery();await refresh();if(error)message(authMessage(error));});
 watchAccount(syncPlatform);
 
 $('resend-confirmation').onclick=()=>action(async()=>{

@@ -1,5 +1,5 @@
 // Official provider assets, hosted locally. See provider-logos/SOURCES.md.
-const known=new Set(['google','discord','github','twitch','x']);
+const known=new Set(['azure','google','discord','github','twitch','x']);
 export function decorateProviderButton(button,provider){
  if(!known.has(provider))return;
  button.classList.add('provider-button');button.dataset.provider=provider;

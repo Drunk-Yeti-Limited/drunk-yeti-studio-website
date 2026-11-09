@@ -3,7 +3,7 @@ const url='https://rgafawpucqdhjrzodayl.supabase.co';
 const key='sb_publishable_1cU8zRpm6Rcn5iWBs2bvgQ_Nrej-tsy';
 export async function logoutBrowser({client,storage}){
  const result=await client.auth.signOut({scope:'local'});
- for(const name of ['yeti.xbox.pending','yeti.social_link','yeti.social_return','yeti.passwordRecovery.verified'])storage.removeItem(name);
+ for(const name of ['yeti.microsoft.xbox','yeti.xbox.pending','yeti.social_link','yeti.social_return','yeti.passwordRecovery.verified'])storage.removeItem(name);
  const session=await client.auth.getSession();
  if(session.error||session.data?.session)throw Error('Sign-out could not be confirmed. Please try again.');
  return {revocationPending:!!result.error};

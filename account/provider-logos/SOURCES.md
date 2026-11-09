@@ -9,3 +9,5 @@ Downloaded from official brand resources on 2026-11-09. Logos retain their origi
 - Google: https://developers.google.com/identity/branding-guidelines — `https://developers.google.com/static/identity/images/g-logo.png`. The original PNG bytes are embedded unchanged in an SVG image wrapper for repository transport. Displayed on white with action text.
 
 No logo-generation service or third-party approximation is used. Assets are served locally; loading the login page does not send image requests to these providers.
+
+Microsoft: official pictogram from https://learn.microsoft.com/en-us/entra/identity-platform/howto-add-branding-in-apps (ms-symbollockup_mssymbol_19.svg).

@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+import {microsoftRedirect,consumeMicrosoftXbox,MICROSOFT_XBOX_KEY} from '../src/microsoft-xbox.js';
+import {providerSignInOptions,cleanAuthCallback} from '../src/oauth.js';
+const values=new Map(),storage={setItem:(k,v)=>values.set(k,v),getItem:k=>values.get(k),removeItem:k=>values.delete(k)};
+const user={id:'existing',identities:[{provider:'azure'}]};
+const begin=(owner=null)=>new URL(microsoftRedirect(storage,'https://www.drunkyetistudio.com/account/',owner,1000)).searchParams.get('microsoft_xbox');
+let nonce=begin();assert(consumeMicrosoftXbox(storage,{nonce,user,now:1001}));assert(!consumeMicrosoftXbox(storage,{nonce,user,now:1001}));
+nonce=begin('existing');assert(consumeMicrosoftXbox(storage,{nonce,user,now:1001}));
+nonce=begin('other');assert(!consumeMicrosoftXbox(storage,{nonce,user,now:1001}));
+nonce=begin();assert(!consumeMicrosoftXbox(storage,{nonce,user,error:'cancelled',now:1001}));
+nonce=begin();assert(!consumeMicrosoftXbox(storage,{nonce,user,now:1000000}));
+nonce=begin();assert(!consumeMicrosoftXbox(storage,{nonce,user,now:999}));
+nonce=begin();assert(!consumeMicrosoftXbox(storage,{nonce,user:{id:'existing',identities:[{provider:'google'}]},now:1001}));
+nonce=begin();assert(!consumeMicrosoftXbox(storage,{nonce:'wrong',user,now:1001}));
+assert(!values.has(MICROSOFT_XBOX_KEY));
+assert.equal(providerSignInOptions('azure','https://example.test/').options.scopes,'email');
+assert.equal(cleanAuthCallback('https://example.test/?microsoft_xbox=nonce&code=secret'),'https://example.test/');
+console.log('Microsoft continuation: one use, callback binding, existing owner, cancellation, expiry and verified provider tests passed.');

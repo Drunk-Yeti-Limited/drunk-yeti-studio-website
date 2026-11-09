@@ -12,7 +12,7 @@ export function providerSignInOptions(provider, redirectTo) {
 // Run after SDK initialization so one-use callback values do not survive reloads.
 export function cleanAuthCallback(href) {
   const url = new URL(href);
-  const keys = ['code', 'sb_flow_id', 'error', 'error_code', 'error_description', 'error_uri',
+  const keys = ['microsoft_xbox', 'code', 'sb_flow_id', 'error', 'error_code', 'error_description', 'error_uri',
     'access_token', 'refresh_token', 'provider_token', 'provider_refresh_token'];
   for (const key of keys) url.searchParams.delete(key);
   const fragment = new URLSearchParams(url.hash.slice(1));

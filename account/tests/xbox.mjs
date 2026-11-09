@@ -33,3 +33,16 @@ sessionStorage.setItem('yeti.xbox.pending',JSON.stringify({owner:'owner',proof,s
 const root=document.getElementById('root');const panel=xboxPanel({sb,getUser:()=>current,returned});await panel(root);assert.deepEqual(calls,['finish','status']);assert(root.textContent.includes('Player'));assert(root.textContent.includes('Xbox connected'));assert(!sessionStorage.getItem('yeti.xbox.pending'));await panel(root);assert.equal(calls.filter(x=>x==='finish').length,1);
 current=null;await panel(root);assert.equal(root.textContent,'');
 console.log('Xbox UI: callback scrubbing, pinned session, verified return, one-time completion and logout clearing passed.');
+// Automatic continuation uses the same owner-bound flow and never repeats on refresh.
+current={id:'owner'};calls=[];let connected=false,continuation=true,redirects=0;
+globalThis.location.assign=url=>{assert.equal(new URL(url).origin,'https://login.microsoftonline.com');redirects++};
+sb.functions.invoke=async(name,{body})=>{calls.push(body.action);return {data:body.action==='start'?{state,url:'https://login.microsoftonline.com/consumers/oauth2/v2.0/authorize'}:{connection:connected?{gamertag:'Player'}:null,configured:true}}};
+const auto=()=>{const v=continuation;continuation=false;return v};
+const automatic=xboxPanel({sb,getUser:()=>current,autoConnect:auto});
+await automatic(root);assert.equal(redirects,1);assert.deepEqual(calls,['status','start']);
+assert.equal(JSON.parse(sessionStorage.getItem('yeti.xbox.pending')).owner,'owner');
+await automatic(root);assert.equal(redirects,1);
+connected=true;continuation=true;await automatic(root);assert.equal(redirects,1);assert.equal(continuation,false);
+connected=false;continuation=true;sb.functions.invoke=async(name,{body})=>({data:body.action==='start'?{error:'provider_authorization_failed'}:{connection:null,configured:true}});
+await automatic(root);assert(root.textContent.includes('You are signed in with Microsoft'));assert.equal(continuation,false);assert.equal(current.id,'owner');
+console.log('Automatic Xbox: single redirect, existing link preserved, authenticated owner and failure retaining sign-in passed.');
