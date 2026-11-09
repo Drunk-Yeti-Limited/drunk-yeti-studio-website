@@ -12,6 +12,7 @@ declare a uuid:=gen_random_uuid();b uuid:=gen_random_uuid();r jsonb;g jsonb;ref 
  perform set_config('request.jwt.claims',jsonb_build_object('sub',a,'role','authenticated')::text,true);
  r:=public.dy_sms_set(false);if r->>'phone'<>'' or (r->>'subscribed')::boolean then raise exception 'unsubscribe_failed';end if;
  insert into dy_private.newsletter_admins values(a);
+ insert into dy_private.studio_roles values(a,'admin');
  perform public.dy_studio_admin('accounts');perform public.dy_studio_admin('requests');perform public.dy_studio_admin('audit');
  g:=public.dy_studio_admin('grant_gift',jsonb_build_object('email',b||'@example.invalid','months',3,'reference',ref));
  r:=public.dy_studio_admin('grant_gift',jsonb_build_object('email',b||'@example.invalid','months',3,'reference',ref));
