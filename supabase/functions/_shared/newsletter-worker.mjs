@@ -42,7 +42,7 @@ export function createNewsletterWorker({rpc,apiKey,workerSecret,fetchImpl=fetch}
    let action='review',reason='provider_or_configuration_error';
    if(error.status===402){action='retry';reason='credits_exhausted';}
    else if(error.status===429){action='retry';reason='rate_limited';}
-   else if(!dispatching&&(error.name==='TimeoutError'||error.name==='TypeError'||String(error.message).includes('audience_changed'))){action='retry';reason='preparation_retry';}
+   else if(!dispatching&&(error.name==='TimeoutError'||error.name==='TypeError'||/audience_changed|dispatch_not_allowed/.test(String(error.message)))){action='retry';reason='preparation_retry';}
    else if(dispatching)reason='dispatch_outcome_unknown';
    try{await step(action,{reason});}catch{}
    return response(200,{status:action,reason});
