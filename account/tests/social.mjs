@@ -23,7 +23,7 @@ renderSocialLinks(root,[{platform:'github',handle:'yeti'}]);assert.equal(root.qu
 let disconnected,linked;
 renderSignInConnections(root,[{id:'one',provider:'github'}],[{id:'github',name:'GitHub'},{id:'discord',name:'Discord'}],{canLink:true,link:id=>linked=id,unlink:i=>disconnected=i});
 assert.equal(root.querySelector('button').disabled,true);root.querySelectorAll('button')[1].click();assert.equal(linked,'discord');assert.equal(disconnected,undefined);
-renderSignInConnections(root,[],[{id:'discord',name:'Discord'}],{link(){},unlink(){}});assert.equal(root.querySelector('button').disabled,true);assert.match(root.textContent,/being prepared/);
+renderSignInConnections(root,[],[{id:'discord',name:'Discord'}],{link(){},unlink(){}});assert.equal(root.querySelector('button').disabled,true);assert.match(root.textContent,/temporarily unavailable/);
 const providers=['discord','github','x','twitch','azure','linkedin_oidc','gitlab'];
 for(const provider of providers){
  const manifest={auth:{providers:[{id:provider,name:provider,ready_surfaces:['web']}]}};
@@ -47,3 +47,19 @@ assert.equal(loginMethods(xReady,{external:{twitter:false}}).length,0);
 const {decorateProviderButton}=await import('../src/provider-logos.js');
 const logoButton=document.createElement('button');logoButton.textContent='Continue with Twitch';decorateProviderButton(logoButton,'twitch');
 assert.equal(logoButton.textContent,'Continue with Twitch');assert.equal(logoButton.querySelector('img').getAttribute('src'),'./provider-logos/twitch.svg');assert.equal(logoButton.querySelector('img').alt,'');
+
+const five=['google','discord','github','twitch','x'].map(id=>({id,name:id}));
+renderSignInConnections(root,[{id:'email-1',provider:'email'}],five,{canLink:true,link:id=>linked=id,unlink(){}});
+assert.equal(root.querySelectorAll('.connection-card').length,5);assert.equal(root.querySelectorAll('.provider-mark img').length,5);
+for(const card of root.querySelectorAll('.connection-card')){card.querySelector('button').click();assert.equal(linked,card.dataset.provider);}
+const {rememberLink,linkReturnResult}=await import('../src/identity-links.js');
+const values=new Map(),storage={getItem:k=>values.get(k)||null,setItem:(k,v)=>values.set(k,v),removeItem:k=>values.delete(k)};
+rememberLink(storage,{owner:'a',provider:'twitch'},100);
+assert.match(linkReturnResult(storage,{id:'a',identities:[{provider:'twitch'}]},null,200),/Connected twitch/);
+rememberLink(storage,{owner:'a',provider:'x'},100);
+assert.match(linkReturnResult(storage,{id:'b',identities:[{provider:'x'}]},null,200),/account changed/);
+rememberLink(storage,{owner:'a',provider:'x'},100);
+assert.match(linkReturnResult(storage,{id:'a',identities:[]},null,200),/not confirmed/);
+rememberLink(storage,{owner:'a',provider:'x'},100);
+assert.match(linkReturnResult(storage,{id:'a',identities:[]},{code:'access_denied'},200),/not completed/);
+assert.equal(values.has('yeti.social_link'),false);

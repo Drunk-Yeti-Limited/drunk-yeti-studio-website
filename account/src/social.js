@@ -1,3 +1,4 @@
+import {providerMark} from './provider-logos.js';
 // Profile handles are self-reported. Only Supabase Auth identities prove a sign-in connection.
 export const socialPlatforms = [
  ['discord','Discord','Username or numeric user ID',null],
@@ -48,11 +49,14 @@ export function renderSignInConnections(root,identities,methods,{link,unlink,can
  root.replaceChildren();
  for(const provider of methods){
   const identity=identities.find(i=>i.provider===provider.id);
-  const card=el('div',null,'social-row');card.append(el('strong',provider.name),el('p',identity?'Connected for sign-in':'Not connected'));
+  const card=el('div',null,'social-row connection-card');card.dataset.provider=provider.id;
+  const mark=providerMark(provider.id);if(mark)card.append(mark);
+  const heading=el('div',null,'connection-heading');heading.append(el('strong',provider.name),el('p',identity?'Connected':'Not connected'));card.append(heading);
+  if(identity){const detail=identity.identity_data||{};const label=detail.preferred_username||detail.user_name||detail.name||detail.email;if(label)card.append(el('small',String(label).slice(0,128),'fine connection-account'));}
   if(identity){card.append(el('small','Verified through '+provider.name,'fine'));const b=button('Disconnect '+provider.name,()=>unlink(identity));b.disabled=!canLink||identities.length<2;card.append(b);if(identities.length<2)card.append(el('small','Keep at least one sign-in method.','fine'));}
   else {const b=button('Connect '+provider.name,()=>link(provider.id));b.disabled=!canLink;card.append(b)}
   root.append(card);
  }
- if(methods.length&&!canLink)root.append(el('p','Adding or removing sign-in connections is being prepared. Your current sign-in methods still work.','fine'));
+ if(methods.length&&!canLink)root.append(el('p','Account connections are temporarily unavailable. Your existing sign-in methods still work.','fine'));
  if(!methods.length)root.append(el('p','Social sign-in connections are temporarily unavailable.','muted'));
 }

@@ -4,13 +4,13 @@ The account page supports 16 self-reported network handles. Each is private by d
 
 Google, Discord, and GitHub are enabled for web sign-in in manifest revision 40. The Discord and GitHub authorization redirects matched the supplied client IDs and Supabase callback. A successful user sign-in through each provider is still required to validate its client secret and token exchange.
 
-## Finish verified identity linking
+## Verified identity linking
 
-1. In the project's Supabase Authentication → Sign In / Providers settings, enable manual identity linking. A logged-in user can then prove ownership of another provider and attach it to the same account.
-2. Set the public account manifest's `auth.identity_linking` to `true` after confirming the dashboard setting. Until then, the page displays existing identities and keeps connection changes disabled.
-3. Sign into an existing account, connect a second provider, and confirm the account UUID, purchases, and saves remain unchanged. Sign out and sign in through that provider. Unlink only while another working sign-in identity remains.
+The Social accounts page offers Google, Discord, GitHub, Twitch and X when each provider is enabled for web sign-in. Connect uses authenticated Supabase `linkIdentity`, never a fresh sign-in. A short-lived browser return record checks both the original account UUID and returned identity before confirming success. Disconnect rechecks current identities and prevents removing the last sign-in method. Provider account names are private text, not executable HTML.
 
-The connector does not expose the dashboard auth configuration. The current dashboard login stopped at GitHub passkey verification, so this activation has not yet been performed.
+The client now allows connection attempts unless the server manifest explicitly disables `auth.identity_linking`. Supabase remains the authority: its manual-linking feature must be enabled. If disabled, the page explains the error without claiming a connection or altering account ownership. Set `auth.identity_linking:false` as an emergency UI kill switch.
+
+Backend activation still requires **Authentication → Sign In / Providers → Allow manual linking** in Supabase. The dashboard is currently at sign-in, so activation has not been verified in this update. After enabling, test linking a second provider and sign in through it; the Drunk Yeti account UUID, saves and purchases must remain unchanged. No automatic merge of existing accounts is implemented.
 
 ## Additional providers
 

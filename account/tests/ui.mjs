@@ -4,7 +4,7 @@ import {parseHTML} from 'linkedom';
 import {readFile} from 'node:fs/promises';
 import {avatars,avatarFor} from '../src/avatars.js';
 const {document}=parseHTML(await readFile(new URL('../index.html',import.meta.url),'utf8'));
-globalThis.document=document;globalThis.location={origin:'https://www.drunkyetistudio.com',pathname:'/account/',href:'https://www.drunkyetistudio.com/account/',search:''};globalThis.sessionStorage={getItem:()=>null,removeItem:()=>{}};
+globalThis.document=document;globalThis.location={origin:'https://www.drunkyetistudio.com',pathname:'/account/',href:'https://www.drunkyetistudio.com/account/',search:''};const sessionValues=new Map();globalThis.sessionStorage={getItem:k=>sessionValues.get(k)||null,setItem:(k,v)=>sessionValues.set(k,v),removeItem:k=>sessionValues.delete(k)};
 globalThis.fetch=async()=>({ok:true,json:async()=>({external:{google:true}})});
 let manifest={schema_version:1,minimum_client_schema:1,revision:'1',sections:[{id:'wallets',type:'wallets',title:'Your wallets'}],avatars:avatars.map(a=>({...a,image:new URL(a.image,'https://www.drunkyetistudio.com/account/').href,free:true})),auth:{identity_linking:true,providers:[{id:'google',name:'Google',ready_surfaces:[]}]},features:{}};
 let current=null,fail=false,authCalls=0,onAuth,authError=null;const calls=[],emailCalls=[],oauthCalls=[],socialWrites=[],linkCalls=[];
