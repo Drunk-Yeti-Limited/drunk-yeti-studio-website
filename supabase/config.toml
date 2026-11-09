@@ -8,3 +8,10 @@ verify_jwt = false
 # Validates Supabase user JWT and RPC scopes inside the handler.
 [functions.subscription-account]
 verify_jwt = false
+
+[functions.xbox-link]
+verify_jwt = true
+
+# Public redirect relay only; authenticated xbox-link performs all mutations.
+[functions.xbox-callback]
+verify_jwt = false

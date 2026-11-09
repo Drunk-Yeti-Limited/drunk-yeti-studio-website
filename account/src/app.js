@@ -1,3 +1,4 @@
+import {captureXboxReturn,xboxPanel} from './xbox.js';
 import {accountAuthOptions,recoveryRequestOptions} from './recovery.js';
 import {authMessage,callbackError} from './auth-errors.js';
 import {providerSignInOptions,cleanAuthCallback} from './oauth.js';
@@ -18,6 +19,7 @@ import {launch} from './config.js';
 import {allowedRedirect,consentScopes} from './security.js';
 import {createClient} from '@supabase/supabase-js';
 const URL='https://rgafawpucqdhjrzodayl.supabase.co', KEY='sb_publishable_1cU8zRpm6Rcn5iWBs2bvgQ_Nrej-tsy';
+const xboxReturn=captureXboxReturn();
 const sb=createClient(URL,KEY,{auth:accountAuthOptions(location.href)});
 let recoverySender;
 const sendRecovery=(email)=>{recoverySender ||= createClient(URL,KEY,{auth:recoveryRequestOptions()});return recoverySender.auth.resetPasswordForEmail(email,{redirectTo:callback()});};
@@ -125,13 +127,15 @@ async function syncPlatform(){
  }catch(e){if(seq===platformSequence&&mine===generation){$('providers').replaceChildren();$('signin-connections').replaceChildren();$('shard-inventory').textContent='Your Shard balance is temporarily unavailable. Refresh to try again.';$('marketplace-content').textContent='Marketplace is temporarily unavailable. Refresh to try again.';$('world-status').textContent='Account updates are temporarily unavailable. Refresh to try again.';}}
 }
 
-function clearSocial(){for(const id of ['signin-connections','social-list','synced-profiles'])$(id).replaceChildren();$('social-handle').value='';$('social-share').checked=false;$('social-status').textContent='';$('connection-status').textContent='';}
+function clearSocial(){$('xbox-connections')?.replaceChildren();for(const id of ['signin-connections','social-list','synced-profiles'])$(id).replaceChildren();$('social-handle').value='';$('social-share').checked=false;$('social-status').textContent='';$('connection-status').textContent='';}
 for(const p of socialPlatforms){const o=document.createElement('option');o.value=p.id;o.textContent=p.name;$('social-platform').append(o)}
 $('social-platform').firstElementChild.selected=true;
 $('social-platform').onchange=()=>{$('social-handle').placeholder=socialPlatforms.find(p=>p.id===$('social-platform').value)?.hint||'';};
 $('social-platform').onchange();
+const renderXbox=xboxPanel({sb,getUser:()=>user,returned:xboxReturn});
 async function loadSocial(){
  const mine=generation,owner=user?.id;if(!owner)return;
+ await renderXbox($('xbox-connections'));
  await loadSyncedProfiles(mine,owner);
  const r=await sb.from('dy_social_profiles').select('platform,handle,share_with_friends').eq('player_id',user.id).order('platform');
  if(mine!==generation)return;
