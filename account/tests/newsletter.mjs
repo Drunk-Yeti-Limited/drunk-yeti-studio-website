@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {parseHTML} from 'linkedom';
+import {newsletterPanel} from '../src/newsletter.js';
+import {renderFrostpass} from '../src/frostpass.js';
+const {document}=parseHTML('<div id="root"></div>');globalThis.document=document;
+let user={id:'u'},writes=0,subscribed=false;
+const sb={auth:{getUser:async()=>({data:{user}})},rpc:async(name,args)=>{if(name==='dy_newsletter_set'){writes++;subscribed=args.p_subscribed;}return {data:{subscribed,email:'test@example.invalid',email_confirmed:true}}}};
+const root=document.getElementById('root'),render=newsletterPanel({sb,getUser:()=>user});await render(root);
+assert.equal(root.querySelector('input').checked,false);assert.equal(writes,0);
+root.querySelector('input').checked=true;await root.querySelector('form').onsubmit({preventDefault(){}});assert.equal(writes,1);assert(root.textContent.includes('Subscribed'));
+root.querySelector('input').checked=false;await root.querySelector('form').onsubmit({preventDefault(){}});assert.equal(writes,2);assert(root.textContent.includes('Unsubscribed'));
+user={id:'other'};await root.querySelector('form').onsubmit({preventDefault(){}});assert.equal(writes,2);
+user=null;await render(root);assert.equal(root.textContent,'');
+renderFrostpass(root,{catalog:{},membership:{active:true,source:'gift',gift_active:true,gift_ends_at:'2027-02-09T00:00:00Z',period_end:'2027-02-09T00:00:00Z',cancel_at_period_end:true}},()=>{},()=>{});
+assert(root.textContent.includes('Gift Frostpass active'));assert(root.textContent.includes('Access ends'));assert(!root.textContent.includes('Renews monthly'));assert(root.textContent.includes('do not renew or charge'));
+console.log('PASS newsletter explicit consent, unsubscribe, account-switch isolation and gift expiration display');

@@ -5,10 +5,12 @@ export function renderFrostpass(root,data,onSubscribe,onManage){
  const price=document.createElement('p');price.className='frostpass-price';price.textContent=Number.isInteger(c.amount_cents)?new Intl.NumberFormat('en-US',{style:'currency',currency:c.currency||'usd'}).format(c.amount_cents/100)+'/month':'Pricing coming soon';
  const perks=document.createElement('p');perks.textContent=(c.monthly_shards||1000).toLocaleString()+' Shards after each successful monthly payment. '+((c.products||[]).some(p=>p.ready)?'Full access to the apps and games marked Included below.':'App and game access is coming later; no apps or games are included yet.');
  const state=document.createElement('p');state.className='purchase-confirmation';state.setAttribute('role','status');
- state.textContent=m.test?'Test subscription · No real full-access entitlement or spendable Shards.':m.active?'Frostpass active':m.status&&m.status!=='none'?'Membership: '+m.status.replaceAll('_',' '):'Not subscribed';
+ state.textContent=m.test?'Test subscription · No real full-access entitlement or spendable Shards.':m.active?(m.source==='gift'?'Gift Frostpass active':'Frostpass active'):m.status&&m.status!=='none'?'Membership: '+m.status.replaceAll('_',' '):'Not subscribed';
  if(m.period_end&&m.active)state.textContent+=' · '+(m.cancel_at_period_end?'Access ends ':'Renews ')+new Date(m.period_end).toLocaleDateString();
  const note=document.createElement('p');note.className='fine';note.textContent='Renews monthly until canceled. Cancel through Manage subscription. Unspent Shards roll over; avatars and themes you buy stay yours. App access lasts through the paid period. Shards have no cash value and are not casino coins.';
  root.append(h,price,perks,state,note);
+ if(m.gift_ends_at){const gift=document.createElement('p');gift.className='fine';gift.textContent=(m.gift_active?'Your gift pass expires ':'Your gift pass starts '+new Date(m.gift_starts_at).toLocaleDateString()+' and expires ')+new Date(m.gift_ends_at).toLocaleDateString()+'. Gift passes do not renew or charge you. Existing paid subscriptions keep their billing schedule. Monthly payment Shards are separate.';root.append(gift);}
+ if(m.source==='gift')note.textContent='Your gift provides Frostpass access until its end date. It does not renew or charge you. Any separate paid subscription continues until you cancel it.';
  if(data.sync_pending){const p=document.createElement('p');p.className='fine';p.textContent='Billing verification is temporarily delayed. Refresh shortly.';root.append(p);}
  const b=document.createElement('button');b.type='button';
  if(m.can_manage){b.textContent='Manage subscription';b.onclick=onManage;}
