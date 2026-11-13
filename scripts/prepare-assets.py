@@ -295,5 +295,7 @@ if __name__ == '__main__':
         except Exception as error:
             failures.append(name)
             print(f'{name} refresh failed: {error}. Last saved catalog retained.', file=sys.stderr)
+    import runpy
+    runpy.run_path(str(ROOT / "scripts/build-search-pages.py"), run_name="__main__")
     if failures:
         sys.exit(1)
