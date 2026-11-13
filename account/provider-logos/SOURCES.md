@@ -11,3 +11,10 @@ Downloaded from official brand resources on 2026-11-09. Logos retain their origi
 No logo-generation service or third-party approximation is used. Assets are served locally; loading the login page does not send image requests to these providers.
 
 Microsoft: official pictogram from https://learn.microsoft.com/en-us/entra/identity-platform/howto-add-branding-in-apps (ms-symbollockup_mssymbol_19.svg).
+
+Apple (2026-11-13): original PNG button artwork from Apple's documented image
+endpoints, embedded unchanged in SVG wrappers. The full button retains its logo,
+label and proportions; the logo-only connection mark retains Apple's padding.
+- `apple-signin.svg`: https://appleid.cdn-apple.com/appleid/button?height=44&width=210&color=black&border=false&type=sign-in&border_radius=0&scale=3&locale=en_US
+- `apple.svg`: https://appleid.cdn-apple.com/appleid/button/logo?size=44&color=black&border=false&border_radius=8&scale=3
+- Documentation: https://developer.apple.com/documentation/signinwithapple/incorporating-sign-in-with-apple-into-other-platforms

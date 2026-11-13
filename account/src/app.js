@@ -7,6 +7,7 @@ import {captureXboxReturn,xboxPanel} from './xbox.js';
 import {accountAuthOptions,recoveryRequestOptions} from './recovery.js';
 import {authMessage,callbackError} from './auth-errors.js';
 import {providerSignInOptions,cleanAuthCallback} from './oauth.js';
+import {orderedSignInMethods,providerLabel} from './apple.js';
 import {renderMarketplace} from './marketplace.js';
 import {frostpassClient} from '../sdk/frostpass-client.js';
 import {renderFrostpass,billingURL} from './frostpass.js';
@@ -122,7 +123,7 @@ async function syncPlatform(){
  setAvatarCatalog(manifest.avatars);renderAvatarOptions();if(data&&!avatarDirty)selectAvatar(data.profile?.avatar_id);
  $('providers').replaceChildren();
  const methods=loginMethods(manifest,settings,'web');
- for(const provider of methods){const providerButton=button($('providers'),provider.id==='azure'?'Sign in with Microsoft':'Continue with '+provider.name,async()=>{
+ for(const provider of orderedSignInMethods(methods)){const providerButton=button($('providers'),providerLabel(provider),async()=>{
   clearRecovery();clearMicrosoftXbox(sessionStorage);
   if(authorizationId){try{sessionStorage.setItem('yeti.authorization',authorizationId)}catch{throw Error('Allow browser storage to continue signing in to your app.')}}
   message('Opening '+provider.name+' sign-in…');
@@ -134,6 +135,7 @@ async function syncPlatform(){
  if(user)renderSignInConnections($('signin-connections'),user.identities||[],methods,{link:linkSocial,unlink:unlinkSocial,canLink:manifest.auth?.identity_linking!==false});
  if(methods.length){
   const help=document.createElement('p');help.className='fine';help.textContent='New here? A social account can create your profile. Microsoft sign-in also starts Xbox connection setup; Microsoft may ask you to approve Xbox access. Already registered? Sign in first, then connect another account in Social & gaming to keep your profile and purchases together.';$('providers').append(help);
+  if(methods.some(p=>p.id==='apple')){const help=document.createElement('p');help.className='fine';help.textContent='Using Apple’s Hide My Email? If you already have a Drunk Yeti account, sign in to it first and connect Apple in Social & gaming to keep your purchases and progress.';$('providers').append(help);}
  }
  if(data){renderInventory($('shard-inventory'),data);renderWorld($('world-sections'),{...manifest,sections:manifest.sections.filter(s=>s.type!=='store')},data,redeem);renderMarketplace($('marketplace-content'),manifest,data,redeem);showAvatar($('account-avatar'),data.profile?.avatar_id);$('world-status').textContent='Up to date · Your progress travels with you.';await syncPayments(mine);await syncMultiplayer(mine);}
  }catch(e){if(seq===platformSequence&&mine===generation){$('providers').replaceChildren();$('signin-connections').replaceChildren();$('shard-inventory').textContent='Your Shard balance is temporarily unavailable. Refresh to try again.';$('marketplace-content').textContent='Marketplace is temporarily unavailable. Refresh to try again.';$('world-status').textContent='Account updates are temporarily unavailable. Refresh to try again.';}}
