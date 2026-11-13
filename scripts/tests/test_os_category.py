@@ -14,3 +14,10 @@ class OperatingSystemTests(unittest.TestCase):
 
     def test_linux_compatible_tool_is_not_an_os(self):
         self.assertEqual(module.classify({'title': 'Linux Art Maker', 'description': 'Runs on Linux'}), 'Tools')
+
+    def test_curated_release_identity_survives_reused_game_slug(self):
+        card = {'url': 'https://drunkyeti.itch.io/the-adventures-of-moly-bart-skid-crystal-run',
+                'title': 'YHUE Studio', 'description': '', 'productType': ''}
+        self.assertEqual(module.normalize(card)['category'], 'Tools')
+        self.assertEqual(module.classify({'url': 'https://drunkyeti.itch.io/curious-collection-soundtrack',
+                                         'title': 'Drunk Yeti World of Sounds Volume I'}), 'Soundtracks')

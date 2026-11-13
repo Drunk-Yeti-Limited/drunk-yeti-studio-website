@@ -153,6 +153,12 @@ def refresh_frostpass(card, previous=None, pages_dir=None):
 
 
 def classify(card):
+    # Some releases reuse older slugs or omit itch.io's product type.
+    # Explicit product identities keep the published collections accurate.
+    overrides = json.loads((ROOT / 'category-overrides.json').read_text())
+    identity = card.get('url', '').split('?', 1)[0].rstrip('/')
+    if identity in overrides:
+        return overrides[identity]
     # Curated OS identities survive missing tags and title/description edits.
     os_slugs = json.loads((ROOT / 'os-projects.json').read_text())
     slug = urlparse(card.get('url', '')).path.strip('/')
