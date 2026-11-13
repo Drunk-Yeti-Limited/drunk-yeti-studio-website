@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';import {parseHTML} from 'linkedom';import {userManager} from '../src/admin-users.js';
+const {document,HTMLElement}=parseHTML('<html><body></body></html>');globalThis.document=document;HTMLElement.prototype.showModal=function(){this.open=true};HTMLElement.prototype.close=function(){this.open=false};HTMLElement.prototype.reportValidity=()=>true;globalThis.confirm=()=>true;
+let calls=[],refreshed=0,status='';const manager=userManager({invoke:async p=>{calls.push(p);return {message:'Saved'}},reload:async()=>refreshed++,status:s=>status=s});
+const account={id:'player',email:'player@example.invalid',handle:'player',display_name:'Player'};
+manager.open({...account,studio_role:'owner'},'owner','another');assert.equal(document.querySelector('form'),null);manager.close();
+manager.open({...account,studio_role:'admin'},'admin','another');assert.equal(document.querySelector('form'),null);manager.close();
+manager.open(account,'admin','another');assert.equal(document.querySelector('option[value=set_password]'),null);manager.close();
+manager.open(account,'owner','another');assert.ok(document.querySelector('option[value=set_password]'));
+const select=document.getElementById('user-action');Object.defineProperty(select,'value',{value:'profile',writable:true});Object.defineProperty(select,'selectedOptions',{get(){return [select.querySelector('option[value="'+select.value+'"]')]}});select.onchange();
+document.getElementById('user-handle').value='renamed';document.getElementById('user-reason').value='Support request';await document.querySelector('form').onsubmit({preventDefault(){}});assert.equal(calls[0].handle,'renamed');assert.equal(calls[0].target,'player');assert.equal(refreshed,1);assert.equal(status,'Saved');assert.equal(document.querySelector('dialog'),null);
+manager.open(account,'owner','another');const password=document.getElementById('user-password');password.value='not-logged';manager.close();assert.equal(password.value,'');
+console.log('PASS admin dialog: staff protections, owner-only override visibility, target-bound profile update, refresh and password cleanup');
