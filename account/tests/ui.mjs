@@ -5,7 +5,7 @@ import {readFile} from 'node:fs/promises';
 import {avatars,avatarFor} from '../src/avatars.js';
 const {document}=parseHTML(await readFile(new URL('../index.html',import.meta.url),'utf8'));
 globalThis.document=document;globalThis.location={origin:'https://www.drunkyetistudio.com',pathname:'/account/',href:'https://www.drunkyetistudio.com/account/',search:''};const sessionValues=new Map();globalThis.sessionStorage={getItem:k=>sessionValues.get(k)||null,setItem:(k,v)=>sessionValues.set(k,v),removeItem:k=>sessionValues.delete(k)};
-globalThis.fetch=async()=>({ok:true,json:async()=>({external:{google:true}})});
+globalThis.fetch=async()=>({ok:true,json:async()=>({external:{google:true,apple:true}})});
 let manifest={schema_version:1,minimum_client_schema:1,revision:'1',sections:[{id:'wallets',type:'wallets',title:'Your wallets'}],avatars:avatars.map(a=>({...a,image:new URL(a.image,'https://www.drunkyetistudio.com/account/').href,free:true})),auth:{identity_linking:true,providers:[{id:'google',name:'Google',ready_surfaces:[]}]},features:{}};
 let current=null,fail=false,authCalls=0,onAuth,authError=null;const calls=[],emailCalls=[],oauthCalls=[],socialWrites=[],linkCalls=[];
 const rows={dy_profiles:{player_id:'a',handle:'alice',display_name:'Alice',discoverable:true,share_achievements:false},dy_saves:[{game_id:'house-of-wilds',slot:0,revision:2,updated_at:'2026-10-24T00:00:00Z'}],dy_achievements:[],dy_social_profiles:[]};
@@ -35,6 +35,19 @@ el('refresh').click();await settle();assert.equal(el('account-avatar').dataset.a
 rows.dy_profiles.avatar_id='unrecognized';el('refresh').click();await settle();assert.equal(el('account-avatar').dataset.avatar,'yeti');
 rows.dy_profiles.avatar_id='raccoon';el('refresh').click();await settle();assert.equal(el('account-avatar').dataset.avatar,'raccoon');
 assert.match(el('multiplayer-content').textContent,/Hex Fold/);assert.equal(el('mp-presence').checked,false);assert.match(el('payment-shop').textContent,/100 Yeti Shards/);assert.equal(el('payment-shop').querySelector('button').disabled,true);assert.match(el('world-sections').textContent,/42/);assert.equal(el('providers').textContent,'');manifest.auth.providers[0].ready_surfaces=['web'];el('refresh').click();await settle();assert.match(el('providers').textContent,/Continue with Google/);el('providers').querySelector('button').click();await settle();assert.deepEqual(oauthCalls.at(-1),{provider:'google',options:{redirectTo:callback,scopes:'openid email profile',queryParams:{prompt:'select_account'}}});authError={code:'provider_disabled'};el('providers').querySelector('button').click();await settle();assert.match(el('status').textContent,/temporarily unavailable/);assert.equal(el('providers').querySelector('button').disabled,false);authError=null;manifest.auth.providers[0].ready_surfaces=[];el('refresh').click();await settle();assert.equal(el('providers').textContent,'');
+// Apple login and linking use the same guarded callbacks as other providers.
+manifest.auth.providers.push({id:'apple',name:'Apple',ready_surfaces:['web']});
+el('refresh').click();await settle();
+const appleButton=el('providers').querySelector('[data-provider="apple"]');
+assert.equal(appleButton.textContent,'Sign in with Apple');
+assert.match(el('providers').textContent,/Hide My Email/);
+appleButton.click();await settle();
+assert.deepEqual(oauthCalls.at(-1),{provider:'apple',options:{redirectTo:callback}});
+el('signin-connections').querySelector('[data-provider="apple"] button').click();await settle();
+assert.equal(linkCalls.at(-1).provider,'apple');
+assert.ok(linkCalls.at(-1).options.redirectTo.startsWith(callback));
+manifest.auth.providers.pop();el('refresh').click();await settle();
+console.log('PASS Apple login and existing-account linking through the rendered account UI');
 // Social profiles save privately, update sharing, remove, and link without replacing the current account.
 assert.equal(el('social-share').checked,false);
 el('social-platform').querySelector('option[value="twitter"]').selected=true;
