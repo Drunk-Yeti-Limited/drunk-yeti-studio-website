@@ -3,7 +3,7 @@ Independent games, creative software, and multimedia.
 
 Design with a technical mind.
 
-Drunk Yeti is an independent game, software, and multimedia studio led by Michael Lambert Jr, who creates under the signature 3ichael 7ambert. We bring playful ideas into games, creative tools, illustrated stories, and music.
+Drunk Yeti is an independent game, software, and multimedia studio. Our team brings playful ideas into games, creative tools, illustrated stories, and music.
 
 Our mission is to make memorable worlds to explore and useful tools that help other people build their own. The work moves between art and engineering: a character can inspire a game, a production problem can become a tool, and a soundtrack can give a world another life.
 
@@ -11,4 +11,3 @@ Official website: https://www.drunkyetistudio.com
 Releases: https://drunkyeti.itch.io
 Steam: https://store.steampowered.com/curator/45875400
 Contact: support@drunkyetistudio.com
-Creative signature: by 3ichael 7ambert

@@ -2,6 +2,10 @@
 
 The public site is organized around Play, Create, Worlds & Media, Studio, and Support. The complete collections and interactive homepage catalog remain available.
 
+## Studio credit
+
+Credit public website work to Drunk Yeti Studio and describe it as a team effort. Do not add personal bylines to studio pages, metadata, footers, or press materials.
+
 ## Updating the pages
 
 - Edit product copy and exact browser hosts in `studio-content.json`.
