@@ -30,7 +30,15 @@
       "related": [
         "avalanca",
         "snowlight"
-      ]
+      ],
+      "releaseFacts": {
+        "status": "Desktop + browser demo",
+        "requirements": "Windows x86_64, Linux x86_64 and macOS downloads; keyboard and gamepad controls.",
+        "notes": "Lite includes Magic Soccer, Sumo, training and the character maker. Full includes its base content offline.",
+        "checked": "2026-11-14",
+        "source": "https://drunkyeti.itch.io/ar3na-world-tour",
+        "video": "https://www.youtube.com/watch?v=UrZcktRKkyM"
+      }
     },
     {
       "slug": "avalanca",
@@ -61,7 +69,14 @@
       "related": [
         "snowlight",
         "ar3na"
-      ]
+      ],
+      "releaseFacts": {
+        "status": "Desktop editions",
+        "requirements": "Windows, macOS and Linux. Local multiplayer is included in Full; check the release page for build-specific controls.",
+        "notes": "Lite starts in Tundra with solo Race, Time Attack and Free Ride. Full includes the existing destinations, modes and Tours.",
+        "checked": "2026-11-14",
+        "source": "https://drunkyeti.itch.io/avalanca-downhill-riot"
+      }
     },
     {
       "slug": "rockets-intensity",
@@ -95,7 +110,14 @@
       "related": [
         "ar3na",
         "avalanca"
-      ]
+      ],
+      "releaseFacts": {
+        "status": "Browser release candidate",
+        "requirements": "A WebGL-capable browser. Open the hangar for controls and the direct-connect web arena.",
+        "notes": "The browser and Steam multiplayer paths are separate. This page links the hosted browser build; it does not establish desktop feature parity.",
+        "checked": "2026-11-14",
+        "source": "https://arocketsintensity.drunkyetistudio.com/"
+      }
     },
     {
       "slug": "snowlight",
@@ -123,7 +145,15 @@
       "related": [
         "avalanca",
         "ar3na"
-      ]
+      ],
+      "releaseFacts": {
+        "status": "Version 1.1 account features",
+        "requirements": "Windows, macOS and Linux; keyboard and gamepad controls, plus two-player local split-screen. Internet is required for sign-in, Frostpass checks and syncing.",
+        "notes": "The published screenshots and gameplay video show version 1.0. Version 1.1 adds optional account features and collision fixes.",
+        "checked": "2026-11-14",
+        "source": "https://drunkyeti.itch.io/snowlight",
+        "video": "https://www.youtube.com/watch?v=GIU3pRJs8Fc"
+      }
     },
     {
       "slug": "hexfold",
@@ -151,7 +181,15 @@
       "related": [
         "ar3na",
         "snowlight"
-      ]
+      ],
+      "releaseFacts": {
+        "status": "1.2 preview on itch.io",
+        "requirements": "Windows, Linux and macOS downloads, an HTML5 Lite demo, and an Android test build are listed. Desktop Mac/Windows builds are unsigned.",
+        "notes": "The listing describes ten hands per Lite launch, Full desktop offline play, and account-synced cosmetics. The Android listing is a test build, not a confirmed store release.",
+        "checked": "2026-11-14",
+        "source": "https://drunkyeti.itch.io/hexfold",
+        "video": "https://www.youtube.com/watch?v=KHMFNSAjEPw"
+      }
     },
     {
       "slug": "yeti-forge",
@@ -178,7 +216,15 @@
       "edition": "All creation tools and exports are free; no login or subscription is required. Optional account themes are cosmetic. The current release page distinguishes the packaged Linux build from Windows/macOS source launchers and explains system requirements.",
       "related": [
         "yheti-studio"
-      ]
+      ],
+      "releaseFacts": {
+        "status": "Yeti Forge 2.0",
+        "requirements": "Packaged Linux x86_64 build: graphical desktop, glibc 2.39+ and compatible Qt libraries. Windows/macOS use source launchers with Python 3.12 or 3.13. Audio conversion needs local FFmpeg.",
+        "notes": "All creation tools and exports are free. Optional account themes are cosmetic. Prebuilt Windows/macOS binaries have not been validated for this release.",
+        "checked": "2026-11-14",
+        "source": "https://drunkyeti.itch.io/yeti-forge",
+        "video": "https://www.youtube.com/watch?v=NnXV0mg2dsY"
+      }
     },
     {
       "slug": "yheti-studio",
@@ -205,7 +251,15 @@
       "edition": "YHETI Studio RC3 is a release candidate with defined limits, including four MIDI tracks, two audio lanes, 64 bars, and a 180-second import window per source. Optional plugin hosting has platform-specific requirements. Read the current release notes before choosing it for a production workflow.",
       "related": [
         "yeti-forge"
-      ]
+      ],
+      "releaseFacts": {
+        "status": "RC3 release candidate",
+        "requirements": "Windows, macOS and Linux are listed. WAV works directly; other audio formats require optional FFmpeg. Plugin hosting uses a separately installed backend.",
+        "notes": "RC3 supports four MIDI tracks, two audio lanes, six buses and 64 bars. Linux VST3 rendering is verified in the listing; Windows/macOS plugins and hardware MIDI/audio still need qualification.",
+        "checked": "2026-11-14",
+        "source": "https://drunkyeti.itch.io/yheti-studio",
+        "video": "https://www.youtube.com/watch?v=rkO_F6368vo"
+      }
     },
     {
       "slug": "moly-bart-skid",
@@ -233,7 +287,14 @@
       "related": [
         "ar3na",
         "snowlight"
-      ]
+      ],
+      "releaseFacts": {
+        "status": "The Heart Under the Mountain",
+        "requirements": "Read the browser comic on itch.io; use the left and right arrow keys to turn pages. Check the publication page for download editions.",
+        "notes": "This first volume tells a complete adventure and opens the route to a larger story.",
+        "checked": "2026-11-14",
+        "source": "https://drunkyeti.itch.io/moly-bart-skid-the-heart-under-the-mountain"
+      }
     }
   ]
 }

@@ -21,3 +21,5 @@ body.studio-page{font-family:'Trebuchet MS',Arial,sans-serif}.studio-page header
 .studio-page details p{max-width:780px}
 .studio-page section[id]{scroll-margin-top:24px}
 .studio-page a:focus-visible,.studio-page summary:focus-visible{outline:3px solid #14728c;outline-offset:4px}
+
+.release-details{margin:40px 0;padding:28px;border:1px solid #b3c8cd;border-radius:12px;background:#fffdf7}.release-details dl{display:grid;grid-template-columns:minmax(130px,1fr) 3fr;gap:14px 24px;line-height:1.65}.release-details dt{font-weight:750}.release-details dd{margin:0;min-width:0}.studio-page .release-source{font-size:13px;color:#47595f}@media(max-width:600px){.release-details{padding:22px}.release-details dl{grid-template-columns:1fr;gap:6px}.release-details dd{margin-bottom:14px}}
