@@ -37,5 +37,6 @@ try{
    }renderer.render(scene,camera);}
   if(logo&&logoVisible){if(moving&&!drag){logo.rotation.y=logoAngle+Math.sin(clock*.65)*.28;logo.rotation.x=Math.sin(clock*.8)*.1;logo.position.y=Math.sin(clock*1.25)*.07;logoKey.position.set(Math.sin(clock*.7)*4,3,6);}else if(drag)logo.rotation.y=logoAngle;logoRenderer.render(logoScene,logoCamera);}
  }
+ motion.disabled=false;
  requestAnimationFrame(frame);
 }catch(e){console.error('3D unavailable; showing original artwork.',e);renderer?.domElement.remove();logoRenderer?.domElement.remove();document.querySelector('#fallback-yeti').hidden=false;document.querySelector('#logo-fallback').hidden=false;status.textContent='Meet Drunk Yeti';motion.disabled=true;}
