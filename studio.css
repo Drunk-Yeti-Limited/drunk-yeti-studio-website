@@ -11,3 +11,13 @@ body.studio-page{font-family:'Trebuchet MS',Arial,sans-serif}.studio-page header
 @media(max-width:1050px){.spotlight-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.browser-card{padding:22px}.browser-card h3{font-size:22px}.browser-grid{gap:16px}.studio-paths a{padding:25px}.studio-paths strong{font-size:17px}.media-strip{gap:40px}.pillar-grid,.feature-columns{gap:24px}.pillar-grid h3{font-size:23px}}
 @media(max-width:720px){.hero h1{font-size:clamp(49px,12.9vw,86px);letter-spacing:-3px}.hero-copy{padding-top:35px}.studio-paths{grid-template-columns:1fr}.studio-paths a{padding:20px 6%}.studio-paths a+a{border-left:0;border-top:1px solid #14242b}.studio-paths small{font-size:12px}.studio-paths strong{font-size:20px}.browser-grid,.pillar-grid,.feature-columns,.media-strip,.project-lead{grid-template-columns:1fr}.browser-card{padding:25px}.browser-card h3{font-size:27px}.browser-card p{font-size:15px}.spotlight-grid{gap:25px 18px}.spotlight-card h3{font-size:21px}.spotlight-card p{font-size:13px}.pillar-grid{gap:35px}.pillar-grid article{padding-left:20px}.media-strip h2{font-size:42px}.media-links strong{font-size:22px}.studio-page header{padding:20px;gap:14px}.studio-page header>a:last-child{font-size:13px}.studio-page .studio-nav{padding:16px 20px;font-size:13px;gap:12px 23px}.studio-page main{padding:25px 20px}.studio-page h1{font-size:clamp(38px,10vw,62px);overflow-wrap:anywhere}.studio-page .intro{font-size:19px}.project-lead{gap:25px;margin:30px 0}.project-lead>img{max-height:340px}.feature-columns{gap:20px}.callout{padding:24px}.maker-links{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.maker-links a{font-size:13px;padding:13px}.closing h2{font-size:clamp(45px,11vw,75px);letter-spacing:-3px}}
 @media(max-width:380px){.spotlight-grid,.related .spotlight-grid,.maker-links{grid-template-columns:1fr}.studio-nav{gap:12px}}
+
+/* Help topics work without JavaScript, with shareable section links. */
+.support-topics{display:flex;flex-wrap:wrap;gap:10px;margin:30px 0;padding:0;max-width:900px}
+.support-topics a{padding:12px 16px;border:1px solid #b3c8cd;border-radius:7px;background:#e4f1f2;color:#14242b;text-decoration:none;font-weight:700}
+.support-topics a:hover{background:#d0e8ec}
+.studio-page details{border-bottom:1px solid #b3c8cd;padding:17px 0}
+.studio-page summary{font-weight:700;cursor:pointer;font-size:18px;line-height:1.5;padding:4px 0}
+.studio-page details p{max-width:780px}
+.studio-page section[id]{scroll-margin-top:24px}
+.studio-page a:focus-visible,.studio-page summary:focus-visible{outline:3px solid #14728c;outline-offset:4px}
