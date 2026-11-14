@@ -43,9 +43,15 @@ def build(page, write, cards):
         browser = ''
         if p.get('browser'):
             browser = f'<section class="callout"><h2>{E(p["browserName"])}</h2><p>{E(p["browserNote"])}</p><a class="button ink" href="{p["browser"]}" target="_blank" rel="noopener noreferrer">Play in browser ↗<span class="sr-only"> (opens a new tab)</span></a></section>'
+        facts = p.get('releaseFacts')
+        release = ''
+        if facts:
+            video = f'<a class="button ink" href="{E(facts["video"],quote=True)}" target="_blank" rel="noopener noreferrer">Watch official gameplay / demo ↗<span class="sr-only"> (opens a new tab)</span></a>' if facts.get('video') else ''
+            release = f'<section class="release-details" aria-labelledby="release-details-title"><h2 id="release-details-title">Before you start</h2><dl><dt>Current listing</dt><dd>{E(facts["status"])}</dd><dt>Platforms & requirements</dt><dd>{E(facts["requirements"])}</dd><dt>Release notes</dt><dd>{E(facts["notes"])}</dd></dl>{video}<p class="release-source">Checked {E(facts["checked"])} against the <a href="{E(facts["source"],quote=True)}">official release listing</a>. See the listing for newer builds and full release details.</p></section>'
         features = ''.join(f'<section><h2>{E(h)}</h2><p>{E(t)}</p></section>' for h,t in p['features'])
         related = ''.join(card(lookup[x],catalog) for x in p['related'])
         body = f'<div class="project-lead"><div><p class="project-tagline">{E(p["tagline"])}</p><p>{E(p["intro"])}</p><a class="button ink" href="{c["url"]}">{E(p.get("releaseLabel", "Official release & downloads ↗"))}</a></div><img src="{asset(c)}" width="630" height="500" alt="{E(p["name"])} cover artwork"></div>{browser}<div class="feature-columns">{features}</div>{gallery}<section class="callout"><h2>Choose your edition</h2><p>{E(p["edition"])}</p><p><a href="{c["url"]}">{E(p.get("releaseLabel", "See current downloads and release details ↗"))}</a> · <a href="/help/">Get support</a></p></section><section class="related"><h2>Keep exploring</h2><div class="spotlight-grid">{related}</div></section>'
+        body = body.replace('<section class="related">',release+'<section class="related">')
         schema = {'@context':'https://schema.org','@graph':[
             {'@type':'WebPage','name':p['name'],'description':p['description'],'url':'https://www.drunkyetistudio.com'+url,'about':{'@type':'CreativeWork','name':p['name'],'url':c['url'],'creator':{'@type':'Organization','name':'Drunk Yeti Studio'}}},
             {'@type':'BreadcrumbList','itemListElement':[{'@type':'ListItem','position':1,'name':'Home','item':'https://www.drunkyetistudio.com/'},{'@type':'ListItem','position':2,'name':p['section'].title(),'item':'https://www.drunkyetistudio.com/'+p['section']+'/'},{'@type':'ListItem','position':3,'name':p['name'],'item':'https://www.drunkyetistudio.com'+url}]}]}
