@@ -2,3 +2,5 @@ __pycache__/
 *.partial
 preview/
 .openai/
+
+supabase/.temp/
