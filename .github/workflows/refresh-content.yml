@@ -54,7 +54,7 @@ jobs:
       - name: Commit changed catalog files
         id: commit
         run: |
-          git add -- games tools assets/index.html mods soundtracks os comics about help sitemap.xml robots.txt
+          git add -- index.html games tools assets/index.html mods soundtracks os comics about help play create worlds press sitemap.xml robots.txt
           git add -- assets/catalog.json assets/catalog-meta.json assets/merch.json assets/merch-meta.json assets/covers
           if [ -d assets/merch ]; then git add -- assets/merch; fi
           if git diff --cached --quiet; then

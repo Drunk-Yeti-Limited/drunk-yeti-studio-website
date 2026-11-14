@@ -1,0 +1,239 @@
+{
+  "reviewed": "2026-11-14",
+  "products": [
+    {
+      "slug": "ar3na",
+      "catalogSlug": "ar3na-world-tour",
+      "section": "games",
+      "name": "AR3NA: All-Stars",
+      "tagline": "Magic. Mayhem. Match point.",
+      "description": "Discover AR3NA: All-Stars, Drunk Yeti’s party arena game, and jump into the separate Open Arena browser experience.",
+      "intro": "A well-timed strike can score a goal, steal a flag, or send a rival off the court. AR3NA brings original characters, colorful courts, and an appetite for chaos to a 3D party arena.",
+      "features": [
+        [
+          "A different kind of match",
+          "Magic Soccer, Stock Battle, Capture the Flag, King of the Hill, Tag, Sumo, and Orb Rush put different objectives on the court. Training and a character maker give you room to find your style."
+        ],
+        [
+          "Bring the room together",
+          "The downloadable game includes local multiplayer, computer opponents, and keyboard or controller play. Available player slots depend on the mode, connected controllers, and platform."
+        ],
+        [
+          "Explore beyond the court",
+          "Adventure chapters, asteroid hopping, survival challenges, and a physics sandbox expand the downloadable game beyond its classic matches."
+        ]
+      ],
+      "edition": "The Lite download starts with Magic Soccer and Sumo on Neon Stadium, training, and the character maker. The separate Full edition includes its base content offline. Check the release page for current Frostpass support and downloads.",
+      "browser": "https://ar3na.drunkyetistudio.com/",
+      "browserName": "AR3NA Open Arena",
+      "browserNote": "Open Arena is a separate browser experience set in the Concourse. It is not the complete downloadable All-Stars edition. Choose a guest name and enter from its own start screen.",
+      "related": [
+        "avalanca",
+        "snowlight"
+      ]
+    },
+    {
+      "slug": "avalanca",
+      "catalogSlug": "avalanca-downhill-riot",
+      "section": "games",
+      "name": "Avalanca: Downhill Riot",
+      "tagline": "Find your line. Make some trouble.",
+      "description": "Explore Avalanca: Downhill Riot, a cel-shaded downhill arcade game with drifting, tricks, multiple rides, and a browser edition.",
+      "intro": "Carve downhill from a bird’s-eye view, drift around trouble, and turn a good line into a better run. Avalanca mixes cel-shaded courses with tricks, side punches, and rides that go beyond a snowboard.",
+      "features": [
+        [
+          "Pick your ride",
+          "The downloadable game brings snowboards, bicycles, jet skis, and more into its downhill playground. Different rides give the adventure a different feel."
+        ],
+        [
+          "Chase the next run",
+          "Race, improve a time, or explore in Free Ride. The full downloadable edition includes its existing destinations, modes, and Tours."
+        ],
+        [
+          "Share the descent",
+          "Local split-screen is part of the full downloadable edition. Visit the release page for its current mode and platform details before choosing a build."
+        ]
+      ],
+      "edition": "Lite includes solo Tundra Race, Time Attack, and Free Ride with Snowboard and Custom Rider/Odonis. Full includes its existing content and local multiplayer offline. Available builds and Frostpass access are described on the official release page.",
+      "browser": "https://avalanca.drunkyetistudio.com/",
+      "browserName": "Avalanca in your browser",
+      "browserNote": "The browser build opens on its own game server and loads game files before starting. Browser content and controls may differ from the downloadable editions.",
+      "related": [
+        "snowlight",
+        "ar3na"
+      ]
+    },
+    {
+      "slug": "rockets-intensity",
+      "catalogSlug": "arockets-intensity",
+      "section": "games",
+      "name": "A Rocket’s Intensity",
+      "tagline": "Choose your world. Launch your next sortie.",
+      "description": "Play A Rocket’s Intensity in your browser: arcade flight, varied missions, original art styles, and a direct-connect web arena from Drunk Yeti.",
+      "intro": "Build your next flight around a world, a mission, and an airframe. A Rocket’s Intensity brings arcade movement and a changing set of objectives into a colorful space-action playground.",
+      "features": [
+        [
+          "Choose a mission",
+          "The browser hangar offers missions including Convoy Escort, Dogfight, Survival, Rift Race, and Free Flight. Pick an objective and difficulty before launching a sortie."
+        ],
+        [
+          "Make the flight your own",
+          "Choose from the art styles and airframes shown in the hangar. Adjust weather and effect density in the atmosphere controls, and use the flight manual to learn the available actions."
+        ],
+        [
+          "Find your controls",
+          "The game presents keyboard, mouse, gamepad, and touch controls. Its hangar includes solo and two-pilot split-screen choices; usable controls depend on your device and connected controllers."
+        ]
+      ],
+      "edition": "The hosted game identifies itself as a release candidate. The browser experience includes an arcade-flight hangar and a direct-connect web arena. Steam multiplayer is a separate path; a browser link does not establish Steam connectivity or feature parity with a desktop build.",
+      "browser": "https://arocketsintensity.drunkyetistudio.com/",
+      "browserName": "A Rocket’s Intensity",
+      "browserNote": "Choose your world and mission in the browser hangar, or use Web Arena for the direct-connect experience. This hosted build is a release candidate.",
+      "releaseUrl": "https://arocketsintensity.drunkyetistudio.com/",
+      "image": "./assets/studio/arockets-intensity.webp",
+      "releaseLabel": "Open the browser game ↗",
+      "related": [
+        "ar3na",
+        "avalanca"
+      ]
+    },
+    {
+      "slug": "snowlight",
+      "catalogSlug": "snowlight",
+      "section": "games",
+      "name": "Snowlight",
+      "tagline": "Carve neon mountains.",
+      "description": "Meet Snowlight, Drunk Yeti’s arcade snowboarding game with original riders, tricks, and two-player local split-screen racing.",
+      "intro": "Bright slopes, original riders, and one more run. Snowlight is an arcade snowboarding game built around carving, jumping, tricks, and racing a friend down the same mountain.",
+      "features": [
+        [
+          "Make every run yours",
+          "Launch tricks, chase stronger scores, and explore snow-covered courses with a cast of original characters."
+        ],
+        [
+          "Race side by side",
+          "Play solo or challenge a friend in two-player local split-screen. Keyboard and gamepad controls are supported in the desktop game."
+        ],
+        [
+          "A familiar face on the slope",
+          "Running Desktop Buddy on the same computer can unlock the Yeti rider and Frostfire trail in supported builds. This cosmetic bonus is separate from full-game access."
+        ]
+      ],
+      "edition": "The Lite demo includes the Neon course and two starting riders, Odonis and Schmuck. Full is the standalone offline edition. Optional sign-in supports account features; read the release page for current Frostpass integration and available platform downloads.",
+      "related": [
+        "avalanca",
+        "ar3na"
+      ]
+    },
+    {
+      "slug": "hexfold",
+      "catalogSlug": "hexfold",
+      "section": "games",
+      "name": "Hexfold",
+      "tagline": "Six suits. A whole new hand.",
+      "description": "Discover Hexfold, a six-suit 3D card game from Drunk Yeti with a 78-card deck, AI opponents, and themed lounges.",
+      "intro": "Cups and Shields join the deck in a six-suit twist on Texas Hold’em. Hexfold introduces a new set of hands and invites you to learn them around a 3D table with five AI regulars.",
+      "features": [
+        [
+          "Learn the house hands",
+          "A 78-card deck makes room for Quints, Hex, Triple Pairs, and Double Trio. Discover how the extra suits change a familiar card-game rhythm."
+        ],
+        [
+          "Find your table",
+          "Offline single-player tables and freezeout tournaments provide different ways to play. Distinct lounges coordinate tables, cards, lighting, and music."
+        ],
+        [
+          "Make yourself comfortable",
+          "Touch layouts, keyboard controls, graphics settings, and reduced motion offer ways to adjust the experience. Cosmetic rooms are separate from the core rules."
+        ]
+      ],
+      "edition": "The official release page lists the current preview, Lite demo, Full downloads, and account integrations. This is a practice-points game: there is no real-money wagering, and practice points have no monetary value.",
+      "related": [
+        "ar3na",
+        "snowlight"
+      ]
+    },
+    {
+      "slug": "yeti-forge",
+      "catalogSlug": "yeti-forge",
+      "section": "tools",
+      "name": "Yeti Forge",
+      "tagline": "From art to game-ready assets.",
+      "description": "Prepare sprites, animation, images, and audio with Yeti Forge, Drunk Yeti’s free local asset workbench for game creators.",
+      "intro": "Bring your sprites, art, and sounds into one asset-preparation workflow. Preview a result, save a reusable recipe, and export a clean package for your next game.",
+      "features": [
+        [
+          "Prepare the visuals",
+          "Pack sprite atlases with trimming, padding, and editable pivots. Preview animation, slice sheets, and batch resize or convert images. Export options include PNG sheets, Phaser JSON, and Godot 4 AtlasTexture resources."
+        ],
+        [
+          "Finish the package",
+          "Check missing files, duplicates, empty sprites, and background problems. Package assets with license text, tags, checksums, and a ZIP, then verify the files after moving them."
+        ],
+        [
+          "Keep the work local",
+          "Original files remain untouched and exports go to new folders. Saved recipes, undo/redo, recovery, and command-line builds support repeatable work. Audio conversion uses a separate local FFmpeg installation."
+        ]
+      ],
+      "edition": "All creation tools and exports are free; no login or subscription is required. Optional account themes are cosmetic. The current release page distinguishes the packaged Linux build from Windows/macOS source launchers and explains system requirements.",
+      "related": [
+        "yheti-studio"
+      ]
+    },
+    {
+      "slug": "yheti-studio",
+      "catalogSlug": "yheti-studio",
+      "section": "tools",
+      "name": "YHETI Studio",
+      "tagline": "Your next sound starts here.",
+      "description": "Explore YHETI Studio, a music creation release candidate with editable MIDI parts, a synth, drum kits, audio clips, and export tools.",
+      "intro": "Start with a key and a groove. Build chords, bass, drums, and another instrument from musical patterns, then edit the notes and shape the sound.",
+      "features": [
+        [
+          "Find the idea",
+          "Generate, vary, or lock four MIDI parts. Work in a piano roll, explore scale types and arpeggios, and use the integrated Soloist Forge note engine for melodic or drum solos."
+        ],
+        [
+          "Shape the sound",
+          "A two-oscillator synth brings FM, morph tables, envelopes, and LFOs. An eight-pad kit combines synthesis with short sample layers, and presets keep favorite sounds close."
+        ],
+        [
+          "Build the arrangement",
+          "Arrange clips across two audio lanes, mix through six buses, and export WAV audio or notes-only MIDI. Portable project packs and recovery snapshots help preserve the work."
+        ]
+      ],
+      "edition": "YHETI Studio RC3 is a release candidate with defined limits, including four MIDI tracks, two audio lanes, 64 bars, and a 180-second import window per source. Optional plugin hosting has platform-specific requirements. Read the current release notes before choosing it for a production workflow.",
+      "related": [
+        "yeti-forge"
+      ]
+    },
+    {
+      "slug": "moly-bart-skid",
+      "catalogSlug": "moly-bart-skid-the-heart-under-the-mountain",
+      "section": "comics",
+      "name": "Moly, Bart & Skid",
+      "tagline": "Three friends. A world beneath the mountain.",
+      "description": "Meet Moly, Bart & Skid in The Heart Under the Mountain, an illustrated adventure about friendship, missing water, and an ancient machine.",
+      "intro": "When Reedbank’s spring runs dry, a green mole, a flying yellow bat, and a blue squid doctor follow the missing water underground. What begins as a local mystery leads them into a machine serving two valleys.",
+      "features": [
+        [
+          "The Heart Under the Mountain",
+          "The first volume follows the trio through broken bridges, a drowned archive, and the mountain’s mechanical heart. Saving their home means understanding how the old waterworks connect their world."
+        ],
+        [
+          "Everyone brings something",
+          "Moly’s acrobatics, Bart’s flight, and Skid’s underwater skill open different routes. Patience, trust, and teamwork matter as much as getting to the next chamber."
+        ],
+        [
+          "A story with room to grow",
+          "This volume tells a complete adventure while opening a route to a wider mystery. It begins a chronological graphic novel series within Drunk Yeti’s original worlds."
+        ]
+      ],
+      "edition": "Visit the official publication page to read its browser presentation and check the PDF edition. Created by 3ichael 7ambert. Explore the studio’s games and music for more work beyond the page.",
+      "related": [
+        "ar3na",
+        "snowlight"
+      ]
+    }
+  ]
+}
