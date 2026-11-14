@@ -4,7 +4,7 @@ The public site is organized around Play, Create, Worlds & Media, Studio, and Su
 
 ## Studio credit
 
-Credit public website work to Drunk Yeti Studio and describe it as a team effort. Do not add personal bylines to studio pages, metadata, footers, or press materials.
+Credit public website work to Drunk Yeti Studio and describe it as a team effort. Do not add personal bylines to visible studio pages, footers, or press materials. Existing personal attribution may remain in metadata only.
 
 ## Updating the pages
 
