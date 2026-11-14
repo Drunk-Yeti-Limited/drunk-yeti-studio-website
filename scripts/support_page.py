@@ -1,0 +1,53 @@
+"""Visitor-facing support, kept separate from catalog refresh logic."""
+
+BODY = '''
+<nav class="support-topics" aria-label="Support topics">
+<a href="#account">Sign-in & profile</a><a href="#purchases">Purchases & Frostpass</a>
+<a href="#games">Games & downloads</a><a href="#buddy">Desktop Buddy</a>
+<a href="#privacy">Privacy & email</a><a href="#contact">Contact support</a>
+</nav>
+<section id="account"><h2>Sign-in & profile</h2>
+<details open><summary>I cannot sign in or need to reset my password</summary>
+<p>Open <a href="/account/">Your account</a> and use the method you originally registered with. For an email-and-password account, choose Forgot password and enter your account email. Open the newest recovery email and set a new password on the reset screen. Check spam if the email is missing; requesting another link can invalidate an older one.</p>
+<p>If you normally use Apple, Google or another provider, try that sign-in button first. Never share your password, recovery link or verification code with support.</p></details>
+<details><summary>How do I connect Apple or another sign-in method?</summary>
+<p>Sign in to your existing Drunk Yeti account first, then open <strong>Social accounts</strong> and choose Connect beside the provider. Apple appears first on supported Apple devices and remains available on other devices.</p>
+<p>Apple’s Hide My Email may supply a different address. Connecting Apple from your existing account helps keep purchases and progress together. If you already created a second account, contact support before deleting either account; creating another profile does not merge your progress.</p></details>
+<details><summary>How do I change my username or display name?</summary>
+<p>Open Profile in <a href="/account/">Your account</a>, edit your details and save. Usernames use 3–24 lowercase letters, numbers or underscores and start with a letter. Display names can use up to 48 characters. A username must be available.</p></details>
+<details><summary>Where is the admin page?</summary>
+<p>Admins and owners receive an admin welcome dialog when signing in. The account also shows an admin link in Profile and Social accounts, so dismissing the dialog does not hide access. These controls appear only after the service confirms your staff role.</p>
+<p>Staff can choose Manage account in the admin account list to edit profiles, send password recovery emails, suspend or restore access, revoke refresh sessions, and delete eligible accounts. Manual password changes require owner access. Owner accounts and your own account are protected; deletion also checks billing records.</p></details></section>
+<section id="purchases"><h2>Purchases & Frostpass</h2>
+<details><summary>Where are my downloads or missing purchases?</summary>
+<p>For a store purchase, check the purchase history of the store account used at checkout. A store download and a Drunk Yeti account are different parts of the service; use the release page for that edition’s installation and account instructions.</p>
+<p>For Shards or eligible Frostpass benefits, sign in to the same Drunk Yeti account used for the purchase. If an item still appears missing after a refresh, contact support with the product, store, order reference and approximate purchase time. Avoid buying it again while the first purchase is being checked.</p></details>
+<details><summary>Does Frostpass unlock every game and app?</summary>
+<p>Check <a href="/account/#frostpass">Yeti Frostpass in your account</a> for the current membership and product list. <strong>Included</strong> and <strong>Integration planned</strong> are different statuses. A planned integration is not an available benefit.</p>
+<p>Lite, full, browser and mobile editions may have different features. The official release page explains the current build’s exports, platforms and supported account integrations. Do not assume a subscription changes every installed edition.</p></details>
+<details><summary>How do I manage billing or a subscription?</summary>
+<p>Use the billing controls shown for your membership in your account, or the subscription settings of the store where you subscribed. If you cannot find the purchase, contact support with the store and order reference. Account deletion and removing an app do not themselves cancel a store subscription.</p></details></section>
+<section id="games"><h2>Games & downloads</h2>
+<details><summary>Where are the three browser game servers?</summary>
+<p>Start from <a href="/play/">Play</a> for <a href="https://ar3na.drunkyetistudio.com/">AR3NA Open Arena</a>, <a href="https://arocketsintensity.drunkyetistudio.com/">A Rocket’s Intensity</a> and <a href="https://avalanca.drunkyetistudio.com/">Avalanca</a>. Each opens its own game client. Browser experiences may differ from the downloadable games.</p></details>
+<details><summary>A browser game is blank, loading slowly or cannot connect</summary>
+<p>Allow time for the initial game download. Try reloading the game tab and check that your browser is up to date. If the game reports a graphics or WebGL problem, check the browser’s graphics-acceleration settings. A managed device or network may restrict graphics or multiplayer connections.</p>
+<p>When reporting a problem, include the exact game URL, browser and version, device, time and any error text. Loading a game page does not establish that an online match or every game mode is available. For a desktop edition, use its official release page.</p></details>
+<details><summary>Which build should I download?</summary>
+<p>Use the official release linked from the project page. Match the operating system and edition to your device, and read the release notes before updating. Keep a backup of local projects or saves when changing versions. A source download requires its documented runtime or build steps; it is not the same as a ready-to-run app.</p>
+<p>Browse <a href="/play/">games</a> or <a href="/create/">creative software</a> to find the project and its official downloads.</p></details></section>
+<section id="buddy"><h2>Desktop Buddy & the website</h2>
+<details><summary>Can my desktop Yeti interact with an open webpage?</summary>
+<p>Yes, with the optional <a href="/desktop-buddy/">Website Link source adapter</a>. On the same computer, enable Website link in Buddy, copy its temporary pairing code, and connect on the Desktop Buddy page. The page can request a wave or surprised reaction; Buddy’s link window can send a wave or snow effect back to that page.</p>
+<p>Existing compiled Preview6 downloads need a rebuild to include the adapter. Installing it into the source does not update an already-built desktop app. This link provides cosmetic reactions on the connection page; it does not control other tabs, click website buttons or sign in to your account.</p></details>
+<details><summary>Why will Buddy not connect?</summary>
+<p>Use a desktop browser on the same computer as Buddy, keep the native Website link window open, and copy the current code. Allow local-network access if the browser prompts. Pairing expires after 30 minutes. A phone cannot connect to Buddy on another computer through this local link.</p>
+<p>Buddy’s quiet, focus, sleep and presentation settings can pause reactions. Hidden website tabs stop polling, and reduced-motion preferences suppress page animations. See the <a href="/desktop-buddy/bridge/README.md">adapter setup instructions</a> for installation and removal.</p></details></section>
+<section id="privacy"><h2>Privacy & email</h2>
+<p>Update newsletter preferences in Profile or <a href="/unsubscribe/">unsubscribe</a>. The Security section of your account offers a game-data export and refresh-session sign-out. Existing access tokens can remain valid until they expire.</p>
+<p>To leave the service, <a href="/delete-account/">request account deletion</a>. Requests are reviewed; the request is not immediate erasure. Read the <a href="/privacy/">privacy policy</a> for more details.</p></section>
+<section class="callout" id="contact"><h2>Tell us what happened</h2>
+<p>Email <a href="mailto:support@drunkyetistudio.com?subject=Drunk%20Yeti%20support">support@drunkyetistudio.com</a>. Include:</p>
+<ul><li>The game or app, version and download source.</li><li>Your device, operating system, and browser if applicable.</li><li>What you expected, what happened, and steps to reproduce it.</li><li>The error text or a screenshot with private information removed.</li><li>For a purchase: the store and order reference.</li></ul>
+<p>Never include passwords, sign-in codes, recovery links or payment-card details. For press and collaboration inquiries, use <a href="/press/">Press & contact</a>.</p></section>
+'''

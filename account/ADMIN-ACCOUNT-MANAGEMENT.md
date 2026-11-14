@@ -1,6 +1,6 @@
 # Account management rollout
 
-Status: implementation and local tests complete; production migration awaits Supabase confirmation. Do not publish the new admin bundle before activating its backend.
+Status: deployed on 2026-11-14 UTC. Migration applied, studio-user-admin v1 active, and PR #5 merged. The Pages deployment completed successfully and the live admin bundle matched the tested release. Live checks returned 401 for anonymous requests, 403 for untrusted origins, and 204 for allowed-origin preflight. Both management RPCs are executable only by service_role. Authenticated management behavior is covered by local tests; no real user was changed during release verification.
 
 ## Release order
 
