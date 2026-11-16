@@ -214,3 +214,33 @@ Review the diff and commit/push to deploy.
 Use `python3 scripts/build-search-pages.py` after editing an existing published
 post. Keep slugs stable so links and RSS identifiers keep working. No mailing,
 social posting, or automatic publication of drafts is performed.
+
+### Community release announcements
+
+The **Announce live Studio News on Discord** workflow reads the public RSS after a
+successful Pages build. A daily check picks up releases after a delayed deploy.
+Each new article includes its title, screenshot, and store link when available.
+The House of Wilds and Schmuck Deluxe launch articles predate this workflow.
+
+1. In the Drunk Yeti Studio Discord server, create an incoming webhook in
+   `#announcements` under **Edit Channel → Integrations → Webhooks**.
+2. Add the webhook URL as `DISCORD_RELEASE_WEBHOOK` in this repository’s
+   **Settings → Secrets and variables → Actions**.
+3. Run the workflow with **Preview** checked to verify the feed. Run it with
+   **Preview** unchecked to validate the saved webhook and process new articles.
+
+Delivery status is recorded by RSS item ID on the `discord-news-deliveries`
+branch. If a delivery is unconfirmed, check the channel before clearing its
+`pending` entry in `.github/discord-deliveries.json` on that branch and retrying.
+
+In Metricool, link `https://www.drunkyetistudio.com/news/feed.xml` to an
+Autolist for the studio brand. Enable **Add disabled posts** and leave
+**Include previous posts** off. Edit the caption and media for each network
+before activating an entry.
+
+Use Patreon’s Discord integration under **Settings → Connected apps**.
+Map paid tiers to separate supporter roles below the Patreon bot and keep
+staff roles above it. Announcements and public playtests stay open to everyone.
+For the first Discord Scheduled Event, link players to
+[AR3NA Open Arena](https://ar3na.drunkyetistudio.com/) and collect notes on
+joining, controls, and match flow. Share a recap once the studio has feedback.
