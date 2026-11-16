@@ -1,0 +1,45 @@
+name: Send Schmuck Deluxe launch posts
+
+on:
+  push:
+    branches:
+      - codex/schmuck-live-post-verification
+    paths:
+      - '.github/workflows/schmuck-live-post-verification.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: schmuck-launch-live-post
+  cancel-in-progress: false
+
+jobs:
+  post:
+    if: github.run_attempt == 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    strategy:
+      fail-fast: false
+      matrix:
+        channel: [discord, mastodon]
+    env:
+      RELEASE_SLUG: games-drunkyeti-schmuck-android-launch
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Verify release page is live
+        run: curl --fail --silent --show-error --max-time 20 "https://www.drunkyetistudio.com/news/$RELEASE_SLUG/" --output /dev/null
+      - name: Publish on Discord
+        if: matrix.channel == 'discord'
+        env:
+          DISCORD_RELEASE_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
+        run: |
+          python3 scripts/send_release.py "$RELEASE_SLUG" discord --check
+          python3 scripts/send_release.py "$RELEASE_SLUG" discord --send
+      - name: Publish on Mastodon
+        if: matrix.channel == 'mastodon'
+        env:
+          MASTODON_RELEASE_TOKEN: ${{ secrets.MASTODON_RELEASE_TOKEN }}
+        run: python3 scripts/send_release.py "$RELEASE_SLUG" mastodon --send
