@@ -79,7 +79,14 @@ def build(page, write, posts, products):
         items.append(f'<article class="callout"><time datetime="{p["date"]}">{p["date"]}</time><h2><a href="{path}">{E(p["title"])}</a></h2><p>{E(p["summary"])}</p><a href="{path}">Read the release update →</a></article>')
         item=ET.SubElement(channel,'item')
         for key,val in [('title',p['title']),('link',ORIGIN+path),('guid',ORIGIN+path),('description',p['summary']),('pubDate',format_datetime(datetime.fromisoformat(p['date']).replace(tzinfo=timezone.utc)))]:ET.SubElement(item,key).text=val
-    write('news/index.html',page('/news/','Studio news & releases','Official Drunk Yeti game releases, software updates, and news from across the studio.','<p><a href="/news/feed.xml">Subscribe via RSS ↗</a></p>'+''.join(items)))
+    community = (
+        '<div class="studio-links"><a href="/news/feed.xml">Subscribe via RSS ↗</a>'
+        '<a href="https://discord.gg/Euxqepsq8T">Join the Drunk Yeti Discord ↗</a>'
+        '<a href="https://www.patreon.com/DrunkYeti">Support the studio on Patreon ↗</a>'
+        '<a href="https://mastodon.social/@drunkyetistudio" rel="me">Follow on Mastodon ↗</a>'
+        '<a href="https://bsky.app/profile/drunkyetistudio.bsky.social">Follow on Bluesky ↗</a></div>'
+    )
+    write('news/index.html',page('/news/','Studio news & releases','Official Drunk Yeti game releases, software updates, and news from across the studio.',community+''.join(items)))
     write('news/feed.xml',ET.tostring(rss,encoding='unicode',xml_declaration=True))
     teasers=''.join(f'<article><p class="eyebrow">{p["date"]}</p><h3><a href="/news/{p["slug"]}/">{E(p["title"])}</a></h3><p>{E(p["summary"])}</p><a href="/news/{p["slug"]}/">Read the update →</a></article>' for p in posts[:3])
     section='<section class="section" aria-labelledby="latest-news-title"><div class="section-heading"><div><div class="eyebrow">FROM THE STUDIO</div><h2 id="latest-news-title">Release news &amp; updates</h2></div><a href="/news/">All studio news →</a></div><div class="pillar-grid">'+teasers+'</div></section>'
