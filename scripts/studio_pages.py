@@ -1,14 +1,26 @@
 """Editorial studio pages. Store listings stay authoritative for builds and pricing."""
 from pathlib import Path
+from urllib.parse import urlsplit
 import json, html, re
+
+from news_pages import latest_updates
 
 R = Path(__file__).resolve().parents[1]
 E = html.escape
-NAV = '<nav class="studio-nav" aria-label="Main navigation"><a href="/play/">Play</a><a href="/create/">Create</a><a href="/worlds/">Worlds & media</a><a href="/about/">Studio</a><a href="/news/">News</a><a href="/help/">Support</a></nav>'
+NAV = '<nav class="studio-nav" aria-label="Main navigation"><a href="/play/">Play</a><a href="/create/">Create</a><a href="/worlds/">Worlds & media</a><a href="/about/">Studio</a><a href="/news/">News</a><a href="/help/">Support</a><a href="/search/">Search</a></nav>'
 FOOTER = '<a href="/play/">Play</a><a href="/create/">Create</a><a href="/worlds/">Worlds & media</a><a href="/desktop-buddy/">Desktop Buddy</a><a href="/about/">Studio</a><a href="/press/">Press & contact</a><a href="/news/">News</a><a href="https://play.google.com/store/apps/developer?id=Drunk+Yeti+Studio">Google Play</a><a href="/help/">Support</a><a href="/privacy/">Privacy</a><a href="/delete-account/">Account deletion</a><p>Drunk Yeti Studio</p>'
 
 def path(p):
     return f'/{p["section"]}/{p["slug"]}/'
+
+def read_products():
+    return json.loads((R/'studio-content.json').read_text())['products']
+
+def product_titles(products):
+    return {path(product): product['name'] for product in products} | {'/desktop-buddy/': 'Desktop Buddy'}
+
+def catalog_slug(url):
+    return urlsplit(url).path.rstrip('/').rsplit('/', 1)[-1]
 
 def asset(c):
     return '/' + c['image'].removeprefix('./')
@@ -22,10 +34,26 @@ def browser_cards(products, catalog):
         f'<article class="browser-card"><span class="eyebrow">BROWSER EXPERIENCE</span><h3>{E(p["browserName"])}</h3><p>{E(p["browserNote"])}</p><a class="button ink" href="{E(p["browser"],quote=True)}" target="_blank" rel="noopener noreferrer">Play in browser ↗<span class="sr-only"> — {E(p["browserName"])} (opens a new tab)</span></a><a class="card-link" href="{path(p)}">About {E(p["name"])} →</a></article>'
         for p in products if p.get('browser')) + '</div>'
 
-def build(page, write, cards):
-    data = json.loads((R/'studio-content.json').read_text())
-    products = data['products']
-    catalog = {c['url'].rstrip('/').split('/')[-1]: c for c in cards}
+def screenshot_gallery(screenshots):
+    if not screenshots:
+        return ''
+    figures = []
+    for shot in screenshots:
+        image = E(shot['image'], quote=True)
+        alt = E(shot['alt'], quote=True)
+        caption = E(shot['caption'])
+        width, height = shot['width'], shot['height']
+        figures.append(
+            f'<figure><a href="{image}"><img src="{image}" alt="{alt}" '
+            f'width="{width}" height="{height}" loading="lazy"></a><figcaption>{caption}</figcaption></figure>'
+        )
+    return (
+        '<section class="wide gameplay-gallery"><h2>Gameplay screenshots</h2>'
+        f'<div class="gameplay-images">{"".join(figures)}</div></section>'
+    )
+
+def build(page, write, cards, products, posts):
+    catalog = {c.get('packageId') or catalog_slug(c['url']): c for c in cards}
     for p in products:
         if p.get('releaseUrl'):
             catalog[p['catalogSlug']] = {'url': p['releaseUrl'], 'image': p['image'], 'title': p['name']}
@@ -35,8 +63,9 @@ def build(page, write, cards):
         c = catalog[p['catalogSlug']]
         url = path(p)
         media = R/'assets/studio'/f'{p["catalogSlug"]}.webp'
-        gallery = ''
-        if media.exists() and not p.get("releaseUrl"):
+        screenshots = p.get('screenshots', [])
+        gallery = screenshot_gallery(screenshots)
+        if not gallery and media.exists() and not p.get("releaseUrl"):
             sizes=json.loads((R/'assets/studio/sources.json').read_text())
             dims=next(x for x in sizes if x['slug']==p['catalogSlug'])
             gallery = f'<figure class="project-gallery"><img src="/assets/studio/{p["catalogSlug"]}.webp" alt="{E(p["name"])} — image from the official release gallery" width="{dims["width"]}" height="{dims["height"]}" loading="lazy"><figcaption>From the official release gallery. Images may show an earlier build; see release notes for current details.</figcaption></figure>'
@@ -46,22 +75,44 @@ def build(page, write, cards):
         facts = p.get('releaseFacts')
         release = ''
         if facts:
-            video = f'<a class="button ink" href="{E(facts["video"],quote=True)}" target="_blank" rel="noopener noreferrer">Watch official gameplay / demo ↗<span class="sr-only"> (opens a new tab)</span></a>' if facts.get('video') else ''
+            video_label = E(facts.get('videoLabel', 'Watch official gameplay / demo ↗'))
+            video = f'<a class="button ink" href="{E(facts["video"],quote=True)}" target="_blank" rel="noopener noreferrer">{video_label}<span class="sr-only"> (opens a new tab)</span></a>' if facts.get('video') else ''
             release = f'<section class="release-details" aria-labelledby="release-details-title"><h2 id="release-details-title">Before you start</h2><dl><dt>Current listing</dt><dd>{E(facts["status"])}</dd><dt>Platforms & requirements</dt><dd>{E(facts["requirements"])}</dd><dt>Release notes</dt><dd>{E(facts["notes"])}</dd></dl>{video}<p class="release-source">Checked {E(facts["checked"])} against the <a href="{E(facts["source"],quote=True)}">official release listing</a>. See the listing for newer builds and full release details.</p></section>'
         features = ''.join(f'<section><h2>{E(h)}</h2><p>{E(t)}</p></section>' for h,t in p['features'])
         related = ''.join(card(lookup[x],catalog) for x in p['related'])
-        body = f'<div class="project-lead"><div><p class="project-tagline">{E(p["tagline"])}</p><p>{E(p["intro"])}</p><a class="button ink" href="{c["url"]}">{E(p.get("releaseLabel", "Official release & downloads ↗"))}</a></div><img src="{asset(c)}" width="630" height="500" alt="{E(p["name"])} cover artwork"></div>{browser}<div class="feature-columns">{features}</div>{gallery}<section class="callout"><h2>Choose your edition</h2><p>{E(p["edition"])}</p><p><a href="{c["url"]}">{E(p.get("releaseLabel", "See current downloads and release details ↗"))}</a> · <a href="/help/">Get support</a></p></section><section class="related"><h2>Keep exploring</h2><div class="spotlight-grid">{related}</div></section>'
-        body = body.replace('<section class="related">',release+'<section class="related">')
+        store_url = E(c['url'], quote=True)
+        release_label = E(p.get('releaseLabel', 'Official release & downloads ↗'))
+        actions = f'<a class="button ink" href="{store_url}">{release_label}</a>'
+        if browser_edition := p.get('browserEdition'):
+            actions += f'<a class="button browser-edition" href="{E(browser_edition, quote=True)}">Play in browser ↗</a>'
+        support = '<a href="/help/">Get support</a>'
+        if not browser_edition:
+            more = E(p.get('releaseLabel', 'See current downloads and release details ↗'))
+            support = f'<a href="{store_url}">{more}</a> · {support}'
+        if privacy_url := p.get('privacyUrl'):
+            support += f' · <a href="{E(privacy_url, quote=True)}">Game privacy policy</a>'
+        body = (
+            '<div class="project-lead"><div>'
+            f'<p class="project-tagline">{E(p["tagline"])}</p><p>{E(p["intro"])}</p>'
+            f'<div class="product-actions">{actions}</div></div>'
+            f'<img src="{asset(c)}" width="630" height="500" alt="{E(p["name"])} cover artwork"></div>'
+            f'{browser}<div class="feature-columns">{features}</div>{gallery}'
+            f'<section class="callout"><h2>Choose your edition</h2><p>{E(p["edition"])}</p>'
+            f'<p>{support}</p></section>'
+            f'{release}{latest_updates(posts, url)}'
+            f'<section class="related"><h2>Keep exploring</h2><div class="spotlight-grid">{related}</div></section>'
+        )
         schema = {'@context':'https://schema.org','@graph':[
             {'@type':'WebPage','name':p['name'],'description':p['description'],'url':'https://www.drunkyetistudio.com'+url,'about':{'@type':'CreativeWork','name':p['name'],'url':c['url'],'creator':{'@type':'Organization','name':'Drunk Yeti Studio'}}},
             {'@type':'BreadcrumbList','itemListElement':[{'@type':'ListItem','position':1,'name':'Home','item':'https://www.drunkyetistudio.com/'},{'@type':'ListItem','position':2,'name':p['section'].title(),'item':'https://www.drunkyetistudio.com/'+p['section']+'/'},{'@type':'ListItem','position':3,'name':p['name'],'item':'https://www.drunkyetistudio.com'+url}]}]}
-        write(url.strip('/')+'/index.html', page(url,p['name'],p['description'],body,schema));urls.append(url)
+        image = screenshots[0]['image'] if screenshots else None
+        write(url.strip('/')+'/index.html', page(url,p['name'],p['description'],body,schema,image=image));urls.append(url)
 
     def publish(slug,title,description,body,intro=None):
         write(slug+'/index.html',page('/'+slug+'/',title,description,body,intro=intro));urls.append('/'+slug+'/')
 
     play_intro = '<section><h2>A quick game. A longer adventure. Your call.</h2><p>Start in your browser or find a downloadable game for your next session. Explore party arenas, downhill adventures, card games, and original worlds. Each project page connects you to its official release, with current editions and requirements.</p></section>'
-    play_intro += '<section class="callout"><h2>Now on Android</h2><p>Drunk Yeti’s House of Wilds is available on Google Play.</p><p><a href="https://play.google.com/store/apps/details?id=com.drunkyeti.houseofwilds">Get House of Wilds on Google Play ↗</a> · <a href="https://play.google.com/store/apps/developer?id=Drunk+Yeti+Studio">All Drunk Yeti Android releases ↗</a> · <a href="/news/">Release news →</a></p></section>'
+    play_intro += '<section class="callout"><h2>Now on Android</h2><p>Drunk Yeti’s House of Wilds is available on Google Play.</p><p><a href="/games/house-of-wilds/">Explore House of Wilds →</a> · <a href="https://play.google.com/store/apps/details?id=com.drunkyeti.houseofwilds">Get it on Google Play ↗</a> · <a href="https://play.google.com/store/apps/developer?id=Drunk+Yeti+Studio">All Drunk Yeti Android releases ↗</a></p></section>'
     play = play_intro+'<section class="wide"><h2>Play on our game servers</h2><p>These experiences open in their own tabs. Give game files time to load; content and controls can differ from the downloadable editions.</p>'+browser_cards(products,catalog)+'</section><section class="wide"><h2>Featured games</h2><div class="spotlight-grid">'+''.join(card(p,catalog) for p in products if p['section']=='games')+'</div></section><section class="callout"><h2>More ways to play</h2><p><a href="/games/">Browse every game</a> · <a href="/mods/">Explore mods</a> · <a href="https://store.steampowered.com/curator/45875400">Find us on Steam ↗</a></p><p>For membership access, check the current Included or Integration planned status on <a href="/account/#frostpass">Yeti Frostpass</a>. Store editions and browser builds can include different content.</p></section>'
     publish('play','Find your next game','Play Drunk Yeti browser games and discover original arena, downhill, snowboarding, and card-game adventures.',play)
 

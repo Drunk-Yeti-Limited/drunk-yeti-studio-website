@@ -196,13 +196,18 @@ sitemap. Review the title, date, summary, body paragraphs, local `/assets/` imag
 and labeled HTTPS links. Add official screenshot assets or trailer links when
 available; do not invent footage or features. For game/software updates outside
 Google Play, create a draft using the same fields as the House of Wilds entry.
+Set `product` to the existing official page (for example, `/games/house-of-wilds/`)
+to add the post to that page’s **Latest updates** and link readers back to the
+product. Product paths come from `studio-content.json`; `/desktop-buddy/` also works.
+Leave the field out for studio-wide announcements.
 
 ```sh
 python3 scripts/publish-news.py reviewed-draft-slug
 ```
 
-The publisher validates the draft and rebuilds `/news/`, its article, the latest-news section on the homepage, RSS at
-`/news/feed.xml`, and the sitemap. Review the diff and commit/push to deploy.
+The publisher validates the draft and rebuilds `/news/`, its article, homepage
+and product updates, RSS at `/news/feed.xml`, the sitemap, and the studio search index.
+Review the diff and commit/push to deploy.
 Use `python3 scripts/build-search-pages.py` after editing an existing published
 post. Keep slugs stable so links and RSS identifiers keep working. No mailing,
 social posting, or automatic publication of drafts is performed.

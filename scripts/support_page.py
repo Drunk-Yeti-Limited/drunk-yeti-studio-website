@@ -1,5 +1,14 @@
 """Visitor-facing support, kept separate from catalog refresh logic."""
 
+SEARCH_TOPICS = [
+    ('account', 'Sign-in, password reset & profile', 'Recover your account, reset a forgotten password, change your username, or connect Apple and Google sign-in.'),
+    ('purchases', 'Purchases, Shards & Frostpass', 'Find missing purchases or downloads, manage billing, and check which games or apps are included in Frostpass.'),
+    ('games', 'Games & downloads', 'Troubleshoot slow browser games, connection issues, and installation for downloadable games.'),
+    ('buddy', 'Desktop Buddy support', 'Find the Desktop Buddy download and help connecting it to the website.'),
+    ('privacy', 'Privacy, newsletters & account deletion', 'Read the privacy policy, unsubscribe from studio emails, or delete your account.'),
+    ('contact', 'Contact support', 'Get help with a studio app, game, account, or purchase.'),
+]
+
 BODY = '''
 <nav class="support-topics" aria-label="Support topics">
 <a href="#account">Sign-in & profile</a><a href="#purchases">Purchases & Frostpass</a>
