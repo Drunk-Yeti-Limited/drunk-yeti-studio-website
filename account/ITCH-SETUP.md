@@ -3,10 +3,10 @@
 Create an OAuth application under the Drunk Yeti itch.io publisher account. Use this exact redirect URI.
 
 ```
-https://rgafawpucqdhjrzodayl.supabase.co/functions/v1/itch-account
+https://www.drunkyetistudio.com/account/?itch_callback=1
 ```
 
-Set the application's public client ID as the Supabase Edge Function variable `ITCH_OAUTH_CLIENT_ID`. The account page enables the buttons when the function reports that the ID is configured. The callback exchanges a one-use code with PKCE after checking the signed-in Drunk Yeti account and the browser's state. OAuth tokens are used during the exchange and are never saved.
+Set the application's public client ID as the Supabase Edge Function variable `ITCH_OAUTH_CLIENT_ID`. The account page enables the buttons when the function reports that the ID is configured. The account page removes the code from the URL and submits it to a JWT-protected function. The function exchanges the one-use code with PKCE after checking the signed-in Drunk Yeti account and the browser's state. OAuth tokens are used during the exchange and are never saved.
 
 The Snowlight restore button checks itch.io game 5254505 for the authorized user and records the resulting license in the existing Drunk Yeti product-access system. The same itch.io account can restore that title to one Drunk Yeti account. Disconnecting removes the profile connection. A verified purchase stays with the account that restored it. An itch.io customer who bought as a guest can attach the purchase to their itch.io account before restoring.
 

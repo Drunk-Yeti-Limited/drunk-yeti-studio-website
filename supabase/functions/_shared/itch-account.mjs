@@ -18,22 +18,6 @@ async function authorizationURL({ clientId, callback, state, verifier, restore }
   return url.href;
 }
 
-function relay(url) {
-  const state = url.searchParams.get('state');
-  const code = url.searchParams.get('code');
-  const cancelled = url.searchParams.has('error');
-  if (!HEX.test(state || '') || (!cancelled && (!code || code.length > 4096))) {
-    return new Response('Start the itch.io connection in your Drunk Yeti account.', { status: 400, headers: baseHeaders });
-  }
-
-  const params = new URLSearchParams({ itch_state: state });
-  if (cancelled) params.set('itch_cancelled', '1');
-  else params.set('itch_code', code);
-  return new Response(null, {
-    status: 303, headers: { ...baseHeaders, Location: ORIGIN + '/account/#' + params },
-  });
-}
-
 export async function fetchItchIdentity({ clientId, callback, code, pending, fetchImpl = fetch }) {
   const options = { redirect: 'error', signal: AbortSignal.timeout(10000) };
   async function read(path, init) {
@@ -67,8 +51,6 @@ export async function fetchItchIdentity({ clientId, callback, code, pending, fet
 
 export function createItchHandler({ admin, clientFor, clientId, callback, fetchImpl = fetch }) {
   return async req => {
-    const url = new URL(req.url);
-    if (req.method === 'GET') return relay(url);
     const origin = req.headers.get('origin');
     const headers = {
       ...baseHeaders, 'Content-Type': 'application/json', Vary: 'Origin',

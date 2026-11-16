@@ -1,12 +1,12 @@
 export const itchPendingKey = 'yeti.itch.pending';
 
 export function captureItchReturn() {
-  const params = new URLSearchParams((location.hash || '').slice(1));
-  if (!params.has('itch_state')) return null;
+  const params = new URLSearchParams(location.search);
+  if (params.get('itch_callback') !== '1') return null;
   history.replaceState(null, '', location.pathname + '#social');
   return {
-    state: params.get('itch_state'), code: params.get('itch_code'),
-    cancelled: params.has('itch_cancelled'),
+    state: params.get('state'), code: params.get('code'),
+    cancelled: params.has('error'),
   };
 }
 

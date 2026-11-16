@@ -16,6 +16,6 @@ verify_jwt = true
 [functions.xbox-callback]
 verify_jwt = false
 
-# GET relays the OAuth callback. Every POST verifies the Supabase user in the handler.
+# The website receives the OAuth callback. The function also verifies the session in code.
 [functions.itch-account]
-verify_jwt = false
+verify_jwt = true

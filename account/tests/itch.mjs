@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
+import { captureItchReturn } from '../src/itch.js';
 import { createItchHandler, fetchItchIdentity } from '../../supabase/functions/_shared/itch-account.mjs';
 
-const callback = 'https://example.supabase.co/functions/v1/itch-account';
+const callback = 'https://www.drunkyetistudio.com/account/?itch_callback=1';
 const base = { clientId: 'registered-id', callback, code: 'provider-code', pending: { verifier: 'pkce', restore: true } };
 const requests = [];
 const fetchImpl = async (url, options) => {
@@ -27,10 +28,9 @@ await assert.rejects(fetchItchIdentity({
 }), /invalid_ownership_response/);
 
 const handler = createItchHandler({ clientId: 'registered-id', callback });
-const relay = await handler(new Request(callback + '?state=' + 'a'.repeat(64) + '&code=provider-code'));
-assert.equal(relay.status, 303);
-assert.equal(new URL(relay.headers.get('location')).origin, 'https://www.drunkyetistudio.com');
-assert(!relay.headers.get('location').includes('?'));
-assert.equal((await handler(new Request(callback + '?state=bad&code=code'))).status, 400);
+assert.equal((await handler(new Request(callback))).status, 405);
 assert.equal((await handler(new Request(callback, { method: 'POST', body: '{}' }))).status, 401);
-console.log('PASS itch.io relay, PKCE exchange, minimal scopes and ownership validation');
+globalThis.location = { pathname: '/account/', search: '?itch_callback=1&code=provider-code&state=provider-state' };
+globalThis.history = { replaceState: (state, title, url) => assert.equal(url, '/account/#social') };
+assert.deepEqual(captureItchReturn(), { code: 'provider-code', state: 'provider-state', cancelled: false });
+console.log('PASS itch.io callback cleanup, protected handler, PKCE exchange and ownership validation');
