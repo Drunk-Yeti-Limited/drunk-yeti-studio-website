@@ -393,7 +393,7 @@
     "browser": true,
     "coverSource": "https://img.itch.zone/aW1nLzMxODU2Njc3LnBuZw==/315x250%23c/uzRqq%2F.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Tidebreak Desktop Platformer",
@@ -415,7 +415,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxODU4MDc4LnBuZw==/315x250%23c/1YF3rg.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "DeathWish: Everafter Garden",
@@ -426,7 +426,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxODU4OTIxLnBuZw==/315x250%23c/12oQuI.png",
     "frostpass": true,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Yeti Below Soundtrack",
@@ -539,13 +539,13 @@
     "frostpassCheck": "unavailable"
   },
   {
-    "title": "Nexus Wars Soundtrack",
-    "url": "https://drunkyeti.itch.io/nexus-wars-soundtrack",
-    "image": "./assets/covers/nexus-wars-soundtrack.webp",
-    "description": "",
-    "category": "Soundtracks",
+    "title": "A Rocket's Intensity",
+    "url": "https://drunkyeti.itch.io/a-rockets-intensity",
+    "image": "./assets/covers/a-rockets-intensity.webp",
+    "description": "Shoot Your Way To Victory",
+    "category": "Games",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMxNDM2Mzc5LmpwZWc=/315x250%23c/R%2F%2BCqY.jpeg",
+    "coverSource": "https://img.itch.zone/aW1nLzMyNDAyMzY5LnBuZw==/315x250%23c/PMQj34.png",
     "frostpass": false,
     "frostpassCheck": "unavailable"
   },
@@ -580,7 +580,7 @@
     "browser": true,
     "coverSource": "https://img.itch.zone/aW1nLzMxODE2NjY1LnBuZw==/315x250%23c/EbhDz6.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Kindgom Kitty Soundtrack",
@@ -767,7 +767,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxNDA0Mjg5LnBuZw==/315x250%23c/Q5K5F%2F.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "AR3NA Neon Circuit Minecraft Mod",
@@ -778,7 +778,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxNDA0MTA4LnBuZw==/315x250%23c/rQokZS.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Cross World Overdive",
@@ -789,7 +789,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxNDAwMjQ2LnBuZw==/315x250%23c/cArTzQ.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Sixfold",
@@ -800,7 +800,7 @@
     "browser": true,
     "coverSource": "https://img.itch.zone/aW1nLzMxMzQzNTUyLnBuZw==/315x250%23c/Vv6PZZ.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "AR3NA Foosball Soundtrack",
@@ -811,7 +811,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxNDE4NDg2LmpwZWc=/315x250%23c/C6rY5u.jpeg",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Minecraft Frostbound Lodge Mod",
@@ -844,7 +844,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxMjA1ODM2LnBuZw==/315x250%23c/ST8LQf.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "MOLY, BART & SKID — THE LOST SPRING",
@@ -877,7 +877,7 @@
     "browser": true,
     "coverSource": "https://img.itch.zone/aW1nLzMxNjI1ODU1LnBuZw==/315x250%23c/hphexQ.png",
     "frostpass": true,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "ORBITBREAK: SECTOR ZERO",
@@ -899,7 +899,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxMDY1OTM4LnBuZw==/315x250%23c/pBazCh.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Racing Maker",
@@ -921,7 +921,7 @@
     "browser": true,
     "coverSource": "https://img.itch.zone/aW1nLzMxNzI4NDI5LnBuZw==/315x250%23c/Sg7fGK.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "ORBITBREAK: ALIEN FRONTIER",
@@ -998,7 +998,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxMDI4NTM4LnBuZw==/315x250%23c/LN%2BRak.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Quadrift: Gravity Riot",
@@ -1075,7 +1075,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwOTQ5MzExLnBuZw==/315x250%23c/W43cbM.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Heartpost: Cupid's Crossing - Sidescroller Asset Pack",
@@ -1086,7 +1086,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwOTQ4ODI3LnBuZw==/315x250%23c/dBcUrW.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Bubble Buddies",
@@ -1097,7 +1097,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwOTQ4NTgxLnBuZw==/315x250%23c/Vd4xLm.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Oddly Stacked",
@@ -1152,7 +1152,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwOTA1NTgxLnBuZw==/315x250%23c/1USYqD.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Cornerfall: Chaos Circuit",
@@ -1207,7 +1207,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwOTAxMjY3LnBuZw==/315x250%23c/6ybllV.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "AR3NA: Foosball Circuit",
@@ -1240,7 +1240,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwOTAwNDU4LnBuZw==/315x250%23c/z0XudZ.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "LANTERN SKY — TOP-DOWN CHINESE NEW YEAR",
@@ -1262,7 +1262,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwOTAwMjQ3LnBuZw==/315x250%23c/EhImqC.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "COMBINED ARMS — LAND, AIR & SEA",
@@ -1317,7 +1317,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwNzY0ODQ3LnBuZw==/315x250%23c/0Ix1h7.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "New Year’s Midnight — 2D Side-Scroller Asset Pack",
@@ -1339,7 +1339,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwNzQ4MTg0LnBuZw==/315x250%23c/%2FmvQyy.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Autumn & Thanksgiving — Top-Down Collection",
@@ -1361,7 +1361,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwNzQ4MTgwLnBuZw==/315x250%23c/TWJXEU.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Autumn & Thanksgiving — 2D Side-Scroller Asset Pack",
@@ -1405,7 +1405,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDIwLnBuZw==/315x250%23c/H3WzdO.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Piano Solo MIDI Generator",
@@ -1416,7 +1416,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDM1LnBuZw==/315x250%23c/lHE0Ns.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Drum Solo MIDI Generator",
@@ -1438,7 +1438,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDY4LnBuZw==/315x250%23c/AkDrB0.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "eBook Maker",
@@ -1449,7 +1449,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDQ4LnBuZw==/315x250%23c/vhXPgs.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Chainfall — Jump, Convert, Dominate",
@@ -1460,7 +1460,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDg2LnBuZw==/315x250%23c/9szJEw.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Rubberban Frenzy",
@@ -1504,7 +1504,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzI0NTMwMDE0LnBuZw==/315x250%23c/XdZXCP.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Nexus Wars",
@@ -1515,7 +1515,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzI0NDExODUyLnBuZw==/315x250%23c/XxI5PK.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "YHETI Studio",
@@ -1537,7 +1537,7 @@
     "browser": true,
     "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDkyLnBuZw==/315x250%23c/l%2FLl7b.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Website Analyzer",
@@ -1592,7 +1592,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDc5LnBuZw==/315x250%23c/roNj7%2B.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Music Idea Generator",
@@ -1614,7 +1614,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDg4LnBuZw==/315x250%23c/H0mlDK.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Guitar Solo Midi Generator",
@@ -1625,7 +1625,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDQxLnBuZw==/315x250%23c/uxiBtP.png",
     "frostpass": false,
-    "frostpassCheck": "verified"
+    "frostpassCheck": "unavailable"
   },
   {
     "title": "Deep Web Explorer",
