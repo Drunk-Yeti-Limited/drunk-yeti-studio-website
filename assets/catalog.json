@@ -286,13 +286,13 @@
     "frostpassCheck": "verified"
   },
   {
-    "title": "Avalanca: Downhill Riot",
+    "title": "Avalanca",
     "url": "https://drunkyeti.itch.io/avalanca-downhill-riot",
     "image": "./assets/covers/avalanca-downhill-riot.webp",
     "description": "",
     "category": "Games",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMxNTEyMDg4LnBuZw==/315x250%23c/Y93a4X.png",
+    "coverSource": "https://img.itch.zone/aW1nLzMyNDA3MjY3LnBuZw==/315x250%23c/3QIHi2.png",
     "frostpass": true,
     "frostpassCheck": "verified"
   },
@@ -544,7 +544,7 @@
     "image": "./assets/covers/a-rockets-intensity.webp",
     "description": "Shoot Your Way To Victory",
     "category": "Games",
-    "browser": false,
+    "browser": true,
     "coverSource": "https://img.itch.zone/aW1nLzMyNDAyMzY5LnBuZw==/315x250%23c/PMQj34.png",
     "frostpass": false,
     "frostpassCheck": "unavailable"
@@ -767,7 +767,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxNDA0Mjg5LnBuZw==/315x250%23c/Q5K5F%2F.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "AR3NA Neon Circuit Minecraft Mod",
@@ -811,7 +811,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxNDE4NDg2LmpwZWc=/315x250%23c/C6rY5u.jpeg",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Minecraft Frostbound Lodge Mod",
@@ -833,7 +833,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxMjA4MTY4LnBuZw==/315x250%23c/WZ2tAI.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Moonlight Commons",
@@ -866,7 +866,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxMTI0MzU5LnBuZw==/315x250%23cb/OT3lwF.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Fighter Maker",
@@ -888,7 +888,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxMDY2NzU0LnBuZw==/315x250%23c/Vv64n6.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Bottle Tuesdays",
@@ -899,7 +899,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxMDY1OTM4LnBuZw==/315x250%23c/pBazCh.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Racing Maker",
@@ -910,7 +910,7 @@
     "browser": true,
     "coverSource": "https://img.itch.zone/aW1nLzMxNjYyMjc0LnBuZw==/315x250%23c/YopITV.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Shoot'em Up Maker",
@@ -932,7 +932,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxMDU2Mjk1LnBuZw==/315x250%23c/3R76st.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Orbitbreak: Alien Frontier is built.",
@@ -943,7 +943,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxMDU1ODM1LnBuZw==/315x250%23c/BqsIyR.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Desktop Impact",
@@ -965,7 +965,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxMDMyNzQ3LnBuZw==/315x250%23c/GLpPRb.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Drunk Yeti Desktop Buddy",
@@ -987,7 +987,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxMDI5MDE2LnBuZw==/315x250%23c/kR1mSo.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "HEARTPOST: VALENTINE VILLAGE",
@@ -1020,7 +1020,7 @@
     "browser": true,
     "coverSource": "https://img.itch.zone/aW1nLzMxNjI1MjI5LnBuZw==/315x250%23c/jLEk8K.png",
     "frostpass": true,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Top Down Maker",
@@ -1031,7 +1031,7 @@
     "browser": true,
     "coverSource": "https://img.itch.zone/aW1nLzMxNjI0OTAyLnBuZw==/315x250%23c/X%2B5igr.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Parcel Junction",
@@ -1064,7 +1064,7 @@
     "browser": true,
     "coverSource": "https://img.itch.zone/aW1nLzMwOTQ5ODc5LnBuZw==/315x250%23c/eRMGqs.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Blackout Salvage",
@@ -1097,7 +1097,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwOTQ4NTgxLnBuZw==/315x250%23c/Vd4xLm.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Oddly Stacked",
@@ -1119,7 +1119,7 @@
     "browser": true,
     "coverSource": "https://img.itch.zone/aW1nLzMxNjYwMzkwLnBuZw==/315x250%23c/CGrSha.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Pinball Maker",
@@ -1130,7 +1130,7 @@
     "browser": true,
     "coverSource": "https://img.itch.zone/aW1nLzMxNjYwNzMyLnBuZw==/315x250%23c/iDQLTJ.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Midnight Loot",
@@ -1163,7 +1163,7 @@
     "browser": true,
     "coverSource": "https://img.itch.zone/aW1nLzMwOTAxODY1LnBuZw==/315x250%23c/vE0GQ9.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Chainfall Deluxe",
@@ -1174,7 +1174,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwOTAxNzIyLnBuZw==/315x250%23c/h%2BuAf5.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Schmuck Deluxe",
@@ -1185,7 +1185,7 @@
     "browser": true,
     "coverSource": "https://img.itch.zone/aW1nLzMwOTAxNTY3LnBuZw==/315x250%23c/p20SBn.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Nexus Wars Deluxe",
@@ -1229,7 +1229,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwOTAwNTcyLnBuZw==/315x250%23c/LZRWq%2F.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "KANA RONIN — SAKURA TRAIL",
@@ -1240,7 +1240,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwOTAwNDU4LnBuZw==/315x250%23c/z0XudZ.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "LANTERN SKY — TOP-DOWN CHINESE NEW YEAR",
@@ -1251,7 +1251,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwOTAwMzM0LnBuZw==/315x250%23c/0AahgK.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "LANTERN SKY — CHINESE NEW YEAR",
@@ -1273,7 +1273,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwODU4OTg0LnBuZw==/315x250%23c/p7SSIc.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Yeti Below",
@@ -1328,7 +1328,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwNzY0Mzk0LnBuZw==/315x250%23c/S6%2B53Y.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Winter & Christmas — 2D Side-Scroller Asset Pack",
@@ -1372,7 +1372,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwNzQ4MTU5LnBuZw==/315x250%23c/PiZSeb.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Halloween Realms — Complete Top-Down Asset Pack",
@@ -1394,7 +1394,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwNzQ4MTczLnBuZw==/315x250%23c/qxgMZQ.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Violin/Cello Solo MIDI Generator",
@@ -1405,7 +1405,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDIwLnBuZw==/315x250%23c/H3WzdO.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Piano Solo MIDI Generator",
@@ -1427,7 +1427,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDUzLnBuZw==/315x250%23c/%2FlRAlX.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Bass Solo MIDI Generator",
@@ -1449,7 +1449,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDQ4LnBuZw==/315x250%23c/vhXPgs.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Chainfall — Jump, Convert, Dominate",
@@ -1460,7 +1460,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDg2LnBuZw==/315x250%23c/9szJEw.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Rubberban Frenzy",
@@ -1471,7 +1471,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzI0NTkyMDAyLnBuZw==/315x250%23c/agi7fQ.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Hover Rancher",
@@ -1482,7 +1482,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzI0MjU0ODc4LmpwZw==/315x250%23c/j%2FEhY6.jpg",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Squirrel Idle Tycoon",
@@ -1515,7 +1515,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzI0NDExODUyLnBuZw==/315x250%23c/XxI5PK.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "YHETI Studio",
@@ -1526,7 +1526,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMxNzg1MzU2LnBuZw==/315x250%23c/H5a%2Bjx.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Block Battler",
@@ -1625,7 +1625,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDQxLnBuZw==/315x250%23c/uxiBtP.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Deep Web Explorer",
@@ -1636,7 +1636,7 @@
     "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMwODU4NDgzLnBuZw==/315x250%23c/HUiWNB.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Desktop Snowing App",
