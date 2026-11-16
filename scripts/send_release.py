@@ -9,6 +9,7 @@ from urllib.error import URLError
 from urllib.parse import urlsplit
 from urllib.request import HTTPRedirectHandler, Request, build_opener
 
+from announce_studio_news import DISCORD_HEADERS, STUDIO_SERVER
 from release_social import ROOT, build_packages, write_json
 
 MASTODON = 'https://mastodon.social'
@@ -47,7 +48,7 @@ def discord_send(draft, webhook):
         embed['image'] = {'url': draft['artwork']['url']}
     payload = {'embeds': [embed], 'allowed_mentions': {'parse': []}}
     result = request_json(webhook + '?wait=true', payload=json.dumps(payload).encode(),
-                          headers={'Content-Type': 'application/json'})
+                          headers={**DISCORD_HEADERS, 'Content-Type': 'application/json'})
     return result['id']
 
 
@@ -93,9 +94,11 @@ def main():
             if args.channel == 'discord':
                 webhook = os.environ['DISCORD_RELEASE_WEBHOOK']
                 validate_discord_webhook(webhook)
-                info = request_json(webhook)
+                info = request_json(webhook, headers=DISCORD_HEADERS)
                 if info.get('type') != 1 or not str(info.get('channel_id', '')).isdigit():
                     raise ValueError('Discord did not confirm an incoming channel webhook.')
+                if info.get('guild_id') != STUDIO_SERVER:
+                    raise ValueError('The release webhook belongs to a different Discord server.')
                 print(f'Discord channel ID: {info["channel_id"]}')
             else:
                 verify_mastodon_account(os.environ['MASTODON_RELEASE_TOKEN'])
