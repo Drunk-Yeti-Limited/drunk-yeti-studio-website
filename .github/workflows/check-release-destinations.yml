@@ -1,6 +1,10 @@
 name: Check release destinations
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/check-release-destinations.yml'
   workflow_dispatch:
     inputs:
       channel:
@@ -26,7 +30,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Check Discord
-        if: inputs.channel == 'discord'
+        if: github.event_name == 'push' || inputs.channel == 'discord'
         env:
           DISCORD_RELEASE_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
         run: |
@@ -36,7 +40,7 @@ jobs:
           fi
           python scripts/send_release.py games-drunkyeti-schmuck-android-launch discord --check
       - name: Check Mastodon
-        if: inputs.channel == 'mastodon'
+        if: ${{ !cancelled() && (github.event_name == 'push' || inputs.channel == 'mastodon') }}
         env:
           MASTODON_RELEASE_TOKEN: ${{ secrets.MASTODON_RELEASE_TOKEN }}
         run: |
