@@ -1682,5 +1682,18 @@
       "Android"
     ],
     "packageId": "com.drunkyeti.houseofwilds"
+  },
+  {
+    "title": "Schmuck Deluxe — Android",
+    "url": "https://play.google.com/store/apps/details?id=games.drunkyeti.schmuck",
+    "image": "./assets/covers/schmuck-deluxe.webp",
+    "description": "Climb the table, outplay your rivals and take the crown in 3D. Available on Google Play for Android.",
+    "category": "Games",
+    "browser": false,
+    "storefront": "Google Play",
+    "platforms": [
+      "Android"
+    ],
+    "packageId": "games.drunkyeti.schmuck"
   }
 ]

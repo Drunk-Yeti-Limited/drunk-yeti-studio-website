@@ -174,28 +174,31 @@ existing itch.io/browser editions.
 python3 scripts/refresh_google_play.py
 ```
 
-This standard-library Python command reads the public studio developer page,
-checks each discovered `com.drunkyeti.*` listing against its developer link and
-Android metadata, updates `google-play-releases.json` and the catalog, and rebuilds
-crawlable pages. No login, API key, or paid service is needed. A blocked, empty,
-or invalid response fails without overwriting saved releases. Entries missing
-from a later response are retained for review, not automatically deleted. Google
-may expose only part of its catalog or change markup; this checks public listings,
-not private Play Console drafts, rollout status, or reliable version history.
+This standard-library Python command reads the public studio developer page and
+checks the publisher, app ID, Android metadata, and install or purchase button
+on each listing. It accepts Android IDs in any namespace on the verified profile.
+On first discovery of a public release, it updates the Android catalog and
+publishes one launch post to `news.json`. The post links to the official listing
+and includes a screenshot when one can be downloaded from the store gallery.
+Pre-registration and unavailable listings wait until the store offers the app.
+The app ID identifies the launch, so reruns and title changes keep the same post.
+
+A blocked, empty, or unverifiable response preserves saved releases. Releases
+missing from a later response stay in the catalog. The checker uses the public
+US listing and cannot see private Play Console tracks or release version history.
 
 `prepare-assets.py` also calls this checker, so the existing daily content-refresh
-workflow includes Google Play. That schedule depends on GitHub Actions availability;
-the standalone command works locally without Actions. Commit and push changed files
-to deploy. New apps receive a studio-logo fallback until approved cover artwork is added.
+workflow includes Google Play. It commits the catalog and announcements and deploys
+them with the refreshed homepage, RSS, sitemap, and search index. If running the
+script locally, commit and push the changed files to deploy.
 
 ### Publish a release update
 
-Published posts live in `news.json`; newly discovered Android apps create entries
-in `news-drafts.json`. Drafts are never included in the public News index, RSS, or
-sitemap. Review the title, date, summary, body paragraphs, local `/assets/` image,
-and labeled HTTPS links. Add official screenshot assets or trailer links when
-available; do not invent footage or features. For game/software updates outside
-Google Play, create a draft using the same fields as the House of Wilds entry.
+Published posts live in `news.json`. For an editorial post or an update to an
+existing game, create a draft in `news-drafts.json` using the same fields as the
+House of Wilds entry. Drafts stay out of the News index, RSS, and sitemap until
+published. Use the title, date, summary, body paragraphs, local `/assets/` image,
+and labeled HTTPS links to add original screenshots, trailers, and release details.
 Set `product` to the existing official page (for example, `/games/house-of-wilds/`)
 to add the post to that page’s **Latest updates** and link readers back to the
 product. Product paths come from `studio-content.json`; `/desktop-buddy/` also works.
