@@ -16,27 +16,89 @@ try{
  const platform=new THREE.Mesh(new THREE.CylinderGeometry(1.25,1.35,.2,64),new THREE.MeshToonMaterial({color:0xcaff61,gradientMap:ramp}));platform.position.y=-.1;scene.add(platform);
  const rim=new THREE.Mesh(new THREE.TorusGeometry(1.3,.025,8,64),new THREE.MeshBasicMaterial({color:0x14242b}));rim.rotation.x=Math.PI/2;rim.position.y=.01;scene.add(rim);
  const shadowCanvas=document.createElement('canvas');shadowCanvas.width=128;shadowCanvas.height=128;const ctx=shadowCanvas.getContext('2d');const gradient=ctx.createRadialGradient(64,64,0,64,64,64);gradient.addColorStop(0,'rgba(20,36,43,.4)');gradient.addColorStop(1,'rgba(20,36,43,0)');ctx.fillStyle=gradient;ctx.fillRect(0,0,128,128);const shadow=new THREE.Mesh(new THREE.PlaneGeometry(2.1,1.5),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(shadowCanvas),transparent:true,depthWrite:false}));shadow.rotation.x=-Math.PI/2;shadow.position.y=.015;scene.add(shadow);
- new GLTFLoader().load('./assets/drunk-yeti.glb',gltf=>{
+ let mascotStarted = false;
+ const loadMascot = () => {
+  if (mascotStarted) return;
+  mascotStarted = true;
+  new GLTFLoader().load('./assets/drunk-yeti.glb', gltf => {
   mascot=gltf.scene;const box=new THREE.Box3().setFromObject(mascot),size=box.getSize(new THREE.Vector3()),center=box.getCenter(new THREE.Vector3());const scale=2.85/size.y;mascot.scale.setScalar(scale);mascot.position.set(-center.x*scale,-box.min.y*scale+.035,-center.z*scale);const root=new THREE.Group();root.add(mascot);scene.add(root);mascot.userData.turnRoot=root;
   mascot.traverse(o=>{if(o.isMesh){const convert=m=>new THREE.MeshToonMaterial({color:m.color,map:m.map,gradientMap:ramp,side:m.side,transparent:m.transparent,opacity:m.opacity,alphaTest:m.alphaTest});o.material=Array.isArray(o.material)?o.material.map(convert):convert(o.material);o.frustumCulled=false;}});
   mixer=new THREE.AnimationMixer(mascot);const clips=new Map(gltf.animations.map(a=>[a.name,a]));idle=clips.has('idle')?mixer.clipAction(clips.get('idle')):null;idle?.play();if(clips.has('blink'))blink=mixer.clipAction(clips.get('blink')).setLoop(THREE.LoopOnce,1);upperArm=mascot.getObjectByName('upper_arm_R');forearm=mascot.getObjectByName('forearm_R');armRest=upperArm?.quaternion.clone();forearmRest=forearm?.quaternion.clone();
-  document.querySelector('#fallback-yeti').hidden=true;status.textContent='Real mascot. Real Yeti energy.';document.querySelector('#wave').disabled=false;document.querySelector('#spin').disabled=false;renderer.render(scene,camera);
- },undefined,e=>{console.error('Mascot could not load',e);renderer.domElement.hidden=true;status.textContent='Meet Drunk Yeti';});
- logoRenderer=rendererFor(logoHost);logoScene=new THREE.Scene();logoCamera=new THREE.PerspectiveCamera(34,1,.1,50);logoCamera.position.set(0,0,5.4);logoKey=lights(logoScene);responsive(logoHost,logoRenderer,logoCamera);
- let logoStarted=false;
- const loadLogo=()=>{if(logoStarted)return;logoStarted=true;new GLTFLoader().load('./assets/drunk-yeti-inflated-logo.glb',gltf=>{logo=gltf.scene;logo.traverse(o=>{if(o.isMesh&&o.material.map){o.material.map.anisotropy=Math.min(4,logoRenderer.capabilities.getMaxAnisotropy());}});logo.rotation.y=-.15;logoScene.add(logo);document.querySelector('#logo-fallback').hidden=true;logoRenderer.render(logoScene,logoCamera);},undefined,e=>{console.error(e);logoRenderer.domElement.hidden=true;});};
- const observer=new IntersectionObserver(entries=>{for(const e of entries){if(e.target===stage)mascotVisible=e.isIntersecting;if(e.target===logoHost){logoVisible=e.isIntersecting;if(logoVisible)loadLogo();}}},{rootMargin:'100px'});observer.observe(stage);observer.observe(logoHost);
+   renderer.render(scene, camera);
+   document.querySelector('#fallback-yeti').hidden = true;
+   status.textContent = 'Real mascot. Real Yeti energy.';
+   document.querySelector('#wave').disabled = false;
+   document.querySelector('#spin').disabled = false;
+  }, undefined, error => {
+   console.error('Mascot could not load', error);
+   renderer.domElement.remove();
+   status.textContent = '3D mascot unavailable. Showing artwork.';
+  });
+ };
+ let logoStarted = false;
+ const loadLogo = () => {
+  if (logoStarted) return;
+  logoStarted = true;
+  try {
+   logoRenderer = rendererFor(logoHost);
+   logoScene = new THREE.Scene();
+   logoCamera = new THREE.PerspectiveCamera(34, 1, .1, 50);
+   logoCamera.position.set(0, 0, 5.4);
+   logoKey = lights(logoScene);
+   responsive(logoHost, logoRenderer, logoCamera);
+  } catch (error) {
+   console.error('Logo scene unavailable', error);
+   logoRenderer?.domElement.remove();
+   return;
+  }
+  new GLTFLoader().load('./assets/drunk-yeti-inflated-logo.glb', gltf => {
+   logo = gltf.scene;
+   const anisotropy = Math.min(4, logoRenderer.capabilities.getMaxAnisotropy());
+   logo.traverse(object => {
+    if (object.isMesh && object.material?.map) object.material.map.anisotropy = anisotropy;
+   });
+   logo.rotation.y = logoAngle;
+   logoScene.add(logo);
+   logoRenderer.render(logoScene, logoCamera);
+   document.querySelector('#logo-fallback').hidden = true;
+  }, undefined, error => {
+   console.error('Logo could not load', error);
+   logoRenderer.domElement.remove();
+  });
+ };
+ const observer = new IntersectionObserver(entries => {
+  for (const entry of entries) {
+   if (entry.target === stage) {
+    mascotVisible = entry.isIntersecting;
+    if (mascotVisible) loadMascot();
+   } else {
+    logoVisible = entry.isIntersecting;
+    if (logoVisible) loadLogo();
+   }
+  }
+ }, {rootMargin: '120px'});
+ observer.observe(stage);
+ observer.observe(logoHost);
  stage.addEventListener('pointermove',e=>{if(e.pointerType!=='mouse')return;const r=stage.getBoundingClientRect();target.set((e.clientX-r.left)/r.width-.5,(e.clientY-r.top)/r.height-.5);});stage.addEventListener('pointerleave',()=>target.set(0,0));
  const wave=()=>{if(!mascot||!moving)return;waveUntil=clock+2.4;status.textContent='Well, hello there!';};document.querySelector('#wave').addEventListener('click',()=>{if(!moving){moving=true;updateMotion();}wave();});stage.addEventListener('click',wave);document.querySelector('#spin').addEventListener('click',()=>{if(!moving){moving=true;updateMotion();}spinUntil=clock+2;});
- let drag=null,logoAngle=0;logoHost.style.touchAction='pan-y';logoHost.addEventListener('pointerdown',e=>{drag={x:e.clientX,y:e.clientY,angle:logoAngle,id:e.pointerId};});logoHost.addEventListener('pointermove',e=>{if(!drag||e.pointerId!==drag.id)return;if(Math.abs(e.clientX-drag.x)>Math.abs(e.clientY-drag.y)){logoAngle=drag.angle+(e.clientX-drag.x)*.009;}});window.addEventListener('pointerup',()=>drag=null);window.addEventListener('pointercancel',()=>drag=null);
+ let drag=null,logoAngle=-.15;logoHost.style.touchAction='pan-y';logoHost.addEventListener('pointerdown',e=>{drag={x:e.clientX,y:e.clientY,angle:logoAngle,id:e.pointerId};});logoHost.addEventListener('pointermove',e=>{if(!drag||e.pointerId!==drag.id)return;if(Math.abs(e.clientX-drag.x)>Math.abs(e.clientY-drag.y)){logoAngle=drag.angle+(e.clientX-drag.x)*.009;}});window.addEventListener('pointerup',()=>drag=null);window.addEventListener('pointercancel',()=>drag=null);
  const q=new THREE.Quaternion();const zAxis=new THREE.Vector3(0,0,1);
  function frame(time){requestAnimationFrame(frame);if(document.hidden){last=time;return;}const mobile=innerWidth<720;if(mobile&&time-last<30)return;const dt=Math.min((time-last)/1000,.05);last=time;if(moving)clock+=dt;
   if(mascot&&mascotVisible){if(moving){mixer.update(dt);rotation.lerp(target,.06);const turn=mascot.userData.turnRoot;let spin=0;if(spinUntil>clock){const progress=1-(spinUntil-clock)/2;spin=2*Math.PI*(progress*progress*(3-2*progress));}turn.rotation.y=.12+rotation.x*.55+spin;
     if(upperArm&&armRest){upperArm.quaternion.copy(armRest);if(waveUntil>clock){const t=2.4-(waveUntil-clock);const envelope=Math.min(1,t*4,(waveUntil-clock)*4);q.setFromAxisAngle(zAxis,1.7*envelope+Math.sin(t*14)*.16*envelope);upperArm.quaternion.multiply(q);if(forearm&&forearmRest){forearm.quaternion.copy(forearmRest);q.setFromAxisAngle(zAxis,.45*envelope);forearm.quaternion.multiply(q);}}else if(forearm&&forearmRest)forearm.quaternion.copy(forearmRest);}
     if(clock-lastBlink>4.3){blink?.reset().play();lastBlink=clock;}if(waveUntil<clock&&status.textContent==='Well, hello there!')status.textContent='Real mascot. Real Yeti energy.';
    }renderer.render(scene,camera);}
-  if(logo&&logoVisible){if(moving&&!drag){logo.rotation.y=logoAngle+Math.sin(clock*.65)*.28;logo.rotation.x=Math.sin(clock*.8)*.1;logo.position.y=Math.sin(clock*1.25)*.07;logoKey.position.set(Math.sin(clock*.7)*4,3,6);}else if(drag)logo.rotation.y=logoAngle;logoRenderer.render(logoScene,logoCamera);}
+  if (logo && logoVisible) {
+   if (moving && !drag) {
+    logoAngle = (logoAngle + dt * (2 * Math.PI / 24)) % (2 * Math.PI);
+    logo.rotation.x = Math.sin(clock * .8) * .1;
+    logo.position.y = Math.sin(clock * 1.25) * .07;
+    logoKey.position.set(Math.sin(clock * .7) * 4, 3, 6);
+   }
+   logo.rotation.y = logoAngle;
+   logoRenderer.render(logoScene, logoCamera);
+  }
  }
  motion.disabled=false;
  requestAnimationFrame(frame);
-}catch(e){console.error('3D unavailable; showing original artwork.',e);renderer?.domElement.remove();logoRenderer?.domElement.remove();document.querySelector('#fallback-yeti').hidden=false;document.querySelector('#logo-fallback').hidden=false;status.textContent='Meet Drunk Yeti';motion.disabled=true;}
+}catch(e){console.error('3D unavailable; showing original artwork.',e);renderer?.domElement.remove();logoRenderer?.domElement.remove();document.querySelector('#fallback-yeti').hidden=false;document.querySelector('#logo-fallback').hidden=false;motion.disabled=true;throw e;}
