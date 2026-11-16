@@ -12,3 +12,10 @@ document.querySelector('#search').value='Tool';vm.runInContext('render()',ctx);a
 document.querySelector('#search').value='';document.querySelector('#browser-only').checked=true;vm.runInContext('render()',ctx);assert.equal(document.querySelectorAll('.project-card').length,1);
 vm.runInContext("selectCategory('All')",ctx);assert.equal(document.querySelector('#frostpass-guide').hidden,true);
 console.log('PASS Frostpass filtering across categories, strict flags, search, browser filter and selected state');
+ctx.data.push({title:'Android release',description:'Mobile game',category:'Games',storefront:'Google Play',platforms:['Android'],browser:false,url:'https://play.google.com/store/apps/details?id=com.drunkyeti.test',image:'./assets/logo.png'});
+document.querySelector('#search').value='';document.querySelector('#browser-only').checked=false;
+vm.runInContext("catalog=data;selectCategory('Android')",ctx);
+assert.equal(document.querySelectorAll('.project-card').length,1);
+assert.match(document.querySelector('.project-card').getAttribute('href'),/play.google.com/);
+document.querySelector('#browser-only').checked=true;vm.runInContext('render()',ctx);
+assert.equal(document.querySelectorAll('.project-card').length,0);

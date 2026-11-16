@@ -1,0 +1,15 @@
+[
+  {
+    "title": "Drunk Yeti's House of Wilds — Android",
+    "url": "https://play.google.com/store/apps/details?id=com.drunkyeti.houseofwilds",
+    "image": "./assets/covers/chainfall-pi.webp",
+    "description": "Wild slots, character-led casino tables and a seven-night reward wheel. Available on Google Play for Android.",
+    "category": "Games",
+    "browser": false,
+    "storefront": "Google Play",
+    "platforms": [
+      "Android"
+    ],
+    "packageId": "com.drunkyeti.houseofwilds"
+  }
+]

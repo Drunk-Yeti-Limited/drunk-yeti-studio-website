@@ -4,6 +4,7 @@ from pathlib import Path
 import json, html
 from urllib.parse import urlparse
 import studio_pages
+import news_pages
 from support_page import BODY as SUPPORT_BODY
 from html.parser import HTMLParser
 R=Path(__file__).resolve().parents[1]; ORIGIN='https://www.drunkyetistudio.com'; esc=html.escape
@@ -14,7 +15,7 @@ def page(path,title,description,body,schema=None,intro=None):
     url=ORIGIN+path
     metadata={'@context':'https://schema.org','@type':'WebPage','name':title,'description':description,'url':url} if schema is None else schema
     data=json.dumps(metadata,ensure_ascii=False).replace('<','\\u003c')
-    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{esc(title)} | Drunk Yeti Studio</title><meta name="description" content="{esc(description,quote=True)}"><link rel="canonical" href="{url}"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:site_name" content="Drunk Yeti Studio"><meta property="og:title" content="{esc(title,quote=True)}"><meta property="og:description" content="{esc(description,quote=True)}"><meta property="og:url" content="{url}"><meta property="og:image" content="{ORIGIN}/assets/social-preview-v1.png"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/collections.css"><link rel="stylesheet" href="/studio.css?v=2"><script type="application/ld+json">{data}</script>{METRICOOL}</head><body class="studio-page"><a class="skip" href="#main">Skip to content</a><header><a class="brand" href="/">DRUNK YETI <small>STUDIO</small></a><a href="/account/">Your account ↗</a></header>{studio_pages.NAV}<main id="main"><p class="eyebrow">INDEPENDENT GAMES · CREATIVE SOFTWARE · ORIGINAL WORLDS</p><h1>{esc(title)}</h1><p class="intro">{esc(intro if intro is not None else description)}</p>{body}</main><footer>{studio_pages.FOOTER}</footer></body></html>'''
+    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{esc(title)} | Drunk Yeti Studio</title><meta name="description" content="{esc(description,quote=True)}"><link rel="canonical" href="{url}"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:site_name" content="Drunk Yeti Studio"><meta property="og:title" content="{esc(title,quote=True)}"><meta property="og:description" content="{esc(description,quote=True)}"><meta property="og:url" content="{url}"><meta property="og:image" content="{ORIGIN}/assets/social-preview-v1.png"><meta name="twitter:card" content="summary_large_image"><link rel="alternate" type="application/rss+xml" title="Drunk Yeti Studio News" href="/news/feed.xml"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/collections.css"><link rel="stylesheet" href="/studio.css?v=2"><script type="application/ld+json">{data}</script>{METRICOOL}</head><body class="studio-page"><a class="skip" href="#main">Skip to content</a><header><a class="brand" href="/">DRUNK YETI <small>STUDIO</small></a><a href="/account/">Your account ↗</a></header>{studio_pages.NAV}<main id="main"><p class="eyebrow">INDEPENDENT GAMES · CREATIVE SOFTWARE · ORIGINAL WORLDS</p><h1>{esc(title)}</h1><p class="intro">{esc(intro if intro is not None else description)}</p>{body}</main><footer>{studio_pages.FOOTER}</footer></body></html>'''
 def write(path,data):
     p=R/path;p.parent.mkdir(parents=True,exist_ok=True);p.write_text(data)
 class IndexMetadata(HTMLParser):
@@ -46,7 +47,7 @@ def main():
     for slug,category,title,description in CATEGORIES:
         items=[c for c in cards if c['category']==category]; markup=[]
         for c in items:
-            assert urlparse(c['url']).scheme=='https' and urlparse(c['url']).hostname in ('drunkyeti.itch.io','store.steampowered.com')
+            assert urlparse(c['url']).scheme=='https' and urlparse(c['url']).hostname in ('drunkyeti.itch.io','store.steampowered.com','play.google.com')
             img='/'+c['image'].removeprefix('./') if c['image'].startswith('./') else c['image']
             markup.append(f'<article><a href="{esc(c["url"],quote=True)}"><img src="{esc(img,quote=True)}" alt="{esc(c["title"],quote=True)} cover" loading="lazy" width="315" height="250"><h2>{esc(c["title"])}</h2></a><p>{esc(c.get("description") or "See the official release page for details and downloads.")}</p><a class="release" href="{esc(c["url"],quote=True)}">View release ↗</a></article>')
         hub={'games':'play','tools':'create','assets':'create','mods':'play','soundtracks':'worlds','os':'create','comics':'worlds'}[slug]
@@ -56,7 +57,7 @@ def main():
         write(slug+'/index.html',page('/'+slug+'/',title,description,body,schema));urls.append('/'+slug+'/')
     write('help/index.html',page('/help/','Help & support','Get help with Drunk Yeti accounts, Apple sign-in, purchases, Frostpass, browser games, downloads and Desktop Buddy.', SUPPORT_BODY))
     urls.extend(privacy_urls())
-    urls = list(dict.fromkeys(urls + studio_pages.build(page,write,cards)))
+    urls = list(dict.fromkeys(urls + studio_pages.build(page,write,cards) + news_pages.build(page,write)))
     write('sitemap.xml','<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+''.join('<url><loc>'+ORIGIN+u+'</loc></url>' for u in urls)+'</urlset>\n')
     write('robots.txt','User-agent: *\nAllow: /\n\nSitemap: '+ORIGIN+'/sitemap.xml\n')
     print(f'Built {len(urls)} sitemap URLs and seven crawlable collections.')
