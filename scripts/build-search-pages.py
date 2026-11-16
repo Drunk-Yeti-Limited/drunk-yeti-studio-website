@@ -59,18 +59,42 @@ def main():
         'os': '<section><h2>Choose your Linux project</h2><p>PlaySpace focuses on gaming, while Prismatic is presented as a creative operating system. Open the project that fits your interests to read its current release notes and installation guidance.</p><h2>Before you install</h2><p>Check the listed hardware requirements, download format and supported installation method. Back up your files before changing an operating system. A project’s release page is the best place to check what is included in the current build.</p><p>Looking for an individual app instead of an operating system? Browse our <a href="/tools/">creative tools and game makers</a>. For account questions, visit <a href="/help/">Help & support</a>.</p></section>',
         'comics': '<section><h2>Meet Moly, Bart & Skid</h2><p>The Heart Under The Mountain is a comic based on Moly, Bart & Skid. Open its publication page to explore the story and check the available editions and reading formats.</p><h2>Explore the studio’s original worlds</h2><p>Our illustrated stories sit alongside a wider collection of <a href="/games/">independent games</a> and <a href="/soundtracks/">music releases</a>. Browse those collections to discover more work from the studio, or visit <a href="/about/">About Drunk Yeti</a> for official channels and contact information.</p><p>Check each publication’s release page before downloading or purchasing. It contains the current description, previews and file information for that edition.</p></section>'
     }
-    for slug,category,title,description in CATEGORIES:
-        items=[c for c in cards if c['category']==category]; markup=[]
+    android = (
+        'android', 'Android', 'Android games & apps',
+        'Find official Drunk Yeti Studio Android releases on Google Play, including card games, screenshots, and device compatibility links.',
+    )
+    for slug,category,title,description in [*CATEGORIES, android]:
+        is_android = slug == 'android'
+        items = [c for c in cards if c.get('storefront') == 'Google Play'] if is_android else [
+            c for c in cards if c['category'] == category
+        ]
+        markup = []
+        listing_links = []
         for c in items:
             assert urlparse(c['url']).scheme=='https' and urlparse(c['url']).hostname in ('drunkyeti.itch.io','store.steampowered.com','play.google.com')
             img='/'+c['image'].removeprefix('./') if c['image'].startswith('./') else c['image']
             product_url = studio_links.get(c['url']) or studio_links.get(c.get('packageId') or studio_pages.catalog_slug(c['url']))
-            details_link = f'<a class="release" href="{product_url}">Project details →</a> ' if product_url else ''
-            markup.append(f'<article><a href="{esc(c["url"],quote=True)}"><img src="{esc(img,quote=True)}" alt="{esc(c["title"],quote=True)} cover" loading="lazy" width="315" height="250"><h2>{esc(c["title"])}</h2></a><p>{esc(c.get("description") or "See the official release page for details and downloads.")}</p>{details_link}<a class="release" href="{esc(c["url"],quote=True)}">View release ↗</a></article>')
-        hub={'games':'play','tools':'create','assets':'create','mods':'play','soundtracks':'worlds','os':'create','comics':'worlds'}[slug]
+            destination = product_url or c['url']
+            listing_links.append(destination)
+            store_label = 'Get it on Google Play' if c.get('storefront') == 'Google Play' else 'View release'
+            markup.append(
+                f'<article><a href="{esc(destination, quote=True)}"><img src="{esc(img, quote=True)}" '
+                f'alt="" loading="lazy" width="315" height="250"><h2>{esc(c["title"])}</h2></a>'
+                f'<p>{esc(c.get("description") or "See the official release page for details and downloads.")}</p>'
+                f'<a class="release" href="{esc(c["url"], quote=True)}">{store_label} ↗</a></article>'
+            )
+        hub={'android':'play','games':'play','tools':'create','assets':'create','mods':'play','soundtracks':'worlds','os':'create','comics':'worlds'}[slug]
         intro=f'<aside class="collection-intro"><p>Looking for a place to start? <a href="/{hub}/">Explore our {"games" if hub=="play" else "creative software" if hub=="create" else "worlds and media"} guide →</a></p></aside>'
+        if slug == 'games':
+            intro = '<aside class="collection-intro"><p><a href="/android/">Browse Android releases</a> · <a href="/play/">Find browser games</a></p></aside>'
+        if is_android:
+            intro = (
+                '<aside class="collection-intro"><p>Each app’s Google Play listing shows whether you can install it on your device. '
+                '<a href="https://play.google.com/store/apps/developer?id=Drunk+Yeti+Studio">Visit our Google Play developer page ↗</a></p>'
+                '<p><a href="/games/">Browse all games</a> · <a href="/news/">Read the latest release news</a></p></aside>'
+            )
         body=intro+'<p class="note"> Availability, prices and platform support are listed on each official release page.</p><div class="grid">'+''.join(markup)+'</div>'+guides.get(slug,'')
-        schema={'@context':'https://schema.org','@type':'CollectionPage','name':title,'description':description,'url':ORIGIN+'/'+slug+'/','mainEntity':{'@type':'ItemList','numberOfItems':len(items),'itemListElement':[{'@type':'ListItem','position':i+1,'name':c['title'],'url':c['url']} for i,c in enumerate(items)]}}
+        schema={'@context':'https://schema.org','@type':'CollectionPage','name':title,'description':description,'url':ORIGIN+'/'+slug+'/','mainEntity':{'@type':'ItemList','numberOfItems':len(items),'itemListElement':[{'@type':'ListItem','position':i+1,'name':c['title'],'url':ORIGIN+url if url.startswith('/') else url} for i,(c,url) in enumerate(zip(items,listing_links))]}}
         write(slug+'/index.html',recorded_page('/'+slug+'/',title,description,body,schema));urls.append('/'+slug+'/')
     write('help/index.html',recorded_page('/help/','Help & support','Get help with Drunk Yeti accounts, Apple sign-in, purchases, Frostpass, browser games, downloads and Desktop Buddy.', SUPPORT_BODY))
     urls.extend(privacy_urls())
@@ -80,5 +104,5 @@ def main():
     site_search.build(page, write, search_pages, products, posts, cards)
     write('sitemap.xml','<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+''.join('<url><loc>'+ORIGIN+u+'</loc></url>' for u in urls)+'</urlset>\n')
     write('robots.txt','User-agent: *\nAllow: /\n\nSitemap: '+ORIGIN+'/sitemap.xml\n')
-    print(f'Built {len(urls)} sitemap URLs and seven crawlable collections.')
+    print(f'Built {len(urls)} sitemap URLs and {len(CATEGORIES) + 1} crawlable collections.')
 if __name__=='__main__':main()
