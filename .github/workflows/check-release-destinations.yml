@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/check-release-destinations.yml'
+      - 'scripts/send_release.py'
   workflow_dispatch:
     inputs:
       channel:
