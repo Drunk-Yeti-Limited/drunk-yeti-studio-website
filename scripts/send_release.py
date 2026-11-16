@@ -31,12 +31,16 @@ def request_json(url, *, payload=None, headers=None):
         raise RuntimeError(f'Publishing request failed ({label}). Check the destination before retrying.') from None
 
 
-def discord_send(draft, webhook):
+def validate_discord_webhook(webhook):
     url = urlsplit(webhook)
     if url.scheme != 'https' or url.netloc != 'discord.com' or url.query or url.fragment:
         raise ValueError('Use the official Discord channel webhook URL.')
     if not re.fullmatch(r'/api(?:/v\d+)?/webhooks/\d+/[A-Za-z0-9_-]+', url.path):
         raise ValueError('Use a Discord incoming webhook URL.')
+
+
+def discord_send(draft, webhook):
+    validate_discord_webhook(webhook)
     caption, _ = draft['caption'].rsplit('\n\n', 1)
     embed = {'description': caption, 'url': draft['link'], 'title': 'Studio release'}
     if draft['artwork']:
@@ -47,11 +51,16 @@ def discord_send(draft, webhook):
     return result['id']
 
 
-def mastodon_send(draft, token, slug):
+def verify_mastodon_account(token):
     headers = {'Authorization': f'Bearer {token}'}
     identity = request_json(f'{MASTODON}/api/v1/accounts/verify_credentials', headers=headers)
     if identity['username'] != MASTODON_ACCOUNT or identity['acct'] != MASTODON_ACCOUNT:
         raise ValueError('The Mastodon credentials belong to a different account.')
+    return headers
+
+
+def mastodon_send(draft, token, slug):
+    headers = verify_mastodon_account(token)
     instance = request_json(f'{MASTODON}/api/v2/instance')
     limits = instance['configuration']['statuses']
     caption = draft['caption']
@@ -69,7 +78,9 @@ def main():
     cli = argparse.ArgumentParser(description=__doc__)
     cli.add_argument('slug')
     cli.add_argument('channel', choices=('mastodon', 'discord'))
-    cli.add_argument('--send', action='store_true', help='Publish this announcement')
+    mode = cli.add_mutually_exclusive_group()
+    mode.add_argument('--send', action='store_true', help='Publish this announcement')
+    mode.add_argument('--check', action='store_true', help='Verify the destination without posting')
     args = cli.parse_args()
     output = ROOT / 'preview' / 'release-social'
     build_packages(output, args.slug)
@@ -77,6 +88,21 @@ def main():
     draft = package['channels'].get(args.channel)
     if not draft:
         cli.error('This release has already been recorded for that channel.')
+    if args.check:
+        try:
+            if args.channel == 'discord':
+                webhook = os.environ['DISCORD_RELEASE_WEBHOOK']
+                validate_discord_webhook(webhook)
+                info = request_json(webhook)
+                if info.get('type') != 1 or not str(info.get('channel_id', '')).isdigit():
+                    raise ValueError('Discord did not confirm an incoming channel webhook.')
+                print(f'Discord channel ID: {info["channel_id"]}')
+            else:
+                verify_mastodon_account(os.environ['MASTODON_RELEASE_TOKEN'])
+                print(f'Mastodon account: @{MASTODON_ACCOUNT}@mastodon.social')
+        except (ValueError, RuntimeError, KeyError) as exc:
+            cli.error(str(exc))
+        return
     if not args.send:
         print(json.dumps(draft, ensure_ascii=False, indent=2))
         return
