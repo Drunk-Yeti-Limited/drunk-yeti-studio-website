@@ -2,6 +2,59 @@
   "reviewed": "2026-11-14",
   "products": [
     {
+      "slug": "house-of-wilds",
+      "catalogSlug": "chainfall-pi",
+      "section": "games",
+      "name": "Drunk Yeti’s House of Wilds",
+      "tagline": "Take a seat under the Northern Lights.",
+      "description": "Explore Drunk Yeti’s House of Wilds, a simulated casino game with character-led tables, wild slots, and a seven-night reward wheel. Play on Android or in your browser.",
+      "intro": "Spin the reels with the Yeti, draw a hand at PenPals’ table, or try an Expedition. Pick a game and see what the House has in store.",
+      "image": "./assets/covers/chainfall-pi.webp",
+      "releaseUrl": "https://play.google.com/store/apps/details?id=com.drunkyeti.houseofwilds",
+      "releaseLabel": "Get it on Google Play ↗",
+      "browserEdition": "https://drunkyeti.itch.io/chainfall-pi",
+      "privacyUrl": "/privacy/house-of-wilds/",
+      "screenshots": [
+        {
+          "image": "/assets/studio/house-of-wilds/frost-lock.webp",
+          "alt": "The Yeti hosts Frost Lock beside three reels of character symbols.",
+          "caption": "Yeti’s Frost Lock",
+          "width": 1052,
+          "height": 592
+        },
+        {
+          "image": "/assets/studio/house-of-wilds/penpals-draw.webp",
+          "alt": "Five cards are dealt at a teal table with PenPals behind it.",
+          "caption": "PenPals Draw",
+          "width": 1052,
+          "height": 592
+        },
+        {
+          "image": "/assets/studio/house-of-wilds/seven-nights.webp",
+          "alt": "The Seven Nights screen shows a reward wheel and seven nights of in-game coin bonuses.",
+          "caption": "Seven Nights reward wheel",
+          "width": 1052,
+          "height": 592
+        }
+      ],
+      "features": [
+        ["Meet the table hosts", "Play character-led casino games like PenPals Draw, or try your hand at Expeditions."],
+        ["Spin the reels", "Try a slot machine such as Yeti’s Frost Lock and discover the characters on the reels."],
+        ["Spend seven nights at the House", "Return to the reward wheel for a chance to collect more in-game coins."]
+      ],
+      "edition": "Install the Android edition from Google Play, or play the browser edition on itch.io. Features and controls can vary by edition.",
+      "related": ["hexfold", "ar3na"],
+      "releaseFacts": {
+        "status": "Android on Google Play and browser on itch.io",
+        "requirements": "Google Play shows compatibility for your Android device. The itch.io edition runs in a web browser with JavaScript enabled.",
+        "notes": "See the Google Play listing for current availability, age rating, and release details.",
+        "checked": "2026-11-16",
+        "source": "https://play.google.com/store/apps/details?id=com.drunkyeti.houseofwilds",
+        "video": "https://www.youtube.com/watch?v=mmWMJtKztNM",
+        "videoLabel": "Watch the House of Wilds trailer ↗"
+      }
+    },
+    {
       "slug": "ar3na",
       "catalogSlug": "ar3na-world-tour",
       "section": "games",

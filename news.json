@@ -4,10 +4,12 @@
     "date": "2026-11-16",
     "title": "House of Wilds is now on Google Play",
     "summary": "Our first official Android Google Play release is here: Drunk Yeti’s House of Wilds.",
-    "image": "/assets/covers/chainfall-pi.webp",
+    "image": "/assets/studio/house-of-wilds/frost-lock.webp",
+    "imageAlt": "Yeti’s Frost Lock, a slot machine hosted by the Yeti in House of Wilds.",
+    "product": "/games/house-of-wilds/",
     "body": [
       "Drunk Yeti’s House of Wilds is officially available on Google Play. Bring the studio’s wild slots, character-led casino tables, and seven-night reward wheel to your Android device.",
-      "Open the official listing for screenshots, device compatibility, age rating, and current availability. You can also follow our developer page to find future Android releases.",
+      "Visit the game page for screenshots, the studio trailer, and the browser edition. Google Play has device compatibility, age rating, and current availability.",
       "This is the start of our studio release journal. We’ll use it to share real launches, updates, artwork, and official trailers as they become available."
     ],
     "links": [

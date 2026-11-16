@@ -23,3 +23,83 @@ body.studio-page{font-family:'Trebuchet MS',Arial,sans-serif}.studio-page header
 .studio-page a:focus-visible,.studio-page summary:focus-visible{outline:3px solid #14728c;outline-offset:4px}
 
 .release-details{margin:40px 0;padding:28px;border:1px solid #b3c8cd;border-radius:12px;background:#fffdf7}.release-details dl{display:grid;grid-template-columns:minmax(130px,1fr) 3fr;gap:14px 24px;line-height:1.65}.release-details dt{font-weight:750}.release-details dd{margin:0;min-width:0}.studio-page .release-source{font-size:13px;color:#47595f}@media(max-width:600px){.release-details{padding:22px}.release-details dl{grid-template-columns:1fr;gap:6px}.release-details dd{margin-bottom:14px}}
+
+.product-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 16px;
+}
+.studio-page .browser-edition {
+    background: #e4f1f2;
+    color: #14242b;
+    border: 1px solid #14242b;
+}
+.studio-page .browser-edition:hover { background: #d0e8ec; }
+.gameplay-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+    gap: 20px;
+}
+.gameplay-images figure { margin: 0; }
+.gameplay-images img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #14242b;
+    border-radius: 10px;
+}
+.gameplay-images figcaption { margin-top: 8px; }
+.product-updates li { margin-bottom: 10px; }
+.product-updates time { margin-right: 8px; color: #47595f; }
+.news-image { display: block; width: min(100%, 820px); height: auto; border-radius: 10px; }
+
+.home-search { flex: 1 1 265px; }
+.home-search button {
+    align-self: stretch;
+    border: 0;
+    background: none;
+    color: inherit;
+    padding: 8px;
+    font: inherit;
+    font-weight: 750;
+    cursor: pointer;
+}
+.site-search-form {
+    display: flex;
+    align-items: stretch;
+    gap: 12px;
+    max-width: 740px;
+}
+.site-search-form input {
+    flex: 1;
+    min-width: 0;
+    background: #fffdf7;
+    color: #14242b;
+    border: 1px solid #57767e;
+    border-radius: 7px;
+    padding: 12px;
+    font: inherit;
+}
+.site-search-form button { cursor: pointer; margin: 0; }
+.site-search-form :focus-visible, .home-search :focus-visible {
+    outline: 3px solid #14728c;
+    outline-offset: 3px;
+}
+.studio-search-preview {
+    background: #fffdf7;
+    border: 1px solid #b3c8cd;
+    border-radius: 12px;
+    margin: 14px 0 24px;
+    padding: 20px;
+}
+.studio-search-preview h3 { margin: 0; }
+.site-search-list {
+    list-style: none;
+    padding: 0;
+    max-width: 820px;
+}
+.site-search-list li { border-top: 1px solid #b3c8cd; padding: 14px 0; }
+.site-search-list small { display: block; margin-bottom: 3px; color: #47595f; }
+.site-search-list a { color: #14242b; font-weight: 750; text-underline-offset: 3px; }
+.site-search-list p { margin: 6px 0 0; color: #47595f; }
