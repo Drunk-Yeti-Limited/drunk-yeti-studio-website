@@ -75,7 +75,7 @@ def main():
     write('help/index.html',recorded_page('/help/','Help & support','Get help with Drunk Yeti accounts, Apple sign-in, purchases, Frostpass, browser games, downloads and Desktop Buddy.', SUPPORT_BODY))
     urls.extend(privacy_urls())
     urls.extend(studio_pages.build(recorded_page, write, cards, products, posts))
-    urls.extend(news_pages.build(recorded_page, write, posts, product_titles))
+    urls.extend(news_pages.build(recorded_page, write, posts, product_titles, studio_pages.DISCORD_INVITE))
     urls = list(dict.fromkeys(urls))
     site_search.build(page, write, search_pages, products, posts, cards)
     write('sitemap.xml','<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+''.join('<url><loc>'+ORIGIN+u+'</loc></url>' for u in urls)+'</urlset>\n')

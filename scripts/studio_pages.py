@@ -7,8 +7,17 @@ from news_pages import latest_updates
 
 R = Path(__file__).resolve().parents[1]
 E = html.escape
+DISCORD_INVITE = 'https://discord.gg/Euxqepsq8T'
+PATREON_CREATOR = 'https://www.patreon.com/DrunkYeti'
 NAV = '<nav class="studio-nav" aria-label="Main navigation"><a href="/play/">Play</a><a href="/create/">Create</a><a href="/worlds/">Worlds & media</a><a href="/about/">Studio</a><a href="/news/">News</a><a href="/help/">Support</a><a href="/search/">Search</a></nav>'
-FOOTER = '<a href="/play/">Play</a><a href="/create/">Create</a><a href="/worlds/">Worlds & media</a><a href="/desktop-buddy/">Desktop Buddy</a><a href="/about/">Studio</a><a href="/press/">Press & contact</a><a href="/news/">News</a><a href="https://play.google.com/store/apps/developer?id=Drunk+Yeti+Studio">Google Play</a><a href="/help/">Support</a><a href="/privacy/">Privacy</a><a href="/delete-account/">Account deletion</a><p>Drunk Yeti Studio</p>'
+FOOTER = (
+    '<a href="/play/">Play</a><a href="/create/">Create</a><a href="/worlds/">Worlds &amp; media</a>'
+    '<a href="/desktop-buddy/">Desktop Buddy</a><a href="/about/">Studio</a><a href="/press/">Press &amp; contact</a>'
+    '<a href="/news/">News</a><a href="https://play.google.com/store/apps/developer?id=Drunk+Yeti+Studio">Google Play</a>'
+    f'<a href="{DISCORD_INVITE}">Discord</a><a href="{PATREON_CREATOR}">Patreon</a>'
+    '<a href="/help/">Support</a><a href="/privacy/">Privacy</a>'
+    '<a href="/delete-account/">Account deletion</a><p>Drunk Yeti Studio</p>'
+)
 
 def path(p):
     return f'/{p["section"]}/{p["slug"]}/'

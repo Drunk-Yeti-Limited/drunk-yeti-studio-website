@@ -60,7 +60,7 @@ def replace_section(write, file, marker, fragment):
     write(file, content)
 
 
-def build(page, write, posts, products):
+def build(page, write, posts, products, discord_invite):
     urls=['/news/'];items=[];rss=ET.Element('rss',version='2.0');channel=ET.SubElement(rss,'channel')
     for key,val in [('title','Drunk Yeti Studio News'),('link',ORIGIN+'/news/'),('description','Official releases and studio updates.')]:ET.SubElement(channel,key).text=val
     for p in posts:
@@ -72,7 +72,14 @@ def build(page, write, posts, products):
         body+=''.join('<p>'+E(t)+'</p>' for t in p['body'])
         if product_path := p.get('product'):
             body += f'<p><a class="button ink" href="{E(product_path,quote=True)}">Explore {E(products[product_path])} →</a></p>'
-        body+='<div class="studio-links">'+''.join(f'<a href="{E(l["url"],quote=True)}">{E(l["label"])} ↗</a>' for l in p.get('links',[]))+'</div><p><a href="/news/">All studio news →</a></p>'
+        body += '<div class="studio-links">' + ''.join(
+            f'<a href="{E(link["url"], quote=True)}">{E(link["label"])} ↗</a>'
+            for link in p.get('links', [])
+        ) + '</div>'
+        body += (
+            f'<p><a href="{E(discord_invite, quote=True)}">Join the studio on Discord ↗</a> · '
+            '<a href="/news/">All studio news →</a></p>'
+        )
         schema={'@context':'https://schema.org','@type':'BlogPosting','headline':p['title'],'description':p['summary'],'datePublished':p['date'],'url':ORIGIN+path,'author':{'@type':'Organization','name':'Drunk Yeti Studio'},'publisher':{'@type':'Organization','name':'Drunk Yeti Studio'}}
         if p.get('image'):schema['image']=ORIGIN+p['image']
         write(path.strip('/')+'/index.html',page(path,p['title'],p['summary'],body,schema,image=p.get('image')))

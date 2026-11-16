@@ -1,0 +1,47 @@
+name: Announce live Studio News on Discord
+
+on:
+  workflow_run:
+    workflows: ['pages build and deployment']
+    types: [completed]
+    branches: [main]
+  schedule:
+    - cron: '48 13 * * *'
+  workflow_dispatch:
+    inputs:
+      preview:
+        description: 'Verify the live feed without posting'
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: studio-news-discord
+  cancel-in-progress: false
+
+jobs:
+  announce:
+    if: >-
+      github.event_name != 'workflow_run' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.head_repository.full_name == github.repository)
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: false
+      - name: Check live Studio News
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DISCORD_RELEASE_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
+          PREVIEW: ${{ github.event_name == 'workflow_dispatch' && inputs.preview }}
+        run: |
+          if [ "$PREVIEW" = true ]; then
+            python3 scripts/announce_studio_news.py
+          else
+            python3 scripts/announce_studio_news.py --send
+          fi
