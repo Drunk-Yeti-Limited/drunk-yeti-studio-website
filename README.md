@@ -163,3 +163,46 @@ and retains previous flags if a description cannot be fetched. The public tab
 links to `/account/#frostpass` for authoritative subscription pricing and
 Included / Integration planned status; a storefront label does not override
 backend access readiness. No second hand-maintained inclusion list is used.
+
+## Android releases and studio news
+
+Google Play is a separate verified storefront in the catalog. The homepage Android
+filter and launch panel link to the official Android edition without replacing
+existing itch.io/browser editions.
+
+```sh
+python3 scripts/refresh_google_play.py
+```
+
+This standard-library Python command reads the public studio developer page,
+checks each discovered `com.drunkyeti.*` listing against its developer link and
+Android metadata, updates `google-play-releases.json` and the catalog, and rebuilds
+crawlable pages. No login, API key, or paid service is needed. A blocked, empty,
+or invalid response fails without overwriting saved releases. Entries missing
+from a later response are retained for review, not automatically deleted. Google
+may expose only part of its catalog or change markup; this checks public listings,
+not private Play Console drafts, rollout status, or reliable version history.
+
+`prepare-assets.py` also calls this checker, so the existing daily content-refresh
+workflow includes Google Play. That schedule depends on GitHub Actions availability;
+the standalone command works locally without Actions. Commit and push changed files
+to deploy. New apps receive a studio-logo fallback until approved cover artwork is added.
+
+### Publish a release update
+
+Published posts live in `news.json`; newly discovered Android apps create entries
+in `news-drafts.json`. Drafts are never included in the public News index, RSS, or
+sitemap. Review the title, date, summary, body paragraphs, local `/assets/` image,
+and labeled HTTPS links. Add official screenshot assets or trailer links when
+available; do not invent footage or features. For game/software updates outside
+Google Play, create a draft using the same fields as the House of Wilds entry.
+
+```sh
+python3 scripts/publish-news.py reviewed-draft-slug
+```
+
+The publisher validates the draft and rebuilds `/news/`, its article, the latest-news section on the homepage, RSS at
+`/news/feed.xml`, and the sitemap. Review the diff and commit/push to deploy.
+Use `python3 scripts/build-search-pages.py` after editing an existing published
+post. Keep slugs stable so links and RSS identifiers keep working. No mailing,
+social posting, or automatic publication of drafts is performed.

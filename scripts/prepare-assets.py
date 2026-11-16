@@ -259,8 +259,8 @@ def main():
             seen.add(card['url'])
     extras_path = ROOT / 'catalog-extras.json'
     if extras_path.exists():
-        for extra in json.loads(extras_path.read_text()):
-            if urlparse(extra['url']).hostname not in ('store.steampowered.com', 'drunkyeti.itch.io'):
+        for extra in json.loads(extras_path.read_text()) + json.loads((ROOT/'google-play-releases.json').read_text()):
+            if urlparse(extra['url']).hostname not in ('store.steampowered.com', 'drunkyeti.itch.io', 'play.google.com'):
                 raise ValueError('Unsupported extra storefront')
             if extra['url'] not in seen:
                 cards.append(extra)
@@ -294,8 +294,9 @@ def main():
 
 if __name__ == '__main__':
     from refresh_merch import refresh_merch
+    from refresh_google_play import refresh_google_play
     failures = []
-    for name, refresh in [('itch.io', main), ('Redbubble', refresh_merch)]:
+    for name, refresh in [('Google Play', refresh_google_play), ('itch.io', main), ('Redbubble', refresh_merch)]:
         try:
             refresh()
         except Exception as error:
