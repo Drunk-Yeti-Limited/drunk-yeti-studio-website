@@ -1,0 +1,51 @@
+name: Check release destinations
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/check-release-destinations.yml'
+  workflow_dispatch:
+    inputs:
+      channel:
+        description: Destination to verify
+        required: true
+        type: choice
+        options:
+          - discord
+          - mastodon
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check Discord
+        if: github.event_name == 'push' || inputs.channel == 'discord'
+        env:
+          DISCORD_RELEASE_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
+        run: |
+          if [ -z "$DISCORD_RELEASE_WEBHOOK" ]; then
+            echo "::error::Add DISCORD_RELEASE_WEBHOOK to Actions secrets."
+            exit 1
+          fi
+          python scripts/send_release.py games-drunkyeti-schmuck-android-launch discord --check
+      - name: Check Mastodon
+        if: ${{ !cancelled() && (github.event_name == 'push' || inputs.channel == 'mastodon') }}
+        env:
+          MASTODON_RELEASE_TOKEN: ${{ secrets.MASTODON_RELEASE_TOKEN }}
+        run: |
+          if [ -z "$MASTODON_RELEASE_TOKEN" ]; then
+            echo "::error::Add MASTODON_RELEASE_TOKEN to Actions secrets."
+            exit 1
+          fi
+          python scripts/send_release.py games-drunkyeti-schmuck-android-launch mastodon --check
