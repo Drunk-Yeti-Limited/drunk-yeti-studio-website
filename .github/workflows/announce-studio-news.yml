@@ -1,6 +1,10 @@
 name: Announce live Studio News on Discord
 
 on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/announce-studio-news.yml']
+  deployment_status:
   workflow_run:
     workflows: ['pages build and deployment']
     types: [completed]
@@ -24,9 +28,11 @@ concurrency:
 jobs:
   announce:
     if: >-
-      github.event_name != 'workflow_run' ||
-      (github.event.workflow_run.conclusion == 'success' &&
-       github.event.workflow_run.head_repository.full_name == github.repository)
+      (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.head_repository.full_name == github.repository) ||
+      (github.event_name == 'deployment_status' && github.event.deployment.environment == 'github-pages' &&
+       github.event.deployment_status.state == 'success') ||
+      github.event_name == 'push' || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
@@ -38,9 +44,17 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           DISCORD_RELEASE_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
+          EVENT_NAME: ${{ github.event_name }}
           PREVIEW: ${{ github.event_name == 'workflow_dispatch' && inputs.preview }}
         run: |
-          if [ "$PREVIEW" = true ]; then
+          if [ "$EVENT_NAME" = push ]; then
+            python3 scripts/announce_studio_news.py
+            if [ -n "$DISCORD_RELEASE_WEBHOOK" ]; then
+              PYTHONPATH=scripts python3 -c 'import os; import announce_studio_news as n; url = os.environ["DISCORD_RELEASE_WEBHOOK"]; n.check_webhook(url) if n.WEBHOOK.fullmatch(url) else exit("Invalid Discord webhook format"); print("Verified the Discord webhook for Drunk Yeti Studio.")'
+            else
+              echo 'DISCORD_RELEASE_WEBHOOK is unavailable to this workflow.'
+            fi
+          elif [ "$PREVIEW" = true ]; then
             python3 scripts/announce_studio_news.py
           else
             python3 scripts/announce_studio_news.py --send
