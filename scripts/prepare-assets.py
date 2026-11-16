@@ -294,7 +294,9 @@ def main():
 
 if __name__ == '__main__':
     from refresh_merch import refresh_merch
-    from refresh_google_play import refresh_google_play
+    from refresh_google_play import read_json, refresh_google_play
+    from release_social import build_packages, summarize_new_releases
+    previously_published = {post["slug"] for post in read_json(ROOT / "news.json", [])}
     failures = []
     for name, refresh in [('Google Play', refresh_google_play), ('itch.io', main), ('Redbubble', refresh_merch)]:
         try:
@@ -304,5 +306,8 @@ if __name__ == '__main__':
             print(f'{name} refresh failed: {error}. Last saved catalog retained.', file=sys.stderr)
     import runpy
     runpy.run_path(str(ROOT / "scripts/build-search-pages.py"), run_name="__main__")
+    social_output = ROOT / "preview" / "release-social"
+    build_packages(social_output)
+    summarize_new_releases(social_output, previously_published)
     if failures:
         sys.exit(1)
