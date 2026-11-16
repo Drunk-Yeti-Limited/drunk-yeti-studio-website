@@ -15,3 +15,7 @@ verify_jwt = true
 # Public redirect relay only; authenticated xbox-link performs all mutations.
 [functions.xbox-callback]
 verify_jwt = false
+
+# GET relays the OAuth callback. Every POST verifies the Supabase user in the handler.
+[functions.itch-account]
+verify_jwt = false
