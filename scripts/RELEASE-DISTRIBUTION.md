@@ -20,3 +20,36 @@ python scripts/send_release.py games-drunkyeti-schmuck-android-launch mastodon
 ```
 
 Use `--send` only for the intended release and channel, once the destination credential is configured. The direct sender stores successful receipts under `preview/release-social/` and removes recorded channels from subsequent drafts. Keep that directory between runs. Before retrying after a timeout, check the destination for a post. For another publisher, record a verified delivery with `python scripts/release_social.py --slug SLUG --mark-sent CHANNEL`. The local ledger is intentionally outside the published site. CI drafts require review and do not publish to social accounts.
+
+## Check live destinations
+
+The Discord webhook URL is a posting credential. If it was shared in a message,
+replace the webhook in the intended release channel, then delete the old one.
+
+Mastodon's application settings also show **Your access token** for the signed-in
+account. Use that user token with `write:statuses` and `profile` (or
+`read:accounts`). The client ID and client secret identify the OAuth app.
+Posting as the studio requires a user token obtained from the app settings
+or a user-authorized OAuth grant.
+
+For a local Bash session, enter each value at a hidden prompt and export it:
+
+```bash
+read -rsp 'New Discord webhook URL: ' DISCORD_RELEASE_WEBHOOK; printf '\n'
+export DISCORD_RELEASE_WEBHOOK
+read -rsp 'Mastodon user access token: ' MASTODON_RELEASE_TOKEN; printf '\n'
+export MASTODON_RELEASE_TOKEN
+```
+
+Run the following read-only checks against a published release slug. They verify
+the Discord destination and Mastodon account without sending a post. A successful
+identity check does not prove the Mastodon token has posting scope.
+
+```bash
+python scripts/send_release.py games-drunkyeti-schmuck-android-launch discord --check
+python scripts/send_release.py games-drunkyeti-schmuck-android-launch mastodon --check
+```
+
+For a CI runner, map the values from that runner's secret store to the same
+environment variables in the publishing step. The site's daily refresh does not
+run that step.
