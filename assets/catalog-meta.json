@@ -1,11 +1,11 @@
 {
   "source": "https://drunkyeti.itch.io/",
   "updated": "2026-11-16T17:00:10.660543+00:00",
-  "count": 153,
+  "count": 154,
   "categories": {
     "Assets": 18,
     "Comics": 1,
-    "Games": 49,
+    "Games": 50,
     "Mods": 5,
     "OS": 2,
     "Soundtracks": 29,
@@ -80,17 +80,17 @@
     "Nexus Wars Deluxe Frostpass check: HTTP Error 429: Too Many Requests",
     "Snowball Showdown Frostpass check: HTTP Error 429: Too Many Requests",
     "AR3NA: Foosball Circuit Frostpass check: HTTP Error 429: Too Many Requests",
-    "KANA RONIN \u2014 SHRINE PATHS Frostpass check: HTTP Error 429: Too Many Requests",
-    "LANTERN SKY \u2014 TOP-DOWN CHINESE NEW YEAR Frostpass check: HTTP Error 429: Too Many Requests",
-    "COMBINED ARMS \u2014 LAND, AIR & SEA Frostpass check: HTTP Error 429: Too Many Requests",
+    "KANA RONIN — SHRINE PATHS Frostpass check: HTTP Error 429: Too Many Requests",
+    "LANTERN SKY — TOP-DOWN CHINESE NEW YEAR Frostpass check: HTTP Error 429: Too Many Requests",
+    "COMBINED ARMS — LAND, AIR & SEA Frostpass check: HTTP Error 429: Too Many Requests",
     "Yeti Below Frostpass check: HTTP Error 429: Too Many Requests",
     "Odd Fixes Frostpass check: HTTP Error 429: Too Many Requests",
-    "New Year's Midnight \u2014 Top-Down Asset Pack Frostpass check: HTTP Error 429: Too Many Requests",
-    "New Year\u2019s Midnight \u2014 2D Side-Scroller Asset Pack Frostpass check: HTTP Error 429: Too Many Requests",
-    "Winter & Christmas \u2014 2D Side-Scroller Asset Pack Frostpass check: HTTP Error 429: Too Many Requests",
-    "Winter & Christmas \u2014 Top-Down Adventure Pack Frostpass check: HTTP Error 429: Too Many Requests",
-    "Autumn & Thanksgiving \u2014 2D Side-Scroller Asset Pack Frostpass check: HTTP Error 429: Too Many Requests",
-    "Halloween Realms \u2014 Complete Top-Down Asset Pack Frostpass check: HTTP Error 429: Too Many Requests",
+    "New Year's Midnight — Top-Down Asset Pack Frostpass check: HTTP Error 429: Too Many Requests",
+    "New Year’s Midnight — 2D Side-Scroller Asset Pack Frostpass check: HTTP Error 429: Too Many Requests",
+    "Winter & Christmas — 2D Side-Scroller Asset Pack Frostpass check: HTTP Error 429: Too Many Requests",
+    "Winter & Christmas — Top-Down Adventure Pack Frostpass check: HTTP Error 429: Too Many Requests",
+    "Autumn & Thanksgiving — 2D Side-Scroller Asset Pack Frostpass check: HTTP Error 429: Too Many Requests",
+    "Halloween Realms — Complete Top-Down Asset Pack Frostpass check: HTTP Error 429: Too Many Requests",
     "Violin/Cello Solo MIDI Generator Frostpass check: HTTP Error 429: Too Many Requests",
     "Piano Solo MIDI Generator Frostpass check: HTTP Error 429: Too Many Requests",
     "Drum Solo MIDI Generator Frostpass check: HTTP Error 429: Too Many Requests",
@@ -108,5 +108,6 @@
     "Guitar Solo Midi Generator Frostpass check: HTTP Error 429: Too Many Requests",
     "Deep Web Explorer Frostpass check: HTTP Error 429: Too Many Requests",
     "Document to Video Converter Frostpass check: HTTP Error 429: Too Many Requests"
-  ]
+  ],
+  "googlePlaySource": "https://play.google.com/store/apps/developer?id=Drunk+Yeti+Studio"
 }
