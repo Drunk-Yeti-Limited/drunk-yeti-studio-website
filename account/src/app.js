@@ -4,6 +4,7 @@ import {signupNewsletterData,rememberNewsletterChoice,applyNewsletterChoice} fro
 import {newsletterPanel} from './newsletter.js';
 import {microsoftRedirect,consumeMicrosoftXbox,clearMicrosoftXbox} from './microsoft-xbox.js';
 import {captureXboxReturn,xboxPanel} from './xbox.js';
+import {captureItchReturn,itchPanel,itchPendingKey} from './itch.js';
 import {accountAuthOptions,recoveryRequestOptions} from './recovery.js';
 import {authMessage,callbackError} from './auth-errors.js';
 import {providerSignInOptions,cleanAuthCallback} from './oauth.js';
@@ -25,6 +26,7 @@ import {launch} from './config.js';
 import {allowedRedirect,consentScopes} from './security.js';
 import {createClient} from '@supabase/supabase-js';
 const URL='https://rgafawpucqdhjrzodayl.supabase.co', KEY='sb_publishable_1cU8zRpm6Rcn5iWBs2bvgQ_Nrej-tsy';
+const itchReturn=captureItchReturn();
 const xboxReturn=captureXboxReturn();
 const microsoftReturnNonce=new globalThis.URL(location.href).searchParams.get('microsoft_xbox');
 let microsoftCallbackReady=false;
@@ -89,7 +91,7 @@ async function friend(id,act){check(await sb.rpc('dy_friend_action',{p_target:id
 $('profile-form').onsubmit=e=>{e.preventDefault();action(async()=>{check(await sb.rpc('dy_profile_set_with_avatar',{p_avatar:selectedAvatar,p_handle:$('handle').value,p_name:$('display-name').value,p_discoverable:$('discoverable').checked,p_share:$('share').checked}));message('Profile saved.');await refresh()})};
 $('find-form').onsubmit=e=>{e.preventDefault();action(async()=>{const mine=generation,p=check(await sb.rpc('dy_find_friend',{p_handle:$('friend-handle').value}));if(mine!==generation)return;const el=p?item(p.display_name,'@'+p.handle):item('No player found','They may have discovery turned off.');if(p&&p.player_id!==user.id)button(el,'Send friend request',()=>friend(p.player_id,'request'));$('found').replaceChildren(el)})};
 $('refresh').onclick=()=>action(refresh);
-async function logout(scope){adminAccess.reset();clearMicrosoftXbox(sessionStorage);check(await sb.auth.signOut({scope}));clearRecovery();user=null;generation++;platformSequence++;platformAccount=null;avatarDirty=false;clearSocial();$('world-sections').replaceChildren();$('marketplace-content').replaceChildren();$('shard-inventory').textContent='Loading your Shard balance…';$('payment-shop').replaceChildren();$('frostpass-content').replaceChildren();$('world-payment-note').textContent='';$('multiplayer-content').replaceChildren();$('multiplayer-status').textContent='';$('payment-status').textContent='';$('dashboard').hidden=true;$('consent').hidden=true;$('auth').hidden=false;message(scope==='global'?'Refresh sessions signed out. Existing access tokens expire separately.':'Signed out of this browser.')}
+async function logout(scope){sessionStorage.removeItem(itchPendingKey);adminAccess.reset();clearMicrosoftXbox(sessionStorage);check(await sb.auth.signOut({scope}));clearRecovery();user=null;generation++;platformSequence++;platformAccount=null;avatarDirty=false;clearSocial();$('world-sections').replaceChildren();$('marketplace-content').replaceChildren();$('shard-inventory').textContent='Loading your Shard balance…';$('payment-shop').replaceChildren();$('frostpass-content').replaceChildren();$('world-payment-note').textContent='';$('multiplayer-content').replaceChildren();$('multiplayer-status').textContent='';$('payment-status').textContent='';$('dashboard').hidden=true;$('consent').hidden=true;$('auth').hidden=false;message(scope==='global'?'Refresh sessions signed out. Existing access tokens expire separately.':'Signed out of this browser.')}
 $('logout').onclick=()=>action(()=>logout('local'));$('logout-all').onclick=()=>action(()=>logout('global'));
 $('password-form').onsubmit=e=>{e.preventDefault();action(async()=>{check(await sb.auth.updateUser({password:$('new-password').value}));$('new-password').value='';message('Password updated.')})};
 $('reset-form').onsubmit=async e=>{
@@ -141,7 +143,7 @@ async function syncPlatform(){
  }catch(e){if(seq===platformSequence&&mine===generation){$('providers').replaceChildren();$('signin-connections').replaceChildren();$('shard-inventory').textContent='Your Shard balance is temporarily unavailable. Refresh to try again.';$('marketplace-content').textContent='Marketplace is temporarily unavailable. Refresh to try again.';$('world-status').textContent='Account updates are temporarily unavailable. Refresh to try again.';}}
 }
 
-function clearSocial(){adminAccess.clear();$('sms-preferences')?.replaceChildren();$('studio-admin-link').hidden=true;$('newsletter-preferences')?.replaceChildren();$('xbox-connections')?.replaceChildren();for(const id of ['signin-connections','social-list','synced-profiles'])$(id).replaceChildren();$('social-handle').value='';$('social-share').checked=false;$('social-status').textContent='';$('connection-status').textContent='';}
+function clearSocial(){adminAccess.clear();$('sms-preferences')?.replaceChildren();$('studio-admin-link').hidden=true;$('newsletter-preferences')?.replaceChildren();$('xbox-connections')?.replaceChildren();$('itch-connections')?.replaceChildren();for(const id of ['signin-connections','social-list','synced-profiles'])$(id).replaceChildren();$('social-handle').value='';$('social-share').checked=false;$('social-status').textContent='';$('connection-status').textContent='';}
 for(const p of socialPlatforms){const o=document.createElement('option');o.value=p.id;o.textContent=p.name;$('social-platform').append(o)}
 $('social-platform').firstElementChild.selected=true;
 $('social-platform').onchange=()=>{$('social-handle').placeholder=socialPlatforms.find(p=>p.id===$('social-platform').value)?.hint||'';};
@@ -149,9 +151,11 @@ $('social-platform').onchange();
 const renderSms=smsPanel({sb,getUser:()=>user});
 const renderNewsletter=newsletterPanel({sb,getUser:()=>user});
 const renderXbox=xboxPanel({sb,getUser:()=>user,returned:xboxReturn,autoConnect:()=>microsoftCallbackReady&&consumeMicrosoftXbox(sessionStorage,{nonce:microsoftReturnNonce,user,error:incomingAuthError})});
+const renderItch=itchPanel({sb,getUser:()=>user,returned:itchReturn});
 async function loadSocial(){
  const mine=generation,owner=user?.id;if(!owner)return;
- await renderXbox($('xbox-connections'));
+ await Promise.all([renderXbox($('xbox-connections')),renderItch($('itch-connections'))]);
+ if(mine!==generation)return;
  await loadSyncedProfiles(mine,owner);
  const r=await sb.from('dy_social_profiles').select('platform,handle,share_with_friends').eq('player_id',user.id).order('platform');
  if(mine!==generation)return;

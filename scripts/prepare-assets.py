@@ -293,10 +293,11 @@ def main():
 
 
 if __name__ == '__main__':
+    from refresh_itch_releases import refresh_itch_releases
     from refresh_merch import refresh_merch
     from refresh_google_play import refresh_google_play
     failures = []
-    for name, refresh in [('Google Play', refresh_google_play), ('itch.io', main), ('Redbubble', refresh_merch)]:
+    for name, refresh in [('Google Play', refresh_google_play), ('itch.io', main), ('itch.io releases', refresh_itch_releases), ('Redbubble', refresh_merch)]:
         try:
             refresh()
         except Exception as error:

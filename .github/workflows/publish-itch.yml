@@ -1,0 +1,67 @@
+name: Publish a build to itch.io
+on:
+  workflow_call:
+    inputs:
+      artifact:
+        description: Name of the prepared game build in the caller's workflow run
+        required: true
+        type: string
+      project:
+        description: Existing project slug on drunkyeti.itch.io
+        required: true
+        type: string
+      channel:
+        description: itch.io channel such as windows-full, mac-full, linux-full, or html5
+        required: true
+        type: string
+      version:
+        description: Public build version
+        required: true
+        type: string
+    secrets:
+      BUTLER_API_KEY:
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    concurrency:
+      group: itch-publish-${{ inputs.project }}-${{ inputs.channel }}
+      cancel-in-progress: false
+    steps:
+      - name: Download build from this run
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ inputs.artifact }}
+          path: build
+      - name: Install itch.io butler
+        run: |
+          curl --fail --show-error --silent --location --max-time 120 \
+            https://broth.itch.zone/butler/linux-amd64/LATEST/archive/default \
+            --output "$RUNNER_TEMP/itch-butler.zip"
+          unzip -q "$RUNNER_TEMP/itch-butler.zip" -d "$RUNNER_TEMP/itch-butler"
+          chmod +x "$RUNNER_TEMP/itch-butler/butler"
+          "$RUNNER_TEMP/itch-butler/butler" version
+      - name: Push the selected build channel
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+          ITCH_PROJECT: ${{ inputs.project }}
+          ITCH_CHANNEL: ${{ inputs.channel }}
+          ITCH_VERSION: ${{ inputs.version }}
+        run: |
+          [[ "$ITCH_PROJECT" =~ ^[a-z0-9]+(-[a-z0-9]+)*$ ]]
+          [[ "$ITCH_CHANNEL" =~ ^(windows|mac|osx|linux|html5)(-[a-z0-9]+)*$ ]]
+          [[ "$ITCH_VERSION" =~ ^[0-9][0-9a-zA-Z.+-]{0,63}$ ]]
+          shopt -s dotglob nullglob
+          files=(build/*)
+          (( ${#files[@]} > 0 ))
+          source=build
+          if (( ${#files[@]} == 1 )) && [[ "${files[0]}" == *.zip ]]; then
+            source="${files[0]}"
+          fi
+          "$RUNNER_TEMP/itch-butler/butler" push "$source" "drunkyeti/$ITCH_PROJECT:$ITCH_CHANNEL" \
+            --userversion "$ITCH_VERSION"

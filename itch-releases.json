@@ -1,0 +1,6 @@
+{
+  "snowlight": {
+    "title": "Snowlight",
+    "channels": ["windows-full", "linux-full", "mac-full"]
+  }
+}
