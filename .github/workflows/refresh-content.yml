@@ -55,7 +55,7 @@ jobs:
         id: commit
         run: |
           git add -- google-play-releases.json assets/itch-releases.json news.json news-drafts.json news
-          git add -- index.html desktop-buddy/index.html games tools assets/index.html mods soundtracks os comics about help play create worlds press search sitemap.xml robots.txt
+          git add -- index.html desktop-buddy/index.html games android tools assets/index.html mods soundtracks os comics about help play create worlds press search sitemap.xml robots.txt
           git add -- assets/catalog.json assets/catalog-meta.json assets/merch.json assets/merch-meta.json assets/covers assets/site-search.json
           if [ -d assets/merch ]; then git add -- assets/merch; fi
           if [ -d assets/google-play ]; then git add -- assets/google-play; fi

@@ -55,6 +55,55 @@
       }
     },
     {
+      "slug": "schmuck-deluxe",
+      "catalogSlug": "schmuck-deluxe",
+      "section": "games",
+      "name": "Schmuck Deluxe",
+      "tagline": "Empty your hand. Take the top seat.",
+      "description": "Play Schmuck Deluxe, Drunk Yeti Studio’s 3D climbing card game, on Android or in your browser. Play Classic, Poker combinations, or Collection rules.",
+      "intro": "Start at the bottom and try to finish as President. Every hand is a chance to climb the table.",
+      "image": "./assets/covers/schmuck-deluxe.webp",
+      "releaseUrl": "https://play.google.com/store/apps/details?id=games.drunkyeti.schmuck",
+      "releaseLabel": "Get it on Google Play ↗",
+      "browserEdition": "https://drunkyeti.itch.io/schmuck-deluxe",
+      "privacyUrl": "/privacy/schmuck/",
+      "screenshots": [
+        {
+          "image": "/assets/google-play/games.drunkyeti.schmuck.webp",
+          "alt": "A hand of cards in front of the green table in Schmuck Deluxe.",
+          "caption": "Schmuck Deluxe gameplay on Android",
+          "width": 1052,
+          "height": 592
+        }
+      ],
+      "features": [
+        [
+          "Climb the table",
+          "Race to empty your hand. Your finish determines where you sit next round."
+        ],
+        [
+          "Choose your rules",
+          "Play Classic, try Poker combinations, or switch to Collection rules."
+        ],
+        [
+          "Practice or pass and play",
+          "Practice offline against AI or share an Android device for a local game."
+        ]
+      ],
+      "edition": "Get the Android edition from Google Play or open the browser edition on itch.io. Available features can vary by edition.",
+      "related": [
+        "hexfold",
+        "house-of-wilds"
+      ],
+      "releaseFacts": {
+        "status": "Android on Google Play and browser on itch.io",
+        "requirements": "Check Google Play for compatibility with your Android device. The itch.io build runs in a browser with JavaScript enabled.",
+        "notes": "Free practice is available offline on Android. Some features require an internet connection and a Drunk Yeti account.",
+        "checked": "2026-11-16",
+        "source": "https://play.google.com/store/apps/details?id=games.drunkyeti.schmuck"
+      }
+    },
+    {
       "slug": "ar3na",
       "catalogSlug": "ar3na-world-tour",
       "section": "games",

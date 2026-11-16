@@ -121,7 +121,11 @@ def build(page, write, cards, products, posts):
         write(slug+'/index.html',page('/'+slug+'/',title,description,body,intro=intro));urls.append('/'+slug+'/')
 
     play_intro = '<section><h2>A quick game. A longer adventure. Your call.</h2><p>Start in your browser or find a downloadable game for your next session. Explore party arenas, downhill adventures, card games, and original worlds. Each project page connects you to its official release, with current editions and requirements.</p></section>'
-    play_intro += '<section class="callout"><h2>Now on Android</h2><p>Drunk Yeti’s House of Wilds is available on Google Play.</p><p><a href="/games/house-of-wilds/">Explore House of Wilds →</a> · <a href="https://play.google.com/store/apps/details?id=com.drunkyeti.houseofwilds">Get it on Google Play ↗</a> · <a href="https://play.google.com/store/apps/developer?id=Drunk+Yeti+Studio">All Drunk Yeti Android releases ↗</a></p></section>'
+    play_intro += (
+        '<section class="callout"><h2>Play on Android</h2>'
+        '<p>Bring a Drunk Yeti game to your Android device.</p>'
+        '<a href="/android/">Browse our Google Play releases →</a></section>'
+    )
     play = play_intro+'<section class="wide"><h2>Play on our game servers</h2><p>These experiences open in their own tabs. Give game files time to load; content and controls can differ from the downloadable editions.</p>'+browser_cards(products,catalog)+'</section><section class="wide"><h2>Featured games</h2><div class="spotlight-grid">'+''.join(card(p,catalog) for p in products if p['section']=='games')+'</div></section><section class="callout"><h2>More ways to play</h2><p><a href="/games/">Browse every game</a> · <a href="/mods/">Explore mods</a> · <a href="https://store.steampowered.com/curator/45875400">Find us on Steam ↗</a></p><p>For membership access, check the current Included or Integration planned status on <a href="/account/#frostpass">Yeti Frostpass</a>. Store editions and browser builds can include different content.</p></section>'
     publish('play','Find your next game','Play Drunk Yeti browser games and discover original arena, downhill, snowboarding, and card-game adventures.',play)
 
