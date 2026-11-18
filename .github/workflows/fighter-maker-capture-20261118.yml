@@ -1,0 +1,28 @@
+name: Capture Fighter Maker playtests
+on:
+  push:
+    branches: [codex/fighter-maker-social-20261118]
+    paths: ['.github/workflows/fighter-maker-capture-20261118.yml']
+permissions: {}
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Record the public Fighter Maker build
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSL --retry 2 'https://html-classic.itch.zone/html/20177757/index.pck' -o fighter.pck
+          echo '0edd18359ef5cdc00d4276d8f5e9e4535a99d00e233770deee8b979e44828f4e  fighter.pck' | sha256sum -c -
+          curl -fsSL --retry 2 'https://github.com/godotengine/godot/releases/download/4.5.1-stable/Godot_v4.5.1-stable_linux.x86_64.zip' -o engine.zip
+          unzip -q engine.zip
+          if ! command -v ffmpeg >/dev/null; then sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg; fi
+          xvfb-run -a -s '-screen 0 1600x900x24' ./Godot_v4.5.1-stable_linux.x86_64 --main-pack fighter.pck --rendering-method gl_compatibility --audio-driver Dummy --windowed --resolution 1600x900 --write-movie playtests.avi --fixed-fps 24 --quit-after 1010 -- --capture > game.log 2>&1
+          ffmpeg -hide_banner -loglevel error -i playtests.avi -c:v libx264 -crf 19 -preset fast -pix_fmt yuv420p -an -movflags +faststart playtests.mp4
+          ffprobe -v error -show_entries format=duration,size -of default=nw=1 playtests.mp4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fighter-playtests
+          path: playtests.mp4
+          retention-days: 1
