@@ -1,0 +1,69 @@
+name: Publish Fighter Maker hitbox feature
+on:
+  push:
+    branches: [codex/fighter-maker-social-20261118]
+    paths: ['.github/workflows/fighter-maker-posts-20261118.yml']
+permissions:
+  contents: read
+concurrency: fighter-maker-hitboxes-20261118
+jobs:
+  promote:
+    if: github.run_attempt == 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        channel: [discord, mastodon]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Send to the studio account
+        env:
+          CHANNEL: ${{ matrix.channel }}
+          DISCORD_RELEASE_WEBHOOK: ${{ matrix.channel == 'discord' && secrets.DISCORD_RELEASE_WEBHOOK || '' }}
+          MASTODON_RELEASE_TOKEN: ${{ matrix.channel == 'mastodon' && secrets.MASTODON_RELEASE_TOKEN || '' }}
+        run: |
+          PYTHONPATH=scripts python3 - <<'PY'
+          import json, os, time, urllib.request, urllib.error, uuid
+          from send_release import validate_discord_webhook, verify_mastodon_account, request_json, MASTODON, NoRedirect
+          from announce_studio_news import DISCORD_HEADERS, STUDIO_SERVER
+          url = "https://drunkyeti.itch.io/fighter-maker"
+          image = "https://static.metricool.com/planner/202611/8096601-file-8624386257586298864.jpeg"
+          alt = "Drunk Yeti Fighter Maker cover above a close-up of four fighters sparring in pairs. Translucent boxes show where punches reach. The poster reads “That missed.” Okay. Turn the hitboxes on."
+          if os.environ['CHANNEL'] == 'discord':
+              hook = os.environ['DISCORD_RELEASE_WEBHOOK']
+              validate_discord_webhook(hook)
+              meta = request_json(hook, headers=DISCORD_HEADERS)
+              assert meta.get('type') == 1 and meta['guild_id'] == STUDIO_SERVER and meta['channel_id'] == '1430323657309159486'
+              embed = {'title': 'Try Fighter Maker in your browser', 'url': url, 'color': 16763463, 'image': {'url': image},
+                       'description': '“That missed.” Okay, turn the hitboxes on.\n\nWe put four fighters on Skybound Clash in Fighter Maker. Watch the red box on the punch. You can open the same starter, change the reach, and playtest it yourself.\n\nWhat move would get banned on your couch? Bonus points if you show us a screenshot.'}
+              data = request_json(hook+'?wait=true', payload=json.dumps({'embeds':[embed],'allowed_mentions':{'parse':[]}}).encode(), headers={**DISCORD_HEADERS,'Content-Type':'application/json'})
+              print('Confirmed Discord https://discord.com/channels/'+meta['guild_id']+'/'+meta['channel_id']+'/'+str(data['id']))
+          else:
+              headers = verify_mastodon_account(os.environ['MASTODON_RELEASE_TOKEN'])
+              caption = '“That missed.”\n\nOkay. Turn the hitboxes on. Ember throws a punch, Kite takes the hit, and now we have something to argue about on the couch.\n\nTry the Skybound Clash starter in Fighter Maker. Change the attack area, hit Playtest, and tell us which version feels better.\n\n'+url+'\n\n#GameDev #FightingGames'
+              body = {'status':caption,'visibility':'public','language':'en'}
+              with urllib.request.urlopen(image, timeout=20) as response:
+                  art = response.read(5_000_000)
+              assert art.startswith(b'\xff\xd8') and len(art) < 5_000_000
+              boundary = uuid.uuid4().hex
+              prefix = ('--'+boundary+'\r\nContent-Disposition: form-data; name="description"\r\n\r\n'+alt+'\r\n--'+boundary+'\r\nContent-Disposition: form-data; name="file"; filename="fighter-maker.jpg"\r\nContent-Type: image/jpeg\r\n\r\n').encode()
+              payload = prefix+art+('\r\n--'+boundary+'--\r\n').encode()
+              req = urllib.request.Request(MASTODON+'/api/v2/media',data=payload,headers={**headers,'Content-Type':'multipart/form-data; boundary='+boundary})
+              try:
+                  with urllib.request.build_opener(NoRedirect).open(req, timeout=30) as resp:
+                      media = json.load(resp)
+                  for _ in range(8):
+                      if media.get('url'):
+                          body['media_ids']=[media['id']]
+                          break
+                      time.sleep(2)
+                      media=request_json(MASTODON+'/api/v1/media/'+media['id'],headers=headers)
+              except urllib.error.HTTPError as err:
+                  if err.code not in (401,403): raise
+                  print('Media upload unavailable for this token; using the store link preview.')
+              receipt = request_json(MASTODON+'/api/v1/statuses',payload=json.dumps(body).encode(),headers={**headers,'Content-Type':'application/json','Idempotency-Key':'studio-fighter-maker-hitboxes-20261118'})
+              print('Confirmed Mastodon '+receipt['url']+' attachments '+str(len(receipt.get('media_attachments',[]))))
+          PY
