@@ -1,0 +1,48 @@
+name: Promote A Rocket's Intensity
+on:
+  push:
+    branches: [codex/rocket-social-nov17]
+    paths: ['.github/workflows/rocket-social-nov17.yml']
+permissions:
+  contents: read
+concurrency:
+  group: rocket-social-nov17
+  cancel-in-progress: false
+jobs:
+  promote:
+    if: github.run_attempt == 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        channel: [discord, mastodon]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Publish game invitation
+        env:
+          CHANNEL: ${{ matrix.channel }}
+          DISCORD_RELEASE_WEBHOOK: ${{ matrix.channel == 'discord' && secrets.DISCORD_RELEASE_WEBHOOK || '' }}
+          MASTODON_RELEASE_TOKEN: ${{ matrix.channel == 'mastodon' && secrets.MASTODON_RELEASE_TOKEN || '' }}
+        run: |
+          PYTHONPATH=scripts python3 - <<'PY'
+          import os, json, urllib.request
+          from send_release import discord_send, mastodon_send, request_json, validate_discord_webhook
+          from announce_studio_news import DISCORD_HEADERS, STUDIO_SERVER
+          with urllib.request.urlopen('https://arocketsintensity.drunkyetistudio.com/', timeout=20) as response:
+              assert response.status == 200
+          caption = "Got five minutes? We brought a rocket.\n\nTake A Rocket’s Intensity for a spin in your browser. Pick a mission, choose your airframe, and tell us how your flight goes.\n\nTry the browser release candidate:\nhttps://arocketsintensity.drunkyetistudio.com/"
+          draft = {'caption': caption, 'link': 'https://arocketsintensity.drunkyetistudio.com/', 'artwork': {'url': 'https://www.drunkyetistudio.com/assets/studio/arockets-intensity.webp', 'alt': 'A Rocket’s Intensity official logo with a rocket trailing blue and yellow light.'}}
+          channel = os.environ['CHANNEL']
+          if channel == 'discord':
+              webhook = os.environ['DISCORD_RELEASE_WEBHOOK']
+              validate_discord_webhook(webhook)
+              info = request_json(webhook, headers=DISCORD_HEADERS)
+              assert info.get('guild_id') == STUDIO_SERVER
+              receipt = discord_send(draft, webhook)
+              print('Discord post: https://discord.com/channels/' + info['guild_id'] + '/' + info['channel_id'] + '/' + receipt)
+          else:
+              print('Mastodon post: ' + mastodon_send(draft, os.environ['MASTODON_RELEASE_TOKEN'], 'rocket-browser-invitation-2026-11-17'))
+          PY
