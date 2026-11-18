@@ -24,5 +24,44 @@
       "Android"
     ],
     "packageId": "games.drunkyeti.schmuck"
+  },
+  {
+    "title": "Ortega Sauce: Alexandria — Android",
+    "url": "https://play.google.com/store/apps/details?id=com.drunkyeti.ortegasauce",
+    "image": "./assets/google-play/com.drunkyeti.ortegasauce.png",
+    "description": "Style the runway, master the DJ decks and build your world-tour career. Available on Google Play for Android.",
+    "category": "Games",
+    "browser": false,
+    "storefront": "Google Play",
+    "platforms": [
+      "Android"
+    ],
+    "packageId": "com.drunkyeti.ortegasauce"
+  },
+  {
+    "title": "Sixfold Klondike — Android",
+    "url": "https://play.google.com/store/apps/details?id=com.drunkyeti.sixfold",
+    "image": "./assets/google-play/com.drunkyeti.sixfold.png",
+    "description": "Six suits. 78 cards. A fresh solitaire table with Drunk Yeti style. Available on Google Play for Android.",
+    "category": "Games",
+    "browser": false,
+    "storefront": "Google Play",
+    "platforms": [
+      "Android"
+    ],
+    "packageId": "com.drunkyeti.sixfold"
+  },
+  {
+    "title": "Hexfold Hold'em — Android",
+    "url": "https://play.google.com/store/apps/details?id=com.hexfold.holdem",
+    "image": "./assets/google-play/com.hexfold.holdem.png",
+    "description": "Six-suit poker, bold house hands and a cozy 3D Drunk Yeti lodge. Available on Google Play for Android.",
+    "category": "Games",
+    "browser": false,
+    "storefront": "Google Play",
+    "platforms": [
+      "Android"
+    ],
+    "packageId": "com.hexfold.holdem"
   }
 ]

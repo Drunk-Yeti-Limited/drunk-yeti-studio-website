@@ -45,5 +45,71 @@
         "url": "https://play.google.com/store/apps/developer?id=Drunk+Yeti+Studio"
       }
     ]
+  },
+  {
+    "slug": "com-drunkyeti-ortegasauce-android-launch",
+    "date": "2026-11-18",
+    "title": "Ortega Sauce: Alexandria is now on Google Play",
+    "summary": "Ortega Sauce: Alexandria is available for Android from Drunk Yeti Studio.",
+    "body": [
+      "Style the runway, master the DJ decks and build your world-tour career.",
+      "Check the Google Play listing for device compatibility, availability, and current release details."
+    ],
+    "links": [
+      {
+        "label": "Get it on Google Play",
+        "url": "https://play.google.com/store/apps/details?id=com.drunkyeti.ortegasauce"
+      },
+      {
+        "label": "More Drunk Yeti apps on Google Play",
+        "url": "https://play.google.com/store/apps/developer?id=Drunk+Yeti+Studio"
+      }
+    ],
+    "image": "/assets/google-play/com.drunkyeti.ortegasauce.png",
+    "imageAlt": "Ortega Sauce: Alexandria gameplay screenshot from the official Google Play listing."
+  },
+  {
+    "slug": "com-drunkyeti-sixfold-android-launch",
+    "date": "2026-11-18",
+    "title": "Sixfold Klondike is now on Google Play",
+    "summary": "Sixfold Klondike is available for Android from Drunk Yeti Studio.",
+    "body": [
+      "Six suits. 78 cards. A fresh solitaire table with Drunk Yeti style.",
+      "Check the Google Play listing for device compatibility, availability, and current release details."
+    ],
+    "links": [
+      {
+        "label": "Get it on Google Play",
+        "url": "https://play.google.com/store/apps/details?id=com.drunkyeti.sixfold"
+      },
+      {
+        "label": "More Drunk Yeti apps on Google Play",
+        "url": "https://play.google.com/store/apps/developer?id=Drunk+Yeti+Studio"
+      }
+    ],
+    "image": "/assets/google-play/com.drunkyeti.sixfold.png",
+    "imageAlt": "Sixfold Klondike gameplay screenshot from the official Google Play listing."
+  },
+  {
+    "slug": "com-hexfold-holdem-android-launch",
+    "date": "2026-11-18",
+    "title": "Hexfold Hold'em is now on Google Play",
+    "summary": "Hexfold Hold'em is available for Android from Drunk Yeti Studio.",
+    "body": [
+      "Six-suit poker, bold house hands and a cozy 3D Drunk Yeti lodge.",
+      "Check the Google Play listing for device compatibility, availability, and current release details."
+    ],
+    "links": [
+      {
+        "label": "Get it on Google Play",
+        "url": "https://play.google.com/store/apps/details?id=com.hexfold.holdem"
+      },
+      {
+        "label": "More Drunk Yeti apps on Google Play",
+        "url": "https://play.google.com/store/apps/developer?id=Drunk+Yeti+Studio"
+      }
+    ],
+    "image": "/assets/google-play/com.hexfold.holdem.png",
+    "imageAlt": "Hexfold Hold'em gameplay screenshot from the official Google Play listing."
   }
 ]
