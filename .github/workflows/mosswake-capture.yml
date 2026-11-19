@@ -1,0 +1,40 @@
+name: Film Mosswake woodland walk
+on:
+  push:
+    branches: [codex/mosswake-social-nov19]
+    paths: ['.github/workflows/mosswake-capture.yml']
+permissions: {}
+jobs:
+  film:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - run: |
+          pip install playwright -q
+          python - <<'PY'
+          from playwright.sync_api import sync_playwright
+          import time,shutil
+          with sync_playwright() as p:
+              b=p.chromium.launch(channel="chrome",args=["--no-sandbox"])
+              page=b.new_page(viewport={"width":980,"height":800})
+              page.goto("https://mosswake.drunkyetistudio.com/",wait_until="domcontentloaded")
+              page.wait_for_timeout(5500)
+              print("Realm status:",page.locator("#connection").inner_text())
+              page.screenshot(path="poster.png")
+              import os
+              os.mkdir("frames")
+              for i in range(84):
+                  if i in (0,24,48,68):
+                      for key in ["w","d","a","s"]:page.keyboard.up(key)
+                      page.keyboard.down({0:"d",24:"s",48:"a",68:"w"}[i])
+                  if i in (16,35,60):page.keyboard.press("Space")
+                  page.screenshot(path=f"frames/{i:03d}.jpg",type="jpeg",quality=89)
+                  page.wait_for_timeout(65)
+              b.close()
+          PY
+          tar czf capture.tgz frames poster.png
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mosswake-capture
+          path: capture.tgz
+          retention-days: 1
