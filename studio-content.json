@@ -38,12 +38,24 @@
         }
       ],
       "features": [
-        ["Meet the table hosts", "Play character-led casino games like PenPals Draw, or try your hand at Expeditions."],
-        ["Spin the reels", "Try a slot machine such as Yeti’s Frost Lock and discover the characters on the reels."],
-        ["Spend seven nights at the House", "Return to the reward wheel for a chance to collect more in-game coins."]
+        [
+          "Meet the table hosts",
+          "Play character-led casino games like PenPals Draw, or try your hand at Expeditions."
+        ],
+        [
+          "Spin the reels",
+          "Try a slot machine such as Yeti’s Frost Lock and discover the characters on the reels."
+        ],
+        [
+          "Spend seven nights at the House",
+          "Return to the reward wheel for a chance to collect more in-game coins."
+        ]
       ],
       "edition": "Install the Android edition from Google Play, or play the browser edition on itch.io. Features and controls can vary by edition.",
-      "related": ["hexfold", "ar3na"],
+      "related": [
+        "hexfold",
+        "ar3na"
+      ],
       "releaseFacts": {
         "status": "Android on Google Play and browser on itch.io",
         "requirements": "Google Play shows compatibility for your Android device. The itch.io edition runs in a web browser with JavaScript enabled.",
@@ -397,6 +409,66 @@
         "checked": "2026-11-14",
         "source": "https://drunkyeti.itch.io/moly-bart-skid-the-heart-under-the-mountain"
       }
+    },
+    {
+      "slug": "xero",
+      "catalogSlug": "xero-web",
+      "section": "games",
+      "name": "Xero · Endless City",
+      "tagline": "Step into the Endless City.",
+      "description": "Explore Xero’s Endless City browser game on its dedicated online server.",
+      "intro": "Enter the Endless City and start in Lantern Market. Use the game’s controls to explore its districts.",
+      "image": "./assets/logo.png",
+      "releaseUrl": "https://xero.drunkyetistudio.com/",
+      "releaseLabel": "Open the game ↗",
+      "browser": "https://xero.drunkyetistudio.com/",
+      "browserName": "Xero online",
+      "browserNote": "Open the dedicated game server and follow its start screen. An internet connection is required.",
+      "features": [
+        [
+          "Play in your browser",
+          "Open the game directly from this page."
+        ],
+        [
+          "Explore the studio",
+          "Visit the other online games or join the studio Discord to share feedback."
+        ]
+      ],
+      "edition": "The browser edition opens on its own server. Use the in-game menu for available controls and settings.",
+      "related": [
+        "ar3na",
+        "avalanca"
+      ]
+    },
+    {
+      "slug": "mosswake",
+      "catalogSlug": "mosswake-web",
+      "section": "games",
+      "name": "Mosswake",
+      "tagline": "Find your way through the woodlands.",
+      "description": "Explore Mosswake’s woodland browser world, with a journal and atlas to guide your way.",
+      "intro": "Explore Mosswake’s woodland browser world, with a journal and atlas to guide your way.",
+      "image": "./assets/logo.png",
+      "releaseUrl": "https://mosswake.drunkyetistudio.com/",
+      "releaseLabel": "Open the game ↗",
+      "browser": "https://mosswake.drunkyetistudio.com/",
+      "browserName": "Mosswake online",
+      "browserNote": "Open the dedicated game server and follow its start screen. An internet connection is required.",
+      "features": [
+        [
+          "Play in your browser",
+          "Open the game directly from this page."
+        ],
+        [
+          "Explore the studio",
+          "Visit the other online games or join the studio Discord to share feedback."
+        ]
+      ],
+      "edition": "The browser edition opens on its own server. Use the in-game menu for available controls and settings.",
+      "related": [
+        "ar3na",
+        "avalanca"
+      ]
     }
   ]
 }
