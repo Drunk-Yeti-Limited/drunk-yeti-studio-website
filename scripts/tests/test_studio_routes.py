@@ -37,7 +37,7 @@ class StudioRoutes(unittest.TestCase):
     def test_three_explicit_game_hosts(self):
         products=json.loads((ROOT/'studio-content.json').read_text())['products']
         hosts={urlsplit(p['browser']).hostname for p in products if p.get('browser')}
-        self.assertEqual(hosts,{'ar3na.drunkyetistudio.com','avalanca.drunkyetistudio.com','arocketsintensity.drunkyetistudio.com'})
+        self.assertEqual(hosts,{'ar3na.drunkyetistudio.com','avalanca.drunkyetistudio.com','arocketsintensity.drunkyetistudio.com','xero.drunkyetistudio.com','mosswake.drunkyetistudio.com'})
         for file in ['index.html','play/index.html']:
             links=Links((ROOT/file).read_text()).refs
             for p in products:

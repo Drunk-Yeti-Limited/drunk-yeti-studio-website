@@ -148,7 +148,34 @@ def build(page, write, cards, products, posts):
 
     home=R/'index.html'
     fragment='<section class="section browser-section" id="play-now"><div class="section-heading"><div><div class="eyebrow">STRAIGHT INTO THE ACTION</div><h2>Open a tab.<br><em>Enter a world.</em></h2></div><a class="text-link" href="/play/">Find your next game →</a></div>'+browser_cards(products,catalog)+'</section><section class="section highlights" id="featured"><div class="section-heading"><div><div class="eyebrow">FEATURED PROJECTS</div><h2>A few places<br><em>to begin.</em></h2></div><p>Original games, useful tools, and stories with somewhere to go.</p></div><div class="spotlight-grid">'+''.join(card(lookup[s],catalog) for s in ['snowlight','ar3na','yeti-forge','moly-bart-skid'])+'</div></section>'
+    android = [c for c in cards if c.get('storefront') == 'Google Play']
+    android_cards = []
+    for release in android:
+        project = next((p for p in products if p.get('releaseUrl') == release['url']), None)
+        destination = path(project) if project else release['url']
+        android_cards.append(
+            '<article class="spotlight-card"><a href="' + E(destination, quote=True) + '">'
+            '<img src="' + asset(release) + '" width="315" height="250" loading="lazy" alt="">'
+            '<h3>' + E(release['title'].removesuffix(' — Android')) + '</h3></a>'
+            '<p>' + E(release['description']) + '</p>'
+            '<a href="' + E(release['url'], quote=True) + '">Get it on Google Play ↗</a></article>'
+        )
+    android_section = (
+        '<section class="section" id="android-games"><div class="section-heading">'
+        '<div><div class="eyebrow">ON GOOGLE PLAY</div><h2>Take the Yeti with you.</h2></div>'
+        '<a href="/android/">All Android games &amp; apps →</a></div>'
+        '<div class="spotlight-grid">' + ''.join(android_cards) + '</div></section>'
+    )
     text=home.read_text();text,n=re.subn(r'<!-- STUDIO_FEATURES_START -->.*?<!-- STUDIO_FEATURES_END -->','<!-- STUDIO_FEATURES_START -->\n'+fragment+'\n<!-- STUDIO_FEATURES_END -->',text,flags=re.S)
     if n!=1:raise ValueError('Homepage requires exactly one editorial feature block')
+    text, count = re.subn(
+        r'<section class="steam-strip" aria-label="Android releases">.*?</section>',
+        lambda match: android_section, text, flags=re.S,
+    )
+    if count == 0:
+        text, count = re.subn(r'<section class="section" id="android-games">.*?</section>',
+                             lambda match: android_section, text, flags=re.S)
+    if count != 1:
+        raise ValueError('Expected one homepage Android region')
     home.write_text(text)
     return urls
