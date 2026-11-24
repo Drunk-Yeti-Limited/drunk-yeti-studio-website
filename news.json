@@ -111,5 +111,27 @@
     ],
     "image": "/assets/google-play/com.hexfold.holdem.png",
     "imageAlt": "Hexfold Hold'em gameplay screenshot from the official Google Play listing."
+  },
+  {
+    "slug": "games-drunkyeti-spacepinball-android-launch",
+    "date": "2026-11-23",
+    "title": "Drunk Yeti Space Pinball is now on Google Play",
+    "summary": "Drunk Yeti Space Pinball is available for Android from Drunk Yeti Studio.",
+    "body": [
+      "Climb an endless pinball table. Flip your UFO through faster space sectors.",
+      "Check the Google Play listing for device compatibility, availability, and current release details."
+    ],
+    "links": [
+      {
+        "label": "Get it on Google Play",
+        "url": "https://play.google.com/store/apps/details?id=games.drunkyeti.spacepinball"
+      },
+      {
+        "label": "More Drunk Yeti apps on Google Play",
+        "url": "https://play.google.com/store/apps/developer?id=Drunk+Yeti+Studio"
+      }
+    ],
+    "image": "/assets/google-play/games.drunkyeti.spacepinball.png",
+    "imageAlt": "Drunk Yeti Space Pinball gameplay screenshot from the official Google Play listing."
   }
 ]

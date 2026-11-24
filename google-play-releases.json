@@ -63,5 +63,18 @@
       "Android"
     ],
     "packageId": "com.hexfold.holdem"
+  },
+  {
+    "title": "Drunk Yeti Space Pinball — Android",
+    "url": "https://play.google.com/store/apps/details?id=games.drunkyeti.spacepinball",
+    "image": "./assets/google-play/games.drunkyeti.spacepinball.png",
+    "description": "Climb an endless pinball table. Flip your UFO through faster space sectors. Available on Google Play for Android.",
+    "category": "Games",
+    "browser": false,
+    "storefront": "Google Play",
+    "platforms": [
+      "Android"
+    ],
+    "packageId": "games.drunkyeti.spacepinball"
   }
 ]
