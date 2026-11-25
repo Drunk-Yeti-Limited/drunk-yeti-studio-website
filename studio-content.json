@@ -152,7 +152,9 @@
         "checked": "2026-11-14",
         "source": "https://drunkyeti.itch.io/ar3na-world-tour",
         "video": "https://www.youtube.com/watch?v=UrZcktRKkyM"
-      }
+      },
+      "steamUrl": "https://store.steampowered.com/app/2440590/",
+      "steamLabel": "View on Steam ↗"
     },
     {
       "slug": "avalanca",
@@ -190,7 +192,9 @@
         "notes": "Lite starts in Tundra with solo Race, Time Attack and Free Ride. Full includes the existing destinations, modes and Tours.",
         "checked": "2026-11-14",
         "source": "https://drunkyeti.itch.io/avalanca-downhill-riot"
-      }
+      },
+      "steamUrl": "https://store.steampowered.com/app/2435520/",
+      "steamLabel": "Wishlist on Steam ↗"
     },
     {
       "slug": "rockets-intensity",
@@ -231,7 +235,9 @@
         "notes": "The browser and Steam multiplayer paths are separate. This page links the hosted browser build; it does not establish desktop feature parity.",
         "checked": "2026-11-14",
         "source": "https://arocketsintensity.drunkyetistudio.com/"
-      }
+      },
+      "steamUrl": "https://store.steampowered.com/app/2376430/",
+      "steamLabel": "View on Steam ↗"
     },
     {
       "slug": "snowlight",
@@ -438,7 +444,9 @@
       "related": [
         "ar3na",
         "avalanca"
-      ]
+      ],
+      "steamUrl": "https://store.steampowered.com/app/2440580/",
+      "steamLabel": "Wishlist on Steam ↗"
     },
     {
       "slug": "mosswake",

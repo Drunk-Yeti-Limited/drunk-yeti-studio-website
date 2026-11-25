@@ -80,5 +80,328 @@
       "linux"
     ],
     "releaseDate": "Jun 4, 2026"
+  },
+  {
+    "title": "A Rocket's Intensity",
+    "url": "https://store.steampowered.com/app/2376430/",
+    "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2376430/7f98d221a238310caea2a7f6aeb53d8c18026621/header.jpg?t=1794287486",
+    "description": "Experience high-speed battles across various environments in this action-packed game. Use rockets to take down enemy UFOs and conquer multiple challenging levels. Upgrade your ship and unlock powerful weapons to dominate the skies and emerge victorious in this epic war.",
+    "category": "Games",
+    "browser": false,
+    "storefront": "Steam",
+    "platforms": [
+      "windows"
+    ],
+    "releaseDate": "Nov 9, 2026",
+    "releaseStatus": "Released",
+    "productType": "game"
+  },
+  {
+    "title": "The Paper Arcade",
+    "url": "https://store.steampowered.com/app/2381810/",
+    "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2381810/header.jpg?t=1699770016",
+    "description": "The Paper Arcade is a collection of classic arcade-style games with a unique drawing and sketchbook aesthetic. Enjoy fast-paced, high-score chasing action, challenging puzzles, and casual games. Each game is brought to life with stunning hand-drawn graphics. Addictive, retro-style gaming fun!",
+    "category": "Games",
+    "browser": false,
+    "storefront": "Steam",
+    "platforms": [
+      "windows"
+    ],
+    "releaseDate": "May 1, 2023",
+    "releaseStatus": "Early Access",
+    "productType": "game"
+  },
+  {
+    "title": "The Paper Arcade Soundtrack",
+    "url": "https://store.steampowered.com/app/2381820/",
+    "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2381820/header.jpg?t=1683731049",
+    "description": "Soundtrack for The Paper Arcade",
+    "category": "Soundtracks",
+    "browser": false,
+    "storefront": "Steam",
+    "platforms": [
+      "windows",
+      "mac",
+      "linux"
+    ],
+    "releaseDate": "May 10, 2023",
+    "releaseStatus": "Released",
+    "productType": "music"
+  },
+  {
+    "title": "The Paper Arcade - Maze Chase",
+    "url": "https://store.steampowered.com/app/2426480/",
+    "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2426480/header.jpg?t=1702603436",
+    "description": "DLC; requires the base game on Steam. Expand your maze-running adventures with the new Maze Chase DLC! Get ready to face new challenges and obstacles as you navigate through even more complex mazes. With additional levels and game modes, Maze Chase DLC offers hours of fun gameplay for both new and experienced players.",
+    "category": "Games",
+    "browser": false,
+    "storefront": "Steam",
+    "platforms": [
+      "windows"
+    ],
+    "releaseDate": "May 10, 2023",
+    "releaseStatus": "Released",
+    "productType": "dlc"
+  },
+  {
+    "title": "The Paper Arcade - Bombs A'hoy",
+    "url": "https://store.steampowered.com/app/2426490/",
+    "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2426490/header.jpg?t=1702603692",
+    "description": "DLC; requires the base game on Steam. But be careful! One wrong move could send you flying, leaving you vulnerable to enemy attacks and explosions. And as you progress through the game, the obstacles and enemies will become more challenging, requiring even more strategic thinking and quick reflexes to overcome.",
+    "category": "Games",
+    "browser": false,
+    "storefront": "Steam",
+    "platforms": [
+      "windows"
+    ],
+    "releaseDate": "Coming soon",
+    "releaseStatus": "Coming soon",
+    "productType": "dlc"
+  },
+  {
+    "title": "The Paper Arcade - MindField Master",
+    "url": "https://store.steampowered.com/app/2426491/",
+    "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2426491/header.jpg?t=1702603854",
+    "description": "DLC; requires the base game on Steam. But be careful! One wrong move could set off a chain reaction of explosions, ending the game in a fiery blast. As you progress through the game, the minefield will become larger and more complex, requiring even more precision and strategic thinking to navigate.",
+    "category": "Games",
+    "browser": false,
+    "storefront": "Steam",
+    "platforms": [
+      "windows"
+    ],
+    "releaseDate": "Coming soon",
+    "releaseStatus": "Coming soon",
+    "productType": "dlc"
+  },
+  {
+    "title": "The Paper Arcade - Paper Bird",
+    "url": "https://store.steampowered.com/app/2426510/",
+    "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2426510/header.jpg?t=1702599980",
+    "description": "DLC; requires the base game on Steam. Welcome to \"Paper Arcade: Flying Bird Edition\"! Get ready to take flight with this addictive and challenging game, perfect for players of all ages.",
+    "category": "Games",
+    "browser": false,
+    "storefront": "Steam",
+    "platforms": [
+      "windows"
+    ],
+    "releaseDate": "May 19, 2023",
+    "releaseStatus": "Released",
+    "productType": "dlc"
+  },
+  {
+    "title": "The Paper Arcade - Snake",
+    "url": "https://store.steampowered.com/app/2426540/",
+    "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2426540/header.jpg?t=1703183919",
+    "description": "DLC; requires the base game on Steam. In this game, you will control a cute little paper snake and guide it through a vibrant world of paper mazes and obstacles.",
+    "category": "Games",
+    "browser": false,
+    "storefront": "Steam",
+    "platforms": [
+      "windows"
+    ],
+    "releaseDate": "Coming soon",
+    "releaseStatus": "Coming soon",
+    "productType": "dlc"
+  },
+  {
+    "title": "The Paper Arcade - Poker",
+    "url": "https://store.steampowered.com/app/2426541/",
+    "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2426541/header.jpg?t=1702603745",
+    "description": "DLC; requires the base game on Steam. Welcome to \"Paper Arcade: Poker Edition\"! Get ready to experience the thrill and excitement of one of the world's most beloved card games, right from the comfort of your own home.",
+    "category": "Games",
+    "browser": false,
+    "storefront": "Steam",
+    "platforms": [
+      "windows"
+    ],
+    "releaseDate": "Coming soon",
+    "releaseStatus": "Coming soon",
+    "productType": "dlc"
+  },
+  {
+    "title": "The Paper Arcade - Pinball",
+    "url": "https://store.steampowered.com/app/2426542/",
+    "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2426542/header.jpg?t=1702603781",
+    "description": "DLC; requires the base game on Steam. Welcome to \"Paper Arcade: Pinball Edition\"! Get ready to experience the thrill and excitement of one of the world's most beloved arcade games, right from the comfort of your own home.",
+    "category": "Games",
+    "browser": false,
+    "storefront": "Steam",
+    "platforms": [
+      "windows"
+    ],
+    "releaseDate": "Coming soon",
+    "releaseStatus": "Coming soon",
+    "productType": "dlc"
+  },
+  {
+    "title": "The Paper Arcade: Singing Sparrow",
+    "url": "https://store.steampowered.com/app/2431420/",
+    "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2431420/header.jpg?t=1702603549",
+    "description": "DLC; requires the base game on Steam. Welcome to \"Paper Arcade: Singing Sparrow Edition\"! Get ready to flap your wings and test your reflexes in this addictive game of skill and timing.",
+    "category": "Games",
+    "browser": false,
+    "storefront": "Steam",
+    "platforms": [
+      "windows"
+    ],
+    "releaseDate": "May 19, 2023",
+    "releaseStatus": "Released",
+    "productType": "dlc"
+  },
+  {
+    "title": "The Paper Arcade: Kingdom Kitty",
+    "url": "https://store.steampowered.com/app/2431421/",
+    "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2431421/header.jpg?t=1702603700",
+    "description": "DLC; requires the base game on Steam. Welcome to \"Paper Arcade: Match-3 RPG Edition\"! Get ready to embark on an epic adventure filled with magical gems, powerful spells, and thrilling battles.",
+    "category": "Games",
+    "browser": false,
+    "storefront": "Steam",
+    "platforms": [
+      "windows"
+    ],
+    "releaseDate": "May 19, 2023",
+    "releaseStatus": "Released",
+    "productType": "dlc"
+  },
+  {
+    "title": "Avalanca",
+    "url": "https://store.steampowered.com/app/2435520/",
+    "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2435520/6c0890d7458636446245b576adcf70cc2dd3222e/header.jpg?t=1794930564",
+    "description": "Carve curved mountain trails, catch cliffside air and outrun avalanches and Drunk Yeti. Explore seven destinations, conquer six Tours and unlock riders in this hand-drawn arcade adventure, with solo, local multiplayer and a Steam online race preview.",
+    "category": "Games",
+    "browser": false,
+    "storefront": "Steam",
+    "platforms": [
+      "windows",
+      "mac",
+      "linux"
+    ],
+    "releaseDate": "Coming soon",
+    "releaseStatus": "Coming soon",
+    "productType": "game"
+  },
+  {
+    "title": "Avalanca - Mythos",
+    "url": "https://store.steampowered.com/app/2435550/",
+    "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2435550/header.jpg?t=1703197517",
+    "description": "DLC; requires the base game on Steam. Explore the mysteries of Odonis Orphane in the bonus DLC for Avalanca. Equip cutting-edge weaponry, face new alien threats, and unlock extraterrestrial powers. The cosmos awaits – are you ready for the alien odyssey?",
+    "category": "Games",
+    "browser": false,
+    "storefront": "Steam",
+    "platforms": [
+      "windows"
+    ],
+    "releaseDate": "Coming soon",
+    "releaseStatus": "Coming soon",
+    "productType": "dlc"
+  },
+  {
+    "title": "Avalanca - Divinity: Belfy Bastion",
+    "url": "https://store.steampowered.com/app/2435551/",
+    "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2435551/header.jpg?t=1703183477",
+    "description": "DLC; requires the base game on Steam. Dive into the enchanting realm of Avalanca once again with the thrilling DLC expansion, Belfry Bastion. This immersive tower defense game seamlessly blends the captivating characters and lore of Avalanca with strategic gameplay, offering players a fresh experience within the beloved universe.",
+    "category": "Games",
+    "browser": false,
+    "storefront": "Steam",
+    "platforms": [
+      "windows"
+    ],
+    "releaseDate": "Coming soon",
+    "releaseStatus": "Coming soon",
+    "productType": "dlc"
+  },
+  {
+    "title": "Xero: From Xéro To Xēro",
+    "url": "https://store.steampowered.com/app/2440580/",
+    "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2440580/184c00fac9a6b73fb41e78ae2f17e4f899f8f8cb/header.jpg?t=1795538510",
+    "description": "Welcome to the adrenaline-fueled world of Xero, a high-octane platform game that thrusts you into the cockpit of a futuristic fighting robot! Strap on your jetpack, power up your lasers, and unsheathe your razor-sharp swords as you prepare for the ultimate battle.",
+    "category": "Games",
+    "browser": false,
+    "storefront": "Steam",
+    "platforms": [
+      "windows",
+      "linux"
+    ],
+    "releaseDate": "To be announced",
+    "releaseStatus": "Coming soon",
+    "productType": "game"
+  },
+  {
+    "title": "AR3NA",
+    "url": "https://store.steampowered.com/app/2440590/",
+    "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2440590/842083b893ab13364b16c8fc2ac2eb6695ee65c3/header.jpg?t=1795540962",
+    "description": "AR3NA is a top-down battle arena game that blends fast-paced action with strategic gameplay. Engage in heart-pounding battles against epic foes as you fight for supremacy in a variety of dynamic arenas. Use your wit, reflexes, and cunning tactics to outmaneuver your opponents and emerge victorious.",
+    "category": "Games",
+    "browser": false,
+    "storefront": "Steam",
+    "platforms": [
+      "windows",
+      "mac",
+      "linux"
+    ],
+    "releaseDate": "Nov 24, 2026",
+    "releaseStatus": "Released",
+    "productType": "game"
+  },
+  {
+    "title": "Arena (Gameboy Edition)",
+    "url": "https://store.steampowered.com/app/2715150/",
+    "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2715150/header.jpg?t=1702400362",
+    "description": "DLC; requires the base game on Steam. Step into the pixelated realm of nostalgia with the AR3NA: Gameboy Classic Edition DLC! This remastered version takes you back to the roots of the original AR3NA, featuring 100 challenging levels that will test your precision and gaming prowess.",
+    "category": "Games",
+    "browser": false,
+    "storefront": "Steam",
+    "platforms": [
+      "windows"
+    ],
+    "releaseDate": "Coming soon",
+    "releaseStatus": "Coming soon",
+    "productType": "dlc"
+  },
+  {
+    "title": "MANA",
+    "url": "https://store.steampowered.com/app/2724160/",
+    "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2724160/header.jpg?t=1795376691",
+    "description": "Immerse yourself in the dynamic world of MANA, where strategic brilliance combines with explosive visuals! Engage in intense battles, using angles to unleash a dazzling array of shapes and colors. MANA reinvents strategic warfare with a visually stunning and uniquely dynamic twist.",
+    "category": "Games",
+    "browser": false,
+    "storefront": "Steam",
+    "platforms": [
+      "windows",
+      "linux"
+    ],
+    "releaseDate": "Jul 19, 2025",
+    "releaseStatus": "Released",
+    "productType": "game"
+  },
+  {
+    "title": "The Paper Arcade: Pong",
+    "url": "https://store.steampowered.com/app/3730950/",
+    "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3730950/643677e5e63d20e02502cf0ecca6aa7111b8ed95/header.jpg?t=1752803167",
+    "description": "The Paper Arcade: Pong is a hand-drawn twist on the arcade classic! With soccer-inspired visuals, magnetic chaos, and multiball power-ups, it's pong like you've never seen. Play 1v1 or add up to 6 AI players for frantic free-for-alls and sketchy team battles.",
+    "category": "Games",
+    "browser": false,
+    "storefront": "Steam",
+    "platforms": [
+      "windows"
+    ],
+    "releaseDate": "Jul 17, 2025",
+    "releaseStatus": "Released",
+    "productType": "game"
+  },
+  {
+    "title": "Space Pinball",
+    "url": "https://store.steampowered.com/app/3821520/",
+    "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3821520/6c7805a09d6fb6fedbffd0bd1dae5068c9e5a312/header.jpg?t=1751463065",
+    "description": "Blast off into a cosmic twist on classic pinball! In Space Pinball, you're a UFO racking up points by crashing into asteroids while navigating an ever-changing playfield. Survive with just three lives as the stars—and the arena—fall around you.",
+    "category": "Games",
+    "browser": false,
+    "storefront": "Steam",
+    "platforms": [
+      "windows"
+    ],
+    "releaseDate": "Jul 2, 2025",
+    "releaseStatus": "Released",
+    "productType": "game"
   }
 ]

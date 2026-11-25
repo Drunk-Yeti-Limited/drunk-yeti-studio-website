@@ -77,10 +77,11 @@ def main():
             product_url = studio_links.get(c['url']) or studio_links.get(c.get('packageId') or studio_pages.catalog_slug(c['url']))
             destination = product_url or c['url']
             listing_links.append(destination)
-            store_label = 'Get it on Google Play' if c.get('storefront') == 'Google Play' else 'View on Steam' if c.get('storefront') == 'Steam' else 'View release'
+            store_label = 'Wishlist on Steam' if c.get('storefront') == 'Steam' and c.get('releaseStatus') == 'Coming soon' else 'Get it on Google Play' if c.get('storefront') == 'Google Play' else 'View on Steam' if c.get('storefront') == 'Steam' else 'View release'
             markup.append(
                 f'<article><a href="{esc(destination, quote=True)}"><img src="{esc(img, quote=True)}" '
                 f'alt="" loading="lazy" width="315" height="250"><h2>{esc(c["title"])}</h2></a>'
+                f'<p>{esc(c.get("releaseStatus", ""))}</p>'
                 f'<p>{esc(c.get("description") or "See the official release page for details and downloads.")}</p>'
                 f'<a class="release" href="{esc(c["url"], quote=True)}">{store_label} ↗</a></article>'
             )
