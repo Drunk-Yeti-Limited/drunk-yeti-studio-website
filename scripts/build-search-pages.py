@@ -63,9 +63,10 @@ def main():
         'android', 'Android', 'Android games & apps',
         'Find official Drunk Yeti Studio Android releases on Google Play, including card games, screenshots, and device compatibility links.',
     )
-    for slug,category,title,description in [*CATEGORIES, android]:
+    steam = ('steam', 'Steam', 'Games on Steam', 'Explore official Drunk Yeti Steam releases, from idle games and factory management to hovercraft adventures and soundtracks.')
+    for slug,category,title,description in [*CATEGORIES, android, steam]:
         is_android = slug == 'android'
-        items = [c for c in cards if c.get('storefront') == 'Google Play'] if is_android else [
+        items = [c for c in cards if c.get('storefront') == 'Google Play'] if is_android else [c for c in cards if c.get('storefront') == 'Steam'] if slug == 'steam' else [
             c for c in cards if c['category'] == category
         ]
         markup = []
@@ -76,17 +77,17 @@ def main():
             product_url = studio_links.get(c['url']) or studio_links.get(c.get('packageId') or studio_pages.catalog_slug(c['url']))
             destination = product_url or c['url']
             listing_links.append(destination)
-            store_label = 'Get it on Google Play' if c.get('storefront') == 'Google Play' else 'View release'
+            store_label = 'Get it on Google Play' if c.get('storefront') == 'Google Play' else 'View on Steam' if c.get('storefront') == 'Steam' else 'View release'
             markup.append(
                 f'<article><a href="{esc(destination, quote=True)}"><img src="{esc(img, quote=True)}" '
                 f'alt="" loading="lazy" width="315" height="250"><h2>{esc(c["title"])}</h2></a>'
                 f'<p>{esc(c.get("description") or "See the official release page for details and downloads.")}</p>'
                 f'<a class="release" href="{esc(c["url"], quote=True)}">{store_label} ↗</a></article>'
             )
-        hub={'android':'play','games':'play','tools':'create','assets':'create','mods':'play','soundtracks':'worlds','os':'create','comics':'worlds'}[slug]
+        hub={'steam':'play','android':'play','games':'play','tools':'create','assets':'create','mods':'play','soundtracks':'worlds','os':'create','comics':'worlds'}[slug]
         intro=f'<aside class="collection-intro"><p>Looking for a place to start? <a href="/{hub}/">Explore our {"games" if hub=="play" else "creative software" if hub=="create" else "worlds and media"} guide →</a></p></aside>'
         if slug == 'games':
-            intro = '<aside class="collection-intro"><p><a href="/android/">Browse Android releases</a> · <a href="/play/">Find browser games</a></p></aside>'
+            intro = '<aside class="collection-intro"><p><a href="/android/">Browse Android releases</a> · <a href="/steam/">Browse Steam releases</a> · <a href="/play/">Find browser games</a></p></aside>'
         if is_android:
             intro = (
                 '<aside class="collection-intro"><p>Each app’s Google Play listing shows whether you can install it on your device. '
@@ -104,5 +105,5 @@ def main():
     site_search.build(page, write, search_pages, products, posts, cards)
     write('sitemap.xml','<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+''.join('<url><loc>'+ORIGIN+u+'</loc></url>' for u in urls)+'</urlset>\n')
     write('robots.txt','User-agent: *\nAllow: /\n\nSitemap: '+ORIGIN+'/sitemap.xml\n')
-    print(f'Built {len(urls)} sitemap URLs and {len(CATEGORIES) + 1} crawlable collections.')
+    print(f'Built {len(urls)} sitemap URLs and {len(CATEGORIES) + 2} crawlable collections.')
 if __name__=='__main__':main()
