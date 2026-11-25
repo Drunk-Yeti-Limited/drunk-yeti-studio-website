@@ -94,6 +94,8 @@ def build(page, write, cards, products, posts):
         actions = f'<a class="button ink" href="{store_url}">{release_label}</a>'
         if browser_edition := p.get('browserEdition'):
             actions += f'<a class="button browser-edition" href="{E(browser_edition, quote=True)}">Play in browser ↗</a>'
+        if steam_url := p.get('steamUrl'):
+            actions += f'<a class="button" href="{E(steam_url, quote=True)}">{E(p["steamLabel"])}</a>'
         support = '<a href="/help/">Get support</a>'
         if not browser_edition:
             more = E(p.get('releaseLabel', 'See current downloads and release details ↗'))
