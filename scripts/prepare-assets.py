@@ -218,6 +218,9 @@ def write_if_changed(path, content):
 
 
 def refresh_cover(card, previous=None):
+    # Manually curated storefronts may intentionally use their official CDN image.
+    if urlparse(card['image']).scheme == 'https':
+        return None
     if not card.get('coverSource'):
         return None
     destination = ROOT / card['image'].removeprefix('./')
