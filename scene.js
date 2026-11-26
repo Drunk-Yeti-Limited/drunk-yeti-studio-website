@@ -70,13 +70,13 @@ try{
   for (const entry of entries) {
    if (entry.target === stage) {
     mascotVisible = entry.isIntersecting;
-    if (mascotVisible) loadMascot();
    } else {
     logoVisible = entry.isIntersecting;
     if (logoVisible) loadLogo();
    }
   }
  }, {rootMargin: '120px'});
+ loadMascot();
  observer.observe(stage);
  observer.observe(logoHost);
  stage.addEventListener('pointermove',e=>{if(e.pointerType!=='mouse')return;const r=stage.getBoundingClientRect();target.set((e.clientX-r.left)/r.width-.5,(e.clientY-r.top)/r.height-.5);});stage.addEventListener('pointerleave',()=>target.set(0,0));
@@ -102,3 +102,4 @@ try{
  motion.disabled=false;
  requestAnimationFrame(frame);
 }catch(e){console.error('3D unavailable; showing original artwork.',e);renderer?.domElement.remove();logoRenderer?.domElement.remove();document.querySelector('#fallback-yeti').hidden=false;document.querySelector('#logo-fallback').hidden=false;motion.disabled=true;throw e;}
+
