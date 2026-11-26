@@ -1,0 +1,38 @@
+[
+  {
+    "id": "dillingham",
+    "title": "Dillingham · Issue 1",
+    "pages": 32,
+    "game": "https://dillingham-salmon-run.bluefox6.chatgpt.site"
+  },
+  {
+    "id": "riggins",
+    "title": "Riggins: A Place for the Small Things",
+    "pages": 26,
+    "game": "https://drunkyeti.itch.io/riggins"
+  },
+  {
+    "id": "moly-bart-skid",
+    "title": "Moly, Bart & Skid: The Heart Under the Mountain",
+    "pages": 94,
+    "game": "https://moly-bart-skid-lost-spring.bluefox6.chatgpt.site"
+  },
+  {
+    "id": "drunk-yeti",
+    "title": "Drunk Yeti · Book 1",
+    "pages": 54,
+    "game": "https://drunkyeti.itch.io/yeti-brawl"
+  },
+  {
+    "id": "penpals",
+    "title": "PenPals · Book 1",
+    "pages": 30,
+    "game": "https://drunkyeti.itch.io/penpals-battle"
+  },
+  {
+    "id": "penpals-midnight",
+    "title": "PenPals: The Midnight Makeover",
+    "pages": 26,
+    "game": "https://drunkyeti.itch.io/penpals-battle"
+  }
+]
