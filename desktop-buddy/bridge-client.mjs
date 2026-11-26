@@ -31,3 +31,20 @@ export class BuddyClient {
   async disconnect() { try { if(this.token) await this.request('disconnect'); } finally { this.forget(); } }
   forget() { this.generation++; this.token=''; }
 }
+
+const PAIRING_KEY = 'drunk-yeti-buddy-session';
+export function savedPairing() {
+  try { return sessionStorage.getItem(PAIRING_KEY) || ''; } catch { return ''; }
+}
+export function rememberPairing(code) {
+  try {
+    if (code) sessionStorage.setItem(PAIRING_KEY, code);
+    else sessionStorage.removeItem(PAIRING_KEY);
+  } catch { /* Private browsing can disable storage. Manual pairing still works. */ }
+}
+export function takePairingFragment() {
+  const match = /^#buddy=([a-f0-9]{32})$/i.exec(location.hash);
+  if (!match) return '';
+  history.replaceState(history.state, '', location.pathname + location.search);
+  return match[1];
+}
