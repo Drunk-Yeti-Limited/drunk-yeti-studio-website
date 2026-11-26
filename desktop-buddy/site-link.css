@@ -1,0 +1,20 @@
+.studio-buddy-link {
+  position: fixed;
+  z-index: 100;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  width: min(22rem, calc(100% - 2rem));
+  color: #effaff;
+  background: #112836;
+  border: 1px solid #6899ad;
+  border-radius: .8rem;
+  box-shadow: 0 .5rem 2rem #07182080;
+  font: 1rem/1.45 system-ui, sans-serif;
+}
+.studio-buddy-link:not([open]) { width: max-content; }
+.studio-buddy-link summary { cursor: pointer; padding: .75rem 1rem; }
+.studio-buddy-body { padding: 0 1rem .75rem; }
+.studio-buddy-body input { display: block; width: 100%; margin: .35rem 0; box-sizing: border-box; }
+.studio-buddy-body a { color: #a9e6fb; text-decoration: underline; }
+.studio-buddy-body button { margin: .2rem .2rem .2rem 0; }
+.studio-buddy-body [hidden] { display: none !important; }
