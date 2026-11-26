@@ -1,0 +1,16 @@
+:root {color-scheme:dark;font:16px/1.5 system-ui,sans-serif;background:#15181c;color:#f8f5ed}
+body {margin:0}
+[hidden] {display:none!important}
+main {max-width:1050px;margin:auto;padding:1rem}
+header,nav {display:flex;align-items:center;flex-wrap:wrap;gap:.6rem 1rem}
+header {justify-content:space-between;margin-block-end:.75rem}
+h1 {font-size:clamp(1.2rem,4vw,2rem);margin:0}
+a {color:#f9cf81}
+nav {justify-content:center;position:sticky;top:0;background:#15181c;z-index:1;padding:.5rem 0}
+button,select {font:inherit;color:inherit;background:#30363d;border:1px solid #78818b;border-radius:.45rem;min-height:44px;padding:.3rem .65rem}
+button:disabled {opacity:.45}
+#surface {text-align:center;touch-action:pan-y pinch-zoom;min-height:15rem}
+#sheet {max-width:100%;max-height:calc(100svh - 9rem);object-fit:contain;cursor:zoom-in;vertical-align:middle}
+#surface.zoom #sheet {max-height:none;width:100%;cursor:zoom-out}
+#status,.hint {text-align:center;color:#c9c6c2}
+#status:empty {display:none}
