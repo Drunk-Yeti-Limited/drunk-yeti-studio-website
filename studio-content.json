@@ -477,6 +477,91 @@
         "ar3na",
         "avalanca"
       ]
+    },
+    {
+      "slug": "klay-karts",
+      "catalogSlug": "schmuck-deluxe-soundtrack",
+      "section": "games",
+      "name": "Klay Karts",
+      "tagline": "Shape the track while you race.",
+      "description": "Race clay karts through sculpted circuits, build ramps and turn wet tire tracks into boosts.",
+      "intro": "Race clay karts through sculpted circuits, build ramps and turn wet tire tracks into boosts.",
+      "image": "./assets/covers/schmuck-deluxe-soundtrack.webp",
+      "releaseUrl": "https://drunkyeti.itch.io/schmuck-deluxe-soundtrack",
+      "releaseLabel": "View on itch.io ↗",
+      "microsoftUrl": "https://apps.microsoft.com/detail/9p02nb5kkxvd?hl=en-US&gl=US",
+      "features": [
+        [
+          "Sculpt a shortcut",
+          "Spend clay to reshape the course. Rivals can use the shortcuts you leave behind."
+        ],
+        [
+          "Three ways to race",
+          "Jump into a quick race, chase a personal best in Trial, or work through the Grand Clay Tour."
+        ]
+      ],
+      "edition": "Find the Windows PC edition on Microsoft Store. Check itch.io for its available builds and browser support.",
+      "related": [
+        "penpals",
+        "yeti-brawl"
+      ],
+      "privacyUrl": "/privacy/klay-karts/"
+    },
+    {
+      "slug": "penpals",
+      "catalogSlug": "penpals-battle",
+      "section": "games",
+      "name": "PenPals: Battle for the Blank",
+      "tagline": "Draw your way through the arena.",
+      "description": "Draw loops, bridges and other solutions in an art-themed arena campaign and the Graphite Garden chapter.",
+      "intro": "Draw loops, bridges and other solutions in an art-themed arena campaign and the Graphite Garden chapter.",
+      "image": "./assets/covers/penpals-battle.webp",
+      "releaseUrl": "https://drunkyeti.itch.io/penpals-battle",
+      "releaseLabel": "View on itch.io ↗",
+      "microsoftUrl": "https://apps.microsoft.com/detail/9nt87nkg9bv5?hl=en-US&gl=US",
+      "features": [
+        [
+          "Draw to solve",
+          "Loop a line around an enemy or sketch a bridge across a gap."
+        ],
+        [
+          "Explore Graphite Garden",
+          "Take on four rooms of drawing puzzles and a ruler encounter. Room checkpoints save your progress."
+        ]
+      ],
+      "edition": "Find the Windows PC edition on Microsoft Store. Check itch.io for its available builds and browser support.",
+      "related": [
+        "klay-karts",
+        "yeti-brawl"
+      ]
+    },
+    {
+      "slug": "yeti-brawl",
+      "catalogSlug": "yeti-brawl",
+      "section": "games",
+      "name": "Yeti Brawl",
+      "tagline": "Make the arena yours.",
+      "description": "Fight across platform arenas with seven fighter kits, CPU rivals, local versus and local co-op.",
+      "intro": "Fight across platform arenas with seven fighter kits, CPU rivals, local versus and local co-op.",
+      "image": "./assets/covers/yeti-brawl.webp",
+      "releaseUrl": "https://drunkyeti.itch.io/yeti-brawl",
+      "releaseLabel": "View on itch.io ↗",
+      "microsoftUrl": "https://apps.microsoft.com/detail/9phhrx42ld9p?hl=en-US&gl=US",
+      "features": [
+        [
+          "Win the next exchange",
+          "Use platforms to reposition and directional smashes to set up follow-ups or send rivals out of bounds."
+        ],
+        [
+          "Play solo or locally with friends",
+          "Fight CPU rivals, play local versus, or team up for Adventure encounters and Story chapters."
+        ]
+      ],
+      "edition": "Find the Windows PC edition on Microsoft Store. Check itch.io for its available builds and browser support.",
+      "related": [
+        "klay-karts",
+        "penpals"
+      ]
     }
   ]
 }

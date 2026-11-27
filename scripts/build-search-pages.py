@@ -6,6 +6,7 @@ from urllib.parse import urlparse
 import studio_pages
 import news_pages
 import site_search
+from storefronts import MICROSOFT_PUBLISHER, store_link
 from support_page import BODY as SUPPORT_BODY
 from html.parser import HTMLParser
 R=Path(__file__).resolve().parents[1]; ORIGIN='https://www.drunkyetistudio.com'; esc=html.escape
@@ -49,6 +50,8 @@ def main():
     posts = news_pages.read_posts(product_titles)
     studio_links = {p['catalogSlug']: studio_pages.path(p) for p in products}
     studio_links.update({p['releaseUrl']: studio_pages.path(p) for p in products if p.get('releaseUrl')})
+    studio_links.update({p["microsoftUrl"]: studio_pages.path(p) for p in products if p.get("microsoftUrl")})
+    microsoft_by_game = {studio_pages.path(p): p["microsoftUrl"] for p in products if p.get("microsoftUrl")}
     search_pages = {}
 
     def recorded_page(path, title, description, body, schema=None, intro=None, **options):
@@ -64,37 +67,44 @@ def main():
         'Find official Drunk Yeti Studio Android releases on Google Play, including card games, screenshots, and device compatibility links.',
     )
     steam = ('steam', 'Steam', 'Games on Steam', 'Explore official Drunk Yeti Steam releases, from idle games and factory management to hovercraft adventures and soundtracks.')
-    for slug,category,title,description in [*CATEGORIES, android, steam]:
+    windows = ("windows", "Microsoft Store", "Windows PC games", "Browse Drunk Yeti Studio Windows PC releases on the Microsoft Store.")
+    storefronts = {"android": "Google Play", "steam": "Steam", "windows": "Microsoft Store"}
+    for slug,category,title,description in [*CATEGORIES, android, steam, windows]:
         is_android = slug == 'android'
-        items = [c for c in cards if c.get('storefront') == 'Google Play'] if is_android else [c for c in cards if c.get('storefront') == 'Steam'] if slug == 'steam' else [
-            c for c in cards if c['category'] == category
-        ]
+        if storefront := storefronts.get(slug):
+            items = [c for c in cards if c.get('storefront') == storefront]
+        else:
+            items = [c for c in cards if c['category'] == category and c.get('storefront') != 'Microsoft Store']
         markup = []
         listing_links = []
         for c in items:
-            assert urlparse(c['url']).scheme=='https' and urlparse(c['url']).hostname in ('drunkyeti.itch.io','store.steampowered.com','play.google.com')
+            assert urlparse(c['url']).scheme=='https' and urlparse(c['url']).hostname in ('drunkyeti.itch.io','store.steampowered.com','play.google.com','apps.microsoft.com')
             img='/'+c['image'].removeprefix('./') if c['image'].startswith('./') else c['image']
             product_url = studio_links.get(c['url']) or studio_links.get(c.get('packageId') or studio_pages.catalog_slug(c['url']))
             destination = product_url or c['url']
             listing_links.append(destination)
-            store_label = 'Wishlist on Steam' if c.get('storefront') == 'Steam' and c.get('releaseStatus') == 'Coming soon' else 'Get it on Google Play' if c.get('storefront') == 'Google Play' else 'View on Steam' if c.get('storefront') == 'Steam' else 'View release'
+            store_label = 'Wishlist on Steam' if c.get('storefront') == 'Steam' and c.get('releaseStatus') == 'Coming soon' else 'Get it on Google Play' if c.get('storefront') == 'Google Play' else 'View on Steam' if c.get('storefront') == 'Steam' else 'View on Microsoft Store' if c.get('storefront') == 'Microsoft Store' else 'View on itch.io'
+            alternate = microsoft_by_game.get(destination) if slug == "games" and c.get("storefront") is None else None
+            alternate_link = store_link(alternate, "Get it from Microsoft", "release") if alternate else ""
             markup.append(
                 f'<article><a href="{esc(destination, quote=True)}"><img src="{esc(img, quote=True)}" '
                 f'alt="" loading="lazy" width="315" height="250"><h2>{esc(c["title"])}</h2></a>'
                 f'<p>{esc(c.get("releaseStatus", ""))}</p>'
                 f'<p>{esc(c.get("description") or "See the official release page for details and downloads.")}</p>'
-                f'<a class="release" href="{esc(c["url"], quote=True)}">{store_label} ↗</a></article>'
+                + store_link(c['url'], store_label + ' ↗', 'release') + alternate_link + '</article>'
             )
-        hub={'steam':'play','android':'play','games':'play','tools':'create','assets':'create','mods':'play','soundtracks':'worlds','os':'create','comics':'worlds'}[slug]
+        hub={'windows':'play','steam':'play','android':'play','games':'play','tools':'create','assets':'create','mods':'play','soundtracks':'worlds','os':'create','comics':'worlds'}[slug]
         intro=f'<aside class="collection-intro"><p>Looking for a place to start? <a href="/{hub}/">Explore our {"games" if hub=="play" else "creative software" if hub=="create" else "worlds and media"} guide →</a></p></aside>'
         if slug == 'games':
-            intro = '<aside class="collection-intro"><p><a href="/android/">Browse Android releases</a> · <a href="/steam/">Browse Steam releases</a> · <a href="/play/">Find browser games</a></p></aside>'
+            intro = '<aside class="collection-intro"><p><a href="/windows/">Browse Microsoft Store releases</a> · <a href="/android/">Browse Android releases</a> · <a href="/steam/">Browse Steam releases</a> · <a href="/play/">Find browser games</a></p></aside>'
         if is_android:
             intro = (
                 '<aside class="collection-intro"><p>Each app’s Google Play listing shows whether you can install it on your device. '
                 '<a href="https://play.google.com/store/apps/developer?id=Drunk+Yeti+Studio">Visit our Google Play developer page ↗</a></p>'
                 '<p><a href="/games/">Browse all games</a> · <a href="/news/">Read the latest release news</a></p></aside>'
             )
+        if slug == 'windows':
+            intro = '<aside class="collection-intro"><p>' + store_link(MICROSOFT_PUBLISHER, 'Browse the Microsoft Store publisher catalog', 'release') + '</p><p><a href="/games/">All games</a> · <a href="/steam/">Steam releases</a> · <a href="/android/">Google Play releases</a></p></aside>'
         body=intro+'<p class="note"> Availability, prices and platform support are listed on each official release page.</p><div class="grid">'+''.join(markup)+'</div>'+guides.get(slug,'')
         schema={'@context':'https://schema.org','@type':'CollectionPage','name':title,'description':description,'url':ORIGIN+'/'+slug+'/','mainEntity':{'@type':'ItemList','numberOfItems':len(items),'itemListElement':[{'@type':'ListItem','position':i+1,'name':c['title'],'url':ORIGIN+url if url.startswith('/') else url} for i,(c,url) in enumerate(zip(items,listing_links))]}}
         write(slug+'/index.html',recorded_page('/'+slug+'/',title,description,body,schema));urls.append('/'+slug+'/')
@@ -106,5 +116,5 @@ def main():
     site_search.build(page, write, search_pages, products, posts, cards)
     write('sitemap.xml','<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+''.join('<url><loc>'+ORIGIN+u+'</loc></url>' for u in urls)+'</urlset>\n')
     write('robots.txt','User-agent: *\nAllow: /\n\nSitemap: '+ORIGIN+'/sitemap.xml\n')
-    print(f'Built {len(urls)} sitemap URLs and {len(CATEGORIES) + 2} crawlable collections.')
+    print(f'Built {len(urls)} sitemap URLs and {len(CATEGORIES) + len(storefronts)} crawlable collections.')
 if __name__=='__main__':main()

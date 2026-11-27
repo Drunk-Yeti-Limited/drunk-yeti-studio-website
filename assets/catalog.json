@@ -2142,5 +2142,41 @@
       "Android"
     ],
     "packageId": "games.drunkyeti.spacepinball"
+  },
+  {
+    "title": "Klay Karts",
+    "url": "https://apps.microsoft.com/detail/9p02nb5kkxvd?hl=en-US&gl=US",
+    "image": "./assets/covers/schmuck-deluxe-soundtrack.webp",
+    "description": "Race clay karts through sculpted circuits, build ramps and turn wet tire tracks into boosts.",
+    "category": "Games",
+    "browser": false,
+    "storefront": "Microsoft Store",
+    "platforms": [
+      "windows"
+    ]
+  },
+  {
+    "title": "PenPals: Battle for the Blank",
+    "url": "https://apps.microsoft.com/detail/9nt87nkg9bv5?hl=en-US&gl=US",
+    "image": "./assets/covers/penpals-battle.webp",
+    "description": "Draw loops, bridges and other solutions in an art-themed arena campaign and the Graphite Garden chapter.",
+    "category": "Games",
+    "browser": false,
+    "storefront": "Microsoft Store",
+    "platforms": [
+      "windows"
+    ]
+  },
+  {
+    "title": "Yeti Brawl",
+    "url": "https://apps.microsoft.com/detail/9phhrx42ld9p?hl=en-US&gl=US",
+    "image": "./assets/covers/yeti-brawl.webp",
+    "description": "Fight across platform arenas with seven fighter kits, CPU rivals, local versus and local co-op.",
+    "category": "Games",
+    "browser": false,
+    "storefront": "Microsoft Store",
+    "platforms": [
+      "windows"
+    ]
   }
 ]

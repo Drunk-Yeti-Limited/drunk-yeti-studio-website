@@ -263,7 +263,7 @@ def main():
     extras_path = ROOT / 'catalog-extras.json'
     if extras_path.exists():
         for extra in json.loads(extras_path.read_text()) + json.loads((ROOT/'google-play-releases.json').read_text()):
-            if urlparse(extra['url']).hostname not in ('store.steampowered.com', 'drunkyeti.itch.io', 'play.google.com'):
+            if urlparse(extra['url']).hostname not in ('store.steampowered.com', 'drunkyeti.itch.io', 'play.google.com', 'apps.microsoft.com'):
                 raise ValueError('Unsupported extra storefront')
             if extra['url'] not in seen:
                 cards.append(extra)

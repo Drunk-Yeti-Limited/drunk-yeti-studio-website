@@ -103,3 +103,10 @@ body.studio-page{font-family:'Trebuchet MS',Arial,sans-serif}.studio-page header
 .site-search-list small { display: block; margin-bottom: 3px; color: #47595f; }
 .site-search-list a { color: #14242b; font-weight: 750; text-underline-offset: 3px; }
 .site-search-list p { margin: 6px 0 0; color: #47595f; }
+
+.store-link { display: inline-flex; align-items: center; gap: .45em; }
+.store-link img { flex: none; object-fit: contain; }
+.studio-page .grid .store-link img, .spotlight-card .store-link img { width: 18px; height: 18px; margin: 0; border: 0; }
+.store-link.microsoft-link, .studio-page .grid .store-link.microsoft-link { padding: 0; background: transparent; border: 0; box-shadow: none; }
+.store-link.microsoft-link img, .studio-page .grid .store-link.microsoft-link img, .spotlight-card .store-link.microsoft-link img { width: 144px; height: auto; }
+.steam-mark img { filter: invert(1); }
