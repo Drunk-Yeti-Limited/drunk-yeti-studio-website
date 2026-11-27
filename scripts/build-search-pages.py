@@ -3,6 +3,7 @@
 from pathlib import Path
 import json, html
 from urllib.parse import urlparse
+import game_coverage
 import studio_pages
 import news_pages
 import site_search
@@ -116,6 +117,7 @@ def main():
         write(slug+'/index.html',recorded_page('/'+slug+'/',title,description,body,schema));urls.append('/'+slug+'/')
     write('help/index.html',recorded_page('/help/','Help & support','Get help with Drunk Yeti accounts, Apple sign-in, purchases, Frostpass, browser games, downloads and Desktop Buddy.', SUPPORT_BODY))
     urls.extend(privacy_urls())
+    urls.append(game_coverage.build(page, write, cards))
     urls.extend(studio_pages.build(recorded_page, write, cards, products, posts))
     urls.extend(news_pages.build(recorded_page, write, posts, product_titles, studio_pages.DISCORD_INVITE))
     urls = list(dict.fromkeys(urls))

@@ -3,6 +3,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 import json, html, re
 
+from game_coverage import PATH as GAME_COVERAGE_PATH
 from news_pages import latest_updates
 from storefronts import store_link
 
@@ -148,17 +149,7 @@ def build(page, write, cards, products, posts):
     publish('about','Meet Drunk Yeti Studio','Meet Drunk Yeti Studio: original games, creative software, comics, music, and worlds by Michael Lambert Jr, also known as 3ichael 7ambert.',about,intro='Meet the team behind Drunk Yeti Studio: original games, creative software, comics, music, and worlds shaped by art, engineering, and storytelling.')
 
     press='''<section><h2>The studio, in a few words</h2><p>Drunk Yeti Studio is an independent game, software, and multimedia studio. The team’s work spans original games, creative applications, illustrated stories, music, and the Drunk Yeti Desktop Buddy. The studio’s guiding idea is “Design with a Technical Mind.”</p><p><a href="studio-facts.txt" download>Download studio facts & boilerplate</a></p><h2>Brand assets</h2><p><a href="/assets/logo.png" download>Download the Drunk Yeti logo (PNG)</a> · <a href="/assets/social-preview-v1.png" download>Download the studio social image (PNG)</a></p><p>Use these assets to identify Drunk Yeti in editorial coverage. Keep the proportions and colors intact. Product covers are promotional artwork; use each official release gallery for project imagery and version context. Contact us for other uses or additional materials.</p></section><section class="callout"><h2>Press, creators & collaborators</h2><p>Email <a href="mailto:support@drunkyetistudio.com?subject=Press%20or%20collaboration%20inquiry">support@drunkyetistudio.com</a> with your publication or channel, the project you are covering, and your deadline. For a collaboration, include the scope and the best way to reach you.</p><p>For a game, app, account, or purchase problem, start with <a href="/help/">Help & support</a>.</p></section><section><h2>Explore the work</h2><p><a href="/play/">Games</a> · <a href="/create/">Software</a> · <a href="/worlds/">Comics & music</a> · <a href="/desktop-buddy/">Desktop Buddy</a></p><p>Release pages are the source for current editions, prices, supported platforms, and download availability. Please distinguish a preview or demo from a full edition when covering a project.</p></section>'''
-    directory_news = next((post for post in posts if post['slug'] == 'seven-games-listed-on-findindiegame'), None)
-    if directory_news:
-        listings = ''.join(
-            f'<li><a href="{E(link["url"], quote=True)}">{E(link["label"])} ↗</a></li>'
-            for link in directory_news['links'] if link['url'].startswith('https://findindiegame.com/games/')
-        )
-        press += (
-            '<section class="callout"><h2>Game directory listings</h2>'
-            '<p>FindIndieGame has directory pages for these seven studio games on Steam.</p>'
-            f'<ul>{listings}</ul><p><a href="/news/seven-games-listed-on-findindiegame/">Read the Steam curator recommendations →</a></p></section>'
-        )
+    press += f'<p><a href="{GAME_COVERAGE_PATH}">Game listings &amp; Steam curator reviews</a></p>'
     publish('press','Press & contact','Find Drunk Yeti Studio facts, official brand assets, product information, and contact details for press and collaboration inquiries.',press)
     write('press/studio-facts.txt','Drunk Yeti Studio\nIndependent games, creative software, and multimedia.\n\n'+html.unescape(re.sub('<[^>]+>','',about.split('<div class="feature-columns">')[0].replace('</p>', '\n\n').replace('</h2>', '\n\n'))).strip()+'\n\nOfficial website: https://www.drunkyetistudio.com\nReleases: https://drunkyeti.itch.io\nSteam: https://store.steampowered.com/curator/45875400\nContact: support@drunkyetistudio.com\n')
 

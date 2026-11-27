@@ -110,3 +110,8 @@ body.studio-page{font-family:'Trebuchet MS',Arial,sans-serif}.studio-page header
 .store-link.microsoft-link, .studio-page .grid .store-link.microsoft-link { padding: 0; background: transparent; border: 0; box-shadow: none; }
 .store-link.microsoft-link img, .studio-page .grid .store-link.microsoft-link img, .spotlight-card .store-link.microsoft-link img { width: 144px; height: auto; }
 .steam-mark img { filter: invert(1); }
+
+.studio-page .coverage-links{padding-inline-start:20px}
+.studio-page .coverage-links details:last-child{border-bottom:0}
+.studio-page .coverage-links summary{font-size:1rem}
+.studio-page .coverage-links li{margin-block:6px}
