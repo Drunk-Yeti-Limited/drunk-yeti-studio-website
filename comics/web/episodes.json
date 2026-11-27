@@ -1,0 +1,126 @@
+[
+  {
+    "id": "01",
+    "slug": "wild-camping-adventure",
+    "title": "Wild Camping Adventure",
+    "description": "A lakeside hike goes sideways when a raccoon makes off with the Yeti’s backpack.",
+    "panels": [
+      "At sunrise in the mountains, the Yeti raises a blue can. “New day! New trails! New drinks!” A sign points toward adventure.",
+      "He hikes past a sign marked “Beautiful Lake,” singing about hiking, drinking, exploring and living.",
+      "At the lake he sits on a stump and says, “This is perfect.”",
+      "A raccoon grabs the backpack. “Hey! My backpack!” the Yeti calls. “Mission accomplished!” says the raccoon.",
+      "The two meet again by a cooler. A sign picks “Great idea!” for a drinking contest. The Yeti raises his can. “Let’s do this!”",
+      "They fall asleep beside the fire. A sign reads, “Good company anywhere.”"
+    ]
+  },
+  {
+    "id": "02",
+    "slug": "trail-mix",
+    "title": "Trail Mix",
+    "description": "The Yeti asks his hiking buddy what goes into a proper trail mix.",
+    "panels": [
+      "“What’s in the trail mix?” the Yeti asks the raccoon.",
+      "The raccoon mixes pebbles, a pine cone, and a trail sign into the bag.",
+      "“Needs more trail,” says the Yeti. The raccoon offers him a boot."
+    ]
+  },
+  {
+    "id": "03",
+    "slug": "the-shortcut",
+    "title": "The Shortcut",
+    "description": "A shortcut turns into a very long walk.",
+    "panels": [
+      "“I know a shortcut,” the Yeti says at a fork.",
+      "The two trudge up switchbacks past a mountain goat.",
+      "They return to the same sign after dark. “We cut out the scenery,” says the Yeti."
+    ]
+  },
+  {
+    "id": "04",
+    "slug": "fish-story",
+    "title": "Fish Story",
+    "description": "Something from the bottom of the lake is tugging at the line.",
+    "panels": [
+      "Fishing from a dock with the raccoon, the Yeti calls out, “I feel a big one!”",
+      "He reels in an old boot.",
+      "A tiny fish peeks out of the boot and says, “Knock first.”"
+    ]
+  },
+  {
+    "id": "05",
+    "slug": "tent-for-two",
+    "title": "Tent for Two",
+    "description": "The Yeti packs light for a night under the stars.",
+    "panels": [
+      "The Yeti unrolls a tiny tent. “It sleeps two.”",
+      "He tries to squeeze inside while the raccoon watches.",
+      "The tent only covers the Yeti’s blue feet. “Two feet,” says the raccoon."
+    ]
+  },
+  {
+    "id": "06",
+    "slug": "echo-chamber",
+    "title": "Echo Chamber",
+    "description": "The Yeti has a question for the canyon.",
+    "panels": [
+      "“Who’s the king of the mountain?” the Yeti shouts over the canyon.",
+      "The Yeti and raccoon wait in silence.",
+      "An echo answers, “Please hold.”"
+    ]
+  },
+  {
+    "id": "07",
+    "slug": "the-ferry",
+    "title": "The Ferry",
+    "description": "A river crossing costs one stick apiece.",
+    "panels": [
+      "A beaver in a captain’s hat says, “One stick each.”",
+      "The Yeti offers a pine tree.",
+      "As his passengers float away on a log, the beaver waves. “Keep the change.”"
+    ]
+  },
+  {
+    "id": "08",
+    "slug": "the-northern-lights",
+    "title": "The Northern Lights",
+    "description": "The Yeti raises a toast to the aurora.",
+    "panels": [
+      "The raccoon points at the green aurora. “Nature’s happy hour,” says the Yeti.",
+      "The Yeti lifts his can to the sky. “I’ll have what she’s having.”",
+      "The raccoon hands him a snowball. “On the rocks. Nice,” says the Yeti."
+    ]
+  },
+  {
+    "id": "09",
+    "slug": "hot-springs",
+    "title": "Hot Springs",
+    "description": "A dip in an alpine pool comes with unexpected company.",
+    "panels": [
+      "The Yeti finds a hot spring. “This one feels perfect.”",
+      "He settles in. The raccoon spots carrots and onions in the water.",
+      "A moose in an apron asks, “Could you scoot? I need to stir.”"
+    ]
+  },
+  {
+    "id": "10",
+    "slug": "trail-cam",
+    "title": "Trail Cam",
+    "description": "The Yeti spots a wildlife camera and gets ready for his close-up.",
+    "panels": [
+      "The raccoon spots a trail camera. “Act natural,” says the Yeti.",
+      "The Yeti strikes a glamour pose. The raccoon facepalms.",
+      "A ranger looks at the photo. “That’s our third model this week.”"
+    ]
+  },
+  {
+    "id": "11",
+    "slug": "postcard-home",
+    "title": "Postcard Home",
+    "description": "From the summit, the Yeti sends a postcard to someone special.",
+    "panels": [
+      "On the summit, the Yeti writes, “Wish you were here.”",
+      "The card is for the blue cooler at the bottom of the mountain.",
+      "At sunset, the Yeti reunites with the cooler. “He knows. He was there,” says the raccoon."
+    ]
+  }
+]
