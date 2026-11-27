@@ -6,6 +6,7 @@ from urllib.parse import urlparse
 import studio_pages
 import news_pages
 import site_search
+from android_lineup import development_section
 from storefronts import MICROSOFT_PUBLISHER, store_link
 from support_page import BODY as SUPPORT_BODY
 from html.parser import HTMLParser
@@ -18,9 +19,10 @@ def page(path,title,description,body,schema=None,intro=None,*,image=None,indexab
     social_image = ORIGIN + (image or '/assets/social-preview-v1.png')
     robots = 'index,follow,max-image-preview:large' if indexable else 'noindex,follow'
     analytics = METRICOOL if indexable else ''
+    social_type = "article" if schema and schema.get("@type") == "BlogPosting" else "website"
     metadata={'@context':'https://schema.org','@type':'WebPage','name':title,'description':description,'url':url} if schema is None else schema
     data=json.dumps(metadata,ensure_ascii=False).replace('<','\\u003c')
-    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{esc(title)} | Drunk Yeti Studio</title><meta name="description" content="{esc(description,quote=True)}"><link rel="canonical" href="{url}"><meta name="robots" content="{robots}"><meta property="og:type" content="website"><meta property="og:site_name" content="Drunk Yeti Studio"><meta property="og:title" content="{esc(title,quote=True)}"><meta property="og:description" content="{esc(description,quote=True)}"><meta property="og:url" content="{url}"><meta property="og:image" content="{esc(social_image,quote=True)}"><meta name="twitter:card" content="summary_large_image"><link rel="alternate" type="application/rss+xml" title="Drunk Yeti Studio News" href="/news/feed.xml"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/collections.css"><link rel="stylesheet" href="/studio.css?v=3"><script type="application/ld+json">{data}</script>{analytics}</head><body class="studio-page"><a class="skip" href="#main">Skip to content</a><header><a class="brand" href="/">DRUNK YETI <small>STUDIO</small></a><a href="/account/">Your account ↗</a></header>{studio_pages.NAV}<main id="main"><p class="eyebrow">INDEPENDENT GAMES · CREATIVE SOFTWARE · ORIGINAL WORLDS</p><h1>{esc(title)}</h1><p class="intro">{esc(intro if intro is not None else description)}</p>{body}</main><footer>{studio_pages.FOOTER}</footer></body></html>'''
+    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{esc(title)} | Drunk Yeti Studio</title><meta name="description" content="{esc(description,quote=True)}"><link rel="canonical" href="{url}"><meta name="robots" content="{robots}"><meta property="og:type" content="{social_type}"><meta property="og:site_name" content="Drunk Yeti Studio"><meta property="og:title" content="{esc(title,quote=True)}"><meta property="og:description" content="{esc(description,quote=True)}"><meta property="og:url" content="{url}"><meta property="og:image" content="{esc(social_image,quote=True)}"><meta name="twitter:card" content="summary_large_image"><link rel="alternate" type="application/rss+xml" title="Drunk Yeti Studio News" href="/news/feed.xml"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/collections.css"><link rel="stylesheet" href="/studio.css?v=3"><script type="application/ld+json">{data}</script>{analytics}</head><body class="studio-page"><a class="skip" href="#main">Skip to content</a><header><a class="brand" href="/">DRUNK YETI <small>STUDIO</small></a><a href="/account/">Your account ↗</a></header>{studio_pages.NAV}<main id="main"><p class="eyebrow">INDEPENDENT GAMES · CREATIVE SOFTWARE · ORIGINAL WORLDS</p><h1>{esc(title)}</h1><p class="intro">{esc(intro if intro is not None else description)}</p>{body}</main><footer>{studio_pages.FOOTER}</footer></body></html>'''
 def write(path,data):
     p=R/path;p.parent.mkdir(parents=True,exist_ok=True);p.write_text(data)
 class IndexMetadata(HTMLParser):
@@ -103,9 +105,13 @@ def main():
                 '<a href="https://play.google.com/store/apps/developer?id=Drunk+Yeti+Studio">Visit our Google Play developer page ↗</a></p>'
                 '<p><a href="/games/">Browse all games</a> · <a href="/news/">Read the latest release news</a></p></aside>'
             )
+        android_development = development_section(items) if is_android else ""
+        if android_development:
+            intro = '<p class="studio-links"><a href="#android-in-development">Android games in development ↓</a></p>' + intro
         if slug == 'windows':
             intro = '<aside class="collection-intro"><p>' + store_link(MICROSOFT_PUBLISHER, 'Browse the Microsoft Store publisher catalog', 'release') + '</p><p><a href="/games/">All games</a> · <a href="/steam/">Steam releases</a> · <a href="/android/">Google Play releases</a></p></aside>'
         body=intro+'<p class="note"> Availability, prices and platform support are listed on each official release page.</p><div class="grid">'+''.join(markup)+'</div>'+guides.get(slug,'')
+        body += android_development
         schema={'@context':'https://schema.org','@type':'CollectionPage','name':title,'description':description,'url':ORIGIN+'/'+slug+'/','mainEntity':{'@type':'ItemList','numberOfItems':len(items),'itemListElement':[{'@type':'ListItem','position':i+1,'name':c['title'],'url':ORIGIN+url if url.startswith('/') else url} for i,(c,url) in enumerate(zip(items,listing_links))]}}
         write(slug+'/index.html',recorded_page('/'+slug+'/',title,description,body,schema));urls.append('/'+slug+'/')
     write('help/index.html',recorded_page('/help/','Help & support','Get help with Drunk Yeti accounts, Apple sign-in, purchases, Frostpass, browser games, downloads and Desktop Buddy.', SUPPORT_BODY))
@@ -114,7 +120,16 @@ def main():
     urls.extend(news_pages.build(recorded_page, write, posts, product_titles, studio_pages.DISCORD_INVITE))
     urls = list(dict.fromkeys(urls))
     site_search.build(page, write, search_pages, products, posts, cards)
-    write('sitemap.xml','<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+''.join('<url><loc>'+ORIGIN+u+'</loc></url>' for u in urls)+'</urlset>\n')
+    article_dates = {news_pages.article_path(post): post['date'] for post in posts}
+    entries = [
+        '<url><loc>' + ORIGIN + url + '</loc>'
+        + (f'<lastmod>{article_dates[url]}</lastmod>' if url in article_dates else '')
+        + '</url>'
+        for url in urls
+    ]
+    write('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n'
+          '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+          + ''.join(entries) + '</urlset>\n')
     write('robots.txt','User-agent: *\nAllow: /\n\nSitemap: '+ORIGIN+'/sitemap.xml\n')
     print(f'Built {len(urls)} sitemap URLs and {len(CATEGORIES) + len(storefronts)} crawlable collections.')
 if __name__=='__main__':main()

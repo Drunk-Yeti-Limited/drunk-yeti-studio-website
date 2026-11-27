@@ -133,5 +133,112 @@
     ],
     "image": "/assets/google-play/games.drunkyeti.spacepinball.png",
     "imageAlt": "Drunk Yeti Space Pinball gameplay screenshot from the official Google Play listing."
+  },
+  {
+    "slug": "windows-pc-microsoft-store-games",
+    "date": "2026-11-27",
+    "title": "Three Drunk Yeti games on the Microsoft Store",
+    "summary": "Klay Karts, PenPals: Battle for the Blank, and Yeti Brawl are available for Windows PC.",
+    "image": "/assets/covers/yeti-brawl.webp",
+    "imageAlt": "Yeti Brawl cover artwork.",
+    "body": [
+      "Race through sculpted tracks in Klay Karts, draw your way through puzzles and arenas in PenPals, or take on CPU rivals and friends in Yeti Brawl.",
+      "The Windows PC collection links to each game’s Microsoft Store listing and studio game page. Visit the store for current availability and system requirements."
+    ],
+    "links": [
+      {
+        "label": "Browse Windows PC games",
+        "url": "https://www.drunkyetistudio.com/windows/"
+      }
+    ]
+  },
+  {
+    "slug": "android-games-in-development-november-2026",
+    "date": "2026-11-27",
+    "title": "What’s in development for Android",
+    "summary": "Meet five games we’re preparing for Android, from sculpted-track racing to squirrel-powered industry.",
+    "image": "/assets/covers/squirrel-idle-tycoon.webp",
+    "imageAlt": "Squirrel Idle Tycoon cover artwork.",
+    "body": [
+      "We’re working on Android editions of Klay Karts, Super Nexus War (Nexus Wars), Chainfall, MANA, and Squirrel Idle Tycoon.",
+      "These editions are in development, testing, or release review. Visit our Android page for the lineup and the games you can already install on Google Play. We’ll post individual launch updates as public downloads become available."
+    ],
+    "links": [
+      {
+        "label": "Explore the Android lineup",
+        "url": "https://www.drunkyetistudio.com/android/#android-in-development"
+      }
+    ]
+  },
+  {
+    "slug": "seven-games-listed-on-findindiegame",
+    "date": "2026-11-27",
+    "title": "FindIndieGame lists seven Drunk Yeti games",
+    "summary": "Seven games have FindIndieGame directory pages, and six received recommendations from Awesome Games Review Group on Steam.",
+    "image": "/assets/covers/squirrel-idle-tycoon.webp",
+    "imageAlt": "Squirrel Idle Tycoon cover artwork.",
+    "body": [
+      "FindIndieGame has added directory pages for seven of our games. Its listings cover genres and related games. You can use them to discover everything from Alaskan seafood logistics in Dillingham to hovercraft action in Hover Rancher.",
+      "Awesome Games Review Group also posted Steam curator recommendations for MANA, Goat Nuclear Clicker, Squirrel Idle Tycoon, Emu Empire, Space Pinball, and Dillingham.",
+      "See the directory pages below or visit our Steam collection for the official store listings."
+    ],
+    "links": [
+      {
+        "label": "Squirrel Idle Tycoon on FindIndieGame",
+        "url": "https://findindiegame.com/games/squirrel-idle-tycoon-4166770/"
+      },
+      {
+        "label": "Dillingham on FindIndieGame",
+        "url": "https://findindiegame.com/games/dillingham-4178640/"
+      },
+      {
+        "label": "A Rocket’s Intensity on FindIndieGame",
+        "url": "https://findindiegame.com/games/a-rocket-s-intensity-2376430/"
+      },
+      {
+        "label": "Goat Nuclear Clicker on FindIndieGame",
+        "url": "https://findindiegame.com/games/goat-nuclear-clicker-4236640/"
+      },
+      {
+        "label": "Emu Empire on FindIndieGame",
+        "url": "https://findindiegame.com/games/emu-empire-4260870/"
+      },
+      {
+        "label": "The Paper Arcade: Pong on FindIndieGame",
+        "url": "https://findindiegame.com/games/the-paper-arcade-pong-3730950/"
+      },
+      {
+        "label": "Hover Rancher on FindIndieGame",
+        "url": "https://findindiegame.com/games/hover-rancher-3879350/"
+      },
+      {
+        "label": "MANA on Steam Curators",
+        "url": "https://steamcommunity.com/groups/awesome_games_review/curation/app/2724160/"
+      },
+      {
+        "label": "Goat Nuclear Clicker on Steam Curators",
+        "url": "https://steamcommunity.com/groups/awesome_games_review/curation/app/4236640/"
+      },
+      {
+        "label": "Squirrel Idle Tycoon on Steam Curators",
+        "url": "https://steamcommunity.com/groups/awesome_games_review/curation/app/4166770/"
+      },
+      {
+        "label": "Emu Empire on Steam Curators",
+        "url": "https://steamcommunity.com/groups/awesome_games_review/curation/app/4260870/"
+      },
+      {
+        "label": "Space Pinball on Steam Curators",
+        "url": "https://steamcommunity.com/groups/awesome_games_review/curation/app/3821520/"
+      },
+      {
+        "label": "Dillingham on Steam Curators",
+        "url": "https://steamcommunity.com/groups/awesome_games_review/curation/app/4178640/"
+      },
+      {
+        "label": "Browse our Steam releases",
+        "url": "https://www.drunkyetistudio.com/steam/"
+      }
+    ]
   }
 ]
