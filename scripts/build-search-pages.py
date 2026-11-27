@@ -7,6 +7,7 @@ import game_coverage
 import studio_pages
 import news_pages
 import site_search
+import web_comics
 from android_lineup import development_section
 from storefronts import MICROSOFT_PUBLISHER, store_link
 from support_page import BODY as SUPPORT_BODY
@@ -106,6 +107,8 @@ def main():
                 '<a href="https://play.google.com/store/apps/developer?id=Drunk+Yeti+Studio">Visit our Google Play developer page ↗</a></p>'
                 '<p><a href="/games/">Browse all games</a> · <a href="/news/">Read the latest release news</a></p></aside>'
             )
+        if slug == 'comics':
+            intro = web_comics.PROMO + intro
         android_development = development_section(items) if is_android else ""
         if android_development:
             intro = '<p class="studio-links"><a href="#android-in-development">Android games in development ↓</a></p>' + intro
@@ -119,6 +122,7 @@ def main():
     urls.extend(privacy_urls())
     urls.append(game_coverage.build(page, write, cards))
     urls.extend(studio_pages.build(recorded_page, write, cards, products, posts))
+    urls.extend(web_comics.build(recorded_page, write, ORIGIN))
     urls.extend(news_pages.build(recorded_page, write, posts, product_titles, studio_pages.DISCORD_INVITE))
     urls = list(dict.fromkeys(urls))
     site_search.build(page, write, search_pages, products, posts, cards)
