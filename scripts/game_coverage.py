@@ -36,13 +36,19 @@ def build(page, write, cards):
         }]
         reviews = game.get('curators', [])
         review_body = link_list(reviews) if reviews else '<p>No individual curator reviews verified.</p>'
+        profiles = game.get('curator_profiles', [])
+        profile_body = (
+            '<details><summary>Steam curator profiles</summary>' + link_list(profiles) + '</details>'
+            if profiles else ''
+        )
         entries.append(
             f'<details id="steam-{app}"><summary>{ESCAPE(card["title"])}</summary>'
             f'<div class="coverage-links"><p><a href="{ESCAPE(card["url"], quote=True)}">Official Steam page</a></p>'
             f'<details><summary>Directory listings ({len(listings)})</summary>{link_list(listings)}</details>'
             f'<details><summary>Steam curator reviews ({len(reviews)})</summary>{review_body}'
             f'<p><a href="https://store.steampowered.com/curators/curatorsreviewing/?appid={app}">'
-            'Browse this game’s curators on Steam</a></p></details></div></details>'
+            'Browse this game’s curators on Steam</a></p></details>'
+            f'{profile_body}</div></details>'
         )
     body = '<section aria-label="Games in alphabetical order">\n' + '\n'.join(entries) + '\n</section>'
     write(PATH.strip('/') + '/index.html', page(PATH, TITLE, DESCRIPTION, body))

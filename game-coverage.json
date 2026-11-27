@@ -61,6 +61,14 @@
       }
     ]
   },
+  "2440590": {
+    "curator_profiles": [
+      {
+        "label": "OFEN™",
+        "url": "https://store.steampowered.com/curator/11578500/"
+      }
+    ]
+  },
   "2724160": {
     "curators": [
       {
@@ -136,6 +144,12 @@
       {
         "label": "FindIndieGame",
         "url": "https://findindiegame.com/games/dillingham-4178640/"
+      }
+    ],
+    "curator_profiles": [
+      {
+        "label": "OFEN™",
+        "url": "https://store.steampowered.com/curator/11578500/"
       }
     ]
   },
