@@ -182,5 +182,22 @@ def build(page, write, cards, products, posts):
                              lambda match: android_section, text, flags=re.S)
     if count != 1:
         raise ValueError('Expected one homepage Android region')
+    windows_cards = ''.join(
+        '<article class="spotlight-card"><a href="' + path(p) + '"><img src="' + asset(catalog[p['catalogSlug']])
+        + '" width="315" height="250" loading="lazy" alt=""><h3>' + E(p['name'])
+        + '</h3></a><p>' + E(p['tagline']) + '</p>'
+        + store_link(p['microsoftUrl'], 'Get it from Microsoft', 'release') + '</article>'
+        for p in products if p.get('microsoftUrl')
+    )
+    windows_section = (
+        '<section class="section" id="windows-games" aria-labelledby="windows-title"><div class="section-heading">'
+        '<h2 id="windows-title">Windows PC games</h2><a href="/windows/">All Microsoft Store releases →</a></div>'
+        '<div class="spotlight-grid">' + windows_cards + '</div></section>'
+    )
+    text, count = re.subn(r'<!-- WINDOWS_GAMES_START -->.*?<!-- WINDOWS_GAMES_END -->',
+                          lambda match: '<!-- WINDOWS_GAMES_START -->' + windows_section + '<!-- WINDOWS_GAMES_END -->',
+                          text, flags=re.S)
+    if count != 1:
+        raise ValueError('Expected one homepage Windows region')
     home.write_text(text)
     return urls
