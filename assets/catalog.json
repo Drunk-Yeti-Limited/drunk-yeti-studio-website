@@ -429,12 +429,12 @@
     "frostpassCheck": "unavailable"
   },
   {
-    "title": "Raiders",
-    "url": "https://drunkyeti.itch.io/raiders",
-    "image": "./assets/covers/raiders.webp",
+    "title": "Raiders: Margin Play",
+    "url": "https://drunkyeti.itch.io/raiders-margin-play",
+    "image": "./assets/covers/raiders-margin-play.webp",
     "description": "Different Doors, Same Sky",
     "category": "Games",
-    "browser": true,
+    "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMyNzkwNDQ3LnBuZw==/315x250%23c/Ly73v2.png",
     "frostpass": false,
     "frostpassCheck": "verified"
@@ -463,8 +463,8 @@
   },
   {
     "title": "Klay Karts",
-    "url": "https://drunkyeti.itch.io/schmuck-deluxe-soundtrack",
-    "image": "./assets/covers/schmuck-deluxe-soundtrack.webp",
+    "url": "https://drunkyeti.itch.io/klay-karts",
+    "image": "./assets/covers/klay-karts.webp",
     "description": "Drift through nine clay circuits, mold shortcuts mid-race, and fire wet tyre prints",
     "category": "Games",
     "browser": true,
@@ -511,10 +511,10 @@
     "image": "./assets/covers/penpals-battle.webp",
     "description": "Battle for the Blank",
     "category": "Games",
-    "browser": true,
+    "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMyNzkwMjk0LnBuZw==/315x250%23c/5QE54a.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "Dillingham: Salmon Run",
@@ -528,15 +528,15 @@
     "frostpassCheck": "unavailable"
   },
   {
-    "title": "Odd Fixes Soundtrack",
-    "url": "https://drunkyeti.itch.io/odd-fixes-soundtrack",
-    "image": "./assets/covers/odd-fixes-soundtrack.webp",
+    "title": "Xero: From Xéro To Xēro",
+    "url": "https://drunkyeti.itch.io/xero",
+    "image": "./assets/covers/xero.webp",
     "description": "",
-    "category": "Soundtracks",
-    "browser": true,
+    "category": "Games",
+    "browser": false,
     "coverSource": "https://img.itch.zone/aW1nLzMyNzkxMzIzLnBuZw==/315x250%23c/m1eGRj.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "A Rocket's Intensity",
@@ -556,9 +556,9 @@
     "description": "",
     "category": "Games",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMxNDM1Nzc4LmpwZWc=/315x250%23c/IIdF6g.jpeg",
+    "coverSource": "https://img.itch.zone/aW1nLzMyOTQwOTU1LnBuZw==/315x250%23c/agqOZH.png",
     "frostpass": false,
-    "frostpassCheck": "unavailable"
+    "frostpassCheck": "verified"
   },
   {
     "title": "The Paper Arcade",
@@ -567,7 +567,7 @@
     "description": "",
     "category": "Games",
     "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMxNDM1MjkxLmpwZWc=/315x250%23c/kcykPm.jpeg",
+    "coverSource": "https://img.itch.zone/aW1nLzMyOTQxNDc4LnBuZw==/315x250%23c/wJD%2Fo%2F.png",
     "frostpass": false,
     "frostpassCheck": "unavailable"
   },
@@ -583,59 +583,59 @@
     "frostpassCheck": "unavailable"
   },
   {
-    "title": "Kindgom Kitty Soundtrack",
-    "url": "https://drunkyeti.itch.io/kindgom-kitty-soundtrack",
-    "image": "./assets/covers/kindgom-kitty-soundtrack.webp",
-    "description": "",
-    "category": "Soundtracks",
-    "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMxNDM1MDc0LmpwZWc=/315x250%23c/wsptVC.jpeg",
-    "frostpass": false,
-    "frostpassCheck": "unavailable"
-  },
-  {
-    "title": "Kana Ronin Shrine Paths Soundtrack",
-    "url": "https://drunkyeti.itch.io/kana-ronin-shrine-paths-soundtrack",
-    "image": "./assets/covers/kana-ronin-shrine-paths-soundtrack.webp",
-    "description": "",
-    "category": "Soundtracks",
-    "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMxNDM0OTIwLmpwZWc=/315x250%23c/I8zUB%2B.jpeg",
-    "frostpass": false,
-    "frostpassCheck": "unavailable"
-  },
-  {
-    "title": "Kana Ronin Sakura Trail Soundtrack",
-    "url": "https://drunkyeti.itch.io/kana-ronin-sakura-trail-soundtrack",
-    "image": "./assets/covers/kana-ronin-sakura-trail-soundtrack.webp",
-    "description": "",
-    "category": "Soundtracks",
-    "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMxNDM0Nzk3LmpwZWc=/315x250%23c/90X5f1.jpeg",
-    "frostpass": false,
-    "frostpassCheck": "unavailable"
-  },
-  {
-    "title": "Heartpost Valentine Village Soundtrack",
-    "url": "https://drunkyeti.itch.io/heartpost-valentine-village-soundtrack",
-    "image": "./assets/covers/heartpost-valentine-village-soundtrack.webp",
-    "description": "",
-    "category": "Soundtracks",
-    "browser": true,
-    "coverSource": "https://img.itch.zone/aW1nLzMxNDM0NDk4LmpwZWc=/315x250%23c/j3ZqWq.jpeg",
-    "frostpass": false,
-    "frostpassCheck": "unavailable"
-  },
-  {
-    "title": "Heartpost Cupids Crossing",
-    "url": "https://drunkyeti.itch.io/heartpost-cupids-crossing",
-    "image": "./assets/covers/heartpost-cupids-crossing.webp",
+    "title": "Mikeyland: An Inked Odyssey",
+    "url": "https://drunkyeti.itch.io/mikeylan-inked-odyssey",
+    "image": "./assets/covers/mikeylan-inked-odyssey.webp",
     "description": "",
     "category": "Games",
-    "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMxNDIxNTM3LmpwZWc=/315x250%23c/44Ccd%2B.jpeg",
+    "browser": true,
+    "coverSource": "https://img.itch.zone/aW1nLzMyOTQxODM3LmpwZw==/315x250%23c/2petCZ.jpg",
+    "frostpass": false,
+    "frostpassCheck": "verified"
+  },
+  {
+    "title": "Ex, Can & Spray: The Great Lid Off",
+    "url": "https://drunkyeti.itch.io/ex-can-spray-great-lid-off",
+    "image": "./assets/covers/ex-can-spray-great-lid-off.webp",
+    "description": "",
+    "category": "Games",
+    "browser": true,
+    "coverSource": "https://img.itch.zone/aW1nLzMyOTQxOTc0LmpwZw==/315x250%23c/BJPZW9.jpg",
     "frostpass": false,
     "frostpassCheck": "unavailable"
+  },
+  {
+    "title": "Riggins and the Borrowed Sun",
+    "url": "https://drunkyeti.itch.io/riggins-borrowed-sun",
+    "image": "./assets/covers/riggins-borrowed-sun.webp",
+    "description": "A little clay man, a Meepmop, and one paper sun",
+    "category": "Games",
+    "browser": true,
+    "coverSource": "https://img.itch.zone/aW1nLzMyOTQyMjM1LmpwZw==/315x250%23c/8ZJDi9.jpg",
+    "frostpass": false,
+    "frostpassCheck": "verified"
+  },
+  {
+    "title": "Brassroot Hallow",
+    "url": "https://drunkyeti.itch.io/brassroots-hallow",
+    "image": "./assets/covers/brassroots-hallow.webp",
+    "description": "Build a farm on a little moon",
+    "category": "Games",
+    "browser": true,
+    "coverSource": "https://img.itch.zone/aW1nLzMyOTQyODc0LnBuZw==/315x250%23c/gNRTMk.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
+  },
+  {
+    "title": "FIGURE",
+    "url": "https://drunkyeti.itch.io/figure",
+    "image": "./assets/covers/figure.webp",
+    "description": "One day. Five women. An exhibition made together.",
+    "category": "Games",
+    "browser": false,
+    "coverSource": "https://img.itch.zone/aW1nLzMyOTQzNDMyLnBuZw==/315x250%23c/nn4pvE.png",
+    "frostpass": false,
+    "frostpassCheck": "verified"
   },
   {
     "title": "Flipper Riot Soundtrack",
@@ -682,35 +682,35 @@
     "frostpassCheck": "unavailable"
   },
   {
-    "title": "Chainfall Deluxe Soundtrack",
-    "url": "https://drunkyeti.itch.io/chainfall-deluxe-soundtrack",
-    "image": "./assets/covers/chainfall-deluxe-soundtrack.webp",
+    "title": "DeathWish: The Hour That Would Never End",
+    "url": "https://drunkyeti.itch.io/deathwish-the-hour",
+    "image": "./assets/covers/deathwish-the-hour.webp",
     "description": "",
-    "category": "Soundtracks",
-    "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMxNDIxMTA4LmpwZWc=/315x250%23c/LE2h%2BN.jpeg",
+    "category": "Games",
+    "browser": true,
+    "coverSource": "https://img.itch.zone/aW1nLzMyOTQzMTMzLnBuZw==/315x250%23c/mpitRj.png",
     "frostpass": false,
     "frostpassCheck": "unavailable"
   },
   {
-    "title": "Bubble Buddies Soundtrack",
+    "title": "PenPals: Postcards After Dark",
     "url": "https://drunkyeti.itch.io/bubble-buddies-soundtrack",
     "image": "./assets/covers/bubble-buddies-soundtrack.webp",
     "description": "",
-    "category": "Soundtracks",
-    "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMxNDIxMDU4LmpwZWc=/315x250%23c/JYSeNV.jpeg",
+    "category": "Games",
+    "browser": true,
+    "coverSource": "https://img.itch.zone/aW1nLzMyOTQzMjE4LnBuZw==/315x250%23c/w0EXwv.png",
     "frostpass": false,
     "frostpassCheck": "unavailable"
   },
   {
-    "title": "Blackout Salvage Soundtrack",
-    "url": "https://drunkyeti.itch.io/blackout-salvage-soundtrack",
-    "image": "./assets/covers/blackout-salvage-soundtrack.webp",
+    "title": "Splinter & Fuse: Break The Plan",
+    "url": "https://drunkyeti.itch.io/splinter-fuse-break",
+    "image": "./assets/covers/splinter-fuse-break.webp",
     "description": "",
-    "category": "Soundtracks",
-    "browser": false,
-    "coverSource": "https://img.itch.zone/aW1nLzMxNDE4NzEwLmpwZWc=/315x250%23c/iP66D6.jpeg",
+    "category": "Games",
+    "browser": true,
+    "coverSource": "https://img.itch.zone/aW1nLzMyOTQzMjgwLnBuZw==/315x250%23c/EHkBOJ.png",
     "frostpass": false,
     "frostpassCheck": "unavailable"
   },
@@ -2068,7 +2068,7 @@
   {
     "title": "Klay Karts",
     "url": "https://apps.microsoft.com/detail/9p02nb5kkxvd?hl=en-US&gl=US",
-    "image": "./assets/covers/schmuck-deluxe-soundtrack.webp",
+    "image": "./assets/covers/klay-karts.webp",
     "description": "Race clay karts through sculpted circuits, build ramps and turn wet tire tracks into boosts.",
     "category": "Games",
     "browser": false,
@@ -2094,6 +2094,30 @@
     "url": "https://apps.microsoft.com/detail/9phhrx42ld9p?hl=en-US&gl=US",
     "image": "./assets/covers/yeti-brawl.webp",
     "description": "Fight across platform arenas with seven fighter kits, CPU rivals, local versus and local co-op.",
+    "category": "Games",
+    "browser": false,
+    "storefront": "Microsoft Store",
+    "platforms": [
+      "windows"
+    ]
+  },
+  {
+    "title": "AR3NA: All-Stars",
+    "url": "https://apps.microsoft.com/detail/9pfb2p13dn2m?hl=en-US&gl=US",
+    "image": "./assets/covers/ar3na-world-tour.webp",
+    "description": "Play colorful arena matches with original characters in modes including Magic Soccer, Sumo, and Capture the Flag.",
+    "category": "Games",
+    "browser": false,
+    "storefront": "Microsoft Store",
+    "platforms": [
+      "windows"
+    ]
+  },
+  {
+    "title": "Dillingham: Salmon Run",
+    "url": "https://apps.microsoft.com/detail/9n17t8jtcvf6?hl=en-US&gl=US",
+    "image": "./assets/covers/oddly-stacked-soundtrack.webp",
+    "description": "Unload the catch and keep the seafood processing line moving in a game inspired by salmon season in Bristol Bay, Alaska.",
     "category": "Games",
     "browser": false,
     "storefront": "Microsoft Store",

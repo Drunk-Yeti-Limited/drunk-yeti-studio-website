@@ -5,6 +5,7 @@ from datetime import date,datetime,timezone
 from email.utils import format_datetime
 from urllib.parse import urlparse
 from xml.etree import ElementTree as ET
+from storefronts import store_link
 ROOT=Path(__file__).resolve().parents[1];ORIGIN='https://www.drunkyetistudio.com';E=html.escape
 
 def article_path(post):
@@ -73,7 +74,7 @@ def build(page, write, posts, products, discord_invite):
         if product_path := p.get('product'):
             body += f'<p><a class="button ink" href="{E(product_path,quote=True)}">Explore {E(products[product_path])} →</a></p>'
         body += '<div class="studio-links">' + ''.join(
-            f'<a href="{E(link["url"], quote=True)}">{E(link["label"])} ↗</a>'
+            store_link(link["url"], link["label"] + " ↗", "", show_microsoft_label=True)
             for link in p.get('links', [])
         ) + '</div>'
         body += (

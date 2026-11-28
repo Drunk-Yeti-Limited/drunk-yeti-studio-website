@@ -154,7 +154,8 @@
         "video": "https://www.youtube.com/watch?v=UrZcktRKkyM"
       },
       "steamUrl": "https://store.steampowered.com/app/2440590/",
-      "steamLabel": "View on Steam ↗"
+      "steamLabel": "View on Steam ↗",
+      "microsoftUrl": "https://apps.microsoft.com/detail/9pfb2p13dn2m?hl=en-US&gl=US"
     },
     {
       "slug": "avalanca",
@@ -480,15 +481,15 @@
     },
     {
       "slug": "klay-karts",
-      "catalogSlug": "schmuck-deluxe-soundtrack",
+      "catalogSlug": "klay-karts",
       "section": "games",
       "name": "Klay Karts",
       "tagline": "Shape the track while you race.",
       "description": "Race clay karts through sculpted circuits, build ramps and turn wet tire tracks into boosts.",
       "intro": "Race clay karts through sculpted circuits, build ramps and turn wet tire tracks into boosts.",
-      "image": "./assets/covers/schmuck-deluxe-soundtrack.webp",
-      "releaseUrl": "https://drunkyeti.itch.io/schmuck-deluxe-soundtrack",
-      "releaseLabel": "View on itch.io ↗",
+      "image": "./assets/covers/klay-karts.webp",
+      "releaseUrl": "https://drunkyeti.itch.io/klay-karts",
+      "releaseLabel": "Play or download on itch.io ↗",
       "microsoftUrl": "https://apps.microsoft.com/detail/9p02nb5kkxvd?hl=en-US&gl=US",
       "features": [
         [
@@ -500,7 +501,7 @@
           "Jump into a quick race, chase a personal best in Trial, or work through the Grand Clay Tour."
         ]
       ],
-      "edition": "Find the Windows PC edition on Microsoft Store. Check itch.io for its available builds and browser support.",
+      "edition": "Play the desktop browser build with a keyboard or standard gamepad. Progress and best times save in your browser. A Windows PC edition is also available on the Microsoft Store.",
       "related": [
         "penpals",
         "yeti-brawl"
@@ -561,6 +562,30 @@
       "related": [
         "klay-karts",
         "penpals"
+      ]
+    },
+    {
+      "slug": "dillingham-salmon-run",
+      "catalogSlug": "oddly-stacked-soundtrack",
+      "section": "games",
+      "name": "Dillingham: Salmon Run",
+      "tagline": "Salmon season is here.",
+      "description": "Unload the catch and keep the seafood processing line moving in a game inspired by salmon season in Bristol Bay, Alaska.",
+      "intro": "Unload the catch and keep the seafood processing line moving in a game inspired by salmon season in Bristol Bay, Alaska.",
+      "features": [
+        [
+          "From dock to processing line",
+          "Keep salmon moving through the plant as new catches arrive."
+        ]
+      ],
+      "edition": "Find the Windows PC edition on the Microsoft Store and the browser edition on itch.io.",
+      "image": "./assets/covers/oddly-stacked-soundtrack.webp",
+      "releaseUrl": "https://drunkyeti.itch.io/oddly-stacked-soundtrack",
+      "releaseLabel": "Play on itch.io ↗",
+      "microsoftUrl": "https://apps.microsoft.com/detail/9n17t8jtcvf6?hl=en-US&gl=US",
+      "related": [
+        "klay-karts",
+        "ar3na"
       ]
     }
   ]

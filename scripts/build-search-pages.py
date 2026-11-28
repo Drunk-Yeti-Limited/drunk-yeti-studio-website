@@ -10,6 +10,7 @@ import site_search
 import web_comics
 from android_lineup import development_section
 from storefronts import MICROSOFT_PUBLISHER, store_link
+from refresh_google_play import DEVELOPER
 from support_page import BODY as SUPPORT_BODY
 from html.parser import HTMLParser
 R=Path(__file__).resolve().parents[1]; ORIGIN='https://www.drunkyetistudio.com'; esc=html.escape
@@ -100,11 +101,12 @@ def main():
         hub={'windows':'play','steam':'play','android':'play','games':'play','tools':'create','assets':'create','mods':'play','soundtracks':'worlds','os':'create','comics':'worlds'}[slug]
         intro=f'<aside class="collection-intro"><p>Looking for a place to start? <a href="/{hub}/">Explore our {"games" if hub=="play" else "creative software" if hub=="create" else "worlds and media"} guide →</a></p></aside>'
         if slug == 'games':
-            intro = '<aside class="collection-intro"><p><a href="/windows/">Browse Microsoft Store releases</a> · <a href="/android/">Browse Android releases</a> · <a href="/steam/">Browse Steam releases</a> · <a href="/play/">Find browser games</a></p></aside>'
+            intro = ('<aside class="collection-intro"><p><a href="/windows/">Browse Microsoft Store releases</a> · <a href="/android/">Browse Android releases</a> · <a href="/steam/">Browse Steam releases</a> · <a href="/play/">Find browser games</a></p><p>'
+                     + store_link('https://drunkyeti.itch.io/', 'Browse our itch.io catalog ↗', 'release') + '</p></aside>')
         if is_android:
             intro = (
                 '<aside class="collection-intro"><p>Each app’s Google Play listing shows whether you can install it on your device. '
-                '<a href="https://play.google.com/store/apps/developer?id=Drunk+Yeti+Studio">Visit our Google Play developer page ↗</a></p>'
+                + store_link(DEVELOPER, 'Visit our Google Play developer page ↗', 'release') + '</p>'
                 '<p><a href="/games/">Browse all games</a> · <a href="/news/">Read the latest release news</a></p></aside>'
             )
         if slug == 'comics':

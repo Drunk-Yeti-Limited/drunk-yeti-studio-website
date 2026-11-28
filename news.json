@@ -240,5 +240,47 @@
         "url": "https://www.drunkyetistudio.com/steam/"
       }
     ]
+  },
+  {
+    "slug": "ar3na-dillingham-microsoft-store",
+    "date": "2026-11-28",
+    "title": "AR3NA: All-Stars and Dillingham: Salmon Run come to the Microsoft Store",
+    "summary": "Two more Drunk Yeti games are available for Windows through the Microsoft Store.",
+    "product": "/games/ar3na/",
+    "image": "/assets/covers/ar3na-world-tour.webp",
+    "imageAlt": "AR3NA: All-Stars cover art.",
+    "body": [
+      "Take the court in AR3NA: All-Stars, a 3D party arena game with modes like Magic Soccer, Sumo, and Capture the Flag.",
+      "In Dillingham: Salmon Run, work the docks and keep an Alaskan seafood processing line moving through salmon season. Both games have dedicated Microsoft Store pages with current PC requirements."
+    ],
+    "links": [
+      {
+        "label": "AR3NA: All-Stars on the Microsoft Store",
+        "url": "https://apps.microsoft.com/detail/9pfb2p13dn2m?hl=en-US&gl=US"
+      },
+      {
+        "label": "Dillingham: Salmon Run on the Microsoft Store",
+        "url": "https://apps.microsoft.com/detail/9n17t8jtcvf6?hl=en-US&gl=US"
+      }
+    ]
+  },
+  {
+    "slug": "klay-karts-desktop-browser-update",
+    "date": "2026-11-28",
+    "title": "Klay Karts updates its desktop browser build on itch.io",
+    "summary": "Race with a keyboard or gamepad and keep your best times in your browser.",
+    "product": "/games/klay-karts/",
+    "image": "/assets/covers/klay-karts.webp",
+    "imageAlt": "Klay Karts cover art.",
+    "body": [
+      "The updated Klay Karts browser build supports desktop keyboards and standard gamepads. Shape shortcuts in the clay, drift through corners, and chase a faster lap.",
+      "Your progress and best times save in the browser you use to play."
+    ],
+    "links": [
+      {
+        "label": "Play Klay Karts on itch.io",
+        "url": "https://drunkyeti.itch.io/klay-karts"
+      }
+    ]
   }
 ]

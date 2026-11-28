@@ -407,7 +407,7 @@
   {
     "title": "Klay Karts",
     "url": "https://apps.microsoft.com/detail/9p02nb5kkxvd?hl=en-US&gl=US",
-    "image": "./assets/covers/schmuck-deluxe-soundtrack.webp",
+    "image": "./assets/covers/klay-karts.webp",
     "description": "Race clay karts through sculpted circuits, build ramps and turn wet tire tracks into boosts.",
     "category": "Games",
     "browser": false,
@@ -433,6 +433,30 @@
     "url": "https://apps.microsoft.com/detail/9phhrx42ld9p?hl=en-US&gl=US",
     "image": "./assets/covers/yeti-brawl.webp",
     "description": "Fight across platform arenas with seven fighter kits, CPU rivals, local versus and local co-op.",
+    "category": "Games",
+    "browser": false,
+    "storefront": "Microsoft Store",
+    "platforms": [
+      "windows"
+    ]
+  },
+  {
+    "title": "AR3NA: All-Stars",
+    "url": "https://apps.microsoft.com/detail/9pfb2p13dn2m?hl=en-US&gl=US",
+    "image": "./assets/covers/ar3na-world-tour.webp",
+    "description": "Play colorful arena matches with original characters in modes including Magic Soccer, Sumo, and Capture the Flag.",
+    "category": "Games",
+    "browser": false,
+    "storefront": "Microsoft Store",
+    "platforms": [
+      "windows"
+    ]
+  },
+  {
+    "title": "Dillingham: Salmon Run",
+    "url": "https://apps.microsoft.com/detail/9n17t8jtcvf6?hl=en-US&gl=US",
+    "image": "./assets/covers/oddly-stacked-soundtrack.webp",
+    "description": "Unload the catch and keep the seafood processing line moving in a game inspired by salmon season in Bristol Bay, Alaska.",
     "category": "Games",
     "browser": false,
     "storefront": "Microsoft Store",
